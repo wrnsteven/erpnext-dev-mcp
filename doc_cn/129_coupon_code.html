@@ -1,0 +1,107 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>优惠券代码</title>
+</head>
+<body>
+    <h1>优惠券代码</h1>
+
+    <p><strong>优惠券代码允许客户在购物车产品上享受折扣。</strong></p>
+
+    <p>折扣优惠总是令人兴奋的。为了鼓励客户从电子商务网站购买，优惠券代码功能非常实用。</p>
+
+    <p>有一些代理商/其他网站为你的 ERPNext 电子商务网站产品/商品/服务产生潜在客户。</p>
+
+    <p>当潜在客户从其他网站或促销电子邮件来到你的 ERPNext 网站进行购买时，你应该能够：</p>
+
+    <p>要访问优惠券代码列表，请进入：</p>
+
+    <blockquote>
+        <p>首页 > 会计 > 优惠券代码</p>
+    </blockquote>
+
+    <ol>
+        <li>前提条件</li>
+    </ol>
+
+    <hr />
+
+    <ol>
+        <li><p>要启用优惠券代码功能，请在<strong>电子商务设置</strong>中启用<strong>显示应用优惠券代码</strong>。</p></li>
+        <li><p>创建一个已启用<strong>基于优惠券代码</strong>标志的<strong>定价规则</strong>。</p></li>
+        <li><p>如何创建优惠券代码</p></li>
+    </ol>
+
+    <hr />
+
+    <ol>
+        <li>进入优惠券代码列表，点击"新建"。</li>
+        <li>输入<strong>优惠券名称</strong>，例如 "SAVE 20"</li>
+        <li>在<strong>优惠券类型</strong>下，选择"促销"或"礼品卡"。</li>
+    </ol>
+
+    <p>促销类型用于推广通用方案。</p>
+
+    <p>礼品卡类型用于随机生成优惠券代码并分发给特定客户/用户。</p>
+
+    <ol start="4">
+        <li><strong>优惠券代码</strong>是基于优惠券类型和优惠券名称生成的全大写唯一只读代码。</li>
+    </ol>
+
+    <p>对于优惠券类型：</p>
+
+    <p>a) <em>促销</em>：会移除所有空格并取前 8 个字符。例如：SAVE20</p>
+
+    <p>b) <em>礼品卡</em>：生成 11 位随机代码。例如：AP48K7CT9LP</p>
+
+    <p>可在下单前的购物车页面使用优惠券代码享受折扣。</p>
+
+    <ol start="5">
+        <li>选择已启用<strong>基于优惠券代码</strong>标志的<a href="/erpnext/pricing-rule">定价规则</a>。</li>
+        <li>点击保存</li>
+    </ol>
+
+    <p><img src="/files/coupon-code.png" alt="Coupon Code Doctype" /></p>
+
+    <ol start="3">
+        <li>功能</li>
+    </ol>
+
+    <hr />
+
+    <h3 id="31-validity-and-usage">3.1 有效期和使用</h3>
+
+    <ol>
+        <li><strong>有效期从 - 至</strong> - 优惠券的有效期</li>
+        <li><strong>最大使用次数</strong> - 限制优惠券代码的使用次数上限</li>
+        <li><strong>已使用</strong> - 每提交一个使用优惠券代码的销售订单，已使用计数增加 1。</li>
+        <li><strong>优惠券代码描述</strong> - 可在创建电子邮件模板时使用，以告知潜在客户优惠券代码和方案信息</li>
+    </ol>
+
+    <p><img src="/files/coupon-code-pricing-rule.png" alt="Pricing Rule Coupon Code Based" /></p>
+
+    <h3 id="32-coupon-code-can-be-applied-in-two-ways">3.2 优惠券代码可以通过两种方式应用</h3>
+
+    <ol>
+        <li>通过 URL，优惠券代码会自动从 URL 参数（"cc"）获取并填充到"应用优惠券代码"文本框中，方便用户应用。</li>
+    </ol>
+
+    <p><code>http://xyz.erpnext.com/products/golden-ring?cc=SAVE5</code></p>
+
+    <ol start="2">
+        <li>手动输入代码，通过在购物车页面填写代码并点击"应用优惠券代码"按钮来应用</li>
+    </ol>
+
+    <p><img src="/files/coupon-code-pricing-rule.png" alt="Shopping Cart Apply CouponCode" /></p>
+
+    <p>成功应用优惠券代码后，价格将会更新。</p>
+
+    <h3 id="4-related-topics">4. 相关主题</h3>
+
+    <ol>
+        <li><a href="/erpnext/shopping-cart">购物车</a></li>
+        <li><a href="/erpnext/pricing-rule">定价规则</a></li>
+    </ol>
+</body>
+</html>

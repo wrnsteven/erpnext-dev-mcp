@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Dated Cheque Entry</title>
+</head>
+<body>
+<p>期票是一种注明未来日期的支票。当事方通常提供期票作为预付款。这张支票只有在支票日期到来时才会被兑现。</p><p>在 ERPNext 中，为期票创建 Payment Entry。</p><p><h3>新建 Payment Entry</h3></p><p>要打开新的付款凭证，请前往：</p><p>> <code>Accounting > Payment Entry > New</code></p><p><h3>设置过账日期</h3></p><p>假设您的支票日期是 2016 年 12 月 31 日（或任何未来日期）。因此，您银行账本中的这笔过账将显示在更新后的过账日期上。</p><p>!<a href="../../images/397_Screenshot_2024-07-30_at_1_12.33.43_PM.png">图片</a></p><p>注意：Payment Entry 参考日期应等于或小于过账日期。</p><p><h3>保存并提交</h3></p><p>输入所需信息后，保存并提交该 Payment Entry。</p><p><h3>调整期票凭证</h3></p><p>您可以通过 <a href="/erpnext/payment-reconciliation">Payment Reconciliation Tool</a> 将期票 Payment Entry 与发票进行核销。</p><p>当支票兑现时，即在支票的实际日期，您可以通过 <a href="/erpnext/bank-reconciliation">Bank Reconciliation Tool</a> 更新其兑现日期。</p><p>在科目表中，您可能会发现该 Payment Entry 的值已反映在银行账户中。您应查看账户模块中的 <strong>Bank Reconciliation Statement</strong>（银行对账单），这是一份用于了解系统银行余额与银行对账单实际余额之间差异的报告。</p><p>---
+original_url: https://docs.frappe.io/erpnext/post-dated-cheque-entry
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---</p>
+</body>
+</html>

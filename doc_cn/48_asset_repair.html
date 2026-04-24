@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资产维修 - ERPNext</title>
+</head>
+<body>
+    <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+        <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">资产维修</h1>
+    </header>
+
+    <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+        <p><strong>资产维修是指为修复损坏的资产以恢复全部功能而进行的任何活动。</strong></p>
+        <p>您还可以维护未在资产维护中列出的资产的维修/故障记录。</p>
+        <p>要访问资产维修列表，请前往：</p>
+        <blockquote>
+            <p>Home > Assets > Maintenance > Asset Repair</p>
+        </blockquote>
+        <h2 id="1-prerequisites">1. 先决条件</h2>
+        <hr />
+        <p>在创建资产维修之前，请确保：</p>
+        <ul>
+            <li><a href="/erpnext/asset">Asset</a></li>
+        </ul>
+        <h2 id="2-how-to-create-an-asset-repair">2. 如何创建资产维修</h2>
+        <hr />
+        <ol>
+            <li>前往资产维修列表，点击新建。</li>
+            <li>选择资产。</li>
+            <li>选择故障日期。</li>
+            <li>输入维修成本。</li>
+            <li>将维修状态从"待处理"更改为"已完成"或"已取消"。</li>
+            <li>如果维修成本大于零，请选择采购发票。</li>
+            <li>保存并提交。</li>
+        </ol>
+        <p><img src="/images/48_Screenshot 2026-01-11 at 10.49.56PM.png" alt="" /></p>
+        <blockquote>
+            <p>注意：或者，您可以打开相关资产的记录，然后点击<strong>管理</strong>下的<strong>维修资产</strong>按钮，然后按照步骤 3-8 操作。</p>
+        </blockquote>
+        <h2 id="3-features">3. 功能</h2>
+        <hr />
+        <h3 id="31-capitalize-repair-cost">3.1 资本化维修成本</h3>
+        <p>如果选中，维修成本将被添加到资产的价值中。这也可以让您延长资产的使用寿命。</p>
+        <h3 id="32-increase-in-asset-lifemonths">3.2 资产寿命增加（月）</h3>
+        <p>这里可以添加维修可能延长资产的月数。这将修改资产的折旧计划。此字段仅在"资本化维修成本"被选中时可见。</p>
+        <p><img src="/images/48_Screenshot 2026-01-11 at 10.53.02PM.png" alt="" /></p>
+        <h3 id="33-consumed-stock-items">3.3 消耗的库存物品</h3>
+        <p>在此处输入维修过程中消耗的库存物品，将为它们创建类型为"物料发放"的库存 Entry 记录，从而减少其数量。还将为表中的每个物料创建 GL 条目。对于序列化物品，可以展开物料行以显示"添加序列号"按钮。</p>
+        <p><img src="/images/48_Screenshot 2026-01-11 at 10.56.17PM.png" alt="" /></p>
+        <ul>
+            <li><strong>错误描述</strong>：可以在这里输入问题的详细描述。</li>
+            <li><strong>执行的操作</strong>：可以在这里记下执行维修的一系列操作。</li>
+        </ul>
+        <p><img src="/images/48_Screenshot 2026-01-11 at 10.59.48PM.png" alt="" /></p>
+        <h3 id="34-accounting-dimensions">3.4 会计维度</h3>
+        <p>会计维度让您可以根据特定区域、分支、客户等对交易进行标记。这有助于基于所选维度分别查看会计报表。要了解更多，请查看会计维度功能的帮助。</p>
+        <blockquote>
+            <p>注意：项目和成本中心默认被视为维度。</p>
+        </blockquote>
+        <h3 id="35-purchase-invoice">3.5 采购发票</h3>
+        <p>可以将采购发票与资产维修关联，以核算需要进行维修而需要购买的任何物品或提供的维修服务。</p>
+        <p><img src="/images/48_Screenshot 2026-01-11 at 11.00.38PM.png" alt="" /></p>
+        <h3 id="36-total-repair-cost">3.6 总维修成本</h3>
+        <p>如果选中"维修期间消耗的库存"，则总维修成本将根据消耗的库存物品价值和输入的维修成本计算。</p>
+        <p><img src="/images/48_Screenshot 2026-01-11 at 11.01.18PM.png" alt="" /></p>
+    </div>
+
+    <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+        <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+            <a href="/erpnext/asset-movement" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <div class="flex flex-col gap-1 min-w-0">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">上一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">资产移动</span>
+                </div>
+            </a>
+            <a href="/erpnext/asset-value-adjustment" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">下一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">Asset Value Adjustment</span>
+                </div>
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]">
+            最后更新于 2 个月前
+        </div>
+    </div>
+</body>
+</html>

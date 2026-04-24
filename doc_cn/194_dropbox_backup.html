@@ -1,0 +1,85 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置 Dropbox 备份</title>
+</head>
+<body>
+    <h1>设置 Dropbox 备份</h1>
+
+    <p>我们始终建议客户在 ERPNext 中维护其数据的备份。数据库备份以 SQL 文件的形式下载。如果需要，这个备份 SQL 文件也可以恢复到另一个 ERPNext 账户。</p>
+
+    <p>你可以将 ERPNext 账户的数据库备份自动下载到你的 Dropbox 账户。</p>
+
+    <blockquote>
+    <p>注意：如果你是 Frappe Cloud 用户，现场和异地备份会自动为你创建：&lt;https://frappecloud.com/docs/sites/backups&gt;</p>
+    </blockquote>
+
+    <p>要设置 Dropbox 备份，请进入 &gt; Home &gt; Integrations &gt; Dropbox Settings</p>
+
+    <h4 id="step-1-login-to-dropbox-developer-area">步骤 1：登录 Dropbox 开发者区域</h4>
+
+    <p>&lt;https://www.dropbox.com/developers/apps&gt;</p>
+
+    <h4 id="step-2-create-a-new-dropbox-app">步骤 2：创建新的 Dropbox 应用</h4>
+
+    <p><img src="/files/dropbox-open-3.png" alt="Create new" /></p>
+
+    <h4 id="step-3-fill-in-the-details-for-your-new-app">步骤 3：填写新应用的详细信息</h4>
+
+    <p><img src="/files/dropbox-open-1.png" alt="Choose Dropbox API and type as APP Folder" /> <img src="/files/dropbox-open-2.png" alt="Setup APP Name" /></p>
+
+    <p><img src="https://support.frappe.io/files/nBdh7wu.png" alt="https://support.frappe.io/files/nBdh7wu.png" /></p>
+
+    <h4 id="step-4-insert-your-custom-domain-redirect-uri">步骤 4：插入你的自定义域名 Redirect URI</h4>
+
+    <p><code>https://{yourwebsite.com}/api/method/frappe.integrations.doctype.dropbox_settings.dropbox_settings.dropbox_auth_finish</code> <img src="/files/dropbox_redirect_uri.png" alt="Set Redirect URL" /></p>
+
+    <h4 id="step-5-in-a-new-window-open-the-dropbox-settings-page-in-your-erpnext-installation">步骤 5：在新窗口中，打开你的 ERPNext 安装中的 Dropbox Settings 页面</h4>
+
+    <h4 id="step-6-set-backup-frequency-and-email">步骤 6：设置备份频率和电子邮件</h4>
+
+    <p>设置将站点备份下载到 Dropbox 账户的频率。 <img src="/files/setup-backup-frequency.png" alt="set frequency" /></p>
+
+    <h4 id="step-7-input-keys-from-your-dropbox-app-window">步骤 7：从你的 Dropbox 应用窗口输入密钥</h4>
+
+    <p>从你的 Dropbox 应用页面，将应用密钥和（未隐藏的）应用密钥输入到 ERPNext Dropbox 设置页面。</p>
+
+    <p>或者，你可以将其手动输入到 <code>sites/{sitename}/site_config.json</code> 中，如下所示：</p>
+
+    <pre><code>       {
+	 "db_name": "demo",
+	 "db_password": "DZ1Idd55xJ9qvkHvUH",
+	 "dropbox_access_key": "ACCESSKEY",
+	 "dropbox_secret_key": "SECRECTKEY"
+}
+
+    </code></pre>
+
+    <h4 id="step-8-click-save-before-continuing">步骤 8：继续之前点击保存</h4>
+
+    <h4 id="step-9-after-saving-click-quotallow-dropbox-accessquot">步骤 9：保存后，点击"Allow Dropbox Access"</h4>
+
+    <p>Dropbox 登录页面将在新标签页中打开。这可能需要你允许弹出窗口访问你的 ERPNext 账户。</p>
+
+    <h4 id="step-11-allow-dropbox-access">步骤 11：允许 Dropbox 访问</h4>
+
+    <p>成功登录后，你会看到如下确认消息。点击"Allow"以允许你的 ERPNext 账户访问你的 Dropbox 账户。 <img src="/files/dropbox-3.png" alt="Allow" /></p>
+
+    <h4 id="step-12-confirm-backups-work">步骤 12：确认备份工作正常</h4>
+
+    <p>从 ERPNext Dropbox 页面，点击<code>Take Backup Now</code>，然后转到你的 Dropbox 文件视图。你应该在 Dropbox 中看到一个名为<code>Apps</code>的新文件夹，其中包含你的{New App}文件夹。其中应该包含文件和数据库的备份文件夹。因此，对于名为<code>erpnext</code>的应用，以下是文件夹位置：</p>
+
+    <pre><code>Database files: /Apps/erpnext/database
+Public files: /Apps/erpnext/files
+Private files: /Apps/erpnext/private/files
+
+
+</code></pre>
+
+    <blockquote>
+    <p><strong>注意</strong>：如果压缩备份大小超过 1GB，系统将上传最新的可用备份到 Dropbox，而不是生成新的备份文件。</p>
+    </blockquote>
+
+</body>
+</html>

@@ -1,0 +1,1004 @@
+
+        <!-- Page Header -->
+        <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+            
+            <!-- Mobile: Edit above title -->
+            <div class="flex justify-start mb-4 sm:hidden">
+                
+    <div class="relative inline-flex" x-data="{ open: false }" @click.outside="open = false">
+        <!-- Split button group -->
+        <div class="inline-flex rounded-lg border border-[var(--outline-gray-2)] overflow-hidden">
+            <!-- Edit button (navigates to edit page) -->
+            <a href="/wiki/spaces/1u8fslkdg6/page/0tn0lmrqdl"
+               class="wiki-edit-link inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-[var(--ink-gray-7)] bg-[var(--surface-white)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+                
+    
+
+    
+    <svg class="w-4 h-4 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+        <path d="m15 5 4 4"></path>
+    </svg>
+    
+
+                <span>Edit</span>
+            </a>
+            <!-- Dropdown toggle button -->
+            <button @click="open = !open"
+                    class="inline-flex items-center px-2 py-1.5 text-[var(--ink-gray-5)] bg-[var(--surface-white)] hover:bg-[var(--surface-gray-1)] border-l border-[var(--outline-gray-2)] transition-colors duration-200 cursor-pointer">
+                <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Dropdown menu -->
+        <div x-show="open"
+             x-cloak
+             x-transition:enter="transition ease-out duration-100"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-75"
+             x-transition:leave-start="opacity-100 scale-100"
+             x-transition:leave-end="opacity-0 scale-95"
+             class="absolute left-0 sm:left-auto sm:right-0 mt-10 w-72 bg-[var(--surface-white)] border border-[var(--outline-gray-1)] rounded-lg shadow-lg z-50 py-2">
+
+                    
+    
+    <button @click="copyMarkdown(); open = false"
+            class="w-full flex items-start gap-3 px-4 py-3 text-left hover:bg-[var(--surface-gray-1)] transition-colors duration-200 cursor-pointer">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)]">Copy page</div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Copy page as Markdown for LLMs</div>
+            
+        </div>
+    </button>
+    
+
+                    
+    
+    <a :href="getAIUrl('openai')"
+       target="_blank" rel="noopener noreferrer"
+       class="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)] flex items-center gap-1">
+                Open in ChatGPT
+                
+                
+    
+
+    
+    <svg class="w-4 h-4 w-3 h-3 text-[var(--ink-gray-4)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+    </svg>
+    
+
+                
+            </div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Ask ChatGPT about this page</div>
+            
+        </div>
+    </a>
+    
+
+                    
+    
+    <a :href="getAIUrl('claude')"
+       target="_blank" rel="noopener noreferrer"
+       class="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.165-2.263-.134-.86-.06.144-.472.384-.124 1.116.068 2.01.128 2.322.152.986.062h.222l.058-.2-.238-.2-.632-.472-1.89-1.426-1.963-1.486-.663-.525.35-.36.426.074.636.496 1.58 1.21 1.89 1.436.695.516.174.058.082-.14-.066-.258-.324-1.142-.85-2.96-.42-1.418-.227-.81.465-.227.28.282.29.964.676 2.378.622 2.166.14.482.15.07.15-.14.014-.174-.07-.728-.228-2.47-.174-2.05-.072-.986.502-.035.238.366.086 1.332.106 1.578.15 2.324.12 1.31.032.174.168.08.14-.14.342-.59.884-1.546 1.22-2.11.46-.79.488.2.012.406-.354.638-1.01 1.79-1.17 2.086-.24.434-.008.182.214.104.166-.034.728-.298 2.286-.96 1.616-.676.614-.246.286.42-.12.402-.606.288-1.82.776-2.2.932-.566.244-.08.188.066.164.596.242 2.102.82 1.866.752.55.252-.09.494-.446.14-.744-.282-1.75-.686-2.052-.816-.506-.202-.198.002-.102.192.044.2.366.75 1.082 2.198.794 1.664.186.448-.33.338-.392-.068-.252-.504-.868-1.748-1.03-2.11-.216-.432-.128-.138-.186.034-.08.15.018.36.048.986.098 2.424.034 1.574-.006.446-.486.106-.256-.298-.06-.752-.128-2.33-.084-2.016-.026-.606-.012-.182-.17-.068-.14.128-.37.402-1.55 1.696-1.334 1.428-.658.69-.458-.172-.024-.446.51-.552 1.328-1.452 1.546-1.686.306-.336.048-.204-.166-.112-.238.054-.69.252-2.334.862-1.602.578-.612.202-.33-.372.11-.41.612-.252 2.126-.79 2.178-.804.366-.126.112-.172-.064-.172-.174-.06-.756-.156-2.358-.494-1.632-.35-.586-.144.054-.505.472-.09.786.148 2.08.416 1.958.396.538.11.186-.022.102-.17-.05-.212-.224-.504-.868-1.87-1.11-2.41-.28-.674.396-.282.384.128.21.44.948 2.022 1.088 2.362.21.456.124.154.17-.004.088-.122.058-.396.142-2.382.09-1.666.054-.62.495-.046.262.32.026.82.022 2.164-.006 2.146-.02.412.06.19.178.066.132-.112.268-.304 1.258-1.434 1.598-1.852.38-.44.466.14.064.416z"/>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)] flex items-center gap-1">
+                Open in Claude
+                
+                
+    
+
+    
+    <svg class="w-4 h-4 w-3 h-3 text-[var(--ink-gray-4)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+    </svg>
+    
+
+                
+            </div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Ask Claude about this page</div>
+            
+        </div>
+    </a>
+    
+
+                
+        </div>
+    </div>
+
+            </div>
+            <div class="flex items-center justify-between gap-4">
+                <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">Form Scripts</h1>
+
+                <!-- Desktop: Edit beside title -->
+                <div class="hidden sm:block">
+                    
+    <div class="relative inline-flex" x-data="{ open: false }" @click.outside="open = false">
+        <!-- Split button group -->
+        <div class="inline-flex rounded-lg border border-[var(--outline-gray-2)] overflow-hidden">
+            <!-- Edit button (navigates to edit page) -->
+            <a href="/wiki/spaces/1u8fslkdg6/page/0tn0lmrqdl"
+               class="wiki-edit-link inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-[var(--ink-gray-7)] bg-[var(--surface-white)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+                
+    
+
+    
+    <svg class="w-4 h-4 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+        <path d="m15 5 4 4"></path>
+    </svg>
+    
+
+                <span>Edit</span>
+            </a>
+            <!-- Dropdown toggle button -->
+            <button @click="open = !open"
+                    class="inline-flex items-center px-2 py-1.5 text-[var(--ink-gray-5)] bg-[var(--surface-white)] hover:bg-[var(--surface-gray-1)] border-l border-[var(--outline-gray-2)] transition-colors duration-200 cursor-pointer">
+                <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Dropdown menu -->
+        <div x-show="open"
+             x-cloak
+             x-transition:enter="transition ease-out duration-100"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-75"
+             x-transition:leave-start="opacity-100 scale-100"
+             x-transition:leave-end="opacity-0 scale-95"
+             class="absolute left-0 sm:left-auto sm:right-0 mt-10 w-72 bg-[var(--surface-white)] border border-[var(--outline-gray-1)] rounded-lg shadow-lg z-50 py-2">
+
+                        
+    
+    <button @click="copyMarkdown(); open = false"
+            class="w-full flex items-start gap-3 px-4 py-3 text-left hover:bg-[var(--surface-gray-1)] transition-colors duration-200 cursor-pointer">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)]">Copy page</div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Copy page as Markdown for LLMs</div>
+            
+        </div>
+    </button>
+    
+
+                        
+    
+    <a :href="getAIUrl('openai')"
+       target="_blank" rel="noopener noreferrer"
+       class="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)] flex items-center gap-1">
+                Open in ChatGPT
+                
+                
+    
+
+    
+    <svg class="w-4 h-4 w-3 h-3 text-[var(--ink-gray-4)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+    </svg>
+    
+
+                
+            </div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Ask ChatGPT about this page</div>
+            
+        </div>
+    </a>
+    
+
+                        
+    
+    <a :href="getAIUrl('claude')"
+       target="_blank" rel="noopener noreferrer"
+       class="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.165-2.263-.134-.86-.06.144-.472.384-.124 1.116.068 2.01.128 2.322.152.986.062h.222l.058-.2-.238-.2-.632-.472-1.89-1.426-1.963-1.486-.663-.525.35-.36.426.074.636.496 1.58 1.21 1.89 1.436.695.516.174.058.082-.14-.066-.258-.324-1.142-.85-2.96-.42-1.418-.227-.81.465-.227.28.282.29.964.676 2.378.622 2.166.14.482.15.07.15-.14.014-.174-.07-.728-.228-2.47-.174-2.05-.072-.986.502-.035.238.366.086 1.332.106 1.578.15 2.324.12 1.31.032.174.168.08.14-.14.342-.59.884-1.546 1.22-2.11.46-.79.488.2.012.406-.354.638-1.01 1.79-1.17 2.086-.24.434-.008.182.214.104.166-.034.728-.298 2.286-.96 1.616-.676.614-.246.286.42-.12.402-.606.288-1.82.776-2.2.932-.566.244-.08.188.066.164.596.242 2.102.82 1.866.752.55.252-.09.494-.446.14-.744-.282-1.75-.686-2.052-.816-.506-.202-.198.002-.102.192.044.2.366.75 1.082 2.198.794 1.664.186.448-.33.338-.392-.068-.252-.504-.868-1.748-1.03-2.11-.216-.432-.128-.138-.186.034-.08.15.018.36.048.986.098 2.424.034 1.574-.006.446-.486.106-.256-.298-.06-.752-.128-2.33-.084-2.016-.026-.606-.012-.182-.17-.068-.14.128-.37.402-1.55 1.696-1.334 1.428-.658.69-.458-.172-.024-.446.51-.552 1.328-1.452 1.546-1.686.306-.336.048-.204-.166-.112-.238.054-.69.252-2.334.862-1.602.578-.612.202-.33-.372.11-.41.612-.252 2.126-.79 2.178-.804.366-.126.112-.172-.064-.172-.174-.06-.756-.156-2.358-.494-1.632-.35-.586-.144.054-.505.472-.09.786.148 2.08.416 1.958.396.538.11.186-.022.102-.17-.05-.212-.224-.504-.868-1.87-1.11-2.41-.28-.674.396-.282.384.128.21.44.948 2.022 1.088 2.362.21.456.124.154.17-.004.088-.122.058-.396.142-2.382.09-1.666.054-.62.495-.046.262.32.026.82.022 2.164-.006 2.146-.02.412.06.19.178.066.132-.112.268-.304 1.258-1.434 1.598-1.852.38-.44.466.14.064.416z"/>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)] flex items-center gap-1">
+                Open in Claude
+                
+                
+    
+
+    
+    <svg class="w-4 h-4 w-3 h-3 text-[var(--ink-gray-4)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+    </svg>
+    
+
+                
+            </div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Ask Claude about this page</div>
+            
+        </div>
+    </a>
+    
+
+                    
+        </div>
+    </div>
+
+                </div>
+            </div>
+            
+        </header>
+
+
+        <!-- Page Content -->
+        <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+            <p>Form Scripts lets you add client side logic to your Forms. You can write Form Scripts for automatically fetching values, adding validation or adding contextual actions to your Form.</p>
+<h2 id="standard-form-scripts">Standard Form Scripts</h2>
+<p>When you create a new DocType, a <code>{doctype}.js</code> is created where you can write your form script.</p>
+<p>Syntax:</p>
+<pre><code>frappe.ui.form.on(doctype, {
+    event1() {
+        // handle event 1
+    },
+    event2() {
+        // handle event 2
+    }
+})
+  
+
+</code></pre>
+<p>For example, <code>todo.js</code> which is located at <code>frappe/desk/doctype/todo/todo.js</code> may look like this:</p>
+<pre><code>// Script for ToDo Form
+frappe.ui.form.on('ToDo', {
+    // on refresh event
+    refresh(frm) {
+        // if reference_type and reference_name are set,
+        // add a custom button to go to the reference form
+        if (frm.doc.reference_type &amp;amp;&amp;amp; frm.doc.reference_name) {
+            frm.add_custom_button(__(frm.doc.reference_name), () =&gt; {
+                frappe.set_route(&quot;Form&quot;, frm.doc.reference_type, frm.doc.reference_name);
+            });
+        }
+    }
+})
+  
+
+</code></pre>
+<h3 id="child-table-scripts">Child Table Scripts</h3>
+<p>Child Table Scripts should be written in the same file as their parent.</p>
+<pre><code>frappe.ui.form.on('Quotation', {
+    // ...
+})
+
+frappe.ui.form.on('Quotation Item', {
+    // cdt is Child DocType name i.e Quotation Item
+    // cdn is the row name for e.g bbfcb8da6a
+    item_code(frm, cdt, cdn) {
+        let row = frappe.get_doc(cdt, cdn);
+    }
+})
+  
+
+</code></pre>
+<h2 id="custom-form-scripts">Custom Form Scripts</h2>
+<p>You can also write form scripts by creating <strong>Client Script</strong> in the system. You should write Client Scripts if the logic is specific to your site. If you want to share Form Scripts across sites, you must include them via Apps.</p>
+<p>To create a new Client Script, go to</p>
+<p><strong>Home &gt; Customization &gt; Client Script &gt; New</strong></p>
+<p><img src="/files/client-script-form.png" alt="New Client Script" /> <em>New Client Script for Form</em></p>
+<h2 id="form-events">Form Events</h2>
+<p>Form Scripts depend on events to trigger. Here are the list of all Form Events that are triggered by Form.</p>
+<p>These events will get <code>frm</code> as the first parameter in their handler functions.</p>
+<pre><code>frappe.ui.form.on('ToDo', {
+    // frm passed as the first parameter
+    setup(frm) {
+        // write setup code
+    }
+})
+  
+
+</code></pre>
+<table>
+<thead>
+<tr>
+  <th>Event Name</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>setup</code></td>
+  <td>Triggered once when the form is created for the first time</td>
+</tr>
+<tr>
+  <td><code>before_load</code></td>
+  <td>Triggered before the form is about to load</td>
+</tr>
+<tr>
+  <td><code>onload</code></td>
+  <td>Triggered when the form is loaded and is about to render</td>
+</tr>
+<tr>
+  <td><code>refresh</code></td>
+  <td>Triggered when the form is loaded and rendered.</td>
+</tr>
+<tr>
+  <td><code>onload_post_render</code></td>
+  <td>Triggered after the form is loaded and rendered</td>
+</tr>
+<tr>
+  <td><code>validate</code></td>
+  <td>Triggered before before_save</td>
+</tr>
+<tr>
+  <td><code>before_save</code></td>
+  <td>Triggered before save is called</td>
+</tr>
+<tr>
+  <td><code>after_save</code></td>
+  <td>Triggered after form is saved</td>
+</tr>
+<tr>
+  <td><code>before_submit</code></td>
+  <td>Triggered before submit is called</td>
+</tr>
+<tr>
+  <td><code>on_submit</code></td>
+  <td>Triggered after form is submitted</td>
+</tr>
+<tr>
+  <td><code>before_cancel</code></td>
+  <td>Triggered before cancel is called</td>
+</tr>
+<tr>
+  <td><code>after_cancel</code></td>
+  <td>Triggered after form is cancelled</td>
+</tr>
+<tr>
+  <td><code>before_discard</code></td>
+  <td>Triggered before discard is called</td>
+</tr>
+<tr>
+  <td><code>after_discard</code></td>
+  <td>Triggered after form is discarded</td>
+</tr>
+<tr>
+  <td><code>timeline_refresh</code></td>
+  <td>Triggered after form timeline is rendered</td>
+</tr>
+<tr>
+  <td><code>{fieldname}_on_form_rendered</code></td>
+  <td>Triggered when a row is opened as a form in a Table field</td>
+</tr>
+<tr>
+  <td><code>{fieldname}</code></td>
+  <td>Triggered when the value of fieldname is changed</td>
+</tr>
+<tr>
+  <td><code>get_email_recipient_filters</code></td>
+  <td>Called by the email dialog to fetch default filters for email recipients. Should accept two parameters <code>frm</code> (the current form) and <code>field</code> (&quot;recipients&quot;, &quot;cc&quot; or &quot;bcc&quot;), and return an array or dict of filters (related to the <strong>Contact</strong> doctype).</td>
+</tr>
+<tr>
+  <td><code>get_email_recipients</code></td>
+  <td>Called by the email dialog to fetch default recipients. Should accept two parameters <code>frm</code> (the current form) and <code>field</code> (&quot;recipients&quot;, &quot;cc&quot; or &quot;bcc&quot;), and return a list of email addresses for this field.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="child-table-events">Child Table Events</h3>
+<p>These events are triggered in the context of a Child Table. Hence, along with <code>frm</code>, they will also get the <code>cdt</code> (Child DocType) and <code>cdn</code> (Child Docname) parameters in their handler functions.</p>
+<p>Imagine our &quot;ToDo&quot; DocType has a field called &quot;links&quot; that contains a Child Table. This Child Table is defined in a DocType called &quot;Dynamic Link&quot;. We want our code to run whenever a row is added to the table.</p>
+<pre><code>// this code is located inside `todo.js`
+
+frappe.ui.form.on('Dynamic Link', { // The child table is defined in a DoctType called &quot;Dynamic Link&quot;
+    links_add(frm, cdt, cdn) { // &quot;links&quot; is the name of the table field in ToDo, &quot;_add&quot; is the event
+        // frm: current ToDo form
+        // cdt: child DocType 'Dynamic Link'
+        // cdn: child docname (something like 'a6dfk76')
+        // cdt and cdn are useful for identifying which row triggered this event
+
+        frappe.msgprint('A row has been added to the links table 🎉 ');
+    }
+});
+  
+
+</code></pre>
+<table>
+<thead>
+<tr>
+  <th>Event Name</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>before_{fieldname}_remove</code></td>
+  <td>Triggered when a row is about to be removed from a Table field</td>
+</tr>
+<tr>
+  <td><code>{fieldname}_add</code></td>
+  <td>Triggered when a row is added to a Table field</td>
+</tr>
+<tr>
+  <td><code>{fieldname}_remove</code></td>
+  <td>Triggered when a row is removed from a Table field</td>
+</tr>
+<tr>
+  <td><code>{fieldname}_move</code></td>
+  <td>Triggered when a row is reordered to another location in a Table field</td>
+</tr>
+<tr>
+  <td><code>form_render</code></td>
+  <td>Triggered when a row is opened as a form in a Table field</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> The first three events listed in the above table, <code>before_{fieldname}_remove</code>, <code>{fieldname}_add</code> and <code>{fieldname}_remove</code>, are triggered for fields of fieldtype <strong>Table MultiSelect</strong> also. (Version 16 onwards)</p>
+</blockquote>
+<h2 id="form-api">Form API</h2>
+<p>Here are a list of common methods that are available on the <code>frm</code> object.</p>
+<h3 id="frmset_value">frm.set_value</h3>
+<p>Set the value of a field. This will trigger the field change event in the form.</p>
+<pre><code>// set a single value
+frm.set_value('description', 'New description')
+
+// set multiple values at once
+frm.set_value({
+    status: 'Open',
+    description: 'New description'
+})
+
+// returns a promise
+frm.set_value('description', 'New description')
+    .then(() =&gt; {
+        // do something after value is set
+    })
+  
+
+</code></pre>
+<h3 id="frmrefresh">frm.refresh</h3>
+<p>Refresh the form with the latest values from the server. Will trigger <code>before_load</code>, <code>onload</code>, <code>refresh</code>, <code>timeline_refresh</code> and <code>onload_post_render</code>.</p>
+<pre><code>frm.refresh();
+  
+
+</code></pre>
+<h3 id="frmsave">frm.save</h3>
+<p>Trigger form save. Will trigger <code>validate</code>, <code>before_save</code>, <code>after_save</code>, <code>timeline_refresh</code> and <code>refresh</code>.</p>
+<p>It can be used to trigger other save actions like Submit, Cancel and Update. In that case, the relevant events will be triggered.</p>
+<pre><code>// save form
+frm.save();
+
+// submit form
+frm.save('Submit');
+
+// cancel form
+frm.save('Cancel');
+
+// update form (after submit)
+frm.save('Update');
+
+// all methods returns a promise
+  
+
+</code></pre>
+<h3 id="frmenable_save-frmdisable_save">frm.enable_save / frm.disable_save</h3>
+<p>Methods to enable / disable the Save button in the form.</p>
+<pre><code>if (frappe.user_roles.includes('Custom Role')) {
+    frm.enable_save();
+} else {
+    frm.disable_save();
+}
+  
+
+</code></pre>
+<h3 id="frmemail_doc">frm.email_doc</h3>
+<p>Open Email dialog for this form.</p>
+<pre><code>// open email dialog
+frm.email_doc();
+
+// open email dialog with some message
+frm.email_doc(`Hello ${frm.doc.customer_name}`);
+  
+
+</code></pre>
+<h3 id="frmreload_doc">frm.reload_doc</h3>
+<p>Reload document with the latest values from the server and call <code>frm.refresh()</code>.</p>
+<pre><code>frm.reload_doc();
+  
+
+</code></pre>
+<h3 id="frmrefresh_field">frm.refresh_field</h3>
+<p>Refresh the field and it's dependencies.</p>
+<pre><code>frm.refresh_field('description');
+  
+
+</code></pre>
+<h3 id="frmis_dirty">frm.is_dirty</h3>
+<p>Check if form values has been changed and is not saved yet.</p>
+<pre><code>if (frm.is_dirty()) {
+    frappe.show_alert('Please save form before attaching a file')
+}
+  
+
+</code></pre>
+<h3 id="frmdirty">frm.dirty</h3>
+<p>Set form as &quot;dirty&quot;. This is used to set form as dirty when document values are changed. This triggers the <em><strong>&quot;Not Saved&quot;</strong></em> indicator in the Form Views.</p>
+<pre><code>frm.doc.browser_data = navigator.appVersion;
+frm.dirty();
+frm.save();
+  
+
+</code></pre>
+<p>Calling save without setting the form dirty will trigger a <em><strong>&quot;No changes in document&quot;</strong></em> toast.</p>
+<h3 id="frmis_new">frm.is_new</h3>
+<p>Check if the form is new and is not saved yet.</p>
+<pre><code>// add custom button only if form is not new
+if (!frm.is_new()) {
+    frm.add_custom_button('Click me', () =&gt; console.log('Clicked custom button'))
+}
+  
+
+</code></pre>
+<h3 id="frmset_intro">frm.set_intro</h3>
+<p>Set intro text on the top of the form. The function takes two parameters: <code>message</code> (string, required) and <code>color</code> (string, optional).</p>
+<p>Color can be 'blue', 'red', 'orange', 'green' or 'yellow'. Default is blue.</p>
+<pre><code>if (!frm.doc.description) {
+    frm.set_intro('Please set the value of description', 'blue');
+}
+  
+
+</code></pre>
+<p><img src="/files/Screenshot%202022-04-23%20at%201.56.04%20AM.png" alt="Intro text example" /> <em>Intro Text Example</em></p>
+<h3 id="frmadd_custom_button">frm.add_custom_button</h3>
+<p>Add a custom button in the inner toolbar of the page. Alias to <a href="/framework/v14/user/en/api/page#pageadd_inner_button">page.add_inner_button</a>.</p>
+<pre><code>// Custom buttons
+frm.add_custom_button('Open Reference form', () =&gt; {
+    frappe.set_route('Form', frm.doc.reference_type, frm.doc.reference_name);
+})
+
+// Custom buttons in groups
+frm.add_custom_button('Closed', () =&gt; {
+    frm.doc.status = 'Closed'
+}, 'Set Status');
+  
+
+</code></pre>
+<h3 id="frmchange_custom_button_type">frm.change_custom_button_type</h3>
+<p>Change a specific custom button type by label (and group).</p>
+<pre><code>// change type of ungrouped button
+frm.change_custom_button_type('Open Reference form', null, 'primary');
+
+// change type of a button in a group
+frm.change_custom_button_type('Closed', 'Set Status', 'danger');
+  
+
+</code></pre>
+<h3 id="frmremove_custom_button">frm.remove_custom_button</h3>
+<p>Remove a specific custom button by label (and group).</p>
+<pre><code>// remove custom button
+frm.remove_custom_button('Open Reference form');
+
+// remove custom button in a group
+frm.remove_custom_button('Closed', 'Set Status');
+  
+
+</code></pre>
+<h3 id="frmclear_custom_buttons">frm.clear_custom_buttons</h3>
+<p>Remove all custom buttons from the inner toolbar.</p>
+<pre><code>frm.clear_custom_buttons();
+  
+
+</code></pre>
+<h3 id="frmset_df_property">frm.set_df_property</h3>
+<p>Change the docfield property of a field and refresh the field.</p>
+<pre><code>// change the fieldtype of description field to Text
+frm.set_df_property('description', 'fieldtype', 'Text');
+
+// set the options of the status field to only be [Open, Closed]
+frm.set_df_property('status', 'options', ['Open', 'Closed'])
+
+// set a field as mandatory
+frm.set_df_property('title', 'reqd', 1)
+
+// set a field as read only
+frm.set_df_property('status', 'read_only', 1)
+  
+
+</code></pre>
+<h3 id="frmtoggle_enable">frm.toggle_enable</h3>
+<p>Toggle a field or list of fields as <code>read_only</code> based on a condition.</p>
+<pre><code>// set status and priority as read_only
+// if user does not have System Manager role
+let is_allowed = frappe.user_roles.includes('System Manager');
+frm.toggle_enable(['status', 'priority'], is_allowed);
+  
+
+</code></pre>
+<h3 id="frmtoggle_reqd">frm.toggle_reqd</h3>
+<p>Toggle a field or list of fields as mandatory (<code>reqd</code>) based on a condition.</p>
+<pre><code>// set priority as mandatory
+// if status is Open
+frm.toggle_reqd('priority', frm.doc.status === 'Open');
+  
+
+</code></pre>
+<h3 id="frmtoggle_display">frm.toggle_display</h3>
+<p>Show/hide a field or list of fields based on a condition.</p>
+<pre><code>// show priority and due_date field
+// if status is Open
+frm.toggle_display(['priority', 'due_date'], frm.doc.status === 'Open');
+  
+
+</code></pre>
+<h3 id="frmset_query">frm.set_query</h3>
+<p>Apply filters on a Link field to show limited records to choose from. You must call <code>frm.set_query</code> very early in the form lifecycle, usually in <code>setup</code> or <code>onload</code>.</p>
+<pre><code>// show only customers whose territory is set to India
+frm.set_query('customer', () =&gt; {
+    return {
+        filters: {
+            territory: 'India'
+        }
+    }
+})
+
+// show customers whose territory is any of India, Nepal, Japan
+frm.set_query('customer', () =&gt; {
+    return {
+        filters: {
+            territory: ['in', ['India', 'Nepal', 'Japan']]
+        }
+    }
+})
+
+// set filters for Link field item_code in
+// items field which is a Child Table
+frm.set_query('item_code', 'items', () =&gt; {
+    return {
+        filters: {
+            item_group: 'Products'
+        }
+    }
+})
+  
+
+</code></pre>
+<p>You can also override the filter method and provide your own custom method on the server side. Just the set the query to the module path of your python method.</p>
+<pre><code>// change the filter method by passing a custom method
+frm.set_query('fieldname', () =&gt; {
+    return {
+        query: 'dotted.path.to.custom.custom_query',
+        filters: {
+            field1: 'value1'
+        }
+    }
+})
+  
+
+</code></pre>
+<pre><code># python method signature
+def custom_query(doctype, txt, searchfield, start, page_len, filters):
+    # your logic
+    return filtered_list
+  
+
+</code></pre>
+<h3 id="frmadd_child">frm.add_child</h3>
+<p>Add a row with values to a Table field.</p>
+<pre><code>let row = frm.add_child('items', {
+    item_code: 'Tennis Racket',
+    qty: 2
+});
+
+frm.refresh_field('items');
+  
+
+</code></pre>
+<h3 id="frmcall">frm.call</h3>
+<p>Call a server side controller method with arguments.</p>
+<blockquote>
+<p><strong>Note:</strong> While accessing any server side method using <code>frm.call()</code>, you need to whitelist such method using the <code>@frappe.whitelist</code> decorator.</p>
+</blockquote>
+<p>For the following controller code:</p>
+<pre><code>class ToDo(Document):
+    @frappe.whitelist()
+    def get_linked_doc(self, throw_if_missing=False):
+        if not frappe.db.exists(self.reference_type, self.reference_name):
+            if throw_if_missing:
+                frappe.throw('Linked document not found')
+
+        return frappe.get_doc(self.reference_type, self.reference_name)
+  
+
+</code></pre>
+<p>You can call it from client using <code>frm.call</code>.</p>
+<pre><code>frm.call('get_linked_doc', { throw_if_missing: true })
+    .then(r =&gt; {
+        if (r.message) {
+            let linked_doc = r.message;
+            // do something with linked_doc
+        }
+    })
+  
+
+</code></pre>
+<h3 id="frmtrigger">frm.trigger</h3>
+<p>Trigger any form event explicitly.</p>
+<pre><code>frappe.ui.form.on('ToDo', {
+    refresh(frm) {
+        frm.trigger('set_mandatory_fields');
+    },
+
+    set_mandatory_fields(frm) {
+        frm.toggle_reqd('priority', frm.doc.status === 'Open');
+    }
+})
+  
+
+</code></pre>
+<h3 id="frmget_selected">frm.get_selected</h3>
+<p>Get selected rows in Child Tables in an object where key is the table fieldname and values are row names.</p>
+<pre><code>let selected = frm.get_selected()
+console.log(selected)
+// {
+// items: [&quot;bbfcb8da6a&quot;, &quot;b1f1a43233&quot;]
+// taxes: [&quot;036ab9452a&quot;]
+// }
+  
+
+</code></pre>
+<h3 id="frmignore_doctypes_on_cancel_all">frm.ignore_doctypes_on_cancel_all</h3>
+<p>To avoid cancellation of linked documents during cancel all, you need to set the <code>frm.ignored_doctypes_on_cancel_all</code> property with an array of DocTypes of linked documents.</p>
+<pre><code>frappe.ui.form.on(&quot;DocType 1&quot;, {
+    onload: function(frm) {
+        // Ignore cancellation for all linked documents of respective DocTypes.
+        frm.ignore_doctypes_on_cancel_all = [&quot;DocType 2&quot;, &quot;DocType 3&quot;];
+    }
+}
+  
+
+</code></pre>
+<p>In the above example, the system will avoid cancellation for all documents of 'DocType 2' and 'DocType 3' which are linked with document of 'DocType 1' during cancellation.</p>
+
+        </div>
+
+        <!-- Previous/Next Navigation -->
+        <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+            
+            <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+                
+                <a href="/framework/user/en/api"
+                   @click.prevent="$store.navigation.navigateTo('framework/user/en/api')"
+                   @mouseenter="$store.navigation.prefetch('framework/user/en/api')"
+                   class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                    
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+    </svg>
+    
+
+                    <div class="flex flex-col gap-1 min-w-0">
+                        <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">Previous Page</span>
+                        <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">Developer API
+</span>
+                    </div>
+                </a>
+                
+
+                
+                <a href="/framework/user/en/api/controls"
+                   @click.prevent="$store.navigation.navigateTo('framework/user/en/api/controls')"
+                   @mouseenter="$store.navigation.prefetch('framework/user/en/api/controls')"
+                   class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden ">
+                    <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                        <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">Next Page</span>
+                        <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">Controls
+</span>
+                    </div>
+                    
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+    </svg>
+    
+
+                </a>
+                
+            </div>
+            
+        </nav>
+
+        <!-- Last Updated & Feedback Widget -->
+        <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]" title="17-02-2026 10:41:15" data-timestamp="17-02-2026 10:41:15">
+                Last updated 2 months ago
+            </div>
+            
+            <!-- Feedback Widget -->
+<div x-data="feedbackWidget('0tn0lmrqdl')" class="flex flex-col items-start sm:items-end">
+    <div class="flex flex-col items-start sm:items-center gap-2">
+        <span class="text-sm text-[var(--ink-gray-5)]">Was this helpful?</span>
+
+        <!-- Reaction Buttons (pill-shaped toggle group) -->
+        
+        <fieldset class="inline-flex rounded-full bg-[var(--surface-gray-2)] p-0.5" role="radiogroup" aria-label="Feedback rating">
+            
+            <button type="button"
+                    @click="selectFeedback('Good')"
+                    :disabled="submitted"
+                    :class="feedbackType === 'Good' ? 'bg-[var(--surface-white)] shadow-sm' : 'hover:bg-[var(--surface-gray-4)]'"
+                    class="p-1.5 rounded-full transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
+                    role="radio"
+                    :aria-checked="feedbackType === 'Good'"
+                    aria-label="Good">
+                <svg class="w-4 h-4" :class="feedbackType === 'Good' ? 'text-[var(--ink-gray-9)]' : 'text-[var(--ink-gray-5)]'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                </svg>
+            </button>
+            
+            <button type="button"
+                    @click="selectFeedback('Ok')"
+                    :disabled="submitted"
+                    :class="feedbackType === 'Ok' ? 'bg-[var(--surface-white)] shadow-sm' : 'hover:bg-[var(--surface-gray-4)]'"
+                    class="p-1.5 rounded-full transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
+                    role="radio"
+                    :aria-checked="feedbackType === 'Ok'"
+                    aria-label="Ok">
+                <svg class="w-4 h-4" :class="feedbackType === 'Ok' ? 'text-[var(--ink-gray-9)]' : 'text-[var(--ink-gray-5)]'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="8" y1="15" x2="16" y2="15"/>
+                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                </svg>
+            </button>
+            
+            <button type="button"
+                    @click="selectFeedback('Bad')"
+                    :disabled="submitted"
+                    :class="feedbackType === 'Bad' ? 'bg-[var(--surface-white)] shadow-sm' : 'hover:bg-[var(--surface-gray-4)]'"
+                    class="p-1.5 rounded-full transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
+                    role="radio"
+                    :aria-checked="feedbackType === 'Bad'"
+                    aria-label="Bad">
+                <svg class="w-4 h-4" :class="feedbackType === 'Bad' ? 'text-[var(--ink-gray-9)]' : 'text-[var(--ink-gray-5)]'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M16 16s-1.5-2-4-2-4 2-4 2"/>
+                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                </svg>
+            </button>
+            
+        </fieldset>
+    </div>
+
+    <!-- Optional text + Submit (shown after type selected) -->
+    <div x-show="feedbackType" x-cloak
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0 -translate-y-1"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         class="mt-2 w-72">
+        <form @submit.prevent="submit()" class="relative">
+            <textarea x-ref="feedbackInput"
+                      x-model="comment"
+                      name="feedback"
+                      :disabled="submitted"
+                      placeholder="Anything you'd like to add?"
+                      rows="3"
+                      class="w-full px-4 py-3 pr-20 text-sm rounded-xl border border-[var(--outline-gray-2)] bg-[var(--surface-white)] text-[var(--ink-gray-9)] placeholder-[var(--ink-gray-4)] focus:outline-none focus:ring-2 focus:ring-[var(--outline-gray-3)] resize-none disabled:opacity-60"></textarea>
+
+            <!-- Submit button OR Thank you message -->
+            <div class="absolute bottom-3 right-3">
+                <button x-show="!submitted"
+                        type="submit"
+                        :disabled="submitting"
+                        class="px-2.5 py-1 text-xs font-medium rounded-sm bg-[var(--surface-gray-3)] text-[var(--ink-gray-7)] hover:bg-[var(--surface-gray-4)] hover:text-[var(--ink-gray-9)] transition-colors duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+                    <span x-show="!submitting">Submit</span>
+                    <span x-show="submitting" class="flex items-center gap-1">
+                        <svg class="animate-spin h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </span>
+                </button>
+                <span x-show="submitted" class="flex items-center gap-1 text-xs font-medium text-green-600">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    Thanks!
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+            
+        </div>
+    

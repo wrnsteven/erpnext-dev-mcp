@@ -1,0 +1,532 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tqt3ap7lj)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                How To Improve A Standard Control
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tqt3ap7lj)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Frappe has a couple of elegant and useful widgets, but some times we need to edit them to add small improvements. This small article will describe how to add new resources to the standard widgets.
+
+Let me explain first our goal:
+
+Add `many` alternative translations in `numerous records` and in a `lot of doctypes`
+
+Look the highlighted sections in the goal, we have many translations to add in many records and in many doctypes, so, we heave a many of work, so we have a lot to do right?
+
+The answer for this question is: -Of course not! Because we know that if one element exists in many records and in many doctypes, this element is the `Control` or `Widget`
+
+So, what we need do, is improve your goal based on the `Control`, to reduce our quantity of work.
+
+But, where will we find this magic element, the control? -For now, we can look it in the JavaScript sources - let's look now at [Github](https://github.com/frappe/frappe/blob/develop/frappe/public/js/frappe/form/controls/control.js)
+
+Don't worry if you don't understand the code for now, our goal there is simplify our work.
+
+Let's go ahead with the thought!
+
+We know where we need to make the changes, but how will we dismember which are the controls that are affected by our feature and which aren't ?
+
+We need to keep in mind, that `Control` are instance of `DocFields` and the `DocFields` have a field that is very important for us in this case, the field that will help us to dismember which are affected by our feature and which aren't is the field `options` in the `DocField`.
+
+-Wait!, we understood that the field `options` can help us, but, how will it help us?
+
+Good question, we will define a word to put in the `options` of the `DocFields` that we need to include the feature, this world will be `Translatable`.
+
+If you forget how to customize the options of a field look [this article](https://kb.erpnext.com/kb/customize/creating-custom-link-field), it can refresh your knowledge.
+
+Well, with the defined word in `options` of our selected `DocFields`, now is time to code:
+
+-At last, we think we would never stop talking!
+
+` frappe.ui.form.ControlData = frappe.ui.form.ControlData.$extend({
+ make_input: function(){
+ var options = this.df.options;
+ if (!options || options!==&quot;Translatable&quot;){
+ this._super();
+ return;
+ }
+ var me = this;
+ $('\
+ \
+ \
+ \\
+ \
+ ').prependTo(this.input_area);
+ this.$input_area = $(this.input_area);
+ this.$input = this.$input_area.find('input');
+ this.$btn = this.$input_area.find('.dialog-btn');
+ this.set_input_attributes();
+ this.$input.on(&quot;focus&quot;, function(){
+ me.$btn.toggle(true);
+ });
+ this.$input.on(&quot;blur&quot;, function(){
+ setTimeout(function(){ me.$btn.toggle(false) }, 500);
+ });
+ this.input = $this.input.get(0);
+ this.has_input = true;
+ var me = this;
+ this.setup_button();
+ },
+ setup_button: function(){
+ var me = this;
+ if (this.only_input){
+ this.$btn.remove();
+ return;
+ }
+ this.$btn.on(&quot;click&quot;, function(){
+ var value = me.get_value();
+ var options = me.df.options;
+ if (value &amp;&amp; options &amp;&amp; options===&quot;Translatable&quot;){
+ this.open_dialog();
+ }
+ });
+ },
+ open_dialog: function(){
+ if (this.frm &amp;&amp; !this.frm.is_dirty()) {
+ new frappe.ui.form.TranslationSelector({
+ doc: doc,
+ df: this.doc,
+ text: this.value
+ });
+ }
+ }
+ });
+`
+-Other letter soup, for my gosh!
+
+In fact, it IS a soup of letters, for a newbie, but we are not a beginner.
+
+Let me explain what this code does;
+
+At line 1 the code overrides the `ControlData` by one extended `Class` of itself.
+
+- The method `make_input` checks if the docfield is `Translatable` to make the new `Control` if not, it calls the original `make_input` using `_super()`
+
+- The method `setup_button` checks if the docfield is `Translatable` to enable it show a `dialog`
+
+- The method `open_dialog` invokes a new instance of the `TranslationSelector` that we will create in the code below.
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Executing Code On Doctype Events
+
+                    
+                ](/framework/user/en/guides/app-development/executing-code-on-doctype-events)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Running Background Jobs
+
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/guides/app-development/running-background-jobs)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/guides/app-development/how-to-improve-a-standard-control
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

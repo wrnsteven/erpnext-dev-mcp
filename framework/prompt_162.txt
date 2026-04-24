@@ -1,0 +1,620 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tkahvi42s)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                Naming
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tkahvi42s)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            All DocTypes in Frappe have a primary key called `name`. This is the unique ID by which you find records and manipulate them using the ORM.
+
+## Naming Methods
+
+You can configure how documents should be named when a new document is created. There are 9 ways of naming provided in the framework:
+
+Set by user
+
+- Autoincrement
+
+- By fieldname
+
+- By &quot;Naming Series&quot; field
+
+- Expression
+
+- Expression (Old Style)
+
+- Random
+
+- UUID
+
+- By script
+
+### 1. Set by user
+
+The document name is entered manually by the user at the time of creation.
+
+### 2. Autoincrement
+
+The system generates a sequential numeric name by incrementing the last created document.
+
+Key considerations:
+
+- Numbering starts from 1.
+
+- Not gap-safe: Deleted records are not reused. For example, if you have documents named `1`, `2`, `3`, `4` and you delete `3`, the next document will be named `5`, not `3`.
+
+- You cannot switch to a different naming schema once this is set unless the DocType has zero documents.
+
+- You cannot switch to this naming schema from another unless the DocType has zero documents.
+
+![](/files/autoincrement.gif)
+Autoincrement
+
+### 3. By fieldname
+
+The document name is fetched directly from the value of a specific field.
+
+Note: The value in the selected field must always be unique.
+
+![](/files/fieldname.gif)
+By Fieldname
+
+### 4. By &quot;Naming Series&quot; field
+
+The naming pattern is derived from a specific field in the document (usually `naming_series`).
+
+For example, if you have a field `naming_series` in your document and its value is set to `PRE.#####`, that pattern will be used to generate the name (e.g., `PRE00001`). This value can change per document, allowing different documents within the same DocType to follow different patterns.
+
+Requirement: This works only if you have a field called `naming_series` in your DocType.
+
+![](/files/naming-series.gif)
+By &quot;Naming Series&quot;
+
+### 5. Expression
+
+You can provide a standard naming pattern which will be incremented automatically.
+
+For example, if you set the pattern as `PRE-.#####`:
+
+- The first document created will be named `PRE-00001`
+
+- The second will be `PRE-00002`
+
+- And so on...
+
+![](/files/expression.gif)
+Expression
+
+You can use this method to flexibly configure naming schemes using multiple field values and variables. Individual parts are separated by a dot `.` .
+
+Example Pattern:
+
+`EXAMPLE-.MM.-test-.{fieldname1}.-.{fieldname2}.-.#####
+`
+This format allows you to combine:
+
+- Static text (`EXAMPLE`, `test`)
+
+- Date variables (`MM`, `YYYY`, `DD`, `WW`, `timestamp`)
+
+- Field values (`{fieldname1}`)
+
+- Auto-incrementing numbers ( `#####`)
+
+### 6. Expression (Old Style)
+
+Warning: Deprecated in v16 This method is deprecated and will be removed in version 16.
+
+This is a highly flexible method for configuring naming schemes using multiple field values and variables. You enter this pattern directly into the Auto Name field in the DocType settings.
+
+Example Pattern:
+
+`EXAMPLE-{MM}-test-{fieldname1}-{fieldname2}-{#####}
+`
+This format allows you to combine:
+
+- Static text `EXAMPLE`, `test`)
+
+- Date variables `{MM}`, `{YYYY}`, `{DD}`)
+
+- Field values `{fieldname1}`)
+
+- Auto-incrementing numbers `{#####}`)
+
+### 7. Random
+
+Generates a random alphanumeric string as the document name.
+
+![](/files/ramdom.gif)
+Random
+
+### 8. UUID
+
+Uses a randomly generated Universally Unique Identifier (UUID v4) as the document name.
+
+Example: `550e8400-e29b-41d4-a716-446655440000`
+
+![](/files/uuid.gif)
+UUID
+
+### 9. By script
+
+You can define custom naming logic using the `autoname` controller method in your DocType's Python file. This gives you complete control over the naming process.
+
+`from frappe.model.naming import getseries
+
+class Project(Document):
+    def autoname(self):
+    # select a project name based on customer
+    prefix = f&quot;P-{self.customer}&quot;
+    series = getseries(prefix, 3)
+    self.name = f&quot;{prefix}-{series}&quot;
+`
+## By Document Naming Rule
+
+You can also create rules for naming DocTypes by creating Document Naming Rule.
+
+![](/files/imagec0c7f9.png)
+
+You can create multiple Document Naming Rules for a particular doctype that can be applied selectively based on filters.
+
+To define a Document Naming Rule you have to specify
+
+- Document Type it is being applied on
+
+- Priority of the rule (rules with higher priority will be applied first)
+
+- Conditions to apply the rule
+
+- Naming Rules
+
+### Numbering
+
+You can define various numbering prefixes for the rule based on the conditions defined. This is done by setting a prefix and the number of digits for that rule.
+
+For example if you are creating a separate numbering for high priority todos:
+
+- Prefix: todo-high-
+
+- Digits: 3
+
+Will lead to numbering like `todo-high-001`, `todo-high-002` and so on.
+
+## Naming Priority
+
+When multiple naming rules might apply, the framework prioritizes them in this order:
+
+- Document Naming Rule: Defined in the `autoname` property of the DocType.
+
+- Controller Method: Logic defined in the `autoname` method of the controller script (overrides DocType settings if defined) .
+
+## Special Rules
+
+- Child DocTypes do not follow naming rules
+
+- Amended documents have a suffix (`-1`, `-2` etc) to the original document
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Field Types
+                    
+                ](/framework/user/en/basics/doctypes/fieldtypes)
+                
+
+                
+                [
+                    
+                        Next Page
+                        DocField
+
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/basics/doctypes/docfield)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 4 days ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/basics/doctypes/naming
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

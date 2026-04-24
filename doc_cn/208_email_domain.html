@@ -1,0 +1,82 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电子邮件域名</title>
+</head>
+<body>
+    <h1>电子邮件域名</h1>
+
+    <p><strong><code>电子邮件域名</code>是你为 ERPNext 和其他 Frappe 应用中的电子邮件服务设置的电子邮件网络/服务账户的显示名称。</strong></p>
+
+    <p>如果你使用的是<a href="/erpnext/email-inbox#2-create-an-email-domain">此处</>列出的服务之一，可以跳到<a href="/erpnext/email-account">电子邮件账户</>创建。</p>
+
+    <p>你可以在 ERPNext 中配置电子邮件域名，以便轻松设置所有电子邮件账户。要找到电子邮件域名设置，请进入：</p>
+
+    <blockquote>
+    <p>首页 &gt; 设置 &gt; 电子邮件域名</p>
+    </blockquote>
+
+    <p><strong>什么是我的电子邮件域名？</strong>：你可能从你的互联网服务提供商或 IT 服务提供商处购买了电子邮件服务。例如，如果你通过 URL（如 http://mail.yourcompany.com）访问你的企业邮箱，那么 yourcompany.com 就被用作你的电子邮件域名。如果你从这里开始，ERPNext 会尝试从你最初输入的示例<code>电子邮件地址</code>中猜测<code>电子邮件域名</code>。</p>
+
+    <p>如果你想在 ERPNext 账户上发送和接收电子邮件，你需要正确设置<code>电子邮件域名</code>。你可能使用的是 GMail 或 Yahoo 等免费邮件服务。在这种情况下，你不需要创建域名，而是从列表中选择一个服务提供商。但是，你可能需要允许 ERPNext 访问你的 GMail 账户。</p>
+
+    <p>ERPNext 使用 example.com 创建一个模板<code>电子邮件域名</>供参考。如果你想在 ERPNext 账户中使用它，你应该添加你的新域名。</p>
+
+    <blockquote>
+    <p><strong>重要提示：</strong>如果你实际的邮件账户 ID 与以后在<code>电子邮件账户</code>设置中使用的工作电子邮件地址不同，则需要在创建不同的工作邮件账户时使用<code>使用不同的电子邮件 ID</code>选项来与服务通信并使用相关密码！</p>
+    </blockquote>
+
+    <p><img src="/files/email-domain.png" alt="Email Domain" /></p>
+
+    <h2 id="1-how-to-create-an-email-domain">1. 如何创建电子邮件域名</h2>
+
+    <ol>
+    <li><p>进入电子邮件域名列表，点击"新建"。</p>
+    </li>
+    <li><p>输入示例电子邮件地址。这是你输入企业电子邮件地址的地方。例如，如果你的电子邮件 ID 是 yourname@yourcompanyname.com，你就应该输入这个。</p>
+    </li>
+    <li><p>电子邮件服务器。这是你的邮件服务器或你已购买的电子邮件服务的 URL。例如，它可能是 mail.yourcompany.com 或 imap.yourcompany.com。</p>
+    </li>
+    <li><p>使用 IMAP。IMAP 和 POP 是大多数邮件服务器用于接收电子邮件的两种服务。如果你的电子邮件服务器允许 IMAP 服务接收电子邮件，请保持勾选。否则，取消勾选。</p>
+    </li>
+    <li><p>使用 SSL。如果你的邮件服务器使用 SSL（安全套接字层）通信，请保持勾选。</p>
+    </li>
+    </ol>
+
+    <p><strong>我有 SSL 吗？</strong>：你可能从 IT 服务提供商处购买了 SSL 证书，他们可能已为你的邮件服务器设置了 SSL。如果你在浏览器中访问邮件服务器时使用"https"，那么你可能已设置 SSL。</p>
+
+    <ol>
+    <li><p>对 outgoing 使用 SSL。如果你的邮件服务器对 outgoing 使用 SSL，启用此选项以显式地对 outgoing 电子邮件使用 SSL。默认为端口 465。</p>
+    </li>
+    <li><p>将 outgoing 电子邮件附加到已发送文件夹。如果你使用的不是 GMail 及类似服务提供的标准邮件服务器，你可能需要启用此选项，将所有 outgoing 电子邮件附加到电子邮件账户的收件箱。（建议用于 Zimbra 和 CPanel 等邮件服务器）。</p>
+    </li>
+    <li><p>附件限制（MB）。你可以限制从 ERPNext 发送的电子邮件中文件附件的大小。</p>
+    </li>
+    <li><p>SMTP 服务器是你的邮件服务器的 outgoing 电子邮件服务地址。</p>
+    </li>
+    <li><p>如果你的 SMTP 服务支持 TLS 安全，请勾选使用 TLS。</p>
+    </li>
+    <li><p>默认端口。SMTP 服务通常设置为端口 25。如果你的邮件服务器设置在单独的端口号上，你可以在此处进行设置。</p>
+    </li>
+    </ol>
+
+    <h3 id="11-after-saving-the-domain">1.1 保存域名后</h3>
+
+    <p>点击保存后，ERPNext 会验证这些设置，电子邮件域名会被保存。有时这可能需要几秒钟，你可能需要等待。此电子邮件域名随后会在电子邮件账户屏幕中一个名为"域名"的下拉列表中可用。</p>
+
+    <p><img src="/files/email-domain1.png" alt="Email domain in email account" /></p>
+
+    <h4 id="entered-everything-but-still-unable-to-setup-email-domain">输入了所有内容但仍无法设置电子邮件域名？</h4>
+
+    <p>如果你已输入并验证了上述设置，但仍然无法设置电子邮件域名，你可以联系账户内的 ERPNext 支持以获取帮助。</p>
+
+    <h3 id="2-related-topics">2. 相关主题</h3>
+
+    <ol>
+    <li><a href="/erpnext/email-account">电子邮件账户</a></li>
+    <li><a href="/erpnext/email-inbox">电子邮件收件箱</a></li>
+    </ol>
+
+</body>
+</html>

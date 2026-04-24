@@ -1,0 +1,608 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0thvu2ao96)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Create a Site
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0thvu2ao96)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Each site comes with a database. They may be customized throughsite specific scripting or Apps may be installed on them.
+
+## Create a new site
+
+To create a new site, run the following command from the `frappe-bench` directory:
+
+`$ bench new-site library.localhost
+MySQL root password:
+
+Installing frappe...
+Updating DocTypes for frappe        : [========================================] 100%
+Set Administrator password:
+*** Scheduler is disabled ***
+Current Site set to library.localhost
+`
+This command will create a new database, so you need to enter your MariaDB root password. It will also ask to set the password for the Administrator user, just set a password that you won't forget. This will be useful later.
+
+Now, you will have a new folder named `library.localhost` in the `sites` directory.
+
+If site creation fails for any reason, you'll be prompted to roll back the changes. This will delete the `library.localhost` or equivalent in your sites directory, and delete the database/user that was created. This will allow you to easily retry without having to manually cleanup the unusable site.
+
+## Site Directory Structure
+
+The site directory structure will look something like this:
+
+`sites/library.localhost
+├── indexes
+│   └── web_routes
+├── locks
+├── logs
+├── private
+│   ├── backups
+│   └── files
+├── public
+│   └── files
+└── site_config.json
+`
+The `indexes` folder has indexes generated via Website Search.
+
+The `locks` folder maintains file based locks over in-site documents as well as indicators of the state of the site itself.
+
+As you can see, the `private` folder will contain any database backups and private files. Private files are user uploaded files that need authentication to be accessible.
+
+The `public` folder will contain files that are accessible without authentication. This can contain website images that should be accessible without login.
+
+The `site_config.json` file contains configuration that is specific to this site which should not be version controlled. This is similar to an environment variables file. If you look at the contents of the file, it contains the database configuration values for this site.
+
+`{
+ &quot;db_name&quot;: &quot;_ad03fa1a016ca1c4&quot;,
+ &quot;db_password&quot;: &quot;pz1d2gN5y35ydRO5&quot;,
+ &quot;db_type&quot;: &quot;mariadb&quot;
+}
+`
+## Access site in your browser
+
+`bench` allows you to create multiple sites and access them separately in the browser on the same port. This is what we call multi-tenancy support in bench.
+
+Frappe will identify which site to serve by matching the hostname of the request with the site name, so you should be able to access your site on http://library.localhost:8000
+
+If your site name doesn't end with `.localhost`, this will not work directly for you, because you have to tell your operating system that site_name should point to localhost. To do that, you can add the following entry to your `/etc/hosts` file.
+
+`127.0.0.1 site_name
+`
+This will map `library.localhost` to `localhost`. Bench has a convenient command to do just that.
+
+`$ bench --site site_name add-to-hosts
+`
+This will ask for your root password and will add an entry to your `/etc/hosts` file.
+
+![Site Login Page](/files/site-login-page.png)
+
+Great, now you can access your site at `http://library.localhost:8000`. Congratulations for making it this far.
+
+## Install app on site
+
+To install our Library Management app on our site, run the following command:
+
+`$ bench --site library.localhost install-app library_management
+
+Installing library_management...
+`
+To confirm if the app was installed, run the following command:
+
+`$ bench --site library.localhost list-apps
+frappe
+library_management
+`
+You should see `frappe` and `library_management` as installed apps on your site.
+
+When you create a new site, the `frappe` app is installed by default.
+
+## Login to Desk
+
+To create DocTypes in our app, we must log in to Desk. Go to http://library.localhost:8000 and it should show you a login page.
+
+Enter Administrator as the user and password that you set while creating the site.
+
+![Setup Wizard](/files/setup-wizard.png)
+
+After successful login, you will see the setup wizard. This is a one-time setup wizard used to set up localization details for your site. Go ahead, select your language, and complete the wizard.
+
+Good job making it this far!
+
+You should see the Desk that looks something like this:
+
+![Desk](/files/desk.png)
+
+## Site commands
+
+We ran a couple of bench commands with the `--site` option. These commands are called site commands.
+
+Here are some of the useful site commands.
+
+Python Console
+
+`# access the python console
+$ bench --site library.localhost console
+Apps in this namespace:
+frappe, library_management
+
+In [1]:  
+
+`
+MariaDB Console
+
+`# access the mariadb console
+$ bench --site library.localhost mariadb
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 2333498
+Server version: 10.4.13-MariaDB Homebrew
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [_ad03fa1a016ca1c4]&gt;  
+
+`
+Database Backup
+
+`$ bench --site library.localhost backup
+Backup Summary for library.localhost at 2020-10-06 23:21:17.277960
+Config  : ./library.localhost/private/backups/20201006_232116-library_test-site_config_backup.json   94.0B
+Database: ./library.localhost/private/backups/20201006_232116-library_test-database.sql.gz           217.4KiB
+Backup for Site library.localhost has been successfully completed
+  
+`
+You can see a list of all site commands by running the following command:
+
+`$ bench --help
+Usage: bench frappe [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --site TEXT
+  --profile Profile
+  --verbose Verbose
+  --force Force
+  --help Show this message and exit.
+
+Commands:
+  add-system-manager          Add a new system manager to a site
+  add-to-email-queue          Add an email to the Email Queue
+  add-to-hosts                Add site to hosts
+  backup                      Backup
+  browse                      Opens the site on web browser
+  build                       Minify + concatenate JS and CSS files, build...
+  build-message-files         Build message files for translation
+  build-search-index
+  bulk-rename                 Rename multiple records via CSV file
+  clear-cache                 Clear cache, doctype cache and defaults
+  clear-website-cache         Clear website cache
+  console                     Start ipython console for a site
+  data-import                 Import documents in bulk from CSV or XLSX...
+  destroy-all-sessions        Clear sessions of all users (logs them out) 
+
+`
+Next: Create a DocType
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Create an App
+                    
+                ](/framework/user/en/tutorial/create-an-app)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Create a DocType
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/tutorial/create-a-doctype)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/tutorial/create-a-site
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

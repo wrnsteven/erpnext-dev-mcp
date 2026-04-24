@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>银行交易</title>
+</head>
+<body>
+    <h1>银行交易</h1>
+
+    <p><strong>Bank Transaction</strong> 表单显示导入到 ERPNext 的银行交易，通常来自银行对账单或集成。</p>
+
+    <h2>1. 前置条件</h2>
+
+    <p>在使用 <strong>Bank Transaction</strong> 之前，建议首先创建以下内容：</p>
+
+    <ol>
+        <li><strong><a href="/erpnext/user/manual/en/bank">Bank</a></strong></li>
+        <li><strong><a href="/erpnext/user/manual/en/bank-account">Bank Account</a></strong></li>
+    </ol>
+
+    <h2>2. 如何使用银行交易</h2>
+
+    <p><strong>Bank Transaction</strong> 通常不是手动创建的。它可以通过以下方式导入或创建：</p>
+
+    <ol>
+        <li><strong><a href="/erpnext/user/manual/en/bank-reconciliation#321-bank-statement-import">Bank Statement Import</a></strong> — 从 CSV 或 XLSX 文件导入</li>
+        <li><strong><a href="/erpnext/user/manual/en/data-import">Data Import</a></strong> — 标准数据导入工具</li>
+        <li>银行集成应用（例如，Plaid 或其他第三方集成）</li>
+    </ol>
+
+    <p>导入后，可以使用 <strong><a href="/erpnext/user/manual/en/bank-reconciliation">Bank Reconciliation Tool</a></strong> 将 <strong>Bank Transactions</strong> 与凭证进行对账。</p>
+
+    <h2>3. 字段</h2>
+
+    <h3>3.1 基本信息</h3>
+
+    <ul>
+        <li><em>日期</em>：银行交易的日期。</li>
+        <li><em>状态</em>：交易的当前状态：
+            <ul>
+                <li>待处理</li>
+                <li>已结算</li>
+                <li>未对账</li>
+                <li>已对账</li>
+                <li>已取消</li>
+            </ul>
+        </li>
+        <li><em>银行账户</em>：进行交易的 <strong>Bank Account</strong>。</li>
+        <li><em>公司</em>：与银行账户关联的 <strong>Company</strong>（从 <em>Bank Account</em> 自动获取）。</li>
+    </ul>
+
+    <h3>3.2 交易金额</h3>
+
+    <ul>
+        <li><em>存款</em>：存入的金额（贷记到你的账户）。</li>
+        <li><em>取款</em>：取出的金额（从你的账户借记）。</li>
+        <li><em>货币</em>：交易使用的货币。</li>
+    </ul>
+
+    <h3>3.3 描述和参考</h3>
+
+    <ul>
+        <li><em>描述</em>：来自银行对账单的描述。</li>
+        <li><em>参考编号</em>：支票号码或其他参考。</li>
+        <li><em>交易 ID</em>：来自银行的唯一标识符（只读）。</li>
+        <li><em>交易类型</em>：银行报告的交易类型。</li>
+    </ul>
+
+    <h3>3.4 付款分录</h3>
+
+    <p><em>Payment Entries</em> 表将银行交易链接到 ERPNext 中的凭证以进行对账：</p>
+
+    <ul>
+        <li><em>付款凭证</em>：交易要对账的凭证类型，例如 <strong>Sales Invoice</strong>、<strong>Purchase Invoice</strong>、<strong>Payment Entry</strong>、<strong>Journal Entry</strong> 或 <strong>Expense Claim</strong>。</li>
+        <li><em>付款分录</em>：链接到此交易的特定凭证。</li>
+        <li><em>分配金额</em>：从此银行交易分配到付款分录的金额。</li>
+        <li><em>清算日期</em>：付款清算的日期（提交后显示）。</li>
+    </ul>
+
+    <h3>3.5 分配摘要</h3>
+
+    <ul>
+        <li><em>已分配金额</em>：已分配到付款分录的总金额（只读）。</li>
+        <li><em>未分配金额</em>：尚未分配的剩余金额（只读）。</li>
+    </ul>
+
+    <h3>3.6 付款从/到（交易方信息）</h3>
+
+    <ul>
+        <li><em>交易方类型</em>：交易方类型（例如，客户、供应商、员工）。</li>
+        <li><em>交易方</em>：链接到此交易的特定交易方。</li>
+    </ul>
+
+    <p>以下字段包含银行对账单提供的交易方信息：</p>
+
+    <ul>
+        <li><em>交易方名称/账户持有人（银行对账单）</em>：银行对账单中的交易方名称。</li>
+        <li><em>交易方账号（银行对账单）</em>：银行对账单中的交易方账号。</li>
+        <li><em>交易方 IBAN（银行对账单）</em>：银行对账单中的交易方 IBAN。</li>
+    </ul>
+
+    <blockquote>
+        <p>银行对账单中的交易方信息可用于在 <strong>Accounts Settings</strong> 中启用时进行自动交易方匹配。</p>
+    </blockquote>
+
+    <h3>3.7 扩展银行对账单（费用处理）</h3>
+
+    <p>这些字段处理可能包含在交易金额中或从中排除的银行费用：</p>
+
+    <ul>
+        <li><em>包含费用</em>：已包含在 <em>取款</em> 金额中的费用。例如，如果取款 100 包含 5 的费用，则净付款为 95。</li>
+        <li><em>排除费用</em>：单独从交易中收取的费用。保存时，通过调整交易金额自动将其转换为 <em>包含费用</em>。</li>
+    </ul>
+
+    <blockquote>
+        <p><strong>注意</strong>：排除费用会调整交易金额：减少 <em>存款</em> 或增加 <em>取款</em>。</p>
+    </blockquote>
+</body>
+</html>

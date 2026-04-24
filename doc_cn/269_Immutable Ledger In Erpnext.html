@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immutable Ledger In Erpnext</title>
+</head>
+<body>
+<p>> 版本 13 引入</p><p>从版本 13 开始，ERPNext 引入了一项重大变更。这改变了 ERPNext 中会计账本（总账）和库存账本的工作方式。账本应该不可变的原因有多个，列举如下：</p><ul>
+\0</ul><p>由于账本现在是不可变的，这意味着未来的交易无法被更新或重新过账。
+因此，用户将无法再过账补录日期的库存交易。</p><p>!<a href="../../images/269_backdated-entry.png">图片</a></p><p>例如：假设已为<strong>物料 A</strong>过账了一条库存交易，过账时间为 <code>19-06-2020 23:00:10</code>，则在此交易之后，您无法再为<strong>物料 A</strong>过账时间早于此时间戳的交易。</p><p>---
+original_url: https://docs.frappe.io/erpnext/immutable-ledger-in-erpnext
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---</p>
+</body>
+</html>

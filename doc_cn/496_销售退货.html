@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>销售退货</title>
+</head>
+<body>
+<p># 销售退货</p><p><strong>已售商品被退回称为销售退货。</strong></p><p>企业经常会有已售商品的退货。客户可能因为质量问题、未按约定日期交付或其他原因退货。</p><p><h1>前置条件</h1></p><p>在创建和使用销售退货之前，建议先创建以下内容：</p><p>- Item（商品）
+- Sales Invoice 或 Delivery Note（销售发票或交货单）</p><p><h1>如何创建销售退货</h1></p><p>首先打开原始的 Delivery Note / Sales Invoice（交货单/销售发票），即客户退货所对应的原始单据。</p><p>Original Delivery Note（原始交货单）</p><p>然后点击 <strong>'Create > Sales Return'</strong>（创建 > 销售退货），系统将打开一个新的 Delivery Note（交货单），其中 <strong>'Is Return'</strong>（是否退货）已被勾选，商品、单价和税费的数值将显示为负数。</p><p>Return Against Delivery Note（针对交货单的退货）</p><p>您也可以针对原始 Sales Invoice（销售发票）创建退货单据，若要在退货时同时退回库存，请在 Return Sales Invoice（退货销售发票）中勾选 <strong>"Update Stock"</strong>（更新库存）选项。</p><p>Return Against Sales Invoice（针对销售发票的退货）</p><p>提交 Return Delivery Note / Sales Invoice（退货交货单/销售退货发票）后，系统将增加指定 Warehouse（仓库）的库存余额。为保持正确的库存估值，库存余额将按照退货商品的原始采购单价增加。</p><p>Return Stock Ledger（退货库存账本）</p><p>在 Return Sales Invoice（退货销售发票）的情况下，客户账户将被贷记，相关的收入账户和税费账户将被借记，如会计账本所示。</p><p>Return Stock Ledger（退货库存账本）</p><p>如果启用了 Perpetual Inventory（永续库存），系统还将过账针对仓库账户的会计分录，以使仓库账户余额与库存账本中的库存余额保持一致。</p><p><h1>通过交货单退货对库存的影响</h1></p><p>针对 Delivery Note（交货单）创建销售退货时：</p><p>原始 Delivery Note（交货单）及其关联的任何 Sales Order（销售订单）中的 <strong>Returned Quantity</strong>（已退货数量）将被更新。</p><p>如果 100% 已退货，原始 Delivery Note（交货单）的状态将变更为 <strong>Return Issued</strong>（已发出退货）：</p><p>!<a href="../../images/496_Return_issued.png">图片</a></p><p><h1>相关主题</h1></p><ul>
+\0</ul><p>---
+original_url: https://docs.frappe.io/erpnext/sales-return
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18</p>
+</body>
+</html>

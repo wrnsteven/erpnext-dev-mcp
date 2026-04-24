@@ -1,0 +1,867 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tmkln7njn)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Utility Functions
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tmkln7njn)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Frappe Framework comes with various utility functions to handle common operations for managing site-specific DateTime management, date and currency formatting, PDF generation, and much more.
+
+These utility methods can be imported from the `frappe.utils` module (and its nested modules like `frappe.utils.logger` and `frappe.utils.data`) in any Python file of your Frappe App. This list is not at all exhaustive, you can take a peek at the Framework codebase to see what's available.
+
+## now
+
+`now()`
+
+Returns the current datetime in the format yyyy-mm-dd hh:mm:ss
+
+`from frappe.utils import now
+
+now() # '2021-05-25 06:38:52.242515'
+`
+## getdate
+
+`getdate(string_date=None)`
+
+Converts `string_date` (yyyy-mm-dd) to `datetime.date` object. If no input is provided, current date is returned. Throws an exception if `string_date` is an invalid date string.
+
+`from frappe.utils import getdate
+
+getdate() # datetime.date(2021, 5, 25)
+getdate('2000-03-18') # datetime.date(2000, 3, 18)
+`
+## today
+
+`today()`
+
+Returns current date in the format yyyy-mm-dd.
+
+`from frappe.utils import today
+
+today() # '2021-05-25'
+`
+## add_to_date
+
+`add_to_date(date, years=0, months=0, weeks=0, days=0, hours=0, minutes=0, seconds=0, as_string=False, as_datetime=False)`
+
+``date`: A string representation or `datetime` object, uses the current `datetime` if `None` is passed
+`as_string`: Return as string
+`as_datetime`: If `as_string` is True and `as_datetime` is also True, returns a `datetime` string otherwise just the `date` string.
+`
+This function can be quite handy for doing date/datetime deltas, for instance, adding or substracting certain number of days from a particular date/datetime.
+
+`from datetime import datetime # from python std library
+from frappe.utils import add_to_date
+
+today = datetime.now().strftime('%Y-%m-%d')
+print(today) # '2021-05-21'
+
+after_10_days = add_to_date(datetime.now(), days=10, as_string=True)
+print(after_10_days) # '2021-05-31'
+
+add_to_date(datetime.now(), months=2) # datetime.datetime(2021, 7, 21, 15, 31, 18, 119999)
+add_to_date(datetime.now(), days=10, as_string=True, as_datetime=True) # '2021-05-31 15:30:23.757661'
+add_to_date(None, years=6) # datetime.datetime(2027, 5, 21, 15, 32, 31, 652089)
+`
+## date_diff
+
+`date_diff(date_2, date_1)`
+
+Return the difference between the given two dates in days.
+
+`from frappe.utils import add_to_date, today, date_diff
+date_1 = today()
+date_2 = add_to_date(date_1, days=10)
+
+print(date_diff(date_2, date_1)) #10
+`
+## days_diff
+
+`days_diff(date_2, date_1)`
+
+Return the difference between the given two dates in days.
+
+`from frappe.utils import add_to_date, today, days_diff
+date_1 = today()
+date_2 = add_to_date(date_1, days=10)
+
+print(days_diff(date_2, date_1)) #10
+`
+## month_diff
+
+`month_diff(date_2, date_1)`
+
+Return the difference between the given two dates in months.
+
+`from frappe.utils import add_to_date, month_diff
+date_1 = &quot;2024-07-01&quot;
+date_2 = add_to_date(date_1, days=60)
+
+print(month_diff(date_2, date_1)) #2
+`
+## pretty_date
+
+`pretty_date(iso_datetime)`
+
+Takes an ISO time and returns a string representing how long ago the date represents. Very common in communication applications like instant messengers.
+
+`from frappe.utils import pretty_date, now, add_to_date
+
+pretty_date(now()) # 'just now'
+
+# Some example outputs:
+
+# 1 hour ago
+# 20 minutes ago
+# 1 week ago
+# 5 years ago
+`
+## format_duration
+
+`format_duration(seconds, hide_days=False)`
+
+Converts the given duration value in seconds (float) to duration format.
+
+`from frappe.utils import format_duration
+
+format_duration(50) # '50s'
+format_duration(10000) # '2h 46m 40s'
+format_duration(1000000) # '11d 13h 46m 40s'
+
+# Convert days to hours
+format_duration(1000000, hide_days=True) # '277h 46m 40s'
+`
+## comma_and
+
+`comma_and(some_list, add_quotes=True)`
+
+Given a list or tuple `some_list`, returns a string of the format `1st item, 2nd item, .... and last item`. This function uses `frappe._`, so you don't have to worry about the translations for the word `and`. If `add_quotes` is `False`, returns the items without quotes, with quotes otherwise. If the type of `some_list` passed as an argument is something other than a list or tuple, it (`some_list`) is returned as it is.
+
+`from frappe.utils import comma_and
+
+comma_and([1, 2, 3]) # &quot;'1', '2' and '3'&quot;
+comma_and(['Apple', 'Ball', 'Cat'], add_quotes=False) # 'Apple, Ball and Cat'
+comma_and('abcd') # 'abcd'
+`
+
+There is also a `comma_or` function which is similar to `comma_and` except the separator, which is `or` in the case of `comma_or`.
+
+## money_in_words
+
+`money_in_words(number, main_currency=None, fraction_currency=None)`
+
+``number`: A floating point money amount
+`main_currency`: Uses this as the main currency. If not given, tries to fetch from default settings or uses `INR` if not found there.
+`
+This function returns string in words with currency and fraction currency.
+
+`from frappe.utils import money_in_words
+
+money_in_words(900) # 'INR Nine Hundred and Fifty Paisa only.'
+money_in_words(900.50) # 'INR Nine Hundred and Fifty Paisa only.'
+money_in_words(900.50, 'USD') # 'USD Nine Hundred and Fifty Centavo only.'
+money_in_words(900.50, 'USD', 'Cents') # 'USD Nine Hundred and Fifty Cents only.'
+`
+## validate_json_string
+
+`validate_json_string(string)`
+
+Raises `frappe.ValidationError` if the given `string` is a valid JSON (JavaScript Object Notation) string. You can use a `try-except` block to handle a call to this function as shown the code snippet below.
+
+`import frappe
+from frappe.utils import validate_json_string
+
+# No Exception thrown
+validate_json_string('[]')
+validate_json_string('[{}]')
+validate_json_string('[{&quot;player&quot;: &quot;one&quot;, &quot;score&quot;: 199}]')
+
+try:
+    # Throws frappe.ValidationError
+    validate_json_string('invalid json')
+except frappe.ValidationError:
+    print('Not a valid JSON string')
+`
+## random_string
+
+`random_string(length)`
+
+This function generates a random string containing `length` number of characters. This can be useful for cryptographic or secret generation for some cases.
+
+`from frappe.utils import random_string
+
+random_string(40) # 'mcrLCrlvkUdkaOe8m5xMI8IwDB8lszwJsWtZFveQ'
+random_string(6) # 'htrB4L'
+random_string(6) #'HNRirG'
+`
+## mask_string
+
+`mask_string(input_string, mask_char=&quot;*&quot;, show_first=4, show_last=3)`
+
+Masks a string for privacy protection by hiding middle chars while showing configurable first and last chars for identification purposes.
+
+`from frappe.utils import mask_string
+
+mask_string(&quot;1234567890&quot;)  # &quot;1234***890&quot;
+mask_string(&quot;12345&quot;)       # &quot;******&quot;
+mask_string(&quot;1234567890&quot;, mask_char=&quot;#&quot;, show_first=2, show_last=2)  # &quot;12####90&quot;
+`
+## unique
+
+`unique(seq)`
+
+`seq`: An iterable / Sequence
+
+This function returns a list of elements of the given sequence after removing the duplicates. Also, preserves the order, unlike: `list(set(seq))`.
+
+`from frappe.utils import unique
+
+unique([1, 2, 3, 1, 1, 1]) # [1, 2, 3]
+unique('abcda') # ['a', 'b', 'c', 'd']
+unique(('Apple', 'Apple', 'Banana', 'Apple')) # ['Apple', 'Banana']
+`
+## get_pdf
+
+`get_pdf(html, options=None, output=None)`
+
+``html`: HTML string to render
+`options`: An optional `dict` for configuration
+`output`: A optional `PdfFileWriter` object.
+`
+This function uses `pdfkit` and `pyPDF2` modules to generate PDF files from HTML. If `output` is provided, appends the generated pages to this object and returns it, otherwise returns a `byte` stream of the PDF.
+
+For instance, generating and returning a PDF as response to a web request:
+
+`import frappe
+from frappe.utils.pdf import get_pdf
+
+@frappe.whitelist(allow_guest=True)
+def generate_invoice():
+    cart = [{
+        'Samsung Galaxy S20': 10,
+        'iPhone 13': 80
+    }]
+
+    html = '&lt;h1&gt;Invoice from Star Electronics e-Store!&lt;/h1&gt;'
+
+    # Add items to PDF HTML
+    html += '&lt;ol&gt;'
+    for item, qty in cart.items():
+        html += f'&lt;li&gt;{item} - {qty}&lt;/li&gt;'
+    html += '&lt;/ol&gt;'
+
+    # Attaching PDF to response
+    frappe.local.response.filename = 'invoice.pdf'
+    frappe.local.response.filecontent = get_pdf(html)
+    frappe.local.response.type = 'pdf'
+`
+## get_abbr
+
+`get_abbr(string, max_len=2)`
+
+Returns an abbrivated (initials only) version of the given `string` with a maximum of `max_len` letters. It is extensively used in Frappe Framework and ERPNext to generate thumbnail or placeholder images.
+
+`from frappe.utils import get_abbr
+
+get_abbr('Gavin') # 'G'
+get_abbr('Coca Cola Company') # 'CC'
+get_abbr('Mohammad Hussain Nagaria', max_len=3) # 'MHN'
+`
+## validate_url
+
+`validate_url(txt, throw=False, valid_schemes=None)`
+
+``txt`: A string to check validity
+`throw`: Weather to throw an exception if `txt` does not represent a valid URL, `False` by default
+`valid_schemes`: A string or an iterable (list, tuple or set). If provided, checks the given URL's scheme against this.
+`
+This utility function can be used to check if a string represents a valid URL address.
+
+`from frappe.utils import validate_url
+
+validate_url('google') # False
+validate_url('https://google.com') # True
+validate_url('https://google.com', throw=True) # throws ValidationError
+`
+## validate_email_address
+
+`validate_email_address(email_str, throw=False)`
+
+Returns a string containing the email address or comma-separated list of valid email addresses present in the given `email_str`. If `throw` is `True`, `frappe.InvalidEmailAddressError` is thrown in case of no valid email address in present in the given string else an empty string is returned.
+
+`from frappe.utils import validate_email_address
+
+# Single valid email address
+validate_email_address('rushabh@erpnext.com') # 'rushabh@erpnext.com'
+validate_email_address('other text, rushabh@erpnext.com, some other text') # 'rushabh@erpnext.com'
+
+# Multiple valid email address
+validate_email_address(
+    'some text, rushabh@erpnext.com, some other text, faris@erpnext.com, yet another no-emailic phrase.'
+) # 'rushabh@erpnext.com, faris@erpnext.com'
+
+# Invalid email address
+validate_email_address('some other text') # ''
+`
+## validate_phone_number
+
+`validate_phone_number(phone_number, throw=False)`
+
+Returns `True` if `phone_number` (string) is a valid phone number. If `phone_number` is invalid and `throw` is `True`, `frappe.InvalidPhoneNumberError` is thrown.
+
+`from frappe.utils import validate_phone_number
+
+# Valid phone numbers
+validate_phone_number('753858375') # True
+validate_phone_number('+91-75385837') # True
+
+# Invalid phone numbers
+validate_phone_number('invalid') # False
+validate_phone_number('87345%%', throw=True) # InvalidPhoneNumberError
+`
+## frappe.cache()
+
+`cache()`
+
+Returns the redis connection, which is an instance of class `RedisWrapper` which is inherited from the `redis.Redis` class. You can use this connection to use the Redis cache to store/retrieve key-value pairs.
+
+`import frappe
+
+cache = frappe.cache()
+
+cache.set('name', 'frappe') # True
+cache.get('name') # b'frappe'
+`
+## frappe.sendmail()
+
+`sendmail(recipients=[], sender=&quot;&quot;, subject=&quot;No Subject&quot;, message=&quot;No Message&quot;, as_markdown=False, template=None, args=None, **kwargs)`
+
+``recipients`: List of recipients
+`sender`: Email sender. Default is current user or default outgoing account
+`subject`: Email Subject
+`message`: (or `content`) Email Content
+`as_markdown`: Convert content markdown to HTML
+`template`: Name of html template (jinja) from templates/emails folder
+`args`: Arguments for rendering the template
+`
+For most cases, the above arguments are sufficient but there are many other keyword arguments that can be passed to this function. To see all the keyword arguments, please have a look the implementation of this function (`frappe/__init__.py`).
+
+This function can be used to send email using user's default Email Account or global default Email Account.
+
+`import frappe
+
+recipients = [
+    'gavin@erpnext.com',
+    'hussain@erpnext.com'
+]
+
+frappe.sendmail(
+    recipients=recipients,
+    subject=frappe._('Birthday Reminder'),
+    template='birthday_reminder',
+    args=dict(
+        reminder_text=reminder_text,
+        birthday_persons=birthday_persons,
+        message=message,
+    ),
+    header=_('Birthday Reminder 🎂')
+)
+`
+Sample Jinja template file:
+
+`&lt;!-- templates/emails/birthday_reminder.html --&gt;
+&lt;div&gt;
+&lt;div class=&quot;gray-container text-center&quot;&gt;
+&lt;div&gt;
+ {% for person in birthday_persons %}
+ {% if person.image %}
+ &lt;img src=&quot;{{ person.image }}&quot; title=&quot;{{ person.name }}&quot;&gt;
+ {% endif %}
+ {% endfor %}
+ &lt;/div&gt;
+&lt;div style=&quot;margin-top: 15px;&quot;&gt;
+&lt;span&gt;{{ reminder_text }}&lt;/span&gt;
+&lt;p class=&quot;text-muted&quot;&gt;{{ message }}&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+`
+### Attaching Files
+
+You can easily attach files to your email by passing a list of attachments to the `sendmail` function:
+
+`frappe.sendmail(
+    [&quot;faris@frappe.io&quot;, &quot;hussain@frappe.io&quot;],
+    message=&quot;## hello, *bro*&quot;
+    attachments=[{&quot;file_url&quot;: &quot;/files/hello.png&quot;}],
+    as_markdown=True
+)
+`
+Notice how attachments are a list of dictionaries having a key `file_url`. You can find this `file_url` in a `File` document's `file_url` field.
+
+## filelock
+
+File lock can be used to synchronize processes to avoid race conditions.
+
+Example: Writing to a file can cause race condition if multiple writers are trying to write to a file. So we create a named lock so processes can see the lock and wait until it's avialable for writing.
+
+`from frappe.utils.synchronization import filelock
+
+def update_important_config(config, file):
+    with filelock(&quot;config_name&quot;):
+        json.dumps(config, file)
+`
+## get_filtered_list_url
+
+`get_filtered_list_url(doctype, docnames=None)`
+
+Helpful when multiple documents are created and you want to show the user all of them together in List View.
+
+`from frappe.utils import get_filtered_list_url
+
+get_filtered_list_url(&quot;Work Order&quot;, [
+    &quot;MFG-WO-2025-00027&quot;,
+    &quot;MFG-WO-2025-00028&quot;,
+    &quot;MFG-WO-2025-00029&quot;
+])
+# → 'http://&lt;site&gt;/app/work-order?name=[&quot;in&quot;,[&quot;MFG-WO-2025-00027&quot;,&quot;MFG-WO-2025-00028&quot;,&quot;MFG-WO-2025-00029&quot;]]'
+`
+## get_filtered_list_link
+
+`get_filtered_list_link(doctype, docnames=None, label=None)`
+
+Helpful when multiple documents are created and instead of showing long msg dialog links, you show one clean link.
+
+`from frappe.utils import get_filtered_list_link
+
+get_filtered_list_link(&quot;Work Order&quot;, [
+    &quot;MFG-WO-2025-00027&quot;,
+    &quot;MFG-WO-2025-00028&quot;,
+])
+# → '&lt;a href=&quot;http://&lt;site&gt;/app/work-order?name=[...]&quot;&gt;Work Order&lt;/a&gt;'
+`
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Language Resolution
+
+                    
+                ](/framework/user/en/python-api/language)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Responses
+
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/python-api/response)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/api/utils
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

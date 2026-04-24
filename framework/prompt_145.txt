@@ -1,0 +1,713 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0u39oc0ei3)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                Portal Pages
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0u39oc0ei3)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Frappe Framework not only provides a rich admin interface via the
+[Desk](/framework/v14/user/en/desk) which is an SPA but also static server rendered web
+pages. These pages are generally built for your website visitors. They can be
+public or can require login.
+
+## Adding pages
+
+Every frappe app including frappe comes with a `www` folder which directly maps
+to website urls. Here is what the directory structure looks like:
+
+`frappe/www
+├── about.html
+├── about.py
+├── contact.html
+├── contact.py
+├── desk.html
+├── desk.py
+├── login.html
+├── login.py
+├── me.html
+└── me.py
+`
+This structure enables the routes `/about`, `/contact`, `/desk`, `/login` and
+`/me`.
+
+To add your own page, just add an HTML file in the `www` folder of your app.
+There are multiple ways to organize these portal pages. For example,
+
+`custom_app/www
+├── custom_page.html
+└── custom_page.py
+`
+Will be rendered on the route `/custom_page`.
+
+To add subpages you can convert your main page into a folder and add its content
+in an index file. For example,
+
+`custom_app/www
+└── custom_page
+ ├── index.html
+ ├── index.py
+ ├── subpage.html
+ └── subpage.py
+
+`
+Will still be rendered on the route `/custom_page` and `/custom_page/subpage`
+will also be available.
+
+You can write `.md` files instead of `.html` for simple static pages like
+documentation. This documentation you are reading is written as a markdown file.
+
+### Overriding standard pages
+
+Frappe also allows you to override standard pages through your custom app. For
+example, to override the standard `/about` provided by frappe, just add a file
+named `about.html` in the `www` folder of your app and it will take precedence.
+
+### Templating
+
+You can add dynamic content to Portal Pages using Jinja templates. All of the
+portal pages extend from the base template `frappe/templates/web.html` which
+itself extends from `frappe/templates/base.html`.
+
+Here is what a sample page might look like:
+
+`
+{% extends &quot;templates/web.html&quot; %}
+
+{% block title %}{{ _(&quot;About Us&quot;) }}{% endblock %}
+
+{% block page_content %}
+{{ _(&quot;About Us&quot;) }}
+====================
+
+ We believe that great companies are driven by excellence,
+ and add value to both its customers and society.
+ You will find our team embibes these values.
+ 
+
+{% endblock %}
+`
+You can also omit the `extend` and `block` if you want to the use the default
+base template.
+
+`
+{{ _(&quot;About Us&quot;) }}
+====================
+
+ We believe that great companies are driven by excellence,
+ and add value to both its customers and society.
+ You will find our team embibes these values.
+ 
+
+`
+### Context
+
+Every portal page can have a python controller which will build `context` for
+the page. The controller should have the same name as the `.html` or `.md` file
+with a `.py` extension.
+
+`custom_app/www
+├── custom_page.html
+└── custom_page.py
+`
+The controller should have a `get_context` method which takes a `context` dict,
+adds any data to it and then returns it. Here is what a sample page controller
+might look like:
+
+`# about.py
+import frappe
+
+def get_context(context):
+ context.about_us_settings = frappe.get_doc('About Us Settings')
+ return context
+`
+Usage in template
+
+`
+{{ _(&quot;About Us&quot;) }}
+====================
+
+ We believe that great companies are driven by excellence,
+ and add value to both its customers and society.
+ You will find our team embibes these values.
+ 
+
+ {% if about_us_settings.show_contact_us %}
+ [Contact Us](/contact)
+ {% endif %}
+
+`
+
+Since Portal Pages are built using Jinja, frappe provides a standard
+[API](/framework/v14/user/en/api/jinja) to use in jinja templates.
+
+#### List of standard context keys
+
+Here is a list of all the standard keys that can be set in `context` and their
+functionalities.
+
+  Context Key
+  Functionality
+
+  `add_breadcrumbs`
+  Add breadcrumbs to page
+
+  `no_breadcrumbs`
+  Remove breadcrumbs from page
+
+  `show_sidebar`
+  Show web sidebar
+
+  `safe_render`
+  Toggle [safe_render](#safe_render)
+
+  `no_header`
+  Hide header
+
+  `no_cache`
+  Disable caching for this page
+
+  `sitemap`
+  Include/exclude page in sitemap
+
+  `add_next_prev_links`
+  Add Next and Previous navigation buttons
+
+  `title`
+  Set the page title
+
+safe_render
+`frappe.render_template` does not render a template which contains the string
+`.__` to prevent running any illegal python expressions. You may want to disable
+this behaviour if you are sure that the content is safe. To do this, you need to
+turn off safe render by setting the value of `safe_render` key to `False` in
+context.
+
+#### Set context via frontmatter
+
+You can also set values in context using a frontmatter block. Frontmatter blocks
+can be used to set static values specific to a page like meta tags.
+
+Take a look at the following example:
+
+`---
+title: Introduction
+metatags:
+ description: This is description for the introduction page
+---
+
+# Introduction
+This is an introduction page
+`
+The above frontmatter block will update the `context` dict with the following values:
+
+`{
+ 'title': 'Introduction',
+ 'metatags': {
+ 'description': 'This is description for the introduction page'
+ }
+}
+`
+#### Set context via comments
+
+You can also set some values in context by adding html comments in your pages.
+
+For example by adding `` to your `.html` or `.md` file,
+`context.add_breadcrumbs` will be set to `True` and it will automatically generate
+breadcrumbs based on folder structure.
+
+`
+{{ _(&quot;About Us&quot;) }}
+====================
+
+ We believe that great companies are driven by excellence,
+ and add value to both its customers and society.
+ You will find our team embibes these values.
+ 
+
+ {% if about_us_settings.show_contact_us %}
+ [Contact Us](/contact)
+ {% endif %}
+
+`
+Here is a list of keys that you can set and their context values:
+
+  Comment
+  Context Value
+
+  ``
+  `add_breadcrumbs = 1`
+
+  ``
+  `no_breadcrumbs = 1`
+
+  ``
+  `show_sidebar = 1`
+
+  ``
+  `no_header = 1`
+
+  ``
+  `no_cache = 1`
+
+  ``
+  `sitemap = 0`
+
+  ``
+  `sitemap = 1`
+
+  ``
+  `add_next_prev_links = 1`
+
+  ``
+  `title = 'Custom Title'`
+
+  ``
+  `base_template = 'custom_app/path/to/custom_base.html'`
+
+### Custom CSS and JS
+
+You can add custom CSS and JS for your pages by dropping a `.css` or `.js` file
+of the same name.
+
+`custom_app/www
+├── custom_page.html
+├── custom_page.css
+├── custom_page.js
+└── custom_page.py
+`
+### Home Page
+
+The home page for your portal can be defined in
+
+Role
+
+- Portal Settings (this will be for logged in users)
+
+- Via Hook `get_website_user_home_page`
+
+- Website Settings (this will be for non logged in users as well - i.e. Guest)
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Discussions
+                    
+                ](/framework/user/en/discussions)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Blog Post
+
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/blog-post)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/portal-pages
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

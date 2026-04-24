@@ -1,0 +1,607 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tli0ise32)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Background Jobs
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tli0ise32)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Frappe ships with a system for running jobs in the background. It is implemented by using the [schedule package](https://pypi.org/project/schedule/) and a simple long-running infinite [while loop](https://github.com/frappe/frappe/blob/d0efa8e3ff734268a30b4804427641d2a5ed643e/frappe/utils/scheduler.py#L36-L46).
+
+You can enqueue a python method to run in the background by using the `frappe.enqueue` method:
+
+`def long_running_job(param1, param2):
+    # expensive tasks
+    pass
+
+# directly pass the function
+frappe.enqueue(long_running_job, queue='short', param1='A', param2='B')
+
+# or pass the full module path as string
+frappe.enqueue('app.module.folder.long_running_job', queue='short', param1='A', param2='B')
+`
+Here are all the possible arguments you can pass to the `enqueue`:
+
+`frappe.enqueue(
+    method, # python function or a module path as string
+    queue=&quot;default&quot;, # one of short, default, long
+    timeout=None, # pass timeout manually
+    is_async=True, # if this is True, method is run in worker
+    now=False, # if this is True, method is run directly (not in a worker) 
+    job_name=None, # specify a job name
+    enqueue_after_commit=False, # enqueue the job after the database commit is done at the end of the request
+    at_front=False, # put the job at the front of the queue
+    **kwargs, # kwargs are passed to the method as arguments
+)
+`
+You can also enqueue a [Document](https://frappeframework.com/docs/v14/user/en/api/document) method by using `frappe.enqueue_doc`:
+
+`frappe.enqueue_doc(
+    doctype,
+    name,
+    &quot;do_something&quot;, # name of the controller method
+    queue=&quot;long&quot;,
+    timeout=4000,
+    param=&quot;value&quot;
+)
+`
+## Queue
+
+There are 3 default queues that are configured with the framework: `short`, `default`, and `long`. Each queue has a default timeout as follows:
+
+short: 300 seconds
+
+- default: 300 seconds
+
+- long: 1500 seconds
+
+You can also pass a custom timeout to the `enqueue` method.
+
+### Custom Queues
+
+You can add custom queues by configuring them in `[common_site_config.json](https://frappeframework.com/docs/v14/user/en/basics/site_config#common-site-config)`:
+
+`{
+    ...
+    &quot;workers&quot;: {
+        &quot;myqueue&quot;: {
+            &quot;timeout&quot;: 5000, # queue timeout
+            &quot;background_workers&quot;: 4, # number of workers for this queue
+        }   
+    }
+}
+`
+## Workers
+
+By default Frappe sets up 3 worker types for consuming from each queue. The default configuration looks like this:
+
+`bench worker --queue short
+bench worker --queue default
+bench worker --queue long
+`
+In production these 3 worker processes are replicated to configured number of background workers to handle higher workloads.
+
+NOTE: This way of mapping workers to single queue is just a convention and it's not necessary to follow it.
+
+### Multi-queue consumption
+
+You can specify more than one queue for workers to consume from by specifying a comma separate string of queue names.
+
+Example: If you wanted to combine short and default workers and only use two types of workers instead of default configuration then you can modify your worker configuration like this:
+
+`bench worker --queue short,default
+bench worker --queue long
+`
+NOTE: The examples shown here are for Procfile format but they can be applied to supervisor or systemd configurations easily too.
+
+### Burst Mode using `--burst`
+
+`bench worker --queue short --burst
+`
+This command will spawn a tempoary worker that will start consuming short queue and quit once queue is empty. If you periodically need higher amount of workers then you can use your OS's crontab to setup burst workers at specific times.
+
+## Scheduler Events
+
+You can use Scheduler Events for running tasks periodically in the background using the `scheduler_events` hook.
+
+app/hooks.py
+
+`scheduler_events = {
+    &quot;hourly&quot;: [
+        # will run hourly
+        &quot;app.scheduled_tasks.update_database_usage&quot;
+    ],
+}
+`
+app/scheduled_tasks.py
+
+`def update_database_usage():
+    pass
+`
+
+After changing any scheduled events in hooks.py, you need to run bench migrate for changes to take effect.
+
+### Available Events
+
+- `hourly`, `daily`, `weekly`, and `monthly`
+
+These events will trigger every hour, day, week, and month respectively.
+
+- `hourly_long`, `daily_long`, `weekly_long`, `monthly_long`
+
+Same as above but these jobs are run in the [long worker](https://frappeframework.com/docs/v14/user/en/basics/directory-structure#worker_long) suitable for long-running jobs.
+
+- `all`
+
+The `all` event is triggered every 4 minutes. This can be configured via the `scheduler_interval` key in [common_site_config.json](https://frappeframework.com/docs/v14/user/en/basics/sites#scheduler_tick_interval)
+
+- `cron`
+
+A valid cron string that can be parsed by [croniter](https://pypi.org/project/croniter/).
+
+Usage Examples:
+
+`scheduler_events = {
+    &quot;daily&quot;: [
+        &quot;app.scheduled_tasks.manage_recurring_invoices&quot;
+    ],
+    &quot;daily_long&quot;: [
+        &quot;app.scheduled_tasks.take_backups_daily&quot;
+    ],
+    &quot;cron&quot;: {
+        &quot;15 18 * * *&quot;: [
+            &quot;app.scheduled_tasks.delete_all_barcodes_for_users&quot;
+        ],
+        &quot;*/6 * * * *&quot;: [
+            &quot;app.scheduled_tasks.collect_error_snapshots&quot;
+        ],
+        &quot;annual&quot;: [
+            &quot;app.scheduled_tasks.collect_error_snapshots&quot;
+        ]
+    }
+}
+`
+## Configurable Scheduler Events
+
+On scenarios that require a user configurable trigger interval, Create a `Scheduler Event` record and create a `Scheduled Job Type` entry against that record. This doesn't require `scheduler_event` hook.
+
+Example:
+
+`# Create `Scheduler Event` record
+sch_eve = frappe.new_doc(&quot;Scheduler Event&quot;)
+sch_eve.scheduled_against = &quot;Process Payment Reconciliation&quot;
+sch_eve.save()
+
+# Create `Scheduled Job Type`
+job = frappe.new_doc(&quot;Scheduled Job Type&quot;)
+job.frequency = &quot;Cron&quot;
+job.scheduler_event = sch_eve.name
+job.cron_format = &quot;0/5 * * * *&quot;     # runs every five minutes
+job.save()
+`
+The `Scheduled Job Type`s trigger interval can be modified later, which persits across bench migration.
+
+The jobs triggered by scheduler are run by Administrator user. This also means any docs you create via scheduled job will be owned by the Administrator user unless specified otherwise.
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Realtime (socket.io)
+                    
+                ](/framework/user/en/api/realtime)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Document API
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/api/document)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/api/background_jobs
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

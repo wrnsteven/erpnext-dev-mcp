@@ -1,0 +1,502 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tvl23ai7v)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                OpenID Connect and Frappe social login
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tvl23ai7v)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            ## OpenID Connect
+
+Frappe also uses Open ID connect essential standard for authenticating users. To get `id_token` with `access_token`, pass `openid` as the value for the scope parameter during authorization request.
+
+If the scope is `openid` the JSON response with `access_token` will also include a JSON Web Token (`id_token`) signed with `HS256` and `Client Secret`. The decoded `id_token` includes the `at_hash`.
+
+Example Bearer Token with scope `openid`
+
+`{
+ &quot;token_type&quot;: &quot;Bearer&quot;,
+ &quot;id_token&quot;: &quot;eyJhbGciOiJIUzI1NiIsInR5cCI6Imp3dCJ9.eyJpc3MiOiJodHRwczovL21udGVjaG5pcXVlLmNvbSIsImF0X2hhc2giOiJOQlFXbExJUy1lQ1BXd1d4Y0EwaVpnIiwiYXVkIjoiYjg3NzJhZWQ1YyIsImV4cCI6MTQ3Nzk1NTYzMywic3ViIjoiNWFjNDE2NThkZjFiZTE1MjI4M2QxYTk0YjhmYzcwNDIifQ.1GRvhk5wNoR4GWoeQfleEDgtLS5nvj9nsO4xd8QE-Uk&quot;,
+ &quot;access_token&quot;: &quot;ZJD04ldyyvjuAngjgBrgHwxcOig4vW&quot;,
+ &quot;scope&quot;: &quot;openid&quot;,
+ &quot;expires_in&quot;: 3600,
+ &quot;refresh_token&quot;: &quot;2pBTDTGhjzs2EWRkcNV1N67yw0nizS&quot;
+}
+`
+## Frappe social login setup
+
+In this example there are 2 servers,
+
+### Primary Server
+
+This is the main server hosting all the users. e.g. `https://frappe.io`. To setup this as the main server, go to Setup &gt; Integrations &gt; Social Login Keys and enter `https://frappe.io` in the field `Frappe Server URL`. This URL repeats in all other Frappe servers who connect to this server to authenticate. Effectively, this is the main Identity Provider (IDP).
+
+Under this server add as many `OAuth Client`(s) as required. Because we are setting up one app server, add only one `OAuth Client`
+
+### Frappe App Server
+
+This is the client connecting to the IDP. Go to Setup &gt; Integrations &gt; Social Login Keys on this server and add appropriate values to `Frappe Client ID` and `Frappe Client Secret` (refer to client added in primary server). As mentioned before keep the `Frappe Server URL` as `https://frappe.io`
+
+Now you will see Frappe icon on the login page. Click on this icon to login with account created in primary server (IDP) `https://frappe.io`
+
+Note: If `Skip Authorization` is checked while registering a client, page to allow or deny the granting access to resource is not shown. This can be used if the apps are internal to one organization and seamless user experience is needed.
+
+## Steps
+
+### Part 1 : on Frappe Identity Provider (IDP)
+
+Login to IDP
+![](/files/00-login-to-idp.png)
+
+Add OAuth Client on IDP
+![](/files/01-add-oauth-client-on-idp.png)
+
+Set Server URL on IDP
+![](/files/02-set-server-url-on-idp.png)
+
+### Part 2 : on Frappe App Server
+
+Set `Frappe Client ID` and `Frappe Client Secret` on App server (refer the client set on IDP)
+![](/files/03-set-clientid-client-secret-server-on-app-server.png)
+
+Note: Frappe Server URL is the main server where identities from your organization are stored.
+
+Login Screen on App Server (login with frappe)
+![](/files/04-login-screen-on-app-server.png)
+
+### Part 3 : Redirected on IDP
+
+login with user on IDP
+![](/files/05-login-with-user-on-idp.png)
+
+Confirm Access on IDP
+![](/files/06-confirm-grant-access-on-idp.png)
+
+### Part 4 : Back on App Server
+
+Logged in on app server with ID from IDP
+![](/files/07-logged-in-as-website-user-with-id-from-idp.png)
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Token based authentication
+
+                    
+                ](/framework/user/en/guides/integration/how_to_setup_token_based_auth)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Webhooks
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/guides/integration/webhooks)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/guides/integration/openid_connect_and_frappe_social_login
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

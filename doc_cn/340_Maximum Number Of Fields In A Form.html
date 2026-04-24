@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximum Number Of Fields In A Form</title>
+</head>
+<body>
+<p>有时在创建自定义字段时，可能会遇到如下错误信息：</p><p>> Row size too large. The maximum row size for the used table type, not counting BLOBs, is 65535. This includes storage overhead, check the manual. You have to change some columns to TEXT or BLOBs.</p><p><h2>这是什么意思？</h2></p><p>简单来说，这意味着您已达到了特定表单/DocType 的最大字段数限制。那么，最大字段数限制是多少呢？</p><p>在 MySQL 中，每个表有 4096 列的硬性限制，但给定表的实际最大列数可能更少。确切的限制取决于多个相互作用的因素。</p><p>每个表（无论使用何种存储引擎）的最大行大小为 65,535 字节。存储引擎可能会对此限制施加额外的约束，从而减少实际的最大行大小。</p><p>最大行大小限制约束了列的数量（以及可能的列大小），因为所有列的总长度不能超过此大小（65,535 字节）。例如，<code>utf8mb3</code> 字符每个字符最多需要 3 个字节，因此对于 <code>VARCHAR(140)</code> 列，服务器必须为每个值分配 <code>140 × 3 = 420</code> 字节。因此，一个表不能包含超过 <code>65,535 / 420 = 156</code> 个这样的列。</p><p>在 Frappe 框架中，会根据 "Data"、"Link"、"Select"、"Dynamic Link"、"Password" 和 "Read Only" 字段类型创建 <code>VARCHAR(140)</code> 类型的列。因此，您可以在系统中创建大约 156 个这样的列。</p><p><h2>解决方案：</h2></p><p>您可以进行一些更改来向系统添加更多字段。</p><ul>
+\0</ul><p>---
+original_url: https://docs.frappe.io/erpnext/maximum-number-of-fields-in-a-form
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18</p>
+</body>
+</html>

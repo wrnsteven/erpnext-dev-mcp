@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>打印格式</title>
+</head>
+<body>
+<p># 打印格式</p><p><strong>打印格式是您在打印或发送电子邮件时生成的文档布局。</strong></p><p>此功能适用于 ERPNext 中的所有业务单据，如所有销售和采购单据、HR 文档等等。</p><p>在 ERPNext 中，打印格式分为三种类型，分别是标准打印格式、自定义打印格式和 HTML 打印格式。</p><p><h1>标准打印格式</h1></p><p>ERPNext 中的每个可打印文档类型都拥有自己的标准打印格式，该格式由 Frappe Framework 自动生成。标准打印格式中的字段位置取决于相应字段在文档中的位置。</p><p>!<a href="../../images/462_customize-standard-print-format.png">图片</a></p><p>对标准打印格式进行的任何更改都需要通过自定义表单来完成。您也可以查看<a href="/erpnext/making-fields-visible-in-print-format">在打印格式中添加字段</a>。</p><p><h1>自定义打印格式</h1></p><p>您还可以使用名为<a href="/erpnext/print-format-builder">打印格式构建器</a>的工具来创建自己的自定义打印格式。此工具可以帮助您通过拖放字段来制作符合您偏好的简单自定义打印格式。</p><p>!<a href="../../images/462_customize-print-format.gif">图片</a></p><p>为了创建自定义打印格式，ERPNext 提供了三种样式的多个预定义模板，分别是：Modern（现代）、Monochrome（单色）和 Classic（经典）。</p><p>要创建您自己的版本，请从以下位置打开现有模板：</p><p>> 构建 &gt; 视图 &gt; 打印格式</p><p><h1>打印设置</h1></p><p>要编辑/更新您的打印和 PDF 设置，请前往：</p><p>> 设置 &gt; 打印设置</p><p>!<a href="../../images/462_print-settings.png">图片</a></p><p><h1>HTML 打印格式</h1></p><p>要创建 HTML 打印格式，您需要具备 HTML、CSS 和 Python 的一些知识。以下是一个具有特定格式的打印格式设计示例。</p><p>!<a href="../../images/462_customize-custom-print-format-1.png">图片</a></p><p>打印格式在服务器端使用 <a href="https://jinja.palletsprojects.com/en/3.0.x/templates/">Jinja 模板语言</a> 提供。所有表单都可以访问包含正在格式化文档信息的 doc 对象。您还可以通过 frappe 模块访问公共工具。在创建基于 HTML 的打印格式时获取支持，您可以参考 <a href="https://discuss.erpnext.com/">ERPNext 社区论坛</a>，或就您的问题发表新帖。</p><p>对于样式，<a href="http://getbootstrap.com/">Bootstrap CSS Framework</a> 已提供，您可以充分发挥其全部类的作用。</p><p><h3>参考资料</h3></p><ul>
+\0</ul><p><pre><code><h3>{{ doc.select_print_heading or "Invoice" }}</h3>
+<div class="row">
+    <div class="col-md-3 text-right">Customer Name</div>
+    <div class="col-md-9">{{ doc.customer_name }}</div>
+</div>
+<div class="row">
+    <div class="col-md-3 text-right">Date</div>
+    <div class="col-md-9">{{ doc.get_formatted("invoice_date") }}</div>
+</div></p><p>        {%- for row in doc.items -%}</p><p>        {%- endfor -%}
+    <table class="table table-bordered">
+    <tbody>
+        <tr>
+            <th>Sr</th>
+            <th>Item Name</th>
+            <th>Description</th>
+            <th class="text-right">Qty</th>
+            <th class="text-right">Rate</th>
+            <th class="text-right">Amount</th>
+        </tr><tr>
+            <td style="width: 3%;">{{ row.idx }}</td>
+            <td style="width: 20%;">
+                {{ row.item_name }}
+                {% if row.item_code != row.item_name -%}
+                <br>Item Code: {{ row.item_code}}
+                {%- endif %}
+            </td>
+            <td style="width: 37%;">
+                <div style="border: 0px;">{{ row.description }}</div>
+            </td>
+            <td style="width: 10%; text-align: right;">
+                {{ row.qty }} {{ row.uom or row.stock_uom }}
+            </td>
+            <td style="width: 15%; text-align: right;">
+                {{ row.get_formatted("rate", doc) }}
+            </td>
+            <td style="width: 15%; text-align: right;">
+                {{ row.get_formatted("amount", doc) }}
+            </td>
+        </tr></tbody>
+</table>
+</code></pre></p><p><h1>注意事项</h1></p><ul>
+\0</ul><p>---
+original_url: https://docs.frappe.io/erpnext/records-print-format
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---</p>
+</body>
+</html>

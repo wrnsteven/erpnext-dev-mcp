@@ -1,0 +1,43 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>使用指数平滑法进行预测</title>
+</head>
+<body>
+    <h1>使用指数平滑法进行预测</h1>
+
+    <p>要访问预测报告，请转到：</p>
+
+    <blockquote>
+    <p>首页 > 生产 > 报告 > 预测</p>
+    </blockquote>
+
+    <p><img src="/files/production-forecasting-using-sales-order.png" alt="Production Forecasting" /></p>
+
+    <p>使用指数平滑法和过去的销售订单/发货单/报价单数据，将计算预测。指数平滑法公式如下：</p>
+
+    <p><img src="/files/exponential-smoothing-formula041d6b.png" alt="Production Forecasting" /></p>
+
+    <p>使用指数平滑法，系统预测每个期间的预测值，相同的预测数据将用于预测下一期间的数据。</p>
+
+    <h2>指数平滑法如何工作</h2>
+
+    <p><img src="/files/exponential-smoothing-formula-e.png" alt="Production Forecasting" /></p>
+
+    <p>对于上面的例子，我们使用了每月的年度销售订单数据。第一个月的预测将根据所有总订单的平均值计算。从第二个月开始，上个月总订单与预测值之间的差异将乘以平滑常数值（介于 0 到 1 之间）。平滑常数的默认值是 0.3，它提供高效的预测数据。上个月总订单与预测值的差异称为预测误差，这个误差将被添加到同月的预测值中，以计算下个月的预测。</p>
+
+    <h2>过滤器如何工作</h2>
+
+    <ol>
+    <li><strong>公司</strong>：用户可以通过应用公司过滤器对特定公司进行预测</li>
+    <li><strong>开始日期和结束日期</strong>：系统将对此期间进行预测，默认开始日期是当前日期，结束日期是当前日期一年后的日期。</li>
+    <li><strong>基于文档</strong>：默认情况下，系统使用销售订单的过去数据进行预测。用户可以选择其他文档（如发货单/报价单）来进行数据预测。</li>
+    <li><strong>基于</strong>：基于数量/金额，系统显示预测数据。</li>
+    <li><strong>基于数据（年）</strong>：预测需要过去的数据，此过滤器帮助系统检查过去若干年的数据。</li>
+    <li><strong>周期性</strong>：预测数据可以按月/季度/半年/年度查看，为了更好地查看，旧预测数据不能按月显示。</li>
+    <li><strong>平滑常数</strong>：平滑常数将用于预测数据，值应该在 0 和 1 之间。</li>
+    </ol>
+
+</body>
+</html>

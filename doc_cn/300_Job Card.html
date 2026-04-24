@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Card</title>
+</head>
+<body>
+<p><pre><code>---
+original_url: https://docs.frappe.io/erpnext/job-card
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---</p><p><h1>Job Card</h1></p><p><strong>Job Card 用于存储特定工序在特定工作站上执行的实际生产信息。</strong></p><p>Job Card 由 Work Order 创建，并分配给生产车间中的各个工作站，以便根据 Work Order 中定义的各工序，开始生产指定数量的物料。</p><p>Job Card 允许各工序工作站针对生产所需的原材料发起"Material Request"和"Stock Transfer to Manufacture"。</p><p>Job Card 的完成将改变 Work Order 中的生产状态，我们可以跟踪 Work Order 中各工序的生产进度。</p><p>!<a href="../../images/300_manufacturing-flow-jc.png">图片</a></p><p>要访问 Job Card 列表，请前往：</p><p>> 首页 > 生产制造 > 生产 > Job Card</p><p><h1>1. 前置条件</h1></p><p>在创建和使用 Job Card 之前，建议先创建以下内容：</p><p>- <a href="/erpnext/bill-of-materials">Bill Of Materials</a>
+- <a href="/erpnext/operation">Operation</a>
+- <a href="/erpnext/workstation">Workstation</a>
+- <a href="/erpnext/work-order">Work Order</a></p><p><h1>2. 如何创建 Job Card</h1></p><p>当 Work Order 提交时，系统会自动为各工序创建 Job Card。</p><p>以下是 Job Card 的示例：</p><p>!<a href="../../images/300_job-card.png">图片</a></p><p>使用 Job Card 的步骤如下：</p><ul>
+\0</ul><p>!<a href="../../images/300_qi-against-job-card.png">图片</a>
+!<a href="../../images/300_qi-link-in-job-card.png">图片</a>
+更多详情，请参阅 <a href="/erpnext/quality-inspection">Quality Inspection</a> 页面。</code></pre></p>
+</body>
+</html>

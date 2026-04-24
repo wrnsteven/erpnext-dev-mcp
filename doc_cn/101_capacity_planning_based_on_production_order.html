@@ -1,0 +1,42 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基于生产订单的产能规划</title>
+</head>
+<body>
+    <h1>基于生产订单的产能规划</h1>
+
+    <p>产能规划功能帮助你跟踪分配到每个工作站的生成作业。</p>
+
+    <p><img src="/files/Screen%20Shot%202017-01-30%20at%208.06.24%20PM.png" alt="" /></p>
+
+    <p>以下是在你的 ERPNext 账户中使用产能规划功能的步骤。</p>
+
+    <p><strong>工序</strong></p>
+
+    <p>要添加工序，请前往：Manufacturing > Bill of Materials > Operations</p>
+
+    <p><strong>工作站</strong></p>
+
+    <p>在以下位置添加你的 ERPNext 账户中的每个工作站：Manufacturing > Bill of Materials > Workstation</p>
+
+    <p>在工作站主数据中，你可以定义将在其上执行哪些工序、相关的成本是多少，以及该工作站的工作时间。</p>
+
+    <p><strong>物料清单 (BOM)</strong></p>
+
+    <p>在 BOM 中，除了制造所需的原材料列表外，你还可以列出将通过哪些工序和工作站处理这些原材料。</p>
+
+    <p><strong>生产订单</strong></p>
+
+    <p>提交生产订单后，将生成工序的时间表。这有助于你在每个工作站上分配生产作业，也可以更新每个工序的实际用时。</p>
+
+    <p>--</p>
+
+    <p><strong>问题</strong>：提交生产订单时，我们收到以下错误消息。</p>
+
+    <p><img src="/files/Screen%20Shot%202017-01-30%20at%208.12.40%20PM.png" alt="" /></p>
+
+    <p><strong>答案：</strong>请检查你是否在工作站主数据中更新了工作时间？如果没有，请更新后再尝试提交生产订单。提交生产订单后，工序（如在 BOM 中添加的）将分配到工作站。每个工序应该开始和结束于同一天。如果系统无法在某一天安排该工序，则系统要求你将该项目拆分，以便系统可以在一天内分配较小的工序。如果你在工作站中已更新工作时间，但仍然遇到此问题，那是因为你的某个工序花费时间太长，无法在一天内完成。请将该工序拆分为更小的工序，以便可以分配到工作站并在同一天内完成。</p>
+</body>
+</html>

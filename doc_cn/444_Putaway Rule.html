@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Putaway Rule</title>
+</head>
+<body>
+<p><strong>上架规则定义了入库库存的仓库分配策略。</strong></p><p>上架规则在公司中针对特定的项目-仓库组合唯一定义。它会考虑仓库容量和优先级。</p><p>在<strong>采购收货</strong>和<strong>库存事务</strong>（物料收货及物料调拨）中，上架规则会被应用，项目会根据给定的策略<strong>自动分配</strong>到仓库。</p><p>这对于具有多个库位的大型仓库的容量管理特别有用。</p><p>要访问上架规则，请转到：</p><p>> 首页 > 库存 > 库存事务 > 上架规则</p><p><h1>1. 先决条件</h1></p><p>在创建和使用上架规则之前，建议您先创建以下内容：</p><p>- <a href="/erpnext/item">物料</a>
+- <a href="/erpnext/warehouse">仓库</a></p><p><h1>2. 如何创建上架规则</h1></p><p>转到上架规则列表，点击新建。
+!<a href="../../images/444_unsaved-putaway-rule.png">图片</a></p><p>设置公司并选择物料。</p><p>选择此规则适用的仓库。</p><p>设置容量。您也可以选择不同的单位来设置容量。库存单位的容量将自动设置。
+!<a href="../../images/444_multi-uom-putaway-rule.png">图片</a></p><p>设置优先级。从1开始，1为最高优先级。</p><p>保存。</p><p>您也可以选择禁用上架规则。</p><p>该规则对于每个项目-仓库组合是唯一的。</p><p><h1>3. 上架策略如何运作</h1></p><ul>
+\0</ul><p>一个名为<strong>应用上架规则</strong>的复选框将根据上架规则将物料分配到仓库。
+!<a href="../../images/444_apply-putaway-rule.png">图片</a>
+勾选此复选框后应用上架规则。如果启用了此复选框，保存时也会重新应用。</p><p>让我们看看实际运行效果：</p><p>这是一个需要5箱（60瓶）矿泉水 的采购订单。
+!<a href="../../images/444_po-putaway-demo.png">图片</a></p><p>已创建两条容量为4箱（48瓶）的活动上架规则。其中一条的优先级高于另一条。
+!<a href="../../images/444_active-putaway-rules-list.png">图片</a></p><p>由此采购订单创建采购收货。</p><p>勾选<strong>应用上架规则</strong>后，5箱的一行会被拆分并根据规则进行分配。
+!<a href="../../images/444_pr-putaway-apply.gif">图片</a></p><p>首先，5箱中的4箱被分配到"成品 - UPI"仓库。一旦该仓库达到容量，就会将剩余的（1箱）分配到"原材料仓库 - UPI"。</p><p><h1>5. 仓库容量汇总</h1></p><p><strong>仓库容量汇总</strong>报表显示了仓库容量及其各自的库存水平。</p><p>只有具有上架规则的仓库才会列在此处。<strong>编辑容量</strong>按钮可以修改上架规则容量。</p><p>!<a href="../../images/444_warehouse-capacity-summary.png">图片</a></p><p><h1>6. 上架应用类型</h1></p><p><h2>6.1. 直接上架</h2></p><ul>
+\0</ul><p>- <a href="/erpnext/purchase-receipt">采购收货</a>
+- <a href="/erpnext/stock-entry">库存事务</a></p><p>---
+original_url: https://docs.frappe.io/erpnext/putaway-rule
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---</p>
+</body>
+</html>

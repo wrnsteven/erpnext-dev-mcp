@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预约预订设置 - ERPNext</title>
+</head>
+<body>
+    <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+        <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">预约预订设置</h1>
+    </header>
+
+    <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+        <p>您可以在预约预订设置中找到与预订预约相关的所有设置。</p>
+        <p><img src="/images/38_appointment-booking-settings.png" alt="Appointment Booking Settings" /></p>
+        <h2 id="1-enable-appointment-scheduling">1. 启用预约调度</h2>
+        <p>此复选框将启用预约调度，并同时为网站用户（您的客户）启用<code>/book_appointment</code>路由。您的客户将看到一个门户视图。了解更多，请访问<a href="/erpnext/appointment">预约页面</a></p>
+        <h2 id="2-agent-details">2. Agent 详情</h2>
+        <p>在本节中，您可以添加有关 Agent 的详细信息，例如他们的工作时间和假期。</p>
+        <h3 id="21-availability-of-slots">2.1 时段可用性</h3>
+        <p>在这里您可以设置 Agent 参加预约的时间段。这是按每周的每一天设置的。每一行代表一个连续的时间块，您可以为每周的每一天创建多个条目。</p>
+        <p>例如，如果您的 Agent 周一至周五工作，时间是上午9点到下午5点，但下午1:30有半小时的午餐休息。您需要为每一天创建两个条目。一个从上午9点到下午1:30，另一个从下午2点到5点。</p>
+        <h3 id="22-agents">2.2 Agent</h3>
+        <p>这是将自动分配给预约的 Agent 列表。一个时间段可以存在的预约数量也取决于此列表中的员工数量。</p>
+        <h3 id="23-holiday-list">2.3 假日列表</h3>
+        <p>您可以在此处链接一个<a href="https://erpnext.com/docs/v13/user/manual/en/human-resources/holiday-list">假日列表</a>以应用于预约计划。如果当天是假期，则不允许在该天预约。</p>
+        <h2 id="3-appointment-details">3. 预约详情</h2>
+        <p>本节包含预约本身的详细信息。</p>
+        <h3 id="31-appointment-duration-in-minutes">3.1 预约时长（分钟）</h3>
+        <p>预约时长（分钟）。这用于为网络门户计算预约时间段。更改此设置不会影响在此之前创建的预约。</p>
+        <h3 id="32-notify-via-email">3.2 通过电子邮件通知</h3>
+        <p>启用此复选框将在预约当天向预约参与者（即您的员工和客户）发送电子邮件。更改此复选框不会影响在此之前创建的预约。</p>
+        <h3 id="33-number-of-days-appointment-can-be-books-in-advance">3.3 预约可以提前预订的天数</h3>
+        <p>这是可以提前预订预约的天数。如果上述假日列表结束日期早于使用此数字计算的日期，预约调度将在假日列表结束时停止。</p>
+        <h2 id="4-success-settings">4. 成功设置</h2>
+        <h3 id="41-success-redirect-url">4.1 成功重定向 URL</h3>
+        <p>这是用户在通过网页门户成功创建预约后将被重定向到的 URL。 通过 Desk UI 创建预约时不会发生此重定向。
+        留空则返回首页。这是相对于站点 URL 的，例如"about"将重定向到"https://yoursitename.com/about"</p>
+    </div>
+
+    <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+        <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+            <a href="/erpnext/newsletter" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <div class="flex flex-col gap-1 min-w-0">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">上一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">Newsletter</span>
+                </div>
+            </a>
+            <a href="/erpnext/social-media-settings" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">下一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">Social Media Settings</span>
+                </div>
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]">
+            最后更新于 2 个月前
+        </div>
+    </div>
+</body>
+</html>

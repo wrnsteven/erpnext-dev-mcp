@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>批次</title>
+</head>
+<body>
+    <h1>批次</h1>
+
+    <blockquote>
+<p>从版本 15 开始，"允许负库存"功能已移除用于序列号/批次项目。因此，从版本 15 开始，即使在库存设置中启用了"允许负库存"，用户也无法对序列号/批次项目进行负库存交易。</p>
+</blockquote>
+
+<p>要启用项目的序列号/批次功能，首先需要在"库存设置"中勾选"为项目启用序列号和批次号"复选框。</p>
+
+<p><img src="/files/Screenshot%202026-03-06%20at%2011.52.18%20AM.png" alt="" /></p>
+
+<p><strong>ERPNext 中的批次功能允许你将多个单位的产品分组，并为其分配一个唯一的值/编号/标签，称为批次号。</strong></p>
+
+<p>这是基于产品完成的。如果产品启用了批次，则必须在每个库存交易中注明批次号。批次号可以手动维护或自动维护。此功能对于设置多个产品的到期日期或将其一起移动到不同仓库非常有用。</p>
+
+<p>要访问批次号列表，请前往：> 首页 > 库存 > 序列号和批次 > 批次</p>
+
+<h2>1. 前置条件</h2>
+
+<p>在创建和使用批次之前，建议首先创建以下内容：</p>
+
+<ul>
+<li><a href="/erpnext/user/manual/en/item">Item</a></li>
+<li>在产品主数据中启用"有批次号"<img src="/files/batch-no-enabled.png" alt="Batch No Enabled" /></li>
+</ul>
+
+<h2>2. 如何创建新批次</h2>
+
+<p>要将产品设置为批次项目，应在产品主数据中勾选"有批次号"字段。如果在创建产品时未选择"自动创建新批次"，则必须手动创建批次。</p>
+
+<p>要为产品创建新的批次号主数据，请执行以下操作：</p>
+
+<ol>
+<li>转到批次列表，点击"新建"。</li>
+<li>设置批次 ID。</li>
+<li>选择产品。</li>
+<li>如果已对产品进行任何交易，则无法设置或取消设置批次。</li>
+<li>保存。</li>
+</ol>
+
+<p>当为产品启用批次时，<a href="/erpnext/user/manual/en/retain-sample-stock">retain sample stock</a>选项也会变为可用。</p>
+
+<h3>2.1 批次自动创建</h3>
+
+<p>如果你希望在采购收货时自动创建批次，必须在产品主数据中勾选"自动创建新批次"：</p>
+
+<p><img src="/files/item_setup_for_batch.png" alt="Item Setup for Batches" /></p>
+
+<h2>3. 功能</h2>
+
+<h3>3.1 拆分和移动批次</h3>
+
+<p>当你打开一个批次时，你将看到页面上属于该批次的所有数量。</p>
+
+<p><img src="/files/batch_view.png" alt="Batch View" /></p>
+
+<ul>
+<li>要将批次从一个仓库移动到另一个仓库，你可以点击<strong>移动</strong>按钮。</li>
+<li>你也可以点击<strong>拆分</strong>按钮将批次拆分为更小的批次。这将基于此批次创建一个新批次，数量将在批次之间分配。</li>
+</ul>
+
+<p><img src="/files/batch_split.png" alt="Split Batch" /></p>
+
+<ul>
+<li>如果设置了到期日期，批次将在到期日期前显示"未过期"，之后将显示"已过期"。如果未设置日期，批次将显示"未设置"。</li>
+</ul>
+
+<h3>3.2 批次项目交易</h3>
+
+<p>批次主数据应在创建采购收货之前创建。因此，每次为批次项目创建采购订单或库存调整时，你将首先创建其批次号，然后在采购订单或库存移动中选择它。</p>
+
+<p>在对批次项目进行每个库存交易（采购收货、交货单、发票）时，都应提供产品的批次号。</p>
+
+<blockquote>
+<p>注意：在库存交易中，批次号将根据产品代码、仓库、批次到期日期（与交易的过账日期比较）和仓库中的实际数量进行筛选。在仓库字段中没有值的情况下搜索批次号时，不会应用实际数量筛选。</p>
+</blockquote>
+
+<h2>4. 相关主题</h2>
+
+<ol>
+<li><a href="/erpnext/user/manual/en/serial-no">Serial Number</a></li>
+<li><a href="/erpnext/user/manual/en/opening-stock-balance-entry-for-serialized-and-batch-item">Opening Stock Balance Entry For Serialized And Batch Item</a></li>
+<li><a href="/erpnext/user/manual/en/managing-batch-wise-inventory">Managing Batch Wise Inventory</a></li>
+</ol>
+</body>
+</html>

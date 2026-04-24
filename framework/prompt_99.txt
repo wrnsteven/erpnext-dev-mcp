@@ -1,0 +1,581 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tjum3nja8)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Apps																																																				
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tjum3nja8)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            A Frappe app is a python package that uses the Frappe framework. Frappe apps live
+in a directory called `apps` in the `frappe-bench` directory.
+
+The default app `frappe` is a frappe app which acts as the framework for all
+apps. A Frappe app should have an entry in `apps.txt`.
+
+## Creating an App
+
+Frappe ships with a boilerplate for a new app. To create a new app, run the
+following command from the `frappe-bench` directory.
+
+`$ bench new-app custom_app
+INFO:bench.app:creating new app custom_app
+App Title (default: Custom App):
+App Description: Custom Frappe App
+App Publisher: John Doe
+App Email: custom@johndoe.com
+App Icon (default 'octicon octicon-file-directory'):
+App Color (default 'grey'):
+App License (default 'MIT'):
+'custom_app' created at /Users/johndoe/frappe-bench/apps/custom_app
+INFO:bench.app:installing custom_app
+INFO:bench.utils:./env/bin/pip install -q -e ./apps/custom_app
+`
+The `custom_app` directory will now be created in the `apps` directory. It will
+also be added to `apps.txt`.
+
+## Directory structure
+
+The directory structure of the app will look something like this:
+
+`apps/custom_app
+├── MANIFEST.in
+├── README.md
+├── custom_app
+│ ├── __init__.py
+│ ├── config
+│ │ ├── __init__.py
+│ │ ├── desktop.py
+│ │ └── docs.py
+│ ├── custom_app
+│ │ └── __init__.py
+│ ├── hooks.py
+│ ├── modules.txt
+│ ├── patches.txt
+│ ├── public
+│ │ ├── css
+│ │ └── js
+│ ├── templates
+│ │ ├── __init__.py
+│ │ └── includes
+│ └── www
+├── license.txt
+├── requirements.txt
+├── dev-requirements.txt
+├── package.json
+└── setup.py
+`
+### requirements.txt
+
+This file stores the list of python dependencies. When this app is installed,
+it's dependencies will also get installed.
+
+### dev-requirements.txt [Optional]
+
+This file stores the list of python development dependencies. Syntax of this
+file is same as requirements.txt. If developer mode is enabled, then
+installing the app will also install its development dependencies.
+
+### package.json
+
+This file is used to keep track of node dependencies. Learn more about it
+[here](https://docs.npmjs.com/files/package.json).
+
+### customapp
+
+This is the directory where the source files are stored.
+
+### customapp/customapp
+
+When you create a new app, a module with the same name is also created within
+the app. This is the directory which corresponds to that module.
+
+### customapp/hooks.py
+
+This file is used to hook into frappe events and extend or override standard
+behaviour by frappe.
+
+Learn more about [hooks](/framework/v14/user/en/python-api/hooks).
+
+### customapp/modules.txt
+
+Every frappe app is organized into different modules. Every DocType is part of a
+module. These modules are listed in this file.
+
+Learn more about [modules](/framework/v14/user/en/basics/doctypes/modules).
+
+### customapp/patches.txt
+
+This file is used to store references to patches that run in database migrations.
+These patches are run in order, and they are run only once.
+
+Learn more about [Database Migrations](https://docs.frappe.io/framework/user/en/database-migrations#writing-a-patch).
+
+### customapp/public
+
+The public folder is a static folder and can be served by nginx in production.
+Files put here can be accessed via the url `/assets/custom_app/**/*`.
+
+For example, the file `public/img/logo.png` is accessible via the url
+`/assets/custom_app/img/logo.png`.
+
+This folder is used to store static assets used directly in the client side like
+JS, CSS and Images.
+
+### customapp/templates
+
+The templates folder is used to write and manage Jinja Templates. They can be
+organized in any way you want. This directory is directly scanned when you use
+them in Jinja templates.
+
+For example, when you include a partial `{% include &quot;templates/navbar/navbar.html&quot; %}`,
+it will first scan this directory and then fallback to other apps.
+
+### customapp/www
+
+Files in this directory are directly mapped to portal pages and the URLs match the
+directory structure.
+
+Learn more about [portal pages](/framework/v14/user/en/portal-pages).
+
+## Installing an app into a site
+
+To use an app, it must be installed on a site. Installing an app on a site means
+creating the models that are bundled with the app into the site, which means
+creating database tables in the site database.
+
+To install an app onto a site, run the following command:
+
+`$ bench --site site_name install-app custom_app
+
+Installing custom_app...
+`
+To check whether the app was installed correctly, run the following command:
+
+`$ bench --site site_name list-apps
+frappe
+custom_app
+`
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Directory structure
+
+                    
+                ](/framework/user/en/basics/directory-structure)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Sites
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/basics/sites)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/basics/apps
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

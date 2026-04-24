@@ -1,0 +1,739 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tia116t2h)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Types of DocType																										
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tia116t2h)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Let's learn about the different types of doctype in the framework by creating
+more doctypes.
+
+## Library Membership
+
+Let's create another doctype: Library Membership. It will have the following
+fields:
+
+Library Member (Link, Mandatory)
+
+- Full Name (Data, Read Only)
+
+- From Date (Date)
+
+- To Date (Date)
+
+- Paid (Check)
+
+It will have Is Submittable enabled. It will have Naming set as
+LMS.##### and restricted to Librarian role. Also, the Title Field should
+be set to `full_name` in the View Settings section.
+
+![Library Membership DocType](/files/library-membership-doctype.gif)
+
+The Link field Library Member is similar to a Foreign Key column in other
+frameworks. It will let you link the value to a record in another DocType. In
+this case, it links to a record of Library Member DocType.
+
+The Full Name field is a Read Only field that will be automatically fetched
+from from the `full_name` field in the linked record Library Member.
+
+Now, go to the Library Membership list and create a new document. You will see
+that the Library Member field is a dropdown with existing records shown as
+options. Select a Library Member and the Full Name will be fetched
+automatically. Pretty cool, right?
+
+### Linked DocTypes
+
+Linked DocTypes are DocTypes that are linked in other doctypes as Link fields.
+All doctypes are linkable. We can classify doctypes broadly into Master and
+Transactional based on the type of data they store. Article, Library Member are
+examples of Master data because they represent an entity (physical or virtual).
+Library Membership is an example of doctype which stores transactional data.
+
+### Submittable DocTypes
+
+When you enable Is Submittable in a DocType is becomes a Submittable
+DocType. A Submittable doctype can have 3 states: Draft, Submitted and
+Cancelled. A document in the Draft state can be changed like any
+document, however once it is in Submitted state, the value of any field in
+the document cannot be changed. A Submitted document can be Cancelled, which
+makes the document invalid. If you notice, an extra field was added in our
+Library Membership doctype called Amended From. This field is used to keep
+track of amendments in documents. Once a document is Cancelled, it can only be
+amended, which means it can be duplicated and the cancelled document will be
+linked to the new amended document via the Amended From field.
+
+### Controller Validation for Membership
+
+Now, let's write code that will make sure whenever a Library Membership is
+created, there is no active membership for the Member.
+
+library_membership.py
+
+`import frappe
+from frappe.model.document import Document
+from frappe.model.docstatus import DocStatus
+
+class LibraryMembership(Document):
+    # check before submitting this document
+    def before_submit(self):
+        exists = frappe.db.exists(
+            &quot;Library Membership&quot;,
+            {
+                &quot;library_member&quot;: self.library_member,
+                &quot;docstatus&quot;: DocStatus.submitted(),
+                # check if the membership's end date is later than this membership's start date
+                &quot;to_date&quot;: (&quot;&gt;&quot;, self.from_date),
+            },
+        )
+        if exists:
+            frappe.throw(&quot;There is an active membership for this member&quot;)
+`
+We wrote our logic in the `before_submit` method which will run before we submit
+the document. We used the `frappe.db.exists` method to check if a Library
+Membership record exists with our provided filters. If it exists, we used
+`frappe.throw` to stop the execution of program with a message that will show up
+letting the user know the reason.
+
+Now, try creating a Library Membership with an overlapping period and you should
+see an error when you submit the document.
+
+![Library Membership Validation](/files/library-membership-validation.png)
+
+## Library Transaction
+
+Let's create a DocType to record an Issue or Return of an Article by a Library
+Member who has an active membership.
+
+This doctype will be called Library Transaction and will have the following
+fields:
+
+- Article - Link to Article
+
+- Library Member - Link to Library Member
+
+- Type - Select with 2 options: Issue and Return
+
+- Date - Date of Transaction
+
+This doctype will also be a Submittable doctype.
+
+![Library Transaction Doctype](/files/library-transaction-doctype.gif)
+
+### Validation for Transaction
+
+When an Article is issued, we should verify whether the Library Member has an
+active membership. We should also check whether the Article is available for
+Issue. Let's write the code for these validations.
+
+library_transaction.py
+
+`import frappe
+from frappe.model.document import Document
+from frappe.model.docstatus import DocStatus
+
+class LibraryTransaction(Document):
+    def before_submit(self):
+        if self.type == &quot;Issue&quot;:
+            self.validate_issue()
+            # set the article status to be Issued
+            article = frappe.get_doc(&quot;Article&quot;, self.article)
+            article.status = &quot;Issued&quot;
+            article.save()
+
+        elif self.type == &quot;Return&quot;:
+            self.validate_return()
+            # set the article status to be Available
+            article = frappe.get_doc(&quot;Article&quot;, self.article)
+            article.status = &quot;Available&quot;
+            article.save()
+
+    def validate_issue(self):
+        self.validate_membership()
+        article = frappe.get_doc(&quot;Article&quot;, self.article)
+        # article cannot be issued if it is already issued
+        if article.status == &quot;Issued&quot;:
+            frappe.throw(&quot;Article is already issued by another member&quot;)
+
+    def validate_return(self):
+        article = frappe.get_doc(&quot;Article&quot;, self.article)
+        # article cannot be returned if it is not issued first
+        if article.status == &quot;Available&quot;:
+            frappe.throw(&quot;Article cannot be returned without being issued first&quot;)
+
+    def validate_membership(self):
+        # check if a valid membership exist for this library member
+        valid_membership = frappe.db.exists(
+            &quot;Library Membership&quot;,
+            {
+                &quot;library_member&quot;: self.library_member,
+                &quot;docstatus&quot;: DocStatus.submitted(),
+                &quot;from_date&quot;: (&quot;&lt;&quot;, self.date),
+                &quot;to_date&quot;: (&quot;&gt;&quot;, self.date),
+            },
+        )
+        if not valid_membership:
+            frappe.throw(&quot;The member does not have a valid membership&quot;)
+
+`
+There is a lot of code here but it should be self explanatory. There are inline
+code comments for more explanation.
+
+## Library Settings
+
+Let's create the last doctype for our app: Library Settings. It will have
+the following fields:
+
+- Loan Period - Will define the loan period in number of days
+
+- Maximum Number of Issued Articles - Restrict the maximum number of articles that can be issued by a single member
+
+Since we don't need to have multiple records for these settings, we will enable
+Is Single for this doctype.
+
+![Library Settings Doctype](/files/library-settings-doctype.gif)
+
+After creating the doctype, click on Go to Library Settings, to go to the
+form and set the values for Loan Period and Maximum Number of Issued
+Articles.
+
+### Single DocTypes
+
+When a DocType has Is Single enabled, it will become a Single DocType. A
+single doctype is similar to singleton records in other frameworks. It does not
+create a new database table. Instead all single values are stored in a single
+table called `tabSingles`. It is used usually for storing global settings.
+
+### Validation for Library Settings
+
+Let's make the change in Library Membership such that, the To Date automatically
+computed based on the Loan Period and the From Date.
+
+library_membership.py
+
+`from frappe.model.document import Document
+from frappe.model.docstatus import DocStatus
+
+import frappe
+
+class LibraryMembership(Document):
+    # check before submitting this document
+    def before_submit(self):
+        exists = frappe.db.exists(
+            &quot;Library Membership&quot;,
+            {
+                &quot;library_member&quot;: self.library_member,
+                &quot;docstatus&quot;: DocStatus.submitted(),
+                # check if the membership's end date is later than this membership's start date
+                &quot;to_date&quot;: (&quot;&gt;&quot;, self.from_date),
+            },
+        )
+        if exists:
+            frappe.throw(&quot;There is an active membership for this member&quot;)
+
+        # get loan period and compute to_date by adding loan_period to from_date
+        loan_period = frappe.db.get_single_value(&quot;Library Settings&quot;, &quot;loan_period&quot;)
+        self.to_date = frappe.utils.add_days(self.from_date, loan_period or 30)
+`
+We have used `frappe.db.get_single_value` method to get the value of
+`loan_period` from the Library Settings doctype.
+
+Now, let's make the change in Library Transaction such that when an Article is
+Issued, it checks whether the maximum limit is reached.
+
+library_transaction.py
+
+`import frappe
+from frappe.model.document import Document
+from frappe.model.docstatus import DocStatus
+
+class LibraryTransaction(Document):
+    def before_submit(self):
+        if self.type == &quot;Issue&quot;:
+            self.validate_issue()
+            self.validate_maximum_limit()
+            # set the article status to be Issued
+            article = frappe.get_doc(&quot;Article&quot;, self.article)
+            article.status = &quot;Issued&quot;
+            article.save()
+
+        elif self.type == &quot;Return&quot;:
+            self.validate_return()
+            # set the article status to be Available
+            article = frappe.get_doc(&quot;Article&quot;, self.article)
+            article.status = &quot;Available&quot;
+            article.save()
+
+    def validate_issue(self):
+        self.validate_membership()
+        article = frappe.get_doc(&quot;Article&quot;, self.article)
+        # article cannot be issued if it is already issued
+        if article.status == &quot;Issued&quot;:
+            frappe.throw(&quot;Article is already issued by another member&quot;)
+
+    def validate_return(self):
+        article = frappe.get_doc(&quot;Article&quot;, self.article)
+        # article cannot be returned if it is not issued first
+        if article.status == &quot;Available&quot;:
+            frappe.throw(&quot;Article cannot be returned without being issued first&quot;)
+
+    def validate_maximum_limit(self):
+        max_articles = frappe.db.get_single_value(&quot;Library Settings&quot;, &quot;max_articles&quot;)
+        count = frappe.db.count(
+            &quot;Library Transaction&quot;,
+            {
+                &quot;library_member&quot;: self.library_member,
+                &quot;type&quot;: &quot;Issue&quot;,
+                &quot;docstatus&quot;: DocStatus.submitted(),
+            },
+        )
+        if count &gt;= max_articles:
+            frappe.throw(&quot;Maximum limit reached for issuing articles&quot;)
+
+    def validate_membership(self):
+        # check if a valid membership exist for this library member
+        valid_membership = frappe.db.exists(
+            &quot;Library Membership&quot;,
+            {
+                &quot;library_member&quot;: self.library_member,
+                &quot;docstatus&quot;: DocStatus.submitted(),
+                &quot;from_date&quot;: (&quot;&lt;&quot;, self.date),
+                &quot;to_date&quot;: (&quot;&gt;&quot;, self.date),
+            },
+        )
+        if not valid_membership:
+            frappe.throw(&quot;The member does not have a valid membership&quot;)
+
+`
+We added a `validate_maximum_limit` method and used `frappe.db.count` to count
+the number of transactions made by the member.
+
+With that, we have covered the basics of doctype creation and types of doctype.
+We also wrote business logic for various doctypes.
+
+Good job making it this far. Let's keep going.
+
+Next: [Form Scripts](/framework/v14/user/en/tutorial/form-scripts)
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Controller Methods
+                    
+                ](/framework/user/en/tutorial/controller-methods)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Form Scripts
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/tutorial/form-scripts)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/tutorial/types-of-doctype
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分配贷项通知单和付款 - ERPNext</title>
+</head>
+<body>
+    <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+        <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">分配贷项通知单和付款</h1>
+    </header>
+
+    <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+        <p><strong>问题：</strong>我们有客户在发票付款后退回商品。因此，我们通常会创建贷项通知单。但有时没有其他未结发票可以分配贷项通知单。在这种情况下，我们需要向客户退款。我如何处理这种交易，以避免在发票列表中出现负面信贷？</p>
+        <p><strong>答案</strong></p>
+        <p>您应该能够按照下面分享的步骤来处理这个特定场景。</p>
+        <ol>
+            <li>首先，针对发票创建贷项通知单</li>
+            <li>然后为退货金额创建付款条目</li>
+            <li>使用付款对账将付款与原始 Sales Invoice（而不是贷项通知单本身）进行勾销。</li>
+        </ol>
+        <p><strong>注意：</strong>在采购循环中（您在系统中为类似场景创建借项通知单），步骤如下：</p>
+        <ol>
+            <li>首先，针对采购发票在系统中创建借项通知单</li>
+            <li>然后为退货金额创建付款条目</li>
+            <li>使用付款对账将付款与原始 Purchase Invoice（而不是借项通知单本身）进行勾销。</li>
+        </ol>
+    </div>
+
+    <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+        <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+            <a href="/erpnext/default-receivable-payable-account" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <div class="flex flex-col gap-1 min-w-0">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">上一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">Default Receivable / Payable Account</span>
+                </div>
+            </a>
+            <a href="/erpnext/reconcile-advance-payment-made-to-the-supplier" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">下一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">Reconcile Advance Payment made to the Supplier</span>
+                </div>
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]">
+            最后更新于 2 个月前
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>地址模板 - ERPNext</title>
+</head>
+<body>
+    <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+        <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">地址模板</h1>
+    </header>
+
+    <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+        <p><strong>地址模板可以存储基于不同地区的地址格式。</strong></p>
+        <p>每个地区都有其特定的地址定义方式。要管理文档（如报价单、采购发票等）的多种地址格式，您可以创建针对不同国家的<strong>地址模板</strong>。</p>
+        <p>要访问地址模板，请前往：</p>
+        <blockquote>
+            <p>CRM > Address Template</p>
+        </blockquote>
+        <p>在设置系统时会创建一个默认地址模板。您可以编辑它或创建新模板。此默认模板将适用于所有没有特定模板的国家。</p>
+        <p>考虑一位来自美国的客户，其地址中包含"County"。如果您在美国地址模板中设置了县，那么它将显示在地址字段中，从而显示在打印预览中。像 PIN code 这样的字段可以更改为 ZIP code 显示，像县这样的字段可以通过地址模板添加。</p>
+        <p>地址模板会根据地址主数据中的"Country"字段，将不同的地址模板应用到交易中。</p>
+        <ol>
+            <li>如何创建地址模板</li>
+        </ol>
+        <hr />
+        <ol>
+            <li>转到地址模板列表，点击"Add Address Template"。</li>
+            <li>选择一个国家。</li>
+            <li>根据需要修改 CSS 和 Jinja。</li>
+            <li>如果它将成为系统中的默认地址模板，请标记为默认。</li>
+            <li>保存。</li>
+        </ol>
+        <p><img src="/images/26_Screenshot%202024-05-23%20at%204.29.42%20PM.png" alt="Screenshot 2024-05-23 at 4.29.42 PM" /></p>
+        <p>注意：模板引擎基于 HTML 和 <a href="https://jinja.palletsprojects.com/">Jinja</a> 系统。所有字段（包括自定义字段）都可用于创建模板。</p>
+        <h3 id="2-related-topics">2. 相关主题</h3>
+        <ol>
+            <li><a href="/erpnext/terms-and-conditions">Terms and Conditions Template</a></li>
+            <li><a href="/erpnext/cheque-print-template">Cheque Print Template</a></li>
+        </ol>
+    </div>
+
+    <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+        <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+            <a href="/erpnext/address" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <div class="flex flex-col gap-1 min-w-0">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">上一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">Address</span>
+                </div>
+            </a>
+            <a href="/erpnext/terms-and-conditions" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">下一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">Terms And Conditions</span>
+                </div>
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]">
+            最后更新于 1 个月前
+        </div>
+    </div>
+</body>
+</html>

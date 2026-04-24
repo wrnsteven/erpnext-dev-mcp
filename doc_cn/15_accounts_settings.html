@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>账户设置 - ERPNext</title>
+</head>
+<body>
+    <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+        <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">账户设置</h1>
+    </header>
+
+    <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+        <p>ERPNext 允许您根据业务规则配置会计的某些方面。本页面将帮助您了解如何利用这些功能来满足您遇到的各种场景。</p>
+        <h2 id="transactions-settings">交易设置</h2>
+        <h3 id="1-over-billing-allowance">1. 超额开票允许百分比 (%)</h3>
+        <p>您可以超额开票的百分比。例如，如果订单价值为 $100，百分比设置为 10%，则允许开票 $110。</p>
+        <h3 id="2-role-allowed-to-over-bill">2. 允许超额开票的角色</h3>
+        <p>具有此角色的用户允许超过允许百分比进行超额开票。</p>
+        <h3 id="3-check-supplier-invoice-number-uniqueness">3. 检查供应商发票号唯一性</h3>
+        <p>勾选后，不允许出现相同"供应商发票号"的采购发票。这有助于避免重复条目。</p>
+        <h3 id="4-unlink-payment-on-cancellation-of-invoice">4. 取消发票时解除付款链接</h3>
+        <p>如果勾选，系统将解除相应发票的付款链接。默认情况下，如果提交了付款凭证，则在取消付款凭证之前无法取消关联的发票。解除链接后，您可以取消和修改发票。但付款将不关联并被视为预付款。</p>
+        <h3 id="5-automatically-fetch-payment-terms-from-order">5. 自动从订单获取付款条款</h3>
+        <p>启用时，Sales Invoice 和 Purchase Invoice 自动继承关联订单的付款计划，到期日根据发票过账日期重新计算，付款金额根据发票总计重新计算。</p>
+        <h3 id="6-delete-accounting-and-stock-ledger-entries-on-deletion-of-transaction">6. 删除交易时删除会计和库存账簿条目</h3>
+        <p>启用此选项将允许在删除发票和收货时删除关联的总账和库存账簿条目。</p>
+        <h3 id="7-book-asset-depreciation-entry-automatically">7. 自动过账资产折旧凭证</h3>
+        <p>勾选后，将根据设定的第一个日期自动创建资产折旧凭证。</p>
+        <h3 id="8-unlink-advance-payment-on-cancellation-of-order">8. 取消订单时解除预付款链接</h3>
+        <p>与上一个选项类似，这会解除针对 Purchase/Sales Orders 的任何预付款。</p>
+        <h3 id="9-enable-common-party-accounting">9. 启用共同方会计</h3>
+        <p>如果勾选，在针对共同客户和供应商创建销售/采购发票时，将自动过账调整日记账分录。</p>
+        <h3 id="10-allow-multi-currency-invoices-against-single-party-account">10. 允许单一账户的多币种发票</h3>
+        <p>启用后将允许针对公司货币中的单一账户创建多币种发票。</p>
+        <h3 id="11-create-ledger-entries-for-change-amount">11. 为找零金额创建账簿条目</h3>
+        <p>如果勾选，对于销售点发票，系统将考虑找零金额过账账簿条目。</p>
+        <h3 id="12-enable-discount-accounting">12. 启用折扣会计</h3>
+        <p>如果勾选，可以在 Sales Invoice 的项目表中添加折扣账户。</p>
+        <h2 id="tax-settings">税务设置</h2>
+        <h3 id="1-determine-address-tax-category-from">1. 从以下地址确定税务类别</h3>
+        <p>地址可以是货运或账单地址。设置应用税务类别时选择哪个地址。</p>
+        <h3 id="2-automatically-add-taxes-and-charges-from-item-tax-template">2. 自动从项目税务模板添加税费</h3>
+        <p>启用后，如果为项目设置了 Item Tax Template 并且在交易中选择了该项目，则会自动填充交易中的税费表。</p>
+        <h3 id="3-book-tax-loss-on-early-payment-discount">3. 提前付款折扣时记录税务损失</h3>
+        <p>启用后，如果 Payment Entry 关联的单据设置了 Early Payment Discount，则将把 Payment Entry 折扣扣减分为收入损失和税务损失。</p>
+        <h2 id="period-closing-settings">期间结账设置</h2>
+        <h3 id="1-accounts-frozen-till-date">1. 账户冻结截止日期</h3>
+        <p>冻结到指定日期的会计交易，除指定角色外，任何人都不能进行修改/创建条目。</p>
+        <h3 id="2-role-allowed-to-set-frozen-accounts-and-edit-frozen-entries">2. 允许设置冻结账户和编辑冻结条目的角色</h3>
+        <p>具有此角色的用户允许设置冻结账户并创建/修改针对冻结账户的会计条目。</p>
+        <h3 id="3-credit-controller">3. 信用控制员</h3>
+        <p>此角色允许提交超过信用限额的交易。</p>
+        <h2 id="deferred-accounting-settings">递延会计设置</h2>
+        <h3 id="1-book-deferred-entries-based-on">1. 基于以下内容记账递延条目</h3>
+        <p>递延收入金额可以根据两个标准记账。默认选项是"天数"。</p>
+        <h3 id="2-automatically-process-deferred-accounting-entry">2. 自动处理递延会计凭证</h3>
+        <p>此设置默认启用。如果您不想自动过账递延会计条目，可以禁用此设置。</p>
+        <h3 id="3-book-deferred-entries-via-journal-entry">3. 通过日记账过账递延条目</h3>
+        <p>默认情况下，Ledger 条目直接过账以针对发票记账递延收入。</p>
+        <h2 id="print-settings">打印设置</h2>
+        <h3 id="1-show-inclusive-tax-in-print">1. 在打印中显示含税价格</h3>
+        <p>它允许您在发票和销售订单等打印文档上显示包含在项目价格中的税费金额。</p>
+        <h3 id="2-show-taxes-as-table-in-print">2. 在打印中显示为表格形式的税费</h3>
+        <p>它允许您在发票、采购订单和销售订单等打印文档中以表格格式显示税费详情。</p>
+        <h3 id="3-show-payment-schedule-in-print">3. 在打印中显示付款计划</h3>
+        <p>启用将在打印视图中显示付款计划表。</p>
+        <h2 id="currency-exchange-settings">货币兑换设置</h2>
+        <h3 id="1-allow-stale-exchange-rates">1. 允许过时汇率</h3>
+        <p>如果您希望 ERPNext 检查从货币兑换获取的外币交易记录的有效期，应取消勾选此选项。</p>
+        <h2 id="report-settings">报告设置</h2>
+        <h3 id="1-use-custom-cash-flow-format">1. 使用自定义现金流量格式</h3>
+        <p>您可以选择使用自定义现金流量格式来自定义现金流量报告的外观。</p>
+    </div>
+
+    <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+        <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+            <a href="/erpnext/process-statement-of-accounts" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <div class="flex flex-col gap-1 min-w-0">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">上一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">Process Statement Of Accounts</span>
+                </div>
+            </a>
+            <a href="/erpnext/subscription-settings" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">下一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">Subscription Settings</span>
+                </div>
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]">
+            最后更新于 2 个月前
+        </div>
+    </div>
+</body>
+</html>

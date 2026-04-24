@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>采购订单</title>
+</head>
+<body>
+<p># 采购订单</p><p><strong>采购订单是您与供应商之间具有约束力的合同，承诺在特定条件下购买一组物品。</strong></p><p>它类似于销售订单，但不同的是，您不会将其发送给外部方，而是保留用于内部记录。</p><p>> 首页 > 采购 > 采购 > 采购订单</p><p>!<a href="../../images/437_buying_flow_po.png">图片</a></p><p><h1>前提条件</h1></p><p>在创建和使用采购订单之前，建议您首先创建以下内容：</p><p>- <a href="/erpnext/supplier">供应商</a>
+- <a href="/erpnext/item">物料</a></p><p><h1>如何创建采购订单</h1></p><p>采购订单可以从物料请求或供应商报价单自动创建。</p><p>- 进入采购订单列表，点击"新建"。
+- 选择供应商和需求日期。
+- 在物料表格中，通过代码选择物料，您可以更改每个物料的需求日期。
+- 设置数量，如果物料主数据中设置了价格，则价格会自动获取。
+- 设置税费。
+- 保存并提交。</p><p>!<a href="../../images/437_Screenshot%202026-01-19%20at%2012.13.45%20PM.png">图片</a></p><p><h2>2.1 设置仓库</h2></p><ul>
+\0</ul><p>- 在采购订单中选择一个供应商。
+- 在<a href="/erpnext/item#39-item-defaults">物料默认</a>下的物料表单中设置默认供应商。
+- 存在一个类型为"采购"的<a href="/erpnext/material-request">物料请求</a>。
+- 点击供应商名称下方的"从未结物料请求获取物料"按钮。此时将出现一个对话框，其中包含默认供应商与采购订单中所选供应商相同的物料请求。选择物料请求并点击"获取物料"后，物料将从物料请求中获取。</p><p>> <strong>注意：</strong>只要物料表格为空，"从未结物料请求获取物料"按钮就会显示。</p><p>!<a href="../../images/437_Screenshot%202026-01-19%20at%2012.20.15%20PM.png">图片</a></p><p><h1>功能</h1></p><p><h2>3.1 地址和联系人</h2></p><p>- <strong>选择供应商地址</strong>：供应商的账单地址。
+- <strong>选择发货地址</strong>：供应商的发货地址，他们将从这里发送物料。</p><p>地址、发货地址、联系人、联系人邮箱如果已在供应商主数据中保存，将会自动获取。</p><p>对于印度：</p><p>- <strong>供应商和公司 GSTIN</strong>：您的供应商和您公司的商品及服务税识别号。
+- <strong>供应地点</strong>：对于 GST，供应地点是必需的。它由邦名和编号组成。</p><p><h2>3.2 货币和价格表</h2></p><p>您可以设置存储采购订单的货币。如果您设置了价格表，物料价格将从该列表中获取。勾选"忽略价格规则"将忽略"账务 > 价格规则"中设置的价格规则。</p><p>了解更多关于<a href="/erpnext/price-lists">价格表</a>和<a href="/erpnext/accounts/articles/managing-transactions-in-multiple-currencies">多币种交易</a>的信息。</p><p><h2>3.3 外协或"供应原材料"</h2></p><p>设置"供应原材料"选项适用于外协场景，在这种模式下您提供用于制造产品的原材料。了解更多，请访问<a href="/erpnext/subcontracting">外协页面</a>。</p><p><h2>3.4 物料表格</h2></p><ul>
+\0</ul><p>- 您可以通过点击"更新物料"按钮在采购订单中添加、更新、删除物料。但是，您无法删除已收货的物料。
+- 状态：提交后，您可以持有或关闭采购订单。</p><p>创建：从已提交的采购订单中，您可以创建以下内容：
+- <a href="/erpnext/purchase-receipt">采购收货</a> - 表示您已收到物料的收货单。
+- <a href="/erpnext/purchase-invoice">采购发票</a> - 采购订单的发票/账单。
+- <a href="/erpnext/payment-entry">付款凭证</a> - 表示已针对采购订单付款的付款凭证。
+- <a href="/erpnext/journal-entry">日记账分录</a> - 记录在总账中的日记账分录。</p><p>!<a href="../../images/437_Screenshot%202026-01-19%20at%2012.22.53%20PM.png">图片</a></p><p><h1>相关主题</h1></p><p>- <a href="/erpnext/request-for-quotation">询价单</a>
+- <a href="/erpnext/purchase-taxes-and-charges-template">采购税费和 Charges 模板</a>
+- <a href="/erpnext/purchasing-in-different-unit">以不同单位采购</a>
+- <a href="/erpnext/amending-purchase-order-after-submit">提交后修订采购订单</a></p><p>---
+original_url: https://docs.frappe.io/erpnext/purchase-order
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18</p>
+</body>
+</html>

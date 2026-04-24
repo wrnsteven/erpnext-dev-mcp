@@ -1,0 +1,565 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0u1ksv599k)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Client Script
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0u1ksv599k)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            A Client Script lets you dynamically define a custom Form Script that is executed on a user's browser. If you choose to utilize non standard tools or libraries, make sure to test them on different browsers to ensure compatibility across your userbase.
+
+In Version 13, Custom Script was renamed to Client Script
+
+How to create a Client Script
+
+To create a Client Script
+
+- To add/edit Client Script, ensure your role is System Manager.
+
+- Type &quot;New Client Script&quot; in the awesomebar and hit enter to create a new Client Script document.
+
+- Select the DocType whose form you wish to customize.
+
+- Update the script using the preset template and save.
+
+- Head over to the DocType you've customized and see the changes.
+
+- Features
+
+As compared to the restrictive nature of Server Scripts, everything is fair game in Client Scripts. This is because the frontend APIs are secure by design. You can utilize all of JavaScript APIs, along with Frappe's and any other JS or CSS library you might've customized Desk with.
+
+The validations you add through Client Script will only be applied while using the standard form view accessible through the browser. In case you wish for those to be applied through API or [System Console](/framework/v14/user/en/desk/scripting/system-console) access too, use [Server Scripts](/framework/v14/user/en/desk/scripting/server-script).
+
+- Examples
+
+### 3.1 Custom validation
+
+Add additional form validations while creating or updating a document from Frappe's standard form view.
+
+`// additional validation on Task dates
+frappe.ui.form.on('Task', 'validate', function(frm) {
+    if (frm.doc.from_date &lt; get_today()) {
+        msgprint('You can not select past date in From Date');
+    }
+});
+  
+
+`
+### 3.2 Fetching values on field updates
+
+Fetch `local_tax_no` on changing value of the `customer` field.
+
+`cur_frm.add_fetch('customer', 'local_tax_no', 'local_tax_no');
+  
+
+`
+### 3.3 Customize field properties
+
+Make a field `ibsn` read only after creating the document.
+
+`// make a field read-only after saving
+frappe.ui.form.on('Task',  {
+    refresh: function(frm) {
+        frm.set_df_property('ibsn', 'read_only', !frm.is_new());
+    }
+});
+  
+
+`
+### 3.4 Customize field properties
+
+Calculate incentives on a Sales Invoice form on save.
+
+`// calculate sales incentive
+frappe.ui.form.on('Sales Invoice',  {
+    validate: function(frm) {
+        // calculate incentives for each person on the deal
+        total_incentive = 0
+        $.each(frm.doc.sales_team,  function(i,  d) {
+            // calculate incentive
+            let incentive_percent = 2;
+            if(frm.doc.base_grand_total &gt; 400) incentive_percent = 4;
+            // actual incentive
+            d.incentives = flt(frm.doc.base_grand_total) * incentive_percent / 100;
+            total_incentive += flt(d.incentives)
+        });
+        frm.doc.total_incentive = total_incentive;
+    }
+});
+`
+### 3.5 Filter email recipients
+
+You can restrict the available emails via a Client Script. Every form can specify what email addresses should be selectable. This reduces the cognitive load for the user and avoids sending emails to wrong recipients.
+
+`CommunicationComposer` (the email dialog) will check if there is a Client Script supplying filters for the &quot;recipients&quot;, &quot;cc&quot; and &quot;bcc&quot; fields. For example, if a Quotation should only show email addresses linked to the recipient of the Quotation, we can add the following script:
+
+`frappe.ui.form.on(&quot;Quotation&quot;, {
+    get_email_recipient_filters: function (frm, field) {
+        // field can be &quot;recipients&quot;, &quot;cc&quot; or &quot;bcc&quot;
+        if (field === &quot;recipients&quot;) {
+            return [
+                [
+                    &quot;Dynamic Link&quot;,
+                    &quot;link_doctype&quot;,
+                    &quot;=&quot;,
+                    frm.doc.quotation_to
+                ],
+                [
+                    &quot;Dynamic Link&quot;,
+                    &quot;link_name&quot;,
+                    &quot;=&quot;,
+                    frm.doc.party_name
+                ],
+            ];
+        }
+    },
+    // ...
+};
+`
+The filters are referring to the Contact DocType and it's Links child table.
+
+Even with filters, it remains possible to paste arbitrary recipients.
+
+### 3.6 Set default email recipients
+
+In standard processes like Sales Order -&gt; Delivery Note -&gt; Sales Invoice, the email recipients are often pre-defined. For example, this could be done in advance by the account manager.
+
+You can set default email recipients via a Client Script. Every form can programmatically supply it's own default recipients.
+
+`CommunicationComposer` (the email dialog) will check if there is a Client Script supplying default recipients. For example, if your Quotation DocType contains a field named BCC (`&quot;custom_bcc&quot;`), you can add the following Client Script to use it as default BCC in the email dialog:
+
+`frappe.ui.form.on(&quot;Quotation&quot;, {
+    get_email_recipients: function (frm, field) {
+        // field can be &quot;recipients&quot;, &quot;cc&quot; or &quot;bcc&quot;
+        if (field === &quot;bcc&quot;) {
+            return [frm.doc.custom_bcc]
+        }
+    },
+    // ...
+};
+`
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        UI Testing with Frappe API
+
+                    
+                ](/framework/user/en/guides/automated-testing/qunit-testing)
+                
+
+                
+                [
+                    
+                        Next Page
+                        System Console
+
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/desk/scripting/system-console)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/desk/scripting/client-script
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

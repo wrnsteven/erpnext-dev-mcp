@@ -1,0 +1,875 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tn9eb2sbs)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Dialog API
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tn9eb2sbs)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Frappe provides a group of standard, interactive and flexible dialogs that are easy to configure and use. There's also an API for [Python](/framework/v14/user/en/api/py-dialog).
+
+### frappe.ui.Dialog
+
+`new frappe.ui.Dialog({ title, fields, primary_action })`
+
+Creates a new Dialog instance.
+
+`let d = new frappe.ui.Dialog({
+    title: 'Enter details',
+    fields: [
+        {
+            label: 'First Name',
+            fieldname: 'first_name',
+            fieldtype: 'Data'
+        },
+        {
+            label: 'Last Name',
+            fieldname: 'last_name',
+            fieldtype: 'Data'
+        },
+        {
+            label: 'Age',
+            fieldname: 'age',
+            fieldtype: 'Int'
+        }
+    ],
+    size: 'small', // small, large, extra-large 
+    primary_action_label: 'Submit',
+    primary_action(values) {
+        console.log(values);
+        d.hide();
+    }
+});
+
+d.show();
+  
+
+`
+![Dialog](/files/dialog-api-custom-dialog.png)
+
+frappe.ui.Dialog
+
+### frappe.msgprint
+
+`frappe.msgprint(message)` or `frappe.msgprint({ title, message, indicator })`
+
+Show `message` in a modal.
+
+`// only message
+frappe.msgprint(__('Document updated successfully'));
+
+// with options
+frappe.msgprint({
+    title: __('Notification'),
+    indicator: 'green',
+    message: __('Document updated successfully')
+});
+  
+
+`
+![Msgprint](/files/dialog-api-msgprint.png)
+
+frappe.msgprint
+
+You can also bind a primary action to this dialog by passing `action`(as a method) within `primary_action`. Alternatively, `primary_action` can contain `server_action` or `client_action`.
+
+The `server_action` and `client_action` are dotted paths to the respective methods which will execute on clicking the primary button.
+
+`// with primary action
+ frappe.msgprint({
+    title: __('Notification'),
+    message: __('Are you sure you want to proceed?'),
+    primary_action:{
+        action(values) {
+            console.log(values);
+        }
+    }
+});
+
+// with server and client action
+frappe.msgprint({
+    title: __('Notification'),
+    message: __('Are you sure you want to proceed?'),
+    primary_action: {
+    'label': 'Proceed',
+    // either one of the actions can be passed
+    'server_action': 'dotted.path.to.method',
+    'client_action': 'dotted_path.to_method',
+    'args': args
+    }
+});
+  
+
+`
+![Msgprint with Primary Action](/files/dialog-api-msgprint-with-primary-action.png)
+
+frappe.msgprint with primary action bound
+
+### frappe.throw
+
+`frappe.throw(error_message)`
+
+Show `error_message` in a modal and `throw` exception.
+
+`frappe.throw(__('This is an Error Message'))
+  
+
+`
+![Throw](/files/dialog-api-throw.png)
+
+frappe.throw
+
+### frappe.prompt
+
+`frappe.prompt(label)` or `frappe.prompt(df)` or `frappe.prompt(fields)`
+
+Prompt user for a value or list of values.
+
+`// prompt for single value of type Data
+frappe.prompt('First Name', ({ value }) =&gt; console.log(value))
+
+// Set title and button label
+frappe.prompt('First Name', console.log, 'Enter First Name', 'Submit');
+
+// prompt for single value of any type
+frappe.prompt({
+    label: 'Birth Date',
+    fieldname: 'date',
+    fieldtype: 'Date'
+}, (values) =&gt; {
+    console.log(values.date);
+})
+
+// prompt for multiple values
+frappe.prompt([
+    {
+        label: 'First Name',
+        fieldname: 'first_name',
+        fieldtype: 'Data'
+    },
+    {
+        label: 'Last Name',
+        fieldname: 'last_name',
+        fieldtype: 'Data'
+    },
+], (values) =&gt; {
+    console.log(values.first_name, values.last_name);
+})
+  
+
+`
+![Prompt](/files/dialog-api-prompt.png)
+
+frappe.prompt
+
+### frappe.confirm
+
+`frappe.confirm(message, if_yes, if_no)`
+
+Show a confirmation modal, executes `if_yes` if confirmation is given else executes `if_no`.
+
+`frappe.confirm('Are you sure you want to proceed?',
+    () =&gt; {
+        // action to perform if Yes is selected
+    }, () =&gt; {
+        // action to perform if No is selected
+    })
+  
+
+`
+![Prompt](/files/dialog-api-confirm.png)
+
+frappe.confirm
+
+### frappe.warn
+
+`frappe.warn(title, message_html, proceed_action, primary_label, is_minimizable)`
+
+Show a warning modal, executes `proceed_actiion` if confirmation is given. It can be set as `minimizable` which allows the dialog to be minimized.
+
+`frappe.warn('Are you sure you want to proceed?',
+    'There are unsaved changes on this page',
+    () =&gt; {
+        // action to perform if Continue is selected
+    },
+    'Continue',
+    true // Sets dialog as minimizable
+)
+  
+
+`
+![Prompt](/files/dialog-api-warn.png)
+
+frappe.confirm
+
+### frappe.showalert
+
+`frappe.show_alert(message, seconds)` or `frappe.show_alert({message, indicator}, seconds)`
+
+Alert Dialog is used for showing non-obstructive messages.
+
+Its parameters include `message`, which can contain the indicator color as well, and its display duration. The default is 7 seconds.
+
+`frappe.show_alert('Hi, you have a new message', 5);
+
+//show_alert with indicator
+frappe.show_alert({
+    message:__('Hi, you have a new message'),
+    indicator:'green'
+}, 5);
+  
+
+`
+![Show Alert](/files/dialog-api-show-alert.png)
+
+frappe.showalert
+
+### frappe.showprogress
+
+`frappe.show_progress(title, count, total, description)`
+
+Displays a progress bar with `count` (as current progress) and `total` (as maximum progress value).
+
+`frappe.show_progress('Loading..', 70, 100, 'Please wait');
+  
+
+`
+![Show Progress](/files/dialog-api-progress.png)
+
+frappe.showprogress
+
+### frappe.newdoc
+
+`frappe.new_doc(doctype, route_options, init_callback)`
+
+Opens a new form of the specified DocType that allows to edit and save it. If &quot;Quick Entry&quot; is enabled for the DocType (that allows to enter the most important fields) the &quot;Quick Entry&quot; pop-up window will be shown. Otherwise you will be redirected to the usual document entry form.
+
+For example, let's create a new Task:
+
+`frappe.new_doc(&quot;Task&quot;);
+  
+
+`
+Often when you are creating a new document in the user interface you want to initialize some of its fields based on the user interaction that triggered the creation. The other two arguments can be used for such initialization.
+
+Specifically, the `route_options` argument is a quick and convenient way to set any field of type Link, Select, Data, or Dynamic Link in the new document. Its value should be an object whose keys are the desired field names and whose values are the initial values.
+
+`frappe.new_doc(&quot;Task&quot;, {subject: &quot;New Task&quot;});
+  
+
+`
+If you need to do any other initialization of the new document that is not possible with `route_options`, `init_callback` gives you full control. It should be a function of one argument. If the doctype is initialized with a &quot;Quick Entry&quot; form, the callback is called with the &quot;Quick Entry&quot; dialog object just before control is released back to the user. Otherwise, the callback is called with the new document just before the user is allowed to edit it in the standard form.
+
+`frappe.new_doc(&quot;Task&quot;, {subject: &quot;New Task&quot;},
+                doc =&gt; {doc.description = &quot;Do what's necessary&quot;;});
+  
+
+`
+Note that `subject` is a field of type &quot;Data&quot;, so we are able to take advantage of the `route_options` argument to set it. `description` is a field of type &quot;Text Editor&quot;, so if we want to initialize it, that must be done in the callback.
+
+For a slightly more complex example, here's a call that creates a new Journal Entry of type &quot;Bank Entry&quot; and populates one side of the transaction:
+
+`frappe.new_doc(&quot;Journal Entry&quot;, {&quot;voucher_type&quot;: &quot;Bank Entry&quot;}, doc =&gt; {
+    doc.posting_date = frappe.datetime.get_today();
+    let row = frappe.model.add_child(doc, &quot;accounts&quot;);
+    row.account = 'Bank - A';
+    row.account_currency = 'USD';
+    row.debit_in_account_currency = 100.0;
+    row.credit_in_account_currency = 0.0;
+});
+  
+
+`
+### frappe.ui.form.MultiSelectDialog
+
+`new frappe.ui.form.MultiSelectDialog({ doctype, target, setters, date_field, get_query, action })`
+
+A MultiSelectDialog consists of filter fields followed by a multiple selection list. The primary button will perform the passed `action` on the selected options.
+
+By default, the Search Term field and Date Range field will compose the filter fields.
+
+The argument list includes:
+
+`doctype`: The source to fetch and display selection entries from.
+
+- `target`: The target where the modal is to be displayed.
+
+- `setters`: These will compose the filter fields and values to populate them with. These also translate to custom columns for the selection list.
+
+- `read_only_setters`: If you want to make setters (filters) read only so that users can't change the value of the filters then add those fields in the &quot;read_only_setters&quot;.
+
+- `add_filters_group`: A boolean value to add/remove the filter group in the dialog below `setters`. The filter group is same as the list view filters.
+
+- `date_field`: It is necessary to pass the `date_field` of the DocType in consideration.
+
+- `get_query`: A function that returns `query` and `filters` to query the selection list. A custom server side method can be passed via `query`, and `filters` will be passed to that method.
+
+- `action`: Contains the primary action to be performed on the selected options. It takes `selections` as a parameter, which comprises of the selected options.
+
+- `columns`: An array of fields returned by custom query which will become columns in result datatable. Only works with the custom query (`get_query` argument returning a `query`).
+
+Let us assume we want to fetch Material Requests into our dialog. We can then go on to invoke the MultiSelectDialog in the following manner:
+
+`new frappe.ui.form.MultiSelectDialog({
+    doctype: &quot;Material Request&quot;,
+    target: this.cur_frm,
+    setters: {
+        schedule_date: null,
+        status: 'Pending'
+    },
+    add_filters_group: 1,
+    date_field: &quot;transaction_date&quot;,
+    get_query() {
+        return {
+            filters: { docstatus: ['!=', 2] }
+        }
+    },
+    action(selections) {
+        console.log(selections);
+    }
+});
+
+// MultiSelectDialog with custom query method
+let query_args = {
+    query:&quot;dotted.path.to.method&quot;,
+    filters: { docstatus: [&quot;!=&quot;, 2], supplier: &quot;John Doe&quot; }
+}
+
+new frappe.ui.form.MultiSelectDialog({
+    doctype: &quot;Material Request&quot;,
+    target: this.cur_frm,
+    setters: {
+        schedule_date: null,
+        status: 'Pending'
+    },
+    add_filters_group: 1,
+    date_field: &quot;transaction_date&quot;,
+    columns: [&quot;name&quot;, &quot;transaction_date&quot;, &quot;status&quot;],
+    get_query() {
+        return query_args;
+    },
+    action(selections) {
+        console.log(selections);
+    }
+});
+  
+
+`
+![MultiSelectDialog](/files/dialog-api-multiselectdialog.png)
+
+frappe.ui.form.MultiSelectDialog
+
+Here all the Material Requests that fulfill the filter criteria will be fetched into the selection area. The setter `company` is added to the filter fields along with its passed value. The `date_field` will be used to fetch and query dates from the DocType mentioned.
+
+The Make Material Request (or `Make {DocType}`) secondary action button will redirect you to a new form in order to make a new entry into the DocType passed.
+
+Now, if we want to only select particular item from a Material Request, then we can use optional `child_selection_mode` to enable child selection
+
+`
+// MultiSelectDialog for individual child selection
+new frappe.ui.form.MultiSelectDialog({
+    doctype: &quot;Material Request&quot;,
+    target: this.cur_frm,
+    setters: {
+        schedule_date: null,
+        status: null
+    },
+    add_filters_group: 1,
+    date_field: &quot;transaction_date&quot;,
+    allow_child_item_selection: 1,
+    child_fieldname: &quot;items&quot;, // child table fieldname, whose records will be shown &amp;amp; can be filtered
+    child_columns: [&quot;item_code&quot;, &quot;qty&quot;], // child item columns to be displayed
+    get_query() {
+        return {
+            filters: { docstatus: ['!=', 2] }
+        }
+    },
+    action(selections, args) {
+        console.log(args.filtered_children); // list of selected item names
+    }
+});
+  
+
+`
+![MultiSelectDialog](/files/dialog-api-multiselectdialog-child-selection.png)
+
+frappe.ui.form.MultiSelectDialog
+
+Here you will see a checkbox Select Individual Items to toggle between child item selection &amp; parent selection. Once you toggle it, all the individual Material Requests Items are listed from the all the queried Material Request, you can now filter these items for selection.
+
+To access the selected children, you can use `args.filtered_children` list which contains selected child item names.
+
+### Table / Grid in a Dialog
+
+A table can be added to a dialog, just like any other field as follows:
+
+`const dialog = new frappe.ui.Dialog({
+  title: __(&quot;Create Logs&quot;),
+  fields: [
+      {
+          fieldname: &quot;logs&quot;,
+          fieldtype: &quot;Table&quot;,
+          label: __(&quot;Logs&quot;),
+          in_place_edit: true,
+          reqd: 1,
+          fields: [
+              {
+                  fieldname: &quot;log_type&quot;,
+                  label: __(&quot;Log Type&quot;),
+                  fieldtype: &quot;Select&quot;,
+                  options: &quot;
+IN
+OUT&quot;,
+                  in_list_view: 1,
+                  reqd: 1,
+              },
+              {
+                  fieldname: &quot;time&quot;,
+                  label: __(&quot;Time&quot;),
+                  fieldtype: &quot;Time&quot;,
+                  in_list_view: 1,
+                  reqd: 1,
+              }
+          ],
+          on_add_row: (idx) =&gt; {
+            // idx = visible idx of the row starting from 1
+            // eg. set `log_type` as alternating IN/OUT in the table on row addition
+              let data_id = idx - 1;
+              let logs = dialog.fields_dict.logs;
+              let log_type = (data_id % 2) == 0 ? &quot;IN&quot; : &quot;OUT&quot;;
+
+              logs.df.data[data_id].log_type = log_type;
+              logs.grid.refresh();
+          },
+      },
+  ],
+  primary_action: (values) =&gt; { ... },
+  primary_action_label: __(&quot;Create&quot;),
+});
+`
+`on_add_row`: An event that gets triggered on adding a row to the table. You can perform an action like data manipulation or some other sort of calculation by adding your functionality to this event hook.
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Common Utilities API
+
+                    
+                ](/framework/user/en/api/js-utils)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Chart API
+
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/api/chart)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/api/dialog
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

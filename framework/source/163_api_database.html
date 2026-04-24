@@ -1,0 +1,824 @@
+
+        <!-- Page Header -->
+        <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+            
+            <!-- Mobile: Edit above title -->
+            <div class="flex justify-start mb-4 sm:hidden">
+                
+    <div class="relative inline-flex" x-data="{ open: false }" @click.outside="open = false">
+        <!-- Split button group -->
+        <div class="inline-flex rounded-lg border border-[var(--outline-gray-2)] overflow-hidden">
+            <!-- Edit button (navigates to edit page) -->
+            <a href="/wiki/spaces/1u8fslkdg6/page/0tl2gt7pp2"
+               class="wiki-edit-link inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-[var(--ink-gray-7)] bg-[var(--surface-white)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+                
+    
+
+    
+    <svg class="w-4 h-4 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+        <path d="m15 5 4 4"></path>
+    </svg>
+    
+
+                <span>Edit</span>
+            </a>
+            <!-- Dropdown toggle button -->
+            <button @click="open = !open"
+                    class="inline-flex items-center px-2 py-1.5 text-[var(--ink-gray-5)] bg-[var(--surface-white)] hover:bg-[var(--surface-gray-1)] border-l border-[var(--outline-gray-2)] transition-colors duration-200 cursor-pointer">
+                <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Dropdown menu -->
+        <div x-show="open"
+             x-cloak
+             x-transition:enter="transition ease-out duration-100"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-75"
+             x-transition:leave-start="opacity-100 scale-100"
+             x-transition:leave-end="opacity-0 scale-95"
+             class="absolute left-0 sm:left-auto sm:right-0 mt-10 w-72 bg-[var(--surface-white)] border border-[var(--outline-gray-1)] rounded-lg shadow-lg z-50 py-2">
+
+                    
+    
+    <button @click="copyMarkdown(); open = false"
+            class="w-full flex items-start gap-3 px-4 py-3 text-left hover:bg-[var(--surface-gray-1)] transition-colors duration-200 cursor-pointer">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)]">Copy page</div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Copy page as Markdown for LLMs</div>
+            
+        </div>
+    </button>
+    
+
+                    
+    
+    <a :href="getAIUrl('openai')"
+       target="_blank" rel="noopener noreferrer"
+       class="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)] flex items-center gap-1">
+                Open in ChatGPT
+                
+                
+    
+
+    
+    <svg class="w-4 h-4 w-3 h-3 text-[var(--ink-gray-4)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+    </svg>
+    
+
+                
+            </div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Ask ChatGPT about this page</div>
+            
+        </div>
+    </a>
+    
+
+                    
+    
+    <a :href="getAIUrl('claude')"
+       target="_blank" rel="noopener noreferrer"
+       class="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.165-2.263-.134-.86-.06.144-.472.384-.124 1.116.068 2.01.128 2.322.152.986.062h.222l.058-.2-.238-.2-.632-.472-1.89-1.426-1.963-1.486-.663-.525.35-.36.426.074.636.496 1.58 1.21 1.89 1.436.695.516.174.058.082-.14-.066-.258-.324-1.142-.85-2.96-.42-1.418-.227-.81.465-.227.28.282.29.964.676 2.378.622 2.166.14.482.15.07.15-.14.014-.174-.07-.728-.228-2.47-.174-2.05-.072-.986.502-.035.238.366.086 1.332.106 1.578.15 2.324.12 1.31.032.174.168.08.14-.14.342-.59.884-1.546 1.22-2.11.46-.79.488.2.012.406-.354.638-1.01 1.79-1.17 2.086-.24.434-.008.182.214.104.166-.034.728-.298 2.286-.96 1.616-.676.614-.246.286.42-.12.402-.606.288-1.82.776-2.2.932-.566.244-.08.188.066.164.596.242 2.102.82 1.866.752.55.252-.09.494-.446.14-.744-.282-1.75-.686-2.052-.816-.506-.202-.198.002-.102.192.044.2.366.75 1.082 2.198.794 1.664.186.448-.33.338-.392-.068-.252-.504-.868-1.748-1.03-2.11-.216-.432-.128-.138-.186.034-.08.15.018.36.048.986.098 2.424.034 1.574-.006.446-.486.106-.256-.298-.06-.752-.128-2.33-.084-2.016-.026-.606-.012-.182-.17-.068-.14.128-.37.402-1.55 1.696-1.334 1.428-.658.69-.458-.172-.024-.446.51-.552 1.328-1.452 1.546-1.686.306-.336.048-.204-.166-.112-.238.054-.69.252-2.334.862-1.602.578-.612.202-.33-.372.11-.41.612-.252 2.126-.79 2.178-.804.366-.126.112-.172-.064-.172-.174-.06-.756-.156-2.358-.494-1.632-.35-.586-.144.054-.505.472-.09.786.148 2.08.416 1.958.396.538.11.186-.022.102-.17-.05-.212-.224-.504-.868-1.87-1.11-2.41-.28-.674.396-.282.384.128.21.44.948 2.022 1.088 2.362.21.456.124.154.17-.004.088-.122.058-.396.142-2.382.09-1.666.054-.62.495-.046.262.32.026.82.022 2.164-.006 2.146-.02.412.06.19.178.066.132-.112.268-.304 1.258-1.434 1.598-1.852.38-.44.466.14.064.416z"/>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)] flex items-center gap-1">
+                Open in Claude
+                
+                
+    
+
+    
+    <svg class="w-4 h-4 w-3 h-3 text-[var(--ink-gray-4)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+    </svg>
+    
+
+                
+            </div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Ask Claude about this page</div>
+            
+        </div>
+    </a>
+    
+
+                
+        </div>
+    </div>
+
+            </div>
+            <div class="flex items-center justify-between gap-4">
+                <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">Database API</h1>
+
+                <!-- Desktop: Edit beside title -->
+                <div class="hidden sm:block">
+                    
+    <div class="relative inline-flex" x-data="{ open: false }" @click.outside="open = false">
+        <!-- Split button group -->
+        <div class="inline-flex rounded-lg border border-[var(--outline-gray-2)] overflow-hidden">
+            <!-- Edit button (navigates to edit page) -->
+            <a href="/wiki/spaces/1u8fslkdg6/page/0tl2gt7pp2"
+               class="wiki-edit-link inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-[var(--ink-gray-7)] bg-[var(--surface-white)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+                
+    
+
+    
+    <svg class="w-4 h-4 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+        <path d="m15 5 4 4"></path>
+    </svg>
+    
+
+                <span>Edit</span>
+            </a>
+            <!-- Dropdown toggle button -->
+            <button @click="open = !open"
+                    class="inline-flex items-center px-2 py-1.5 text-[var(--ink-gray-5)] bg-[var(--surface-white)] hover:bg-[var(--surface-gray-1)] border-l border-[var(--outline-gray-2)] transition-colors duration-200 cursor-pointer">
+                <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Dropdown menu -->
+        <div x-show="open"
+             x-cloak
+             x-transition:enter="transition ease-out duration-100"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-75"
+             x-transition:leave-start="opacity-100 scale-100"
+             x-transition:leave-end="opacity-0 scale-95"
+             class="absolute left-0 sm:left-auto sm:right-0 mt-10 w-72 bg-[var(--surface-white)] border border-[var(--outline-gray-1)] rounded-lg shadow-lg z-50 py-2">
+
+                        
+    
+    <button @click="copyMarkdown(); open = false"
+            class="w-full flex items-start gap-3 px-4 py-3 text-left hover:bg-[var(--surface-gray-1)] transition-colors duration-200 cursor-pointer">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)]">Copy page</div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Copy page as Markdown for LLMs</div>
+            
+        </div>
+    </button>
+    
+
+                        
+    
+    <a :href="getAIUrl('openai')"
+       target="_blank" rel="noopener noreferrer"
+       class="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)] flex items-center gap-1">
+                Open in ChatGPT
+                
+                
+    
+
+    
+    <svg class="w-4 h-4 w-3 h-3 text-[var(--ink-gray-4)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+    </svg>
+    
+
+                
+            </div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Ask ChatGPT about this page</div>
+            
+        </div>
+    </a>
+    
+
+                        
+    
+    <a :href="getAIUrl('claude')"
+       target="_blank" rel="noopener noreferrer"
+       class="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.165-2.263-.134-.86-.06.144-.472.384-.124 1.116.068 2.01.128 2.322.152.986.062h.222l.058-.2-.238-.2-.632-.472-1.89-1.426-1.963-1.486-.663-.525.35-.36.426.074.636.496 1.58 1.21 1.89 1.436.695.516.174.058.082-.14-.066-.258-.324-1.142-.85-2.96-.42-1.418-.227-.81.465-.227.28.282.29.964.676 2.378.622 2.166.14.482.15.07.15-.14.014-.174-.07-.728-.228-2.47-.174-2.05-.072-.986.502-.035.238.366.086 1.332.106 1.578.15 2.324.12 1.31.032.174.168.08.14-.14.342-.59.884-1.546 1.22-2.11.46-.79.488.2.012.406-.354.638-1.01 1.79-1.17 2.086-.24.434-.008.182.214.104.166-.034.728-.298 2.286-.96 1.616-.676.614-.246.286.42-.12.402-.606.288-1.82.776-2.2.932-.566.244-.08.188.066.164.596.242 2.102.82 1.866.752.55.252-.09.494-.446.14-.744-.282-1.75-.686-2.052-.816-.506-.202-.198.002-.102.192.044.2.366.75 1.082 2.198.794 1.664.186.448-.33.338-.392-.068-.252-.504-.868-1.748-1.03-2.11-.216-.432-.128-.138-.186.034-.08.15.018.36.048.986.098 2.424.034 1.574-.006.446-.486.106-.256-.298-.06-.752-.128-2.33-.084-2.016-.026-.606-.012-.182-.17-.068-.14.128-.37.402-1.55 1.696-1.334 1.428-.658.69-.458-.172-.024-.446.51-.552 1.328-1.452 1.546-1.686.306-.336.048-.204-.166-.112-.238.054-.69.252-2.334.862-1.602.578-.612.202-.33-.372.11-.41.612-.252 2.126-.79 2.178-.804.366-.126.112-.172-.064-.172-.174-.06-.756-.156-2.358-.494-1.632-.35-.586-.144.054-.505.472-.09.786.148 2.08.416 1.958.396.538.11.186-.022.102-.17-.05-.212-.224-.504-.868-1.87-1.11-2.41-.28-.674.396-.282.384.128.21.44.948 2.022 1.088 2.362.21.456.124.154.17-.004.088-.122.058-.396.142-2.382.09-1.666.054-.62.495-.046.262.32.026.82.022 2.164-.006 2.146-.02.412.06.19.178.066.132-.112.268-.304 1.258-1.434 1.598-1.852.38-.44.466.14.064.416z"/>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)] flex items-center gap-1">
+                Open in Claude
+                
+                
+    
+
+    
+    <svg class="w-4 h-4 w-3 h-3 text-[var(--ink-gray-4)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+    </svg>
+    
+
+                
+            </div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Ask Claude about this page</div>
+            
+        </div>
+    </a>
+    
+
+                    
+        </div>
+    </div>
+
+                </div>
+            </div>
+            
+        </header>
+
+
+        <!-- Page Content -->
+        <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+            <p><em>Version 16</em> onwards has some <a href="https://github.com/frappe/frappe/wiki/query-builder-migration">breaking changes</a> in <code>get_list</code> and <code>get_all</code></p>
+<h2 id="frappedbget_list">frappe.db.get_list</h2>
+<p><code>frappe.db.get_list(doctype, filters, or_filters, fields, order_by, group_by, start, page_length, run)</code></p>
+<ul>
+<li>Also aliased to <code>frappe.get_list</code></li>
+</ul>
+<p>Returns a list of records from a <code>doctype</code> table. ORM Wrapper for a <code>SELECT</code> query. Will also apply user permissions for the records for the session user. Only returns the document names if the <code>fields</code> keyword argument is not given. By default this method returns a list of <code>dict</code>s, but, you can pluck a particular field by giving the <code>pluck</code> keyword argument:</p>
+<pre><code>frappe.db.get_list('Employee')
+
+# output
+[{'name': 'HR-EMP-00008'},
+ {'name': 'HR-EMP-00006'},
+ {'name': 'HR-EMP-00010'},
+ {'name': 'HR-EMP-00005'}
+]
+
+# with pluck
+frappe.db.get_list('Employee', pluck='name')
+
+# output
+['HR-EMP-00008',
+ 'HR-EMP-00006',
+ 'HR-EMP-00010',
+ 'HR-EMP-00005'
+]
+  
+
+</code></pre>
+<p>Combining filters and other arguments:</p>
+<pre><code>frappe.db.get_list('Task',
+    filters={
+        'status': 'Open'
+    },
+    fields=['subject', 'date'],
+    order_by='date desc',
+    start=10,
+    page_length=20,
+    as_list=True
+)
+
+# output
+(('Update Branding and Design', '2019-09-04'),
+('Missing Documentation', '2019-09-02'),
+('Fundraiser for Foundation', '2019-09-03'))
+
+# Tasks with date after 2019-09-08
+frappe.db.get_list('Task', filters={
+    'date': ['&gt;', '2019-09-08']
+})
+
+# Tasks with date between 2020-04-01 and 2021-03-31 (both inclusive)
+frappe.db.get_list('Task', filters=[[
+    'date', 'between', ['2020-04-01', '2021-03-31']
+]])
+
+# Tasks with subject that contains &quot;test&quot;
+frappe.db.get_list('Task', filters={
+    'subject': ['like', '%test%']
+})
+
+# Count number of tasks grouped by status
+frappe.db.get_list('Task',
+    fields=['count(name) as count', 'status'],
+    group_by='status'
+)
+
+# For version 16 +
+frappe.db.get_list('Task',
+    fields=[{'COUNT': 'name', 'as': 'count'}, 'status'],
+    group_by='status'
+)
+
+# output
+[{'count': 1, 'status': 'Working'},
+ {'count': 2, 'status': 'Overdue'},
+ {'count': 2, 'status': 'Open'},
+ {'count': 1, 'status': 'Filed'},
+ {'count': 20, 'status': 'Completed'},
+ {'count': 1, 'status': 'Cancelled'}]
+  
+</code></pre>
+<p>Prior to version 16, setting <code>run=False</code> would return the SQL query instead of running it. From version 16 onwards, you'd get a query builder object instead. You can call <code>.get_sql()</code> to get the SQL query like earlier, otherwise you can mutate the query as desired before running it (<code>query.run()</code>)</p>
+<h2 id="frappedbget_all">frappe.db.get_all</h2>
+<p><code>frappe.db.get_all(doctype, filters, or_filters, fields, order_by, group_by, start, page_length, run)</code></p>
+<ul>
+<li>Also aliased to <code>frappe.get_all</code></li>
+</ul>
+<p>Same as <code>frappe.db.get_list</code> but will fetch all records without applying permissions.</p>
+<h2 id="frappedbget_value">frappe.db.get_value</h2>
+<p><code>frappe.db.get_value(doctype, name, fieldname)</code> or <code>frappe.db.get_value(doctype, filters, fieldname)</code></p>
+<ul>
+<li>Also aliased to <code>frappe.get_value</code> and <code>frappe.db.get_values</code></li>
+</ul>
+<p>Returns a document's field value or a list of values.</p>
+<pre><code># single value
+subject = frappe.db.get_value('Task', 'TASK00002', 'subject')
+
+# multiple values
+subject, description = frappe.db.get_value('Task', 'TASK00002', ['subject', 'description'])
+
+# as dict
+task_dict = frappe.db.get_value('Task', 'TASK00002', ['subject', 'description'], as_dict=1)
+task_dict.subject
+task_dict.description
+
+# with filters, will return the first record that matches filters
+subject, description = frappe.db.get_value('Task', {'status': 'Open'}, ['subject', 'description'])
+  
+
+</code></pre>
+<h2 id="frappedbgetsinglevalue">frappe.db.getsinglevalue</h2>
+<p><code>frappe.db.get_single_value(doctype, fieldname)</code></p>
+<p>Returns a field value from a Single DocType.</p>
+<pre><code>timezone = frappe.db.get_single_value('System Settings', 'timezone')
+  
+
+</code></pre>
+<h2 id="frappedbset_value">frappe.db.set_value</h2>
+<p><code>frappe.db.set_value(doctype, name, fieldname, value)</code></p>
+<ul>
+<li>Also aliased to <code>frappe.db.update</code></li>
+</ul>
+<p>Sets a field's value in the database, does not call the ORM triggers but updates the modified timestamp (unless specified not to).</p>
+<pre><code># update a field value
+frappe.db.set_value('Task', 'TASK00002', 'subject', 'New Subject')
+
+# update multiple values
+frappe.db.set_value('Task', 'TASK00002', {
+    'subject': 'New Subject',
+    'description': 'New Description'
+})
+
+# update without updating the `modified` timestamp
+frappe.db.set_value('Task', 'TASK00002', 'subject', 'New Subject', update_modified=False)
+  
+
+</code></pre>
+<blockquote>
+<p>This method won't call ORM triggers like <code>validate</code> and <code>on_update</code>. Use this method to update hidden fields or if you know what you are doing.</p>
+</blockquote>
+<h2 id="frappedbexists">frappe.db.exists</h2>
+<p><code>frappe.db.exists(doctype, name)</code></p>
+<p>Returns true if a document record exists.</p>
+<p>Pass doctype and docname:</p>
+<pre><code>frappe.db.exists(&quot;User&quot;, &quot;jane@example.org&quot;, cache=True)
+  
+
+</code></pre>
+<p>Pass a dict of filters including the <code>&quot;doctype&quot;</code> key:</p>
+<pre><code>frappe.db.exists({&quot;doctype&quot;: &quot;User&quot;, &quot;full_name&quot;: &quot;Jane Doe&quot;})
+  
+
+</code></pre>
+<p>Pass the doctype and a dict of filters:</p>
+<pre><code>frappe.db.exists(&quot;User&quot;, {&quot;full_name&quot;: &quot;Jane Doe&quot;})
+  
+
+</code></pre>
+<h2 id="frappedbcount">frappe.db.count</h2>
+<p><code>frappe.db.count(doctype, filters)</code></p>
+<p>Returns number of records for a given <code>doctype</code> and <code>filters</code>.</p>
+<pre><code># total number of Task records
+frappe.db.count('Task')
+
+# total number of Open tasks
+frappe.db.count('Task', {'status': 'Open'})
+  
+
+</code></pre>
+<h2 id="frappedbdelete">frappe.db.delete</h2>
+<p><code>frappe.db.delete(doctype, filters)</code></p>
+<p>Delete <code>doctype</code> records that match <code>filters</code>. This runs a DML command, which means it can be rolled back. If no filters specified, all the records of the doctype are deleted.</p>
+<pre><code>frappe.db.delete(&quot;Route History&quot;, {
+    &quot;modified&quot;: (&quot;&lt;=&quot;, last_record_to_keep[0].modified),
+    &quot;user&quot;: user
+})
+
+frappe.db.delete(&quot;Error Log&quot;)
+frappe.db.delete(&quot;__Test Table&quot;)
+  
+
+</code></pre>
+<p>You may pass the doctype name or an internal table name. Conventionally, internal tables in Frappe are prefixed with <code>__</code>. The API follows this. The above commands run an unconditional <code>DELETE</code> query over tables <strong>tabError Log</strong> and <strong>__Test Table</strong>.</p>
+<h2 id="frappedbtruncate">frappe.db.truncate</h2>
+<p><code>frappe.db.truncate(doctype)</code></p>
+<p>Truncate a table in the database. This runs a DDL command <code>TRUNCATE TABLE</code>, a commit is triggered before the statement is executed. This action cannot be rolled back. You may want to use this for clearing out log tables periodically.</p>
+<pre><code>frappe.db.truncate(&quot;Error Log&quot;)
+frappe.db.truncate(&quot;__Test Table&quot;)
+  
+
+</code></pre>
+<p>The above commands run a <code>TRUNCATE</code> query over tables <strong>tabError Log</strong> and <strong>__Test Table</strong>.</p>
+<h2 id="frappedbcommit">frappe.db.commit</h2>
+<p><code>frappe.db.commit()</code></p>
+<p>Commits current transaction. Calls SQL <code>COMMIT</code>.</p>
+<blockquote>
+<p>In most cases you don't need to commit manually. Refer Frappe's <a href="#database-transaction-model">Database transaction model</a> below.</p>
+</blockquote>
+<h2 id="frappedbsavepoint">frappe.db.savepoint</h2>
+<p><code>frappe.db.savepoint(save_point)</code></p>
+<p>Create a named savepoint to which you can later roll back to.</p>
+<h2 id="frappedbrollback">frappe.db.rollback</h2>
+<p><code>frappe.db.rollback()</code></p>
+<p>Rollbacks current transaction. Calls SQL <code>ROLLBACK</code>.</p>
+<blockquote>
+<p>Frappe will automatically run <code>frappe.db.rollback()</code> if an exception is thrown during a Web Request of type <code>POST</code> or <code>PUT</code>. Use this if you have to rollback early in a transaction.</p>
+</blockquote>
+<p><code>frappe.db.rollback(save_point=&quot;save_point_name&quot;)</code></p>
+<p>Rollback to a specific savepoint instead rolling back full transactions. This rollback won't undo changes done to filesytem and any other rollback watchers.</p>
+<h2 id="frappedbsql">frappe.db.sql</h2>
+<p><code>frappe.db.sql(query, values, as_dict)</code></p>
+<p>Execute an arbitrary SQL query. This may be useful for complex server side reports with join statements, adjusting the database to new features, etc.</p>
+<p>Example:</p>
+<pre><code>values = {'company': 'Frappe Technologies Inc'}
+data = frappe.db.sql(&quot;&quot;&quot;
+ SELECT
+ acc.account_number
+ gl.debit
+ gl.credit
+ FROM `tabGL Entry` gl
+ LEFT JOIN `tabAccount` acc
+ ON gl.account = acc.name
+ WHERE gl.company = %(company)s
+&quot;&quot;&quot;, values=values, as_dict=0)
+
+</code></pre>
+<blockquote>
+<p>Avoid using this method as it will bypass validations and integrity checks. It's always better to use <a href="https://frappeframework.com/docs/v14/user/en/api/document#frappeget_doc">frappe.get_doc</a>, <a href="#frappedbget_list">frappe.db.get_list</a>, etc., if possible.</p>
+</blockquote>
+<h2 id="frappedbmultisql">frappe.db.multisql</h2>
+<p><code>frappe.db.multisql({'mariadb': mariadb_query, 'postgres': postgres_query})</code></p>
+<p>Execute the suitable SQL statement for any supported database engine.</p>
+<h2 id="frappedbrename_table">frappe.db.rename_table</h2>
+<p><code>frappe.db.rename_table(old_name, new_name)</code></p>
+<p>Executes a query to change table name. Specify the DocType or internal table's name directly to rename the table.</p>
+<p>Example:</p>
+<pre><code>frappe.db.rename_table(&quot;__internal_cache&quot;, &quot;__temporary_cache&quot;)
+frappe.db.rename_table(&quot;todo&quot;, &quot;ToDo&quot;)
+  
+
+</code></pre>
+<p>The second example should be used only if you understand the ramifications of it.</p>
+<blockquote>
+<p>Don't use this to rename DocType tables. Use <code>frappe.rename_doc</code> for that instead</p>
+</blockquote>
+<h2 id="frappedbdescribe">frappe.db.describe</h2>
+<p><code>frappe.db.describe(doctype)</code></p>
+<p>Returns a tuple of the table description for given DocType.</p>
+<h2 id="frappedbchangecolumntype">frappe.db.changecolumntype</h2>
+<p><code>frappe.db.change_column_type(doctype, column, new_type)</code></p>
+<p>Changes the type of column for specified DocType.</p>
+<h2 id="frappedbadd_index">frappe.db.add_index</h2>
+<p><code>frappe.db.add_index(doctype, fields, index_name)</code></p>
+<p>Creates indexes for doctypes for the specified fields.</p>
+<blockquote>
+<p>Note: if you want an index on a TEXT or a BLOB field, you must specify a fixed length to do that.</p>
+</blockquote>
+<p>Example:</p>
+<pre><code>frappe.db.add_index(&quot;Notes&quot;, [&quot;id(10)&quot;, &quot;content(500)&quot;], index_name)
+</code></pre>
+<h2 id="frappedbadd_unique">frappe.db.add_unique</h2>
+<p><code>frappe.db.add_unique(doctype, fields, constraint_name=None)</code></p>
+<p>Creates unique constraint for doctypes for the specified fields.</p>
+<p>Example:</p>
+<pre><code>frappe.db.add_unique(&quot;DoctypeName&quot;,[&quot;field1&quot;,&quot;field2&quot;])
+</code></pre>
+<h2 id="frappedbbulk_update">frappe.db.bulk_update</h2>
+<p><code>frappe.db.bulk_update(doctype, doc_updates, *, chunk_size=100, modified=None, modified_by=None, update_modified=True, debug=False)</code></p>
+<p>Bulk update multiple documents in batches using a single SQL UPDATE with CASE expressions.</p>
+<p>Example:</p>
+<pre><code>frappe.db.bulk_update(
+    &quot;Task&quot;,
+    {
+        &quot;TASK-0001&quot;: {&quot;status&quot;: &quot;Closed&quot;, &quot;description&quot;: &quot;Completed by QA&quot;},
+        &quot;TASK-0002&quot;: {&quot;status&quot;: &quot;Open&quot;, &quot;description&quot;: &quot;Pending assignment&quot;},
+    },
+    chunk_size=200,
+    modified_by=&quot;admin@example.com&quot;,
+    update_modified=True,
+    debug=True,
+)
+</code></pre>
+<p>doc_updates format:</p>
+<pre><code>{
+    &quot;DOC-0001&quot;: {&quot;field1&quot;: &quot;value1&quot;, &quot;field2&quot;: &quot;value2&quot;},
+    &quot;DOC-0002&quot;: {&quot;field1&quot;: &quot;valueA&quot;, &quot;field2&quot;: &quot;valueB&quot;},
+}
+</code></pre>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>Direct DB update; Document events/validations are not triggered.</li>
+<li>Unspecified fields remain unchanged.</li>
+</ul>
+<h2 id="database-transaction-hooks">Database transaction hooks</h2>
+<blockquote>
+<p>Note: This API is introduced in v15.</p>
+</blockquote>
+<p>Frappe provides hooks for running callbacks before/after transaction commands like commit/rollback are issued. These hooks are useful for:</p>
+<ul>
+<li>Rolling back changes that are done outside of the database if the transaction is rolled back</li>
+<li>Flushing changes outside of the database only if the transaction is committed.</li>
+</ul>
+<p>These hooks are :</p>
+<ul>
+<li><code>frappe.db.before_commit.add(func: Callable)</code></li>
+<li><code>frappe.db.after_commit.add(func: Callable)</code></li>
+<li><code>frappe.db.before_rollback.add(func: Callable)</code></li>
+<li><code>frappe.db.after_rollback.add(func: Callable)</code></li>
+</ul>
+<p>Example usage:</p>
+<pre><code>def create_file(self):
+    self.write_file()
+    # This ensures rollback if DB transaction is rolledback
+    frappe.db.after_rollback.add(self.rollback_file)
+
+def rollback_file(self):
+    self.delete_file()
+</code></pre>
+<h2 id="database-transaction-model">Database transaction model</h2>
+<p>Frappe's database abstractions implement a sane transaction model by default. So in most cases, you won't have to deal with SQL transactions manually. A broad description of this model is described below:</p>
+<h3 id="web-requests">Web requests</h3>
+<ul>
+<li>While performing <code>POST</code> or <code>PUT</code>, if any writes were made to the database, they are committed at end of the successful request.</li>
+<li>AJAX calls made using <code>frappe.call</code> are <code>POST</code> by default unless changed.</li>
+<li><code>GET</code> requests do not cause an implicit commit.</li>
+<li>Any <strong>uncaught</strong> exception during handling of request will rollback the transaction.</li>
+</ul>
+<h3 id="backgroundscheduled-jobs">Background/scheduled Jobs</h3>
+<ul>
+<li>Calling a function as background or scheduled job will commit the transaction after successful completion.</li>
+<li>Any <strong>uncaught</strong> exception will cause rollback of the transaction.</li>
+</ul>
+<h3 id="patches">Patches</h3>
+<ul>
+<li>Successful completion of the patch's <code>execute</code> function will commit the transaction automatically.</li>
+<li>Any <strong>uncaught</strong> exception will cause rollback of the transaction.</li>
+</ul>
+<h3 id="unit-tests">Unit tests</h3>
+<ul>
+<li>Transaction is committed after running one test module. Test module means any python test file like <code>test_core.py</code>.</li>
+<li>Transaction is also committed after finishing all tests.</li>
+<li>Any <strong>uncaught</strong> exception will exit the test runner, hence won't commit.</li>
+</ul>
+<blockquote>
+<p>Note: If you're catching exceptions anywhere, then database abstraction does not know that something has gone wrong hence you're responsible for the correct rollback of the transaction.</p>
+</blockquote>
+
+        </div>
+
+        <!-- Previous/Next Navigation -->
+        <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+            
+            <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+                
+                <a href="/framework/user/en/api/document"
+                   @click.prevent="$store.navigation.navigateTo('framework/user/en/api/document')"
+                   @mouseenter="$store.navigation.prefetch('framework/user/en/api/document')"
+                   class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                    
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+    </svg>
+    
+
+                    <div class="flex flex-col gap-1 min-w-0">
+                        <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">Previous Page</span>
+                        <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">Document API</span>
+                    </div>
+                </a>
+                
+
+                
+                <a href="/framework/user/en/api/jinja"
+                   @click.prevent="$store.navigation.navigateTo('framework/user/en/api/jinja')"
+                   @mouseenter="$store.navigation.prefetch('framework/user/en/api/jinja')"
+                   class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden ">
+                    <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                        <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">Next Page</span>
+                        <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">Jinja API
+</span>
+                    </div>
+                    
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+    </svg>
+    
+
+                </a>
+                
+            </div>
+            
+        </nav>
+
+        <!-- Last Updated & Feedback Widget -->
+        <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]" title="17-02-2026 10:41:14" data-timestamp="17-02-2026 10:41:14">
+                Last updated 2 months ago
+            </div>
+            
+            <!-- Feedback Widget -->
+<div x-data="feedbackWidget('0tl2gt7pp2')" class="flex flex-col items-start sm:items-end">
+    <div class="flex flex-col items-start sm:items-center gap-2">
+        <span class="text-sm text-[var(--ink-gray-5)]">Was this helpful?</span>
+
+        <!-- Reaction Buttons (pill-shaped toggle group) -->
+        
+        <fieldset class="inline-flex rounded-full bg-[var(--surface-gray-2)] p-0.5" role="radiogroup" aria-label="Feedback rating">
+            
+            <button type="button"
+                    @click="selectFeedback('Good')"
+                    :disabled="submitted"
+                    :class="feedbackType === 'Good' ? 'bg-[var(--surface-white)] shadow-sm' : 'hover:bg-[var(--surface-gray-4)]'"
+                    class="p-1.5 rounded-full transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
+                    role="radio"
+                    :aria-checked="feedbackType === 'Good'"
+                    aria-label="Good">
+                <svg class="w-4 h-4" :class="feedbackType === 'Good' ? 'text-[var(--ink-gray-9)]' : 'text-[var(--ink-gray-5)]'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                </svg>
+            </button>
+            
+            <button type="button"
+                    @click="selectFeedback('Ok')"
+                    :disabled="submitted"
+                    :class="feedbackType === 'Ok' ? 'bg-[var(--surface-white)] shadow-sm' : 'hover:bg-[var(--surface-gray-4)]'"
+                    class="p-1.5 rounded-full transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
+                    role="radio"
+                    :aria-checked="feedbackType === 'Ok'"
+                    aria-label="Ok">
+                <svg class="w-4 h-4" :class="feedbackType === 'Ok' ? 'text-[var(--ink-gray-9)]' : 'text-[var(--ink-gray-5)]'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="8" y1="15" x2="16" y2="15"/>
+                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                </svg>
+            </button>
+            
+            <button type="button"
+                    @click="selectFeedback('Bad')"
+                    :disabled="submitted"
+                    :class="feedbackType === 'Bad' ? 'bg-[var(--surface-white)] shadow-sm' : 'hover:bg-[var(--surface-gray-4)]'"
+                    class="p-1.5 rounded-full transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
+                    role="radio"
+                    :aria-checked="feedbackType === 'Bad'"
+                    aria-label="Bad">
+                <svg class="w-4 h-4" :class="feedbackType === 'Bad' ? 'text-[var(--ink-gray-9)]' : 'text-[var(--ink-gray-5)]'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M16 16s-1.5-2-4-2-4 2-4 2"/>
+                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                </svg>
+            </button>
+            
+        </fieldset>
+    </div>
+
+    <!-- Optional text + Submit (shown after type selected) -->
+    <div x-show="feedbackType" x-cloak
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0 -translate-y-1"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         class="mt-2 w-72">
+        <form @submit.prevent="submit()" class="relative">
+            <textarea x-ref="feedbackInput"
+                      x-model="comment"
+                      name="feedback"
+                      :disabled="submitted"
+                      placeholder="Anything you'd like to add?"
+                      rows="3"
+                      class="w-full px-4 py-3 pr-20 text-sm rounded-xl border border-[var(--outline-gray-2)] bg-[var(--surface-white)] text-[var(--ink-gray-9)] placeholder-[var(--ink-gray-4)] focus:outline-none focus:ring-2 focus:ring-[var(--outline-gray-3)] resize-none disabled:opacity-60"></textarea>
+
+            <!-- Submit button OR Thank you message -->
+            <div class="absolute bottom-3 right-3">
+                <button x-show="!submitted"
+                        type="submit"
+                        :disabled="submitting"
+                        class="px-2.5 py-1 text-xs font-medium rounded-sm bg-[var(--surface-gray-3)] text-[var(--ink-gray-7)] hover:bg-[var(--surface-gray-4)] hover:text-[var(--ink-gray-9)] transition-colors duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+                    <span x-show="!submitting">Submit</span>
+                    <span x-show="submitting" class="flex items-center gap-1">
+                        <svg class="animate-spin h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </span>
+                </button>
+                <span x-show="submitted" class="flex items-center gap-1 text-xs font-medium text-green-600">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    Thanks!
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+            
+        </div>
+    

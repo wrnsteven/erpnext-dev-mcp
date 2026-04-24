@@ -1,0 +1,615 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0touds9384)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                Desk
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0touds9384)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Frappe Framework comes with a rich admin interface called the Desk. It reads meta-data
+from DocTypes and automatically builds list views, form views, report views, etc
+for your DocTypes. Desk is to be used by users of the type &quot;System User&quot;.
+
+In this section we will discuss what views are provided by Desk and how to configure them.
+
+[Workspace](#workspace)
+
+- [Awesomebar](#awesomebar)
+
+- [List View](#list-view)
+
+- [Form View](#form-view)
+
+- [Grid View](#grid-view)
+
+- [Report Builder](#report-builder)
+
+- [Tree View](#tree-view)
+
+- [Calendar View](#calendar-view)
+
+- [Gantt View](#gantt-view)
+
+- [Kanban View](#kanban-view)
+
+- [Desk Theme](#dark-theme)
+
+## Workspace
+
+When you login, you're presented with the Desk, it features a persistent sidebar with some standard items based on app modules.
+Each sidebar item links to a page called Workspace.
+
+[About Workspace →](/framework/v14/user/en/desk/workspace)
+
+![Desktop](/files/v14-workspace.png)
+
+## Awesomebar
+
+Awesomebar helps you to navigate anywhere in the system, create new records, search in documents
+and even perform math operations.
+
+![Awesomebar](/files/awesomebar.png)
+Navigating ToDo using Awesomebar
+
+## List View
+
+List View is generated for all DocTypes except which are Child Tables and Singles.
+
+The List view is packed with features. Some of them are:
+
+- Filters
+
+- Sorting
+
+- Paging
+
+- Filter by tags
+
+- Switch view to Report, Calendar, Gantt, Kanban, etc.
+
+Learn more about the [List API](/framework/v14/user/en/api/list).
+
+## Form View
+
+Form view is used to view the records in a Form Layout. This view has a lot of
+things going on. But the primary purpose of it is to view and edit records.
+A document can be assigned to or shared with other users and it can have arbitrary
+attachments and tags, all of which can be seen in the form sidebar.
+
+![Form View](/files/form-view.png)
+Form View
+
+When you scroll down to the bottom of the form, you will see the form timeline.
+The form timeline shows emails, comments, edits and other events in a reverse
+chronological order.
+
+![Form View](/files/form-timeline.png)
+Form Timeline
+
+Learn more about the [Form API](/framework/v14/user/en/api/form).
+
+## Grid View
+
+Grid view is used as a table in the form view to insert multiple records.
+User can configure the columns of the grid view from the form.
+
+![Grid View](/files/configure_grid_columns.gif)
+
+## Report Builder
+
+Report Builder is a generic tool to customize and build tabular data from a DocType.
+You can select columns to show, filters to apply, sort order and save this configuration
+by giving your report a name. You can also show Child Table data and also filter
+documents by their child records. You can also apply Group By on a column with
+aggregation methods like Count, Sum and Average.
+
+![Report Builder](/files/report-builder.gif)
+Report Builder Features
+
+## Tree View
+
+Frappe also supports tree structured records using the [Nested set model](https://en.wikipedia.org/wiki/Nested_set_model).
+If a doctype is configured to be a tree structure, it can be viewed in the Tree view.
+
+![Tree View](/files/tree-view.png)
+Tree View
+
+## Calendar View
+
+Calendar view can be configured for DocTypes with a start date and end date.
+
+![Calendar View](/files/calendar-view.png)
+Calendar View
+
+The configuration file should be named `{doctype}_calendar.js` and should exist in the
+doctype directory.
+
+Here is an example configuration file for calendar view for Event doctype, which must be set in the `event_calendar.js` file.
+
+`frappe.views.calendar['Event'] = {
+ field_map: {
+ start: 'starts_on',
+ end: 'ends_on',
+ id: 'name',
+ allDay: 'all_day',
+ title: 'subject',
+ status: 'event_type',
+ color: 'color'
+ },
+ style_map: {
+ Public: 'success',
+ Private: 'info'
+ },
+ order_by: 'ends_on',
+ get_events_method: 'frappe.desk.doctype.event.event.get_events'
+}
+`
+## Gantt View
+
+Gantt view uses the same configuration file as calendar, so every DocType that has a Calendar view has a Gantt view too.
+
+In case certain settings need to be overridden for the Event DocType's Gantt view (for example the `order_by` field) the configuration can be set in the `event_calendar.js` file with the following content.
+
+`frappe.views.calendar['Event'] = {
+ field_map: {
+ start: 'starts_on',
+ end: 'ends_on',
+ id: 'name',
+ allDay: 'all_day',
+ title: 'subject',
+ status: 'event_type',
+ color: 'color'
+ },
+ gantt: { // The values set here will override the values set in the object just for Gantt View
+ order_by: 'starts_on',
+ }
+ style_map: {
+ Public: 'success',
+ Private: 'info'
+ },
+ order_by: 'starts_on',
+ get_events_method: 'frappe.desk.doctype.event.event.get_events'
+}
+`
+![Gantt View](/files/gantt-view.png)
+Gantt View
+
+## Kanban View
+
+Kanban view can be created for any DocType that has a Select field with options.
+These options become the column names for the Kanban Board.
+
+![Kanban View](/files/kanban-view.png)
+
+## Dark Theme
+
+![Dark Theme](/files/Screenshot%202022-01-18%20at%203.35.44%20PM.png)
+
+Frappe Framework has a first class support of dark theme. To switch the theme, click on your avatar on top right of the screen and click on &quot;Toggle Theme&quot;. Once you click &quot;Toggle Theme&quot;, you'll see following modal from which you can easily switch between available themes. To switch to dark theme select &quot;Timeless Night&quot;.
+
+![Desk Theme Modal](/files/Screenshot%202022-01-18%20at%203.47.33%20PM.png)
+
+Note: You can also press CTRL + SHIFT + G to open this modal.
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Form Tours
+                    
+                ](/framework/user/en/form-tours)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Introduction
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/desk/reports)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/desk
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

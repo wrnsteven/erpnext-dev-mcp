@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serial No Naming</title>
+</head>
+<body>
+<p>序列号是分配给每个物品单位的唯一值。序列号有助于追踪物品的保修和有效期详情。通常高价值物品如机器、电脑、昂贵设备会使用序列号管理。</p><p>要使物品使用序列号，请在 Item master 中勾选 <strong>Has Serial No</strong>。</p><p>ERPNext 中有两种方式可以生成序列号。</p><p>###1. 采购物品的序列号</p><p>如果采购的物品已由 OEM（原始设备制造商）分配了序列号，您可以在 ERPNext 中使用相同的序列号。在创建 Purchase Receipt 时，您可以扫描或手动输入物品的序列号。提交 Purchase Receipt 后，序列号将根据为物品提供的序列号在后台创建。如果使用 OEM 的序列号，则在 Item master 中不应提及 Prefix 作为序列化前缀。在这种情况下，Prefix 字段应留空。</p><p>如果收到的物品已有序列号条形码，您可以简单地扫描该条形码来在 Purchase Receipt 中输入序列号。点击<a href="https://frappe.io/blog/management/using-barcodes-to-ease-data-entry">此处</a>了解更多相关信息。</p><p>提交 Purchase Receipt 或 Stock entry 后，序列化物品的序列号将自动生成。</p><p>!<a href="../../images/516_serial-naming-1.png">图片</a></p><p>生成的序列号将为每个物品更新。</p><p>!<a href="../../images/516_serial-naming-2.png">图片</a></p><p>###2. 生产物品的序列号</p><p>要为生产物品序列化，您可以在 Item master 本身中定义序列号生成的系列。按照该系列，系统将在创建生产条目时为物品创建序列号。</p><p>####2.1 序列号系列</p><p>当物品设置为序列化后，将允许您为其指定系列。</p><p>!<a href="../../images/516_serial-naming-3.png">图片</a></p><p>####2.2 序列化物品的生产条目</p><p>提交生产物品的生产条目后，系统将按照 Item master 中指定的系列自动生成序列号。</p><p>!<a href="../../images/516_serial-naming-4.png">图片</a></p><p>---
+original_url: https://docs.frappe.io/erpnext/serial-no-naming
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---</p>
+</body>
+</html>

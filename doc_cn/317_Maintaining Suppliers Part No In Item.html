@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maintaining Suppliers Part No In Item</title>
+</head>
+<body>
+<p>对于每个物料，您分配的编码可能与供应商对该物料给出的编码不同。ERPNext 允许您在物料主数据中跟踪 Supplier's Item Code。您还可以在采购交易中获取 Supplier's Item Code，以便供应商能够轻松识别与其 Item Code 相关的物料。</p><p><h3>1. 在物料中更新 Supplier Item Code</h3></p><p>在物料主数据的"Supplier Details"部分，输入供应商为该物料分配的 Item Code。</p><p>!<a href="../../images/317_supplier-item-code.png">图片</a></p><p><h3>2. 交易中的 Supplier's Item Code</h3></p><p>每个采购交易的物料明细表中都有一个字段，用于获取 Supplier's Item Code。此字段在表单和 Standard print format 中都是隐藏的。您可以通过在 <a href="/erpnext/customize-form.html">Customize Form</a> 中更改此字段的属性来使其可见。</p><p>进入打印视图，点击菜单 > customize，输入新的打印格式名称，找到 Items 表格，点击其中的 <strong>Select columns</strong> 按钮。您将看到以下界面。现在选中"Supplier Part Number"复选框。</p><p>!<a href="../../images/317_supplier-item-code-print-format.png">图片</a></p><p>只有在采购交易中选定的供应商和 Item Code 都与物料主数据中记录的值相匹配时，Supplier Item Code 才会被获取到采购交易中。</p><p>!<a href="../../images/317_supplier-item-code-in-purchase-order.png">图片</a></p><p>---
+original_url: https://docs.frappe.io/erpnext/maintaining-suppliers-part-no-in-item
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---</p>
+</body>
+</html>

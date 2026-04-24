@@ -1,0 +1,531 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tpugv4ebf)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Frappe Apps
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tpugv4ebf)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Frappe Apps are Python packages which use the Frappe platform. They can live
+anywhere on the [Python
+path](https://docs.python.org/2/tutorial/modules.html#the-module-search-path)
+and must have an entry in the `apps.txt` file.
+
+### Creating an app
+
+Frappe ships with a boiler plate for a new app. The command `bench new-app app-name` helps you start a new app by starting an interactive shell.
+
+` % bench new-app sample_app
+ App Name: sample_app
+ App Title: Sample App
+ App Description: This is a sample app.
+ App Publisher: Acme Inc.
+ App Icon: icon-linux
+ App Color: #6DAFC9
+ App Email: info@example.com
+ App URL: http://example.com
+ App License: MIT
+`
+The above command would create an app with the following directory structure.
+
+` sample_app
+ ├── license.txt
+ ├── MANIFEST.in
+ ├── README.md
+ ├── sample_app
+ │   ├── __init__.py
+ │   ├── sample_app
+ │   │   └── __init__.py
+ │   ├── config
+ │   │   ├── desktop.py
+ │   │   └── __init__.py
+ │   ├── hooks.py
+ │   ├── modules.txt
+ │   ├── patches.txt
+ │   └── templates
+ │   ├── generators
+ │   │   └── __init__.py
+ │   ├── __init__.py
+ │   ├── pages
+ │   │   └── __init__.py
+ │   └── statics
+ └── setup.py
+`
+The boiler plate contains just enough files to show your app icon on the [Desk].
+
+### Files in the app
+
+#### `hooks.py`
+
+The `hooks.py` file defines the metadata of your app and integration points
+with other parts of Frappe or Frappe apps. Examples of such parts include task
+scheduling or listening to updates to different documents in the system. For
+now, it just contains the details you entered during app creation.
+
+` app_name = &quot;sample-app&quot;
+ app_title = &quot;Sample App&quot;
+ app_publisher = &quot;Acme Inc.&quot;
+ app_description = &quot;This is a sample app.&quot;
+ app_icon = &quot;fa-linux&quot;
+ app_color = &quot;black&quot;
+ app_email = &quot;info@example.com&quot;
+ app_url = &quot;http://example.com&quot;
+ app_version = 0.0.1
+`
+#### `modules.txt`
+
+Modules in Frappe help you organize Documents in Frappe and they are defined in
+the `modules.txt` file in your app. It is necessary for every [DocType] to be
+attached to a module. By default a module by the name of your app is added.
+Also, each module gets an icon on the [Desk]. For example, the [ERPNext] app is
+organized in the following modules.
+
+accounts
+buying
+home
+hr
+manufacturing
+projects
+selling
+setup
+stock
+support
+utilities
+contacts
+
+### Adding app to a site
+
+Once you have an app, whether it's the one you just created or any other you
+downloaded, you are required to do the following things.
+
+Download the app via git
+
+` bench get-app https://github.com/org/app_name`
+
+Install the app to your site
+
+` bench --site site_name install-app app_name`
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Guides
+                    
+                ](/framework/user/en/guides)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Frappe Ajax Call
+
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/guides/basics/frappe_ajax_call)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/guides/basics/apps
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

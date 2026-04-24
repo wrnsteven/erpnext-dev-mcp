@@ -1,0 +1,499 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tmndvhoo3)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                Responses
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tmndvhoo3)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Here, let's take a look into how responses are built in Frappe, and how you may
+be able to use them in your Frappe apps or scripts.
+
+If you have already gone through the [Router
+Documentation](/framework/v14/user/en/python-api/routing-and-rendering), you might've noticed the
+`build_response` function that Frappe internally utilizes to build responses
+depending on the type of the content. The logic that defines this behaviour is a
+part of the module
+[frappe.utils.response](https://github.com/frappe/frappe/blob/develop/frappe/utils/response.py),
+of which `build_response` is the meat and potatoes.
+
+`def build_response(response_type=None):
+ if &quot;docs&quot; in frappe.local.response and not frappe.local.response.docs:
+ del frappe.local.response[&quot;docs&quot;]
+
+ response_type_map = {
+ &quot;csv&quot;: as_csv,
+ &quot;txt&quot;: as_txt,
+ &quot;download&quot;: as_raw,
+ &quot;json&quot;: as_json,
+ &quot;pdf&quot;: as_pdf,
+ &quot;page&quot;: as_page,
+ &quot;redirect&quot;: redirect,
+ &quot;binary&quot;: as_binary,
+ }
+
+ return response_type_map[frappe.response.get(&quot;type&quot;) or response_type]()
+`
+The above snippet represents the current implementation of `build_response`
+which maps different functions that act as handlers for different content types.
+Let's take a deeper look into the response handler for the &quot;download&quot;
+`response_type` in Frappe v13.
+
+`def as_raw():
+ response = Response()
+ response.mimetype = (
+ frappe.response.get(&quot;content_type&quot;)
+ or mimetypes.guess_type(frappe.response[&quot;filename&quot;])[0]
+ or &quot;application/unknown&quot;
+ )
+ response.headers[&quot;Content-Disposition&quot;] = (
+ f'{frappe.response.get(&quot;display_content_as&quot;, &quot;attachment&quot;)};'
+ f' filename=&quot;{frappe.response[&quot;filename&quot;].replace(&quot; &quot;, &quot;_&quot;)}&quot;'
+ ).encode(&quot;utf-8&quot;)
+ response.data = frappe.response[&quot;filecontent&quot;]
+ return response
+`
+Depending on the value of the `Content-Disposition` header, the browser
+receiving the response may behave differently. If unset, the value defaults to
+&quot;attachment&quot;.
+
+If `frappe.response.display_content_as` is set to &quot;inline&quot;, it indicates
+that the content is expected to be displayed inline in the browser, that is, as
+a Web page or as part of a Web page, while &quot;attachment&quot; means the contents
+are to be downloaded and saved locally.
+
+To create an API endpoint that would directly download the file you require, you
+could craft something like the following to download the file directly.
+
+`@frappe.whitelist()
+def download(name):
+ file = frappe.get_doc(&quot;File&quot;, name)
+ frappe.response.filename = file.file_name
+ frappe.response.filecontent = file.get_content()
+ frappe.response.type = &quot;download&quot;
+ frappe.response.display_content_as = &quot;attachment&quot;
+`
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Utility Functions
+                    
+                ](/framework/user/en/api/utils)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Search
+
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/python-api/search)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/python-api/response
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

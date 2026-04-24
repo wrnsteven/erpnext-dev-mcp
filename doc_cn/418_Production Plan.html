@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Production Plan</title>
+</head>
+<body>
+<p><pre><code>translated_at: 2026-04-18
+source: https://docs.frappe.io/erpnext/production-plan
+translator: AI (Claude Code)</code></pre></p><p><strong>生产计划有助于对计划生产的物料进行生产和物料规划。这些生产物料可以通过销售订单（面向客户）或物料请求（内部）来进行承诺。</strong></p><p>生产计划帮助用户根据多个销售订单或物料请求来规划生产。同时，它还可以根据待生产的成品数量进行原材料的物料采购规划。</p><p>要访问生产计划列表，请前往：</p><p>> 首页 > 制造 > 生产 > 生产计划</p><p><h2>前置条件</h2></p><p>在创建和使用生产计划之前，建议您先创建以下内容：</p><p>- <a href="/erpnext/item">物料</a>
+- <a href="/erpnext/material-request">物料请求</a>
+- <a href="/erpnext/sales-order">销售订单</a>
+- <a href="/erpnext/bill-of-materials">物料清单</a>
+- <a href="/erpnext/routing">工序</a></p><p><h2>如何创建生产计划</h2></p><p>如前所述，生产计划可用于根据销售订单或物料请求来规划物料制造。</p><p>一般步骤如下：</p><p>- 前往生产计划列表，点击"新建"。
+- 选择从<a href="/erpnext/sales-order">销售订单</a>还是<a href="/erpnext/material-request">物料请求</a>获取物料。</p><p>生产计划也可以手动创建，您可以在其中选择要生产的物料。</p><p><h2>2.1 根据销售订单进行生产</h2></p><ul>
+\0</ul><p>4. 在"待生产物料"表中展开一行时，您会看到"包含展开物料"选项。勾选此选项会将子装配件的原材料包含在生产过程中。
+5. 如果勾选了"合并物料"并保存，具有相同物料清单的物料将合并为单个物料，合并后的计划数量为其总和。</p><p>!<a href="../../images/418_get_items_combined_wo.png">图片</a></p><p><h2>2.2 根据物料请求进行生产</h2></p><ul>
+\0</ul><p><strong>跳过可用原材料</strong>：
+如果启用，系统将只考虑数量不足的物料。
+所需数量的计算公式：
+所需数量 = 物料清单所需数量 - 预计数量</p><p>示例：物料 A 有 50 件库存和 20 件物料请求（带有待处理采购订单）。完成生产需要 100 件。</p><p>如果启用了"跳过可用原材料"复选框，系统将计算所需数量为：100 - (50 + 20) = 30</p><p>如果未启用"跳过可用原材料"复选框，系统将计算所需数量为：100，忽略可用库存或入库数量。</p><p><strong>针对仓库</strong>：用户可以设置要为其创建物料请求的仓库。在生产过程中创建库存调拨时，系统将在此仓库中查找原材料库存。</p><p><h3>2.4.1 下载物料请求计划</h3></p><p>!<a href="../../images/418_Screenshot%202025-04-08%20at%204.43.08%20PM.png">图片</a></p><p>点击"下载物料请求计划"按钮，用户将获得包含完成此生产计划所需原材料的 Excel 表格。用户可以选择仓库来查看相应仓库中的可用数量。点击"下载物料请求计划"后将弹出一个选择仓库的弹出窗口。如果用户希望为多个仓库运行计划，可以在弹出窗口中选择这些仓库以下载 Excel 格式的计划。Excel 表格类似于：</p><p>!<a href="../../images/418_material_request_excel.png">图片</a></p><p><h2>2.5 提交后</h2></p><p>提交生产计划后，用户可以为其生产物料创建工单，为原材料创建物料请求。用户还可以在生产计划中将状态设置为<strong>已关闭</strong>。</p><p>!<a href="../../images/418_Screenshot%202025-04-08%20at%204.49.56%20PM.png">图片</a></p><p><h3>2.5.1 关闭生产计划</h3></p><p>有时生产计划可能部分完成且将被终止。这可能由于以下原因发生：</p><p>- 其中一个物料是在生产计划之外独立生产的。
+- 计划发生变化，待生产物料将不再生产。</p><p>在这种情况下，用户可以将生产计划状态设置为<strong>已关闭</strong>，这样就不会再针对该计划创建新的工单或物料请求。</p><p>!<a href="../../images/418_production_plan_status.gif">图片</a></p><p>同样可以将其<strong>重新打开</strong>。</p><p><h2>2.6 为子装配件创建工单</h2></p><p>用户可以通过"制造类型"选项，选择对子装配件创建工单 / 外协采购订单 / 物料采购请求。</p><p>如果用户希望为子装配件创建工单，请选择制造类型为"内部"并提交。提交后，您需要点击"创建" > "工单/外协订单"按钮。</p><p>!<a href="../../images/418_Screenshot%202025-04-08%20at%204.44.08%20PM.png">图片</a></p><p><h2>相关主题</h2></p><p>- <a href="/erpnext/work-order">工单</a>
+- <a href="/erpnext/job-card">作业卡</a></p>
+</body>
+</html>

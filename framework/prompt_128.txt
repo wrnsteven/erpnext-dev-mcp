@@ -1,0 +1,580 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tvi09in99)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Webhooks
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tvi09in99)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Webhooks are &quot;user-defined HTTP callbacks&quot;. For a select DocType, you can create a webhook that triggers on specific document events under certain conditions, if required.
+
+When the `doc_event` occurs, the source site makes an HTTP request to the URI configured for the webhook. Users can configure these webhooks to use events on one site to invoke behaviour on another.
+
+## Configuring a Webhook
+
+To add a Webhook, go to:
+
+Integrations &gt; Webhook &gt; Webhook
+
+![](/files/webhook.png)
+
+Select the DocType for which the Webhook needs to be triggered (e.g. `Quotation`).
+
+- Select the Doc Event that will trigger the Webhook (e.g. `on_update`).
+
+- Optionally, you can set additional document Conditions to trigger Webhooks for specific scenarios.
+
+- Enter a valid request URL that will receive the Webhook data.
+
+- Select the Request Method. `POST` is the default method.
+
+- Optionally, you can add HTTP headers to the request. (e.g. useful for sending an API key, if required).
+
+You can also disable a webhook by unchecking the `Enabled` checkbox. Only webhooks that are enabled get triggered.
+
+### Data Structure
+
+- If your request structure is based on forms, you can select fields from the document in the table, which uses the fieldname as the `key`.
+
+- If your request structure is based on JSON, you can insert fields from the document using jinja templating (make sure to wrap your fields with double-quotes).
+
+### Webhook Security
+
+To optionally add security to your webhook requests and ensure that the webhook is being sent from Frappe, you can set up a &quot;Webhook Secret&quot; along with the request. Do not share the secret publicly.
+
+If enabled, an additional header (`X-Frappe-Webhook-Signature`) will be added to the request before it's sent out, with its value being generated from the secret as a base64-encoded HMAC-SHA256 hash of the payload.
+
+### Example Webhook Request
+
+- DocType: `Quotation`
+
+- Doc Event: `on_update`
+
+- Request URL: `https://httpbin.org/post`
+
+- Request Structure: `Form URL-Encoded`
+
+- Webhook Headers:
+
+- Key: `Content-Type:`, Value: `application/x-www-form-urlencoded`
+
+- Webhook Data:
+
+- Fieldname: `name`, Key: `id`
+
+- Fieldname: `items`, Key: `lineItems`
+
+The above configuration creates the following JSON request (sent by a Frappe server on `Quotation` - `on_update` to https://httpbin.org/post):
+
+`{
+ &quot;args&quot;: {},
+ &quot;data&quot;: &quot;{&quot;lineItems&quot;: [{&quot;stock_qty&quot;: 1.0, &quot;base_price_list_rate&quot;: 1.0, &quot;image&quot;: &quot;&quot;, &quot;creation&quot;: &quot;2017-09-14 13:41:58.373023&quot;, &quot;base_amount&quot;: 1.0, &quot;qty&quot;: 1.0, &quot;margin_rate_or_amount&quot;: 0.0, &quot;rate&quot;: 1.0, &quot;owner&quot;: &quot;Administrator&quot;, &quot;stock_uom&quot;: &quot;Unit&quot;, &quot;base_net_amount&quot;: 1.0, &quot;page_break&quot;: 0, &quot;modified_by&quot;: &quot;Administrator&quot;, &quot;base_net_rate&quot;: 1.0, &quot;discount_percentage&quot;: 0.0, &quot;item_name&quot;: &quot;I1&quot;, &quot;amount&quot;: 1.0, &quot;actual_qty&quot;: 0.0, &quot;net_rate&quot;: 1.0, &quot;conversion_factor&quot;: 1.0, &quot;warehouse&quot;: &quot;Finished Goods - R&quot;, &quot;docstatus&quot;: 0, &quot;prevdoc_docname&quot;: null, &quot;uom&quot;: &quot;Unit&quot;, &quot;description&quot;: &quot;I1&quot;, &quot;parent&quot;: &quot;QTN-00001&quot;, &quot;brand&quot;: null, &quot;gst_hsn_code&quot;: null, &quot;base_rate&quot;: 1.0, &quot;item_code&quot;: &quot;I1&quot;, &quot;projected_qty&quot;: 0.0, &quot;margin_type&quot;: &quot;&quot;, &quot;doctype&quot;: &quot;Quotation Item&quot;, &quot;rate_with_margin&quot;: 0.0, &quot;pricing_rule&quot;: null, &quot;price_list_rate&quot;: 1.0, &quot;name&quot;: &quot;QUOD/00001&quot;, &quot;idx&quot;: 1, &quot;item_tax_rate&quot;: &quot;{}&quot;, &quot;item_group&quot;: &quot;Products&quot;, &quot;modified&quot;: &quot;2017-09-14 17:09:51.239271&quot;, &quot;parenttype&quot;: &quot;Quotation&quot;, &quot;customer_item_code&quot;: null, &quot;net_amount&quot;: 1.0, &quot;prevdoc_doctype&quot;: null, &quot;parentfield&quot;: &quot;items&quot;}], &quot;id&quot;: &quot;QTN-00001&quot;}&quot;,
+ &quot;files&quot;: {},
+ &quot;form&quot;: {},
+ &quot;headers&quot;: {
+ &quot;Accept&quot;: &quot;*/*&quot;,
+ &quot;Accept-Encoding&quot;: &quot;gzip, deflate&quot;,
+ &quot;Connection&quot;: &quot;close&quot;,
+ &quot;Content-Length&quot;: &quot;1075&quot;,
+ &quot;Host&quot;: &quot;httpbin.org&quot;,
+ &quot;User-Agent&quot;: &quot;python-requests/2.18.1&quot;
+ },
+ &quot;json&quot;: {
+ &quot;id&quot;: &quot;QTN-00001&quot;,
+ &quot;lineItems&quot;: [
+ {
+ &quot;actual_qty&quot;: 0.0,
+ &quot;amount&quot;: 1.0,
+ &quot;base_amount&quot;: 1.0,
+ &quot;base_net_amount&quot;: 1.0,
+ &quot;base_net_rate&quot;: 1.0,
+ &quot;base_price_list_rate&quot;: 1.0,
+ &quot;base_rate&quot;: 1.0,
+ &quot;brand&quot;: null,
+ &quot;conversion_factor&quot;: 1.0,
+ &quot;creation&quot;: &quot;2017-09-14 13:41:58.373023&quot;,
+ &quot;customer_item_code&quot;: null,
+ &quot;description&quot;: &quot;I1&quot;,
+ &quot;discount_percentage&quot;: 0.0,
+ &quot;docstatus&quot;: 0,
+ &quot;doctype&quot;: &quot;Quotation Item&quot;,
+ &quot;gst_hsn_code&quot;: null,
+ &quot;idx&quot;: 1,
+ &quot;image&quot;: &quot;&quot;,
+ &quot;item_code&quot;: &quot;I1&quot;,
+ &quot;item_group&quot;: &quot;Products&quot;,
+ &quot;item_name&quot;: &quot;I1&quot;,
+ &quot;item_tax_rate&quot;: &quot;{}&quot;,
+ &quot;margin_rate_or_amount&quot;: 0.0,
+ &quot;margin_type&quot;: &quot;&quot;,
+ &quot;modified&quot;: &quot;2017-09-14 17:09:51.239271&quot;,
+ &quot;modified_by&quot;: &quot;Administrator&quot;,
+ &quot;name&quot;: &quot;QUOD/00001&quot;,
+ &quot;net_amount&quot;: 1.0,
+ &quot;net_rate&quot;: 1.0,
+ &quot;owner&quot;: &quot;Administrator&quot;,
+ &quot;page_break&quot;: 0,
+ &quot;parent&quot;: &quot;QTN-00001&quot;,
+ &quot;parentfield&quot;: &quot;items&quot;,
+ &quot;parenttype&quot;: &quot;Quotation&quot;,
+ &quot;prevdoc_docname&quot;: null,
+ &quot;prevdoc_doctype&quot;: null,
+ &quot;price_list_rate&quot;: 1.0,
+ &quot;pricing_rule&quot;: null,
+ &quot;projected_qty&quot;: 0.0,
+ &quot;qty&quot;: 1.0,
+ &quot;rate&quot;: 1.0,
+ &quot;rate_with_margin&quot;: 0.0,
+ &quot;stock_qty&quot;: 1.0,
+ &quot;stock_uom&quot;: &quot;Unit&quot;,
+ &quot;uom&quot;: &quot;Unit&quot;,
+ &quot;warehouse&quot;: &quot;Finished Goods - R&quot;
+ }
+ ]
+ },
+ &quot;url&quot;: &quot;https://httpbin.org/post&quot;
+}
+`
+### Example JSON Request Body
+
+For a Webhook on a sales transaction, we could construct the JSON data as follows:
+
+`{
+ &quot;id&quot;: &quot;{{ doc.name }}&quot;,
+ &quot;total&quot;: &quot;{{ doc.total }} EUR&quot;,
+ &quot;total_net_weight&quot;: &quot;{{ doc.total_net_weight }} kg&quot;,
+ &quot;customer&quot;: &quot;{{ doc.customer }}&quot;,
+ &quot;created&quot;: &quot;{{ doc.creation }}&quot;,
+ &quot;items&quot;: {{ doc[&quot;items&quot;] | tojson }}
+}
+`
+### Webhook Request Log
+
+A webhook request log is created for every successful request with all the relevant details
+
+![](/files/webhook-request-log.png)
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        OpenID Connect and Frappe social login
+
+                    
+                ](/framework/user/en/guides/integration/openid_connect_and_frappe_social_login)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Social Login Key
+
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/guides/integration/social_login_key)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/guides/integration/webhooks
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

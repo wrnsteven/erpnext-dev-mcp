@@ -1,0 +1,37 @@
+在发生销售退货的情况下，关于库存和账务的以下调整可以通过多种方式处理。让我们检查一下基于销售退货调整将过账哪些库存和账户过账。
+
+### Return Without Payment（退货不付款）
+
+如果客户在付款处理之前就请求退货，您可以简单地：
+
+- 取消 Sales Invoice。
+- 针对 Delivery Note 创建销售退货
+
+如果您的法规不允许您取消 Sales Invoice，您也可以针对 Sales Invoice 创建 Credit Note。
+
+### Paid Sales Invoice - Adjustment via Credit Note（已付款的销售发票 - 通过贷项通知单调整）
+
+这是一种客户向您购买商品并已提交 Sales Invoice 且已完成付款的场景。
+
+- 针对 Sales Invoice 创建 Credit Note。
+- 在 Sales Invoice 中，勾选"Is Paid"字段。确保在相关表格中选择了 Payment Account / Mode of Payment。
+- 如果您希望通过 Sales Invoice 本身退回商品，请勾选"Update Stock"字段。
+- 保存并提交 Credit Note。
+
+![图片](../images/497_sales-return-against-payment.png)
+
+根据此条目，已售商品将被接受退回您的 Warehouse。同时，从客户收到的付款将被冲销。
+
+创建 Credit Note 后，Sales Invoice 的 Outstanding Balance 将变为负数。这将为您提供一个调整范围，可以将此 Sales Invoice（负余额）与未来的 Sales Invoice 进行对冲。
+
+### Unpaid Sales Invoice - Credit Note（未付款的销售发票 - 贷项通知单）
+
+在客户未进行任何付款的销售退货情况下，您可以简单地创建 Credit Note。创建 Credit Note 后，Sales Invoice 的 Outstanding 将变为负数。
+
+对于库存调整，您可以针对 Delivery Note 创建销售退货，或在 Credit Note 中勾选"Update Stock"字段。
+
+---
+original_url: https://docs.frappe.io/erpnext/sales-return-use-cases
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

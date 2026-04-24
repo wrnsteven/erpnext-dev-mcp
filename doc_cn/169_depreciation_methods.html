@@ -1,0 +1,118 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>折旧方法</title>
+</head>
+<body>
+    <h1>折旧方法</h1>
+
+    <p><strong>ERPNext 中的折旧是资产成本在其使用寿命内的系统分配。</strong></p>
+
+    <p>系统根据折旧方法、折旧总数以及其他输入（如资产记录中的可用日期）自动生成折旧计划。也可以为不同的财务账簿创建多个计划。</p>
+
+    <blockquote>
+    <p><strong>注意：</strong>要自动生成折旧计划，请在创建资产时确保启用<strong>"计算折旧"</strong>。</p>
+    </blockquote>
+
+    <p><img src="/files/Screenshot%202026-01-11%20at%2011.34.38%E2%80%AFPM.png" alt="" /></p>
+
+    <h2 id="1-depreciation-methods-in-erpnext">1. ERPNext 中的折旧方法</h2>
+
+    <hr />
+
+    <h3 id="11-straight-line">1.1 直线法</h3>
+
+    <ul>
+    <li>资产价值在其使用寿命内均匀减少，直至达到残值。</li>
+    <li>适用于折旧在时间上均匀发生的情况。</li>
+    </ul>
+
+    <p><strong>示例：</strong><br />
+    如果资产成本为 1,000，5 年后残值为 500，则每年折旧为 100。</p>
+
+    <p><strong>附加选项：</strong></p>
+
+    <ul>
+    <li><strong>基于每日按比例折旧：</strong>根据每月的天数调整折旧。</li>
+    <li><strong>基于班次折旧：</strong>根据每班次的资产使用情况调整折旧。在资产班次因子中定义班次因子，并使用资产班次分配进行分配。</li>
+    </ul>
+
+    <p><img src="/files/Screenshot%202024-10-17%20at%201.52.17%E2%80%AFAM.png" alt="" /></p>
+
+    <h3 id="12-double-declining-balance">1.2 双倍余额递减法</h3>
+
+    <ul>
+    <li>也称为<strong>200% 递减余额</strong>。</li>
+    <li>在最初几年折旧较快，后期减慢。</li>
+    </ul>
+
+    <p><strong>示例：</strong><br />
+    如果资产成本为 100,000，8 年后残值为 11,000，则早期的折旧将高于后期。</p>
+
+    <p><img src="/files/Screenshot%202024-10-17%20at%201.54.17%E2%80%AFAM.png" alt="" /></p>
+
+    <h3 id="13-written-down-value-wdv">1.3 账面净值法（WDV）</h3>
+
+    <ul>
+    <li>折旧应用于每个期间资产的<strong>当前账面净值</strong>。</li>
+    <li>适用于初始几年价值损失较大的资产。</li>
+    </ul>
+
+    <p><strong>示例：</strong><br />
+    如果资产成本为 1,000，折旧率为 40%，使用年限为 5 年，则每年折旧为<strong>剩余价值的 40%</strong>。</p>
+
+    <p><img src="/files/Screenshot%202024-10-17%20at%201.41.48%E2%80%AFAM.png" alt="" /></p>
+
+    <h3 id="14-manual">1.4 手动</h3>
+
+    <ul>
+    <li>系统根据资产详情生成默认计划。</li>
+    <li>你可以根据需要手动编辑任何期间的计划日期和折旧金额。</li>
+    </ul>
+
+    <h2 id="2-automatic-depreciation-entries">2. 自动折旧分录</h2>
+
+    <hr />
+
+    <ul>
+    <li>在账户设置中启用自动折旧，以在计划日期自动过账分录。</li>
+    <li>否则，使用折旧计划行中的"制作折旧分录"按钮手动创建分录。</li>
+    </ul>
+
+    <p>相关账户可以在<strong>资产类别</strong>或<strong>公司</strong>中设置。</p>
+
+    <h2 id="3-accounting-entries-on-depreciation">3. 折旧会计分录</h2>
+
+    <hr />
+
+    <p>过账折旧时：</p>
+
+    <ul>
+    <li><strong>累计折旧账户</strong>被贷记</li>
+    <li><strong>折旧费用账户</strong>被借记</li>
+    </ul>
+
+    <blockquote>
+    <p>相关账户在<strong>资产类别</strong>或<strong>公司</strong>主数据中定义。</p>
+    </blockquote>
+
+    <h2 id="4-asset-value-chart">4. 资产价值图表</h2>
+
+    <hr />
+
+    <ul>
+    <li>ERPNext 在折线图中显示资产在不同折旧日期的净值，以便更好地可视化。</li>
+    </ul>
+
+    <p><img src="/files/Screenshot%202026-01-11%20at%2011.41.58%E2%80%AFPM.png" alt="" /></p>
+
+    <h2 id="5-related-topics">5. 相关主题</h2>
+
+    <ol>
+    <li><strong><a href="https://docs.frappe.io/erpnext/user/manual/en/asset-shift-allocation">资产班次分配</a></strong></li>
+    <li><strong><a href="https://docs.frappe.io/erpnext/user/manual/en/asset-maintenance">资产维护</a></strong></li>
+    </ol>
+
+</body>
+</html>

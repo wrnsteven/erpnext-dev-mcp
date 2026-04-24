@@ -1,0 +1,548 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0u8bgab2cq)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Database Migrations																																																																																																								
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0u8bgab2cq)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            A project often undergoes changes related to database schema during course of
+its development. It may also require patching of existing data. Frappe comes
+with a migration and patch system tools to handle these scenarios.
+
+When there are schema changes in your app, to migrate your existing site's
+database to the new schema, you should run the command.
+
+`bench --site [sitename] migrate
+`
+## Schema changes
+
+You can edit a DocType to add, remove or change fields. On saving a DocType, a
+JSON file containing the DocType data is added to source tree of your app. When
+you add an app to a site, the DocTypes are installed (database tables are
+created) using this JSON file.
+
+For making schema changes, you must enable Developer Mode.
+
+On running a `migrate`, all apps migrate to their current version. First, we run the &quot;before_migrate&quot; hook to sync user permissions. Then the actual patches are run, which migrate the various apps. After this, we sync the following components:
+
+Database Schema
+
+- Background Jobs
+
+- Fixtures ([read more](/framework/user/en/python-api/hooks#fixtures))
+
+- Dashboards, Desktop Icons and Web Pages
+
+- Updates Translations
+
+- Rebuild Search Index for all routes
+
+Particularly for DocTypes, we compare the MD5 hash of each DocType JSON with the hashes we have stored in the DocType database table. If the hashes don't match, we reload the particular DocType. This technique is called checksum comparison, you can learn more about it [here](https://www.computerworld.com/article/2819393/unix-tip--comparing-files-with-checksums.html). Finally, we run a &quot;after_migrate&quot; hook to finish the migration. You can find the commands run for the individual processes at [bench-site-commands](bench/frappe-commands#site-commands)
+
+Note: Up Until `v13` DocTypes were synced based on the modified timestamps in the JSON file. This method was error-prone so we moved to the more robust hash comparison method. You can read more about it [here](https://github.com/frappe/frappe/pull/14246#issuecomment-928942292)
+
+When you remove or rename fields in the DocType, the corresponding database
+columns are not removed from the database table, but they will not be visible in
+the form view. This is done to avoid any potential data loss situations and to
+allow you write related data migrations (patches) which might need values from
+old fields.
+
+Frappe doesn't support reverse schema migrations.
+
+## Data Migrations
+
+On introducing data related changes, you might want to run one off scripts to
+change existing data to match expectations as per new code. We call these scripts patch in frappe.
+
+### Writing a patch
+
+To write a patch, you must write an `execute` method in a python script and add
+it to `patches.txt` of your app.
+
+It is recommended to make a file with a patch number and name in its path and
+add it to a patches package (directory) in your app. You can then add a line
+with dotted path to the patch module to `patches.txt`.
+
+The directory structure followed in Frappe is as below
+
+`frappe
+└── patches
+ └── v12_0
+  └── my_awesome_patch.py
+`
+The patch can then be added to `patches.txt` by its dotted path.
+
+`frappe.patches.v12_0.my_awesome_patch
+`
+### Schema during patch
+
+The DocType meta available in the execute function will be as per the old JSON.
+This is so that you can write migration code assuming you still have the old fields.
+After the patch is run, the new schema is applied to the DocType.
+
+If you want to have the new schema during your patch execution, use the `reload_doc` method.
+
+`import frappe
+
+def execute():
+ frappe.reload_doc(module_name, &quot;doctype&quot;, doctype_name)
+
+ # your patch code here
+`
+### Post-Model sync patches [v14 / develop branch only]
+
+Often your patch might not require access to database schema before DocType models are synced with database. In such cases it's better to keep the patch in `[post_model_sync]` section of `patches.txt`.
+
+`patches.txt` supports INI-like file format where two sections specify when a patch should run - before or after doctype schema migration. Post model sync patches do not require reloading any doctypes as all doctypes are reloaded before executing them. Here is example of such patches.txt file:
+
+`[pre_model_sync]
+app.module.patch1
+app.module.patch2
+
+[post_model_sync]
+app.module.patch3
+app.module.patch4
+`
+### One off Python statements
+
+You can also add one off python statements in `patches.txt` using the syntax,
+
+`frappe.patches.v12_0.my_awesome_patch
+execute:frappe.delete_doc('Page', 'applications', ignore_missing=True)
+`
+### Patch execution order
+
+Patches run in the order they are defined. All lines in `patches.txt` have to be
+unique. If a patch has been run before, it won't run again. If you want to run a
+patch again, add a comment that will make the line appear as new.
+
+For example,
+
+`frappe.patches.v12_0.my_awesome_patch #2019-09-08
+`
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Bench Procfile
+
+                    
+                ](/framework/user/en/bench/resources/bench-procfile)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Production Setup
+
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/production-setup)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/database-migrations
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

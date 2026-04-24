@@ -1,0 +1,113 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电子邮件营销活动</title>
+</head>
+<body>
+    <h1>电子邮件营销活动</h1>
+
+    <p><strong>电子邮件营销活动是一组根据特定时间表发送给线索或联系人的协调电子邮件。</strong></p>
+
+    <p>电子邮件营销活动仍然是联系客户、联系人或线索并保持他们参与的最有效方式之一。例如，你可以设置电子邮件营销活动来向客户介绍你的产品，每封电子邮件都展示你产品的一个有趣功能。</p>
+
+    <p>要创建电子邮件营销活动，请进入：</p>
+
+    <blockquote>
+    <p>首页 &gt; CRM &gt; 营销活动 &gt; 电子邮件营销活动</p>
+    </blockquote>
+
+    <h2 id="1-prerequisites">1. 前提条件</h2>
+
+    <p>在创建和使用电子邮件营销活动之前，需要先创建以下内容：</p>
+
+    <ul>
+    <li><a href="/erpnext/campaign">营销活动</a></li>
+    <li><a href="/erpnext/lead">线索</a>或<a href="/erpnext/contact">联系人</a>或<a href="/erpnext/email_group">电子邮件组</a></li>
+    </ul>
+
+    <h2 id="2-how-to-create-an-email-campaign">2. 如何创建电子邮件营销活动</h2>
+
+    <ol>
+    <li>进入电子邮件营销活动列表，点击"新建"。</li>
+    <li>选择你要设置电子邮件营销活动的<a href="/erpnext/campaign">营销活动</>。</li>
+    <li>设置电子邮件营销活动的"开始日期"。</li>
+    <li>在"电子邮件营销活动对象"中，选择你是想为线索、联系人还是电子邮件组设置电子邮件营销活动，以发送给多个电子邮件联系人。</li>
+    <li>在"收件人"中，选择你要为其启动电子邮件营销活动的相应线索、联系人或电子邮件组。</li>
+    <li>在"发件人"中，选择应该是电子邮件发件人的系统用户。</li>
+    <li>保存</li>
+    </ol>
+
+    <p><img src="/files/email-campaign.png" alt="Email Campaign" /></p>
+
+    <p>上述电子邮件营销活动针对的是以下营销活动：</p>
+
+    <p><img src="/files/campaign-email-schedule.png" alt="Campaign Schedule" /></p>
+
+    <p><strong>注意</strong>：营销活动中的<strong>发送天数</strong>字段指定了相对于<strong>电子邮件营销活动</>的<strong>开始日期</strong>发送电子邮件的日期。注意上述电子邮件营销活动中的"结束日期"。它是"2019-07-26"，即"开始日期""2029-07-22"之后的4天，因为营销活动计划在第4天结束。</p>
+
+    <h3 id="21-create-multiple-email-campaigns-for-a-campaign">2.1 为一个营销活动创建多个电子邮件营销活动</h3>
+
+    <p>你还可以通过营销活动仪表板为同一营销活动的不同线索或联系人创建新的电子邮件营销活动。</p>
+
+    <ol>
+    <li>进入你要为其创建电子邮件营销活动的营销活动。</li>
+    <li>点击电子邮件营销活动前面的 +，为该营销活动创建一个新的电子邮件营销活动。</li>
+    </ol>
+
+    <p><img src="/files/campaign-dashboard.png" alt="Email Campaigns from Dashboard" /></p>
+
+    <h2 id="3-features">3. 功能</h2>
+
+    <h3 id="31-linked-communication">3.1 链接的通信</h3>
+
+    <p>当电子邮件被发送到相应的线索或联系人时，通信被链接到电子邮件营销活动文档。你可以在文档中查看所有发送的电子邮件。</p>
+
+    <p><img src="/files/email-campaign-linked-comm.png" alt="Linked Communication" /></p>
+
+    <h3 id="32-unsubscribe-from-email-campaign">3.2 从电子邮件营销活动取消订阅</h3>
+
+    <p>如果线索或联系人不想继续收到有关该营销活动的电子邮件，他或她可以通过电子邮件中发送的取消订阅链接从电子邮件营销活动中取消订阅。</p>
+
+    <p><img src="/files/unsubscribe-link.png" alt="Unsubscribe Link" /></p>
+
+    <p>当线索或联系人取消订阅时，电子邮件营销活动文档的状态将变为"已取消订阅"。</p>
+
+    <p><img src="/files/email-campaign-unsubscribed.png" alt="Unsubscribed" /></p>
+
+    <h3 id="33-use-lead-or-contact-fields-in-email-template">3.3 在电子邮件模板中使用线索或联系人字段</h3>
+
+    <p>电子邮件模板具有你在"电子邮件营销活动对象"字段中指定的文档上下文。如果你想在电子邮件模板中显示线索或联系人文档中的字段，你需要使用<code>doc.字段名</code>来实现。<br />
+    例如，如果"电子邮件营销活动对象"是"联系人"，你可以在电子邮件模板中提及联系人的"名字"为<code>doc.first_name</code>，如下图所示：</p>
+
+    <p><img src="/files/email-template-doc.png" alt="Email Template Document" /></p>
+
+    <p>那么发送的电子邮件将如下所示：</p>
+
+    <p><img src="/files/email-campaign-doc-data.png" alt="Email Campaign Doc Data" /></p>
+
+    <h3 id="34-status-indication">3.4 状态指示</h3>
+
+    <p>状态表示电子邮件营销活动的状态，各种状态如下：</p>
+
+    <ul>
+    <li><strong>已计划</strong>：当电子邮件营销活动尚未开始但计划在未来的"开始日期"进行时。</li>
+    <li><strong>进行中</strong>：在营销活动的"开始日期"和"结束日期"之间，营销活动将被标记为"进行中"。</li>
+    <li><strong>已完成</strong>：在营销活动的"结束日期"之后，状态将变为"已完成"。</li>
+    <li><strong>已取消订阅</strong>：当线索或联系人从营销活动中取消订阅时。</li>
+    </ul>
+
+    <p><img src="/files/email-campaign-status.png" alt="Email Campaign Status" /></p>
+
+    <h2 id="4-related-topics">4. 相关主题</h2>
+
+    <ol>
+    <li><a href="/erpnext/campaign">营销活动</a></li>
+    <li><a href="/erpnext/lead">线索</a></li>
+    <li><a href="/erpnext/contact">联系人</a></li>
+    </ol>
+
+    <p>下一篇：<a href="/erpnext/newsletter">通讯</a></p>
+
+</body>
+</html>

@@ -1,0 +1,668 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tlbc050bu)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                Jinja API
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tlbc050bu)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            These are the whitelisted methods that frappe provides to use them in Jinja
+Templates.
+
+## frappe.format
+
+`frappe.format(value, df, doc)`
+
+Formats a raw value (stored in database) to a user presentable format.
+For example, convert 2019-09-08 to 08-09-2019
+
+Usage
+
+`{{ frappe.format('2019-09-08', {'fieldtype': 'Date'}) }}
+
+09-08-2019
+`
+## frappe.format_date
+
+`frappe.format_date(date_string)`
+
+Formats date into a human readable long format.
+
+Usage
+
+`{{ frappe.format_date('2019-09-08') }}
+
+September 8, 2019
+`
+## frappe.get_url
+
+`frappe.get_url()`
+
+Returns the site url
+
+Usage
+
+`{{ frappe.get_url() }}
+
+https://frappe.io
+`
+## frappe.get_doc
+
+`frappe.get_doc(doctype, name)`
+
+Returns a document by its name.
+
+Usage
+
+`
+ {% set doc = frappe.get_doc('Task', 'TASK00002') %}
+ {{ doc.title }} - {{ doc.status }}
+
+ Buy Eggs - Open
+
+`
+## frappe.get_all
+
+`frappe.get_all(doctype, filters, fields, order_by, start, page_length, pluck)`
+
+Returns a list of all records of a DocType. Only returns the document `name`s if the `fields` argument is not given.
+
+Signature
+
+`frappe.get_all(doctype, filters, fields, order_by, start, page_length)
+`
+Usage
+
+`
+ {% set tasks = frappe.get_all('Task', filters={'status': 'Open'}, fields=['title', 'due_date'], order_by='due_date asc') %}
+ {% for task in tasks %}
+ 
+### {{ task.title }}
+
+Due Date: {{ frappe.format_date(task.due_date) }}
+
+ {% endfor %}
+
+### Redesign Website
+
+Due Date: September 8, 2019
+
+### Add meta tags on websites
+
+Due Date: September 22, 2019
+
+`
+## frappe.get_list
+
+`frappe.get_list(doctype, filters, fields, order_by, start, page_length)`
+
+Similar to `frappe.get_all` but will filter records for the current session user
+based on permissions.
+
+## frappe.db.get_value
+
+`frappe.db.get_value(doctype, name, fieldname)`
+
+Returns a single field value (or a list of values) from a document.
+
+Usage
+
+`
+
+ {% set company_abbreviation = frappe.db.get_value('Company', 'TennisMart', 'abbr') %}
+ {{ company_abbreviation }}
+ 
+
+ {% set title, description = frappe.db.get_value('Task', 'TASK00002', ['title', 'description']) %}
+ ### {{ title }}
+
+{{ description }}
+
+TM
+
+`
+## frappe.db.get_single_value
+
+`frappe.db.get_single_value(doctype, fieldname)`
+
+Returns a field value from a Single DocType.
+
+Usage
+
+`
+
+ {% set timezone = frappe.db.get_single_value('System Settings', 'time_zone') %}
+ {{ timezone }}
+ 
+
+ Asia/Kolkata
+ 
+
+`
+## frappe.get_system_settings
+
+`frappe.get_system_settings(fieldname)`
+
+Returns a field value from System Settings.
+
+Usage
+
+`
+ {% if frappe.get_system_settings('country') == 'India' %}
+ Pay via Razorpay
+ {% else %}
+ Pay via PayPal
+ {% endif %}
+
+Pay via Razorpay
+
+`
+## frappe.get_meta
+
+`frappe.get_meta(doctype)`
+
+Returns a doctype meta. It contains information like fields, title_field,
+image_field, etc.
+
+Usage
+
+`
+
+ {% set meta = frappe.get_meta('Task') %}
+ Task has {{ meta.fields | len }} fields.
+ {% if meta.get_field('status') %}
+ It also has a Status field.
+ {% endif %}
+ 
+
+ Task has 18 fields. It also has a Status field.
+ 
+
+`
+## frappe.get_fullname
+
+`frappe.get_fullname(user_email)`
+
+Returns the fullname of the user email passed. If user is not passed, assumes
+current logged in user.
+
+Usage
+
+`
+The fullname of faris@erpnext.com is {{ frappe.get_fullname('faris@erpnext.com') }}
+The current logged in user is {{ frappe.get_fullname() }}
+
+The fullname of faris@erpnext.com is Faris Ansari
+The current logged in user is John Doe
+
+`
+## frappe.render_template
+
+`frappe.render_template(template_name, context)`
+
+Render a jinja template string or file with context.
+
+Usage
+
+`
+
+ {{ frappe.render_template('templates/includes/footer/footer.html', {}) }}
+
+ 
+{{ frappe.render_template('{{ foo }}', {'foo': 'bar'}) }}
+
+bar
+
+`
+## frappe._
+
+`frappe._(string)` or `_(string)`
+
+Usage
+
+`
+{{ _('This string should get translated') }}
+
+इस तार का अनुवाद होना चाहिए
+
+`
+## frappe.session.user
+
+Returns the current session user
+
+## frappe.session.csrf_token
+
+Returns the current session's CSRF token
+
+## frappe.form_dict
+
+If the template is being evaluated in a web request, `frappe.form_dict` is a
+dict of query parameters, else it is `None`.
+
+## frappe.lang
+
+Current language used by the translation function. Two letter, lowercase code.
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Database API
+                    
+                ](/framework/user/en/api/database)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Request Lifecycle
+
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/python-api/routing-and-rendering)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/api/jinja
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

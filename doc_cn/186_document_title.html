@@ -1,0 +1,47 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档标题</title>
+</head>
+<body>
+    <h1>文档标题</h1>
+
+    <p><strong>你可以根据属性自定义文档标题，以便在列表视图中获取有意义的信息。</strong></p>
+
+    <p>例如，报价单上的默认标题是客户名称，但如果你只与少数客户打交道，并向每个客户发送大量报价单，你可能需要自定义。</p>
+
+    <p><img src="/files/document-title.png" alt="文档标题" /></p>
+
+    <h2>设置标题字段</h2>
+
+    <p>从 ERPNext Version 6.0 开始，所有交易都有一个"Title（标题）"属性。如果没有标题属性，你可以添加一个<strong>自定义字段</strong>作为标题，并通过<strong>Customize Form（自定义表单）</strong>设置<strong>Title Field（标题字段）</strong>。</p>
+
+    <p>你可以使用 Python 风格的字符串格式化在<strong>Default（默认值）</strong>或<strong>Options（选项）</strong>中设置该属性的默认值</p>
+
+    <ol>
+    <li>要编辑默认标题，请进入 Customize Form（自定义表单）</li>
+    <li>选择要更改其标题字段的表单。</li>
+    <li>在表单中编辑<strong>Title Field（标题字段）</strong>。</li>
+    </ol>
+
+    <h2>定义标题</h2>
+
+    <p>你可以通过在花括号<code>{}</code>中设置文档属性来定义标题。例如，如果你的文档有字段<code>customer_name</code>，你可以将其指定为表单的标题。</p>
+
+    <p><img src="/files/set-document-title.gif" alt="设置文档标题" /></p>
+
+    <p>或者，你也可以在 Customize Form（自定义表单）中将特定字段定义为"Title Field（标题字段）"。</p>
+
+    <p><img src="/files/title-field-in-view-settings.png" alt="标题字段" /></p>
+
+    <h2>固定或可编辑标题</h2>
+
+    <p>如果你的标题生成为默认标题，用户可以通过点击文档标题来编辑它。</p>
+
+    <p><img src="/files/customize-document%20title.gif" alt="可编辑标题" /></p>
+
+    <p>如果你想要固定标题，你可以在<strong>Options（选项）</strong>属性中设置规则。这样，每次更新文档时，标题都会自动更新。</p>
+
+</body>
+</html>

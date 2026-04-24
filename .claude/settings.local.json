@@ -1,0 +1,35 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s \"https://docs.frappe.io/framework/user/en/basics/doctypes/customize\")",
+      "Bash(curl -s \"https://docs.frappe.io/framework/user/en/basics/doctypes/customize\" -o /tmp/customize_page.html)",
+      "Bash(python3)",
+      "Bash(curl -s \"https://docs.frappe.io/framework/user/en/\")",
+      "Bash(curl -sL \"https://docs.frappe.io/framework/user/en/\")",
+      "Bash(curl -sL \"https://docs.frappe.io/framework/\")",
+      "Bash(curl -sL \"https://docs.frappe.io/framework/user/en/api\" -o /tmp/api_page.html)",
+      "Bash(mkdir -p /home/xyw/.openclaw/workspace/erpnext/images)",
+      "Bash(curl -sL \"https://docs.frappe.io/files/Group%2083729.png\" -o /home/xyw/.openclaw/workspace/erpnext/images/Group_83729.png)",
+      "Read(//home/xyw/.openclaw/workspace/erpnext/images/**)",
+      "Bash(curl -sL \"https://docs.frappe.io/framework/user/en/api/background_jobs\" -o /tmp/background_jobs.html)",
+      "Bash(curl -s \"https://docs.frappe.io/erpnext/introduction\")",
+      "Bash(curl *)",
+      "Bash(chmod +x /home/xyw/.openclaw/workspace/erpnext/batch_processor.py)",
+      "Bash(python3 batch_processor.py framework_urls.json)",
+      "Bash(python3 *)",
+      "WebFetch(domain:docs.frappe.io)",
+      "Bash(sort -t_ -k1 -n)",
+      "Bash(sort -t'/' -k2 -n)",
+      "Bash(xargs -I{} basename {})",
+      "Bash(export CLAUDE_CODE_AUTO_APPROVE=1)",
+      "Bash(pip3 install *)",
+      "Bash(xargs -I{} basename {} .md)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "WebFetch(domain:www.npmjs.com)"
+    ]
+  }
+}

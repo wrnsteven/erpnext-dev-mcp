@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调整预扣金额 - ERPNext</title>
+</head>
+<body>
+    <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+        <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">调整预扣金额</h1>
+    </header>
+
+    <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+        <p>假设一张 Sales Invoice 的应付金额为 20,000。当客户付款时，他们只支付 19,600。剩余的 400 需要计入预扣税账户。您可以按以下方式处理此场景。</p>
+        <h2 id="step-1-setup-withhold-account">步骤 1：设置预扣账户</h2>
+        <p>在您的科目表中<a href="/erpnext/chart-of-accounts#1-how-to-createedit-accounts">创建一个预扣账户</a>。</p>
+        <h2 id="step-2-payment-entry">步骤 2：付款条目</h2>
+        <p>要创建 Payment Entry，请转到未付款的 Sales Invoice，然后点击"Make Payment"按钮。</p>
+        <h3 id="step-21-enter-payment-amount">步骤 2.1：输入付款金额</h3>
+        <p>输入付款金额为 19,600。</p>
+        <p><img src="/images/27_paid-amount-in-payment-entry.png" alt="Paid Amount in Payment Entry" /></p>
+        <h3 id="step-22-allocate-against-sales-invoice">步骤 2.2：分配到 Sales Invoice</h3>
+        <p>在 Sales Invoice 上，分配 20,000（如下图所示）。</p>
+        <h3 id="step-23-add-deductionloss-account">步骤 2.3：添加扣除/损失账户</h3>
+        <p>您会注意到付款金额与分配到 Sales Invoice 的金额之间存在 400 的差额。您可以将此差额账户计入预扣账户。</p>
+        <p><img src="/images/27_tax-withheld-adjustment-in-payment-entry.gif" alt="Tax Withheld Adjustment in Payment Entry" /></p>
+        <p>按照相同的步骤，您还可以处理因货币汇率变动而产生的差额。</p>
+    </div>
+
+    <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+        <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+            <a href="/erpnext/post-dated-cheque-entry" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <div class="flex flex-col gap-1 min-w-0">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">上一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">Post Dated Cheque Entry</span>
+                </div>
+            </a>
+            <a href="/erpnext/single-payment-multiple-invoices" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">下一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">Single Payment Again Multiple Invoices</span>
+                </div>
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]">
+            最后更新于 2 个月前
+        </div>
+    </div>
+</body>
+</html>

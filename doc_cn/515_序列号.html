@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>序列号</title>
+</head>
+<body>
+<p># 序列号</p><p>> 从版本 15 起，已移除序列号/批号项目的允许负库存功能。因此，从版本 15 开始，即使在库存设置中启用了允许负库存，用户也无法对序列号/批号项目进行负库存交易。</p><p>要为项目启用序列号/批号功能，首先需要在<strong>库存设置</strong>中勾选"为品目启用序列号和批号"复选框。</p><p>!<a href="../../images/515_Screenshot%202026-03-06%20at%2011.52.18%20AM.png">图片</a></p><p>如 <a href="/erpnext/item">品目</a> 页面中所讨论的，如果某个<strong>品目</strong>是<strong>序列化管理</strong>的，则会为该<strong>品目</strong>的每个数量维护一条<strong>序列号</strong>（Serial No）记录。此信息有助于追踪序列号的位置及其保修期和到期（有效期）信息。</p><p>您还可以追踪从哪个<strong>供应商</strong>购买了<strong>序列号</strong>，以及销售给了哪个<strong>客户</strong>。<strong>序列号</strong>状态将显示其当前的库存状态。</p><p>如果您的品目是序列化管理，则必须在相关列中输入序列号，每个序列号占一行。您可以使用序列号来管理序列化物料的单件库存。</p><p>要访问序列号列表，请前往：> 首页 > 库存 > 序列号和批号 > 序列号</p><ul>
+\0</ul><p>- <a href="/erpnext/item">品目</a>
+- 在品目主数据中启用"有序列号" !<a href="../../images/515_serial-no-enabled.png">图片</a></p><ul>
+\0</ul><p>- 进入序列号列表，点击新建。
+- 输入序列号。
+- 输入品目代码，系统会自动获取详情。
+- 如果品目已有任何交易，则无法设置或取消设置序列号。
+- 保存。</p><p>品目的库存只有在序列号通过库存交易（库存凭证、采购收货、交货单据、销售发票）进行交易时才会受到影响。当直接创建新序列号时，无法设置其仓库。</p><p>!<a href="../../images/515_serial-no.png">图片</a></p><p><h2>2.1 关于序列号的注意事项</h2></p><p>- 状态是根据库存凭证设置的。
+- 只有状态为"可用"的序列号才能进行交付。
+- 序列号可以从库存凭证或采购收货中自动创建。如果您在序列号列中指定了序列号，系统会自动创建这些序列号。
+- 如果在品目主数据中指定了序列号系列，则可以在库存凭证/采购收货中留空序列号列。序列号会自动从该系列中设置。</p><ul>
+\0</ul><p>- <a href="/erpnext/item-codification">品目编码</a>
+- <a href="/erpnext/item-variants">品目变体</a>
+- <a href="/erpnext/serial-no-naming">序列号命名</a></p><p>---
+original_url: https://docs.frappe.io/erpnext/serial-no
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18</p>
+</body>
+</html>

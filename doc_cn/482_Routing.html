@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routing</title>
+</head>
+<body>
+<p><strong>Routing 是 BOM 工序的模板。</strong></p><p>Routing 用于存储所有工序及其描述、小时费率、工序时间、批量大小等信息。当不同产品的制造使用相似的工序时，为 BOM 工序创建 Routing 非常有用。</p><p><h2>前置条件</h2></p><p>- <a href="/erpnext/operation">工序</a>
+- <a href="/erpnext/workstation">工作站</a></p><p><h1>如何创建 Routing</h1></p><p>- 进入 Routing 列表，点击"新建"。
+- 输入 Routing 的名称。
+- 在 BOM 工序表中输入工序：</p><p>  - 选择工序。
+  - 将自动获取默认工作站。
+  - 输入该工序运行的小时费率。
+  - 输入工序时间（分钟）。
+  - 输入批量大小，即该工序处理的单位数量。
+  - 系统将根据小时费率和工序时间自动计算工序成本。
+- 保存。</p><p>创建后，可以在 BOM 中选择 Routing 以获取其中存储的工序。</p><p>!<a href="../images/482_CleanShot%202026-02-19%20at%2012.31.10@2x.png">图片</a></p><p><h1>Routing 中的序列 ID</h1></p><p>!<a href="../images/482_image2679eb.png">图片</a></p><p>序列 ID 要求用户通过工票按顺序完成工序。如果用户尝试在完成前置工序之前完成某个工序（根据序列 ID），系统将抛出验证错误。</p><p><h2>相关主题</h2></p><p>- <a href="/erpnext/work-order">工单</a>
+- <a href="/erpnext/bill-of-materials">物料清单</a></p><p>---
+original_url: https://docs.frappe.io/erpnext/routing
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---</p>
+</body>
+</html>

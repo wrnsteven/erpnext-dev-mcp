@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>银行账户</title>
+</head>
+<body>
+    <h1>银行账户</h1>
+
+    <p>在 ERPNext 中，可以为公司以及其他各方（如客户、供应商等）创建银行账户。这样可以正确记录所有银行交易以确保会计准确性。</p>
+
+    <p>你可以在 ERPNext 中为公司、供应商、客户或任何其他有业务往来的各方添加银行账户。然后可以在 <a href="/erpnext/payment-entry">Payment Entries</a> 中将银行账户作为 <a href="/erpnext/mode-of-payment">Mode of Payment</a> 选择。</p>
+
+    <p>要访问银行账户，请前往：</p>
+
+    <blockquote>
+        <p>首页 > 会计 > 银行对账单 > 银行账户</p>
+    </blockquote>
+
+    <p><img src="/files/bank-account.png" alt="银行账户" /></p>
+
+    <h2>1. 前置条件</h2>
+
+    <p>在创建和使用银行账户之前，建议首先创建以下内容：</p>
+
+    <ul>
+        <li><a href="/erpnext/bank">Bank</a></li>
+    </ul>
+
+    <h2>2. 如何创建银行账户</h2>
+
+    <ol>
+        <li>输入账户名称。</li>
+        <li>链接在 <a href="/erpnext/chart-of-accounts">Chart of Accounts</a> 中设置为"银行账户"的分类账账户。</li>
+        <li>选择一家银行。</li>
+        <li>保存。</li>
+    </ol>
+
+    <h3>2.1 创建银行账户时的其他选项</h3>
+
+    <ul>
+        <li><strong>是否为默认账户</strong>：启用此选项将使其成为所有日记账交易的默认银行账户。</li>
+        <li><strong>是否为公司账户</strong>：如果这是公司的银行账户，请启用。</li>
+        <li>可以设置账户类型和账户子类型，以便在报表中进行进一步分类。</li>
+    </ul>
+
+    <h2>3. 功能</h2>
+
+    <h3>3.1 交易方详情</h3>
+
+    <ul>
+        <li><strong>交易方类型</strong>：如果这不是公司账户，请设置此账户属于谁。可用选项包括：客户、员工、会员、股东、学生和供应商。</li>
+        <li><strong>交易方</strong>：选择特定的客户/供应商等。</li>
+    </ul>
+
+    <h3>3.2 账户详情</h3>
+
+    <p>作为参考，以下银行账户详情可以存储在 ERPNext 中：</p>
+
+    <ul>
+        <li>IBAN</li>
+        <li>银行账号</li>
+        <li>分行代码</li>
+        <li>SWIFT 代码</li>
+    </ul>
+
+    <h3>3.3 地址和联系人</h3>
+
+    <ul>
+        <li><strong>地址</strong>：一家银行在同一地区可能有多个网点。银行分行地址可以在这里设置。</li>
+        <li><strong>联系人</strong>：可以在这里链接一个联系人。银行通常为企业账户提供一个专属联系人，你可以在这里添加该联系人的联系方式。</li>
+        <li><strong>网站</strong>：你可以在这里添加银行的网站。</li>
+    </ul>
+
+    <h3>3.4 集成详情</h3>
+
+    <p><strong>最后集成日期</strong>：如果你的银行支持 <a href="/erpnext/plaid_integration">Plaid Integration</a>，在这里设置日期将同步指定日期。这将创建银行交易条目。</p>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>允许超出订单一定限额的交货/开票 - ERPNext</title>
+</head>
+<body>
+    <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+        <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">允许超出订单一定限额的交货/开票</h1>
+    </header>
+
+    <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+        <p>创建 Delivery Note 时，系统会验证商品的数量的与 Sales Order 是否一致。如果商品数量增加，您将收到关于超出交货或收款的验证消息。</p>
+        <p>考虑到销售情况，如果您希望能够交付比 Sales Order 中规定的更多商品，您应该在 Item master 中更新"允许超出此百分比限额的交货或收款"。</p>
+        <p><img src="/images/32_limit-1.png" alt="Itemised Limit Percentage" /></p>
+        <p>创建发票时，商品单价也会根据前置交易（如 Sales Order）进行验证。这同样适用于从 Purchase Order 创建 Purchase Receipt 或 Purchase Invoice。更新"允许超出此百分比限额的交货或收款"将影响所有销售和采购交易。</p>
+        <p>例如，如果您订购了 100 件商品，并且商品的超出收货百分比为 50，则您最多可以创建 150 件商品的 Purchase Receipt。</p>
+        <p>从 Stock Settings 更新"允许超出此百分比限额的交货或收款"的全局值。在此更新的值将适用于所有商品。</p>
+        <ol>
+            <li>转到 <code>Stock > Setup > Stock Settings</code></li>
+            <li>设置 <code>Limit Percentage</code>。</li>
+            <li>保存 Stock Settings。</li>
+        </ol>
+        <p><img src="/images/32_TGPrUJY.png" alt="" /></p>
+    </div>
+
+    <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+        <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+            <a href="/erpnext/warehouse-ledger-link" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <div class="flex flex-col gap-1 min-w-0">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">上一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">Linking stock warehouse and accounts</span>
+                </div>
+            </a>
+            <a href="/erpnext/item-codification" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">下一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">Item Codification</span>
+                </div>
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]">
+            最后更新于 2 个月前
+        </div>
+    </div>
+</body>
+</html>

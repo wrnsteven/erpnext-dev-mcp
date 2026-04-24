@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资产移动 - ERPNext</title>
+</head>
+<body>
+    <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+        <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">资产移动</h1>
+    </header>
+
+    <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+        <p><strong>资产移动是一个用于在位置和/或员工（保管人）之间转移资产的交易。</strong></p>
+        <p>此功能帮助您跟踪组织内资产的 physical 移动和保管。您可以将资产从一个仓库移动到另一个仓库，分配给员工，或记录其归还。</p>
+        <p>例如，笔记本电脑可以从总部位置发放给销售部门的员工，之后在归还时转移回仓库。</p>
+        <p>要访问资产移动列表，请前往：</p>
+        <blockquote>
+            <p>Home > Assets > Assets > Asset Movement</p>
+        </blockquote>
+        <h2 id="1-how-to-create-an-asset-movement">1. 如何创建资产移动</h2>
+        <ol>
+            <li>前往<strong>资产移动</strong>列表。</li>
+            <li>点击<strong>新建</strong>。</li>
+            <li>选择<strong>目的</strong>。</li>
+            <li>输入所需的详细信息。</li>
+            <li>点击<strong>保存</strong>和<strong>提交</strong>。</li>
+        </ol>
+        <blockquote>
+            <p>资产移动是一笔交易，必须<strong>提交</strong>才能更新资产的位置或保管人。</p>
+        </blockquote>
+        <p><img src="/images/47_Screenshot 2026-02-20 at 12.39.33AM.png" alt="" /></p>
+        <h2 id="2-features">2. 功能</h2>
+        <hr />
+        <h3 id="21-purpose-of-asset-movement">2.1 资产移动的目的</h3>
+        <p><strong>目的</strong>字段决定正在执行的移动类型。基于所选目的，必填字段将发生变化。</p>
+        <ol>
+            <li>转移：将资产从一个位置移动到另一个位置。</li>
+        </ol>
+        <ul>
+            <li>示例：将成型机从"工厂A"转移到"工厂B"。</li>
+        </ul>
+        <ol start="2">
+            <li>发放：将资产从一个员工移动到另一个员工</li>
+        </ul>
+        <ul>
+            <li>示例：从仓库向 John Carter（销售主管）发放公司笔记本电脑。</li>
+        </ul>
+        <ol start="3">
+            <li>接收：将资产从员工处移回位置。</li>
+        </ul>
+        <ul>
+            <li>示例：从辞职员工处接收笔记本电脑并将其移回仓库。</li>
+        </ul>
+        <ol start="4">
+            <li>转移和发放：在单个条目中同时将资产从一个位置到另一个位置，以及从一个员工到另一个员工。</li>
+        </ol>
+        <p>当资产同时更改物理位置和保管人时，这很有用。</p>
+        <h2 id="3-moving-multiple-assets-at-once">3. 一次移动多个资产</h2>
+        <p>如果您想一起移动多个资产：</p>
+        <ol>
+            <li>前往<strong>资产列表</strong>。</li>
+            <li>使用复选框选择多个资产。</li>
+            <li>点击<strong>操作</strong>（右上角）。</li>
+            <li>选择<strong>创建资产移动</strong>。</li>
+        </ol>
+        <p>这将创建带有预填充所选资产的新资产移动。</p>
+        <p><img src="/images/47_Screenshot 2026-02-20 at 12.35.22AM.png" alt="" /></p>
+        <h2 id="4-initiating-asset-movement-from-asset-form">4. 从资产表单发起资产移动</h2>
+        <p>在资产表单右上角的<strong>操作</strong>下拉菜单中也有<strong>转移资产</strong>选项可发起资产移动。它从资产表单自动填充可用字段。</p>
+        <p><img src="/images/47_Screenshot 2026-02-20 at 12.37.04AM.png" alt="" /></p>
+    </div>
+
+    <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+        <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+            <a href="/erpnext/asset-maintenance-log" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <div class="flex flex-col gap-1 min-w-0">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">上一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">资产维护日志</span>
+                </div>
+            </a>
+            <a href="/erpnext/asset-repair" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">下一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">Asset Repair</span>
+                </div>
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]">
+            最后更新于 2 个月前
+        </div>
+    </div>
+</body>
+</html>

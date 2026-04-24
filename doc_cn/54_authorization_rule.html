@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>授权规则 - ERPNext</title>
+</head>
+<body>
+    <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+        <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">授权规则</h1>
+    </header>
+
+    <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+        <p><strong>授权规则允许根据定义的条件在文档上配置自定义授权/审批。</strong></p>
+<p>示例：如果销售订单的总额超过1,000美元，则应仅由销售经理验证/提交，即使销售用户具有"提交"权限。</p>
+<p>按照同样的思路，您可以根据净额、总额、折扣百分比等字段定义授权规则，并指定在满足授权条件时谁应该是文档审批人。</p>
+<p><img src="/images/55_authorization-rule.png" alt="Authorization Rule" /></p>
+<p>让我们通过一个详细的授权规则示例来更好地了解。</p>
+<p>假设销售经理需要授权销售订单，仅当其总额超过10,000时。如果销售订单价值低于10,000，那么销售用户也可以提交。这意味着销售用户的提交权限仅限制在总额低于10,000的销售订单。</p>
+<h2 id="1-how-to-create-an-authorization-rule">1. 如何创建授权规则</h2>
+<ol>
+<li>转到授权规则列表，点击新建。</li>
+<li>选择授权规则将适用的交易。此功能仅适用于有限的交易。</li>
+<li>输入授权值等。这取决于您在"基于"中选择字段。</li>
+<li>选择基于。授权规则将根据此字段中选择的值应用。</li>
+<li>选择适用角色。这是此授权规则将适用的角色。按照示例，它将是销售用户。</li>
+<li>为了更具体，如果您希望将规则应用于特定销售用户而不是所有销售用户，您也可以选择适用用户。</li>
+<li>选择审批角色。这是有权批准超过授权值表单的角色。按照我们的示例，它是销售经理。</li>
+<li>您也可以选择特定的销售经理。</li>
+<li>保存。</li>
+</ol>
+<p><img src="/images/55_new-authorization-rule.png" alt="Authorization Rule" /></p>
+<p>如果销售用户尝试提交价值高于10,000的销售订单，他将收到错误消息。</p>
+<p><img src="/images/55_authorization-rule-validation-message.png" alt="Authorization Rule Validation Message" /></p>
+<blockquote>
+<p>如果您希望限制销售用户提交销售订单，那么您应该从<a href="/erpnext/role-based-permissions">角色权限管理器</a>中删除销售用户的提交权限，而不是创建授权规则。</p>
+</blockquote>
+<h3 id="documents-on-which-authorization-rule-can-be-applied">可应用授权规则的文档</h3>
+<ol>
+<li>销售订单</li>
+<li>采购订单</li>
+<li>报价单</li>
+<li>交货单</li>
+<li>销售发票</li>
+<li>采购发票</li>
+<li>采购收货</li>
+<li>评估</li>
+</ol>
+<h3 id="fields-on-which-authorization-condition-can-be-based-on">授权条件可以基于的字段</h3>
+<ol>
+<li>总额</li>
+<li>平均折扣</li>
+<li>客户折扣</li>
+<li>项目折扣</li>
+</ol>
+    </div>
+
+    <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+        <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+            <a href="/erpnext/workflow-transition-tasks" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <div class="flex flex-col gap-1 min-w-0">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">上一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">Workflow Transition Tasks</span>
+                </div>
+            </a>
+            <a href="/erpnext/easy-steps-to-setup-workflow" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">下一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">Easy steps to setup Workflow</span>
+                </div>
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]">
+            最后更新于 2 个月前
+        </div>
+    </div>
+</body>
+</html>

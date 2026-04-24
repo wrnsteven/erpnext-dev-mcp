@@ -1,0 +1,557 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0ts8m79r6r)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # How To Enable Social Logins
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0ts8m79r6r)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Use Facebook, Google or GitHub authentication to login to Frappe, and your users will be spared from remembering another password.
+
+The system uses the Email Address supplied by these services to match with an existing user in Frappe. If no such user is found, a new user is created of the default type Website User, if Signup is not disabled in Website Settings. Any System Manager can later change the user type from Website User to System User, so that the user can access the Desktop.
+
+#### Login screen with Social Logins enabled
+
+![Login screen with Social Logins enabled](/files/social-logins.png)
+
+To enable these signups, you need to have Client ID and Client Secret from these authentication services for your Frappe site. The Client ID and Client Secret are to be set in Desktop &gt; Integration &gt; Authentication &gt; Social Login Key &gt; Client ID and Desktop &gt; Integration &gt; Authentication &gt; Social Login Key &gt; Client Secret. Here are the steps to obtain these credentials.
+
+Use https://{{ yoursite }} if your site is HTTPS enabled.
+
+### Frappe
+
+This is assuming you have two 2 sites built on Frappe Framework. Site A is `https://sitea.com` and Site B is `https://siteb.com`. You want to use `https://sitea.com` as the login provider and setup Social Login on `https://siteb.com` to login via `https://sitea.com`.
+
+Go to `https://sitea.com` which is the login provider
+
+- Go to OAuth Client list
+
+- Create a new OAuth Client
+
+- Enter the App Name (Something that identifies Site B)
+
+- In Redirect URIs and Default Redirect URI enter `https://siteb.com/api/method/frappe.integrations.oauth2_logins.login_via_frappe`
+
+- After you save the document, App Client ID and App Client Secret will be generated
+
+- Go to `https://siteb.com` where you want to setup Social Login
+
+- Go to Social Login Key and create a new one
+
+- Enter Client ID and Client Secret obtained in step 6
+
+- Select Social Login Provider as Frappe
+
+- Enter `https://sitea.com` as Base URL and then save the document.
+
+### Facebook
+
+- Go to [https://developers.facebook.com](https://developers.facebook.com)
+
+- Click on Apps (topbar) &gt; New App, fill in the form.
+
+- Go to Settings &gt; Basic, set the Contact Email and save the changes.
+
+- Go to Settings &gt; Advanced, find the field Valid OAuth redirect URIs, and enter:
+`http://{{ yoursite }}/api/method/frappe.integrations.oauth2_logins.login_via_facebook`
+
+- Save the changes in Advance tab.
+
+- Go to Status &amp; Review and switch on &quot;Do you want to make this app and all its live features available to the general public?&quot;
+
+- Go to Dashboard, click on the show button besides App Secret, and copy the App ID and App Secret into Desktop &gt; Integration &gt; Authentication &gt; Social Login Key &gt; Client ID and Desktop &gt; Integration &gt; Authentication &gt; Social Login Key &gt; Client Secret
+
+### Google
+
+- Go to [https://console.developers.google.com](https://console.developers.google.com)
+
+- Create a new Project and fill in the form.
+
+- Click on APIs &amp; Auth &gt; Credentials &gt; Create new Client ID
+
+- Fill the form with:
+
+- Web Application
+
+- Authorized JavaScript origins as http://{{ yoursite }}
+
+- Authorized redirect URI as
+`http://{{ yoursite }}/api/method/frappe.integrations.oauth2_logins.login_via_google`
+
+- Go to the section Client ID for web application and copy the Client ID and Client Secret into Desktop &gt; Integration &gt; Authentication &gt; Social Login Key &gt; Client ID
+
+### GitHub
+
+- Go to [https://github.com/settings/applications](https://github.com/settings/applications)
+
+- Click on Register new application
+
+- Fill the form with:
+
+- Homepage URL as http://{{ yoursite }}
+
+- Authorization callback URL as
+`http://{{ yoursite }}/api/method/frappe.integrations.oauth2_logins.login_via_github`
+
+- Click on Register application.
+
+- Copy the generated Client ID and Client Secret into Desktop &gt; Website &gt; Setup &gt; Social Login Keys and Desktop &gt; Integration &gt; Authentication &gt; Social Login Key &gt; Client Secret
+
+### Office 365
+
+- Go to [https://portal.azure.com](https://portal.azure.com)
+
+- Create a new Azure Active Directory &gt; App Registration.
+
+- Click on New Application Registration
+
+- Fill the form with:
+
+- Application Name
+
+- Select Accounts in any organizational directory (Any Azure AD directory - Multitenant).
+
+- Application Type - Web app / API
+
+- Redirect URI as
+
+- Homepage URL as http://{{ yoursite }}
+
+- Authorization callback URL as `http://{{ yoursite }}//api/method/frappe.integrations.oauth2_logins.login_via_office365`
+
+- Click on Register application.
+
+- Go to the section Overview in Azure Portal copy the Application (client) ID into **Desktop &gt; Integration &gt; Authentication &gt; Social Login Key &gt; Client ID
+
+- Go to the section Certificates &amp; secrets in Azure Portal and create new client secrets copy than copy Client Secret by adding into Desktop &gt; Integration &gt; Authentication &gt; Social Login Key &gt; Client Secret
+
+- Select Office 365 as Social Login Provider
+
+- Click Enable Social Login and Save
+
+- Go to the section Token configuration click add optional claim
+
+- Add Token Type &gt; ID &gt; Email
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Migrations
+                    
+                ](/framework/user/en/guides/deployment/migrations)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Getting Information From Another Document In Print Format
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/guides/reports-and-printing/getting-information-from-another-document-in-print-format)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/guides/deployment/how-to-enable-social-logins
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

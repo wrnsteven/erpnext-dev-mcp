@@ -1,0 +1,40 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>自定义模块可见性</title>
+</head>
+<body>
+    <h1>自定义模块可见性</h1>
+
+    <p><strong>ERPNext 作为一个系统，可以被各种规模的多家企业使用，制造业、教育、零售等行业是系统可用性受益最多的几个行业。</strong></p>
+
+<p>考虑到各类企业主的利益，系统针对不同业务的功能已被映射到不同的"模块"中，在系统中以"卡片"形式表示。同样，系统中的核心模块（如人力资源、会计、CRM 等）也在仪表板上以不同的卡片表示。</p>
+
+<p>每个 ERPNext 账户持有者都可以根据其业务情况选择自定义不同模块的可见性。</p>
+
+<p>*在版本 12 中，你可以转到首页屏幕右上角的"显示/隐藏模块"来检查模块的可见性。**</p>
+
+<p><img src="/files/customize-module-visibility-2.png" alt="Module Visibility" /></p>
+<p><img src="/files/customize-module-visibility.gif" alt="Module Visibility" /></p>
+
+<blockquote>
+<p>注意：模块会自动对没有该模块内文档权限的用户隐藏。例如，如果用户没有采购订单、采购请求、供应商的权限，则"采购"模块对该用户将自动隐藏。</p>
+</blockquote>
+
+<p>如果你对特定模块有权限，但它仍然不可见，可能是以下原因。</p>
+
+<p>让我们考虑一个场景：用户有网站模块的权限，但无法访问它。</p>
+
+<p>作为基本要求，确保该用户分配了"网站管理器"角色。这是一个标准角色，授予网站模块的权限。如果在你的账户中自定义了权限，请查看角色权限管理器，了解哪个角色有网站权限，然后检查该角色是否分配给了该用户。</p>
+
+<p><img src="/files/customize-module-visibility-4.png" alt="Module Visibility" /></p>
+
+<p>此外，你还应该检查在设置中"允许模块"下，是否已为该用户启用了所需的模块</p>
+
+<p><img src="/files/customize-module-visibility-1.png" alt="Module Visibility" /></p>
+
+<p>重新加载 ERPNext 账户的标签页，所做的更改将被应用并可在系统中看到。</p>
+
+</body>
+</html>

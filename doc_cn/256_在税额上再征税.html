@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>在税额上再征税</title>
+</head>
+<body>
+<p># 在税额上再征税</p><p>假设客户希望对税额再征税。让我们以一个示例来说明：NBT 税种将应用于商品的净总金额，然后再对其征收另一种税（VAT）。在下面的示例中，NBT 2% 税将应用于商品价值之和，然后是 VAT 15% 税。</p><p>!<a href="../../images/256_jll9vuX.png">图片</a></p><p>在 ERPNext 中，若要在销售订单/发票的<strong>销售税及附加</strong>表中设置此规则：</p><p>1. 将税种类型选择为 <strong>按净总金额</strong>（On Net Total）
+2. 选择或新增税种 <strong>NBT</strong>，并将税率设置为 2%
+3. 然后添加新行，将税种类型选择为 <strong>按前一行总计</strong>（On Previous Row Total），选择或新增税种 <strong>VAT</strong>，并将税率设置为 15%</p><p>!<a href="../../images/256_XHtxDLI.png">图片</a></p><p>展开第二行，添加 <strong>参考行号 #</strong> 为 1。</p><p>!<a href="../../images/256_Bh9Vzqp.png">图片</a></p><p>保存文档并查看打印预览时，效果如下图所示。</p><p>!<a href="../../images/256_O2NF3ri.png">图片</a></p><p>---</p><p><strong>原文链接</strong>: https://docs.frappe.io/erpnext/how-to-apply-tax-on-tax
+<strong>译者</strong>: AI (Claude Code)
+<strong>翻译日期</strong>: 2026-04-18</p>
+</body>
+</html>

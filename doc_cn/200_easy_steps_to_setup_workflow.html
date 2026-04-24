@@ -1,0 +1,33 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>设置工作流的简单步骤</title>
+</head>
+<body>
+    <h1>设置工作流的简单步骤</h1>
+
+    <p>当一个公司对文档有多级审批时，可以设置工作流。<br />
+在 ERPNext 中，你可以进入工作流列表 --&gt; 创建新工作流 --&gt; 命名工作流并定义：<br />
+1. 状态<br />
+2. 转换规则。</p>
+
+    <ol>
+    <li>状态：</li>
+    </ol>
+
+    <p>当文档被传递到不同级别的审批时，每个级别都会为用户角色定义状态。<br />
+<img src="/files/Y3TzzU2.png" alt="" /></p>
+
+    <ol>
+    <li>转换规则：</li>
+    </ol>
+
+    <p>例如：<strong>销售人员</strong>只能创建<strong>报价单</strong>，并且可以将其保存在<strong>草稿</strong>状态。随后，它可以发送给<strong>销售经理</strong>进行审批，拥有该角色的用户可以有权<strong>批准</strong>或<strong>拒绝</strong>报价单，之后如果被<strong>拒绝</strong>则可以发送回<strong>草稿</strong>状态，或者进入最终<strong>已批准</strong>状态。<br />
+<img src="/files/xJUtkGy.png" alt="" /><br />
+错误消息：<strong>文档在提交之前不能被取消。</strong><br />
+[这是用户遇到的典型错误，他们定义了文档在提交之前被取消的状态。文档状态 1 表示文档将在该状态时被提交，因此文档状态 2 的状态只能定义在文档状态 1 的状态之后的转换中。]<br />
+从一个简单的工作流开始设置吧，如果你对工作流有更多想法，请告诉我们！我们很高兴看到我们的用户满意！！；）</p>
+
+</body>
+</html>

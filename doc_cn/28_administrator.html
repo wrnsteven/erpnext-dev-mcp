@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员 - ERPNext</title>
+</head>
+<body>
+    <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+        <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">管理员</h1>
+    </header>
+
+    <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+        <p><strong>ERPNext 中的'Administrator'凌驾于 System Manager 之上，拥有 ERPNext 账户的所有权限。</strong></p>
+        <p>System Manager 也拥有系统中大多数项目的权限，但 Administrator 拥有无限制的访问权限。管理员确保 ERPNext 系统的整体运行满足组织的需求。</p>
+        <ol>
+            <li>如果您的 ERPNext 账户是由我们（Frappe Technologies Pvt. Ltd.）托管在云端，您可以通过 Frappe Cloud Dashboard 访问"Administrator"用户。</li>
+            <li>对于云托管账户，升级从后端管理。我们保留管理员登录凭证，以便能够从后端升级所有客户的 ERPNext 账户。</li>
+            <li>由于在一台服务器上我们可能托管许多客户的 ERPNext 账户，作为安全措施，我们无法与任何云托管用户共享管理员账户的凭据。（例外情况是，如果您购买了大量用户并且您的账户专门托管在一台服务器上）。</li>
+            <li>对于自托管的本地账户，管理员凭据由账户用户保管。</li>
+        </ol>
+        <h3 id="related-topics">相关主题</h3>
+        <ol>
+            <li><a href="/erpnext/adding-users">Adding Users</a></li>
+            <li><a href="/erpnext/role-and-role-profile">Role and Role Profile</a></li>
+            <li><a href="/erpnext/role-based-permissions">Role Based Permissions</a></li>
+            <li><a href="/erpnext/user-permissions">User Permissions</a></li>
+            <li><a href="/erpnext/role-permission-for-page-and-report">Role Permission For Page And Report</a></li>
+        </ol>
+    </div>
+
+    <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+        <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+            <a href="/erpnext/user-permissions" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <div class="flex flex-col gap-1 min-w-0">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">上一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">User Permissions</span>
+                </div>
+            </a>
+            <a href="/erpnext/sharing" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">下一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">Sharing</span>
+                </div>
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]">
+            最后更新于 2 个月前
+        </div>
+    </div>
+</body>
+</html>

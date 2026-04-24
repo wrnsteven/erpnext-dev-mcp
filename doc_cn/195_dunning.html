@@ -1,0 +1,93 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>销售利息 / 催款</title>
+</head>
+<body>
+    <h1>销售利息 / 催款</h1>
+
+    <p><strong>作为持续债务催收要求而发送的文件。</strong></p>
+
+    <p>Dunning（催款）是一种文档，用于存储和发送对未付款销售发票的持续债务催收要求。</p>
+
+    <p>要访问催款列表，请进入：</p>
+
+    <blockquote>
+    <p>Home &gt; Accounting &gt; Dunning</p>
+    </blockquote>
+
+    <h2 id="1-prerequisites">1. 前置条件</h2>
+
+    <ul>
+    <li><a href="/erpnext/sales-invoice">Sales Invoice</a></li>
+    </ul>
+
+    <p>催款只能针对逾期的销售发票创建。</p>
+
+    <ul>
+    <li>Dunning Type（催款类型）</li>
+    </ul>
+
+    <p><strong>Dunning Type</strong>（催款类型）用于在新的<strong>Dunning</strong>（催款）中预填利息、费用和文本块。</p>
+
+    <h2 id="2-how-to-create-a-dunning">2. 如何创建催款</h2>
+
+    <p>催款是针对逾期付款计划列表创建的。你可以通过两种不同的方式创建催款：</p>
+
+    <h3 id="a-create-a-new-dunning">a) 创建新的催款</h3>
+
+    <ol>
+    <li>进入<strong>Dunning</strong>（催款）列表，点击"Add Dunning"（添加催款）。</li>
+    <li>选择一个<strong>Customer</strong>（客户），点击"Fetch Overdue Payments"（获取逾期付款）。这将显示该客户的所有逾期销售发票列表。选择你想要获取到此<strong>Dunning</strong>（催款）中的项目，然后点击"Get Items"（获取项目）。</li>
+    </ol>
+
+    <h3 id="b-create-a-dunning-from-an-overdue-sales-invoice">b) 从逾期销售发票创建催款</h3>
+
+    <ol>
+    <li>进入<strong>Sales Invoice</strong>（销售发票）列表，打开任何逾期的<strong>Sales Invoice</strong>（销售发票）。</li>
+    <li>点击"Create &gt; Dunning"（创建 &gt; 催款）。这将把发票付款计划表中的所有逾期付款获取到一个新的<strong>Dunning</strong>（催款）中。</li>
+    </ol>
+
+    <h3 id="fill-the-remaining-fields">填写剩余字段</h3>
+
+    <ol>
+    <li>选择一个<strong>Dunning Type</strong>（催款类型）来用预定义的值填充利息、催款费用和文本块。或者你也可以手动设置这些值。</li>
+    <li>你可以提前设置一个收入<strong>Account</strong>（账户）（例如"Other interest and similar income"（其他利息和类似收入））和<strong>Cost Center</strong>（成本中心），用于记录来自利息和催款费用的收入。当从这个<strong>Dunning</strong>（催款）创建<strong>Payment Entry</strong>（付款条目）时，这些将被使用。</li>
+    <li>在发送给<strong>Customer</strong>（客户）之前，保存并提交<strong>Dunning</strong>（催款）。</li>
+    </ol>
+
+    <p><img src="/files/dunning9768a2.png" alt="Dunning example" /></p>
+
+    <h3 id="21-what-is-a-dunning-type">2.1 什么是催款类型</h3>
+
+    <p>Dunning Type（催款类型）存储催款费用、利率和要包含的文本块的默认值。例如，催款类型"First Notice"（第一次通知）不会有任何费用，但催款类型"Second Notice"（第二次通知）将收取催款费用和对未付款金额收取利息。</p>
+
+    <p><img src="/files/first_dunning.png" alt="Dunning Type" /></p>
+
+    <h3 id="22-statuses">2.2 状态</h3>
+
+    <p>这些是自动分配给催款的状态。</p>
+
+    <ul>
+    <li><strong>Draft</strong>（草稿）：草稿已保存但尚未提交。</li>
+    <li><strong>Unresolved</strong>（未解决）：当催款已提交但未收到付款时，催款状态为未解决。</li>
+    <li><strong>Resolved</strong>（已解决）：当收到未付款时，催款状态为已解决。</li>
+    <li><strong>Cancelled</strong>（已取消）：已取消状态是已取消的催款文档。</li>
+    </ul>
+
+    <h2 id="3-payment">3. 付款</h2>
+
+    <p>当你收到包含利息和费用的全额付款时，请打开未解决的<strong>Dunning</strong>（催款），点击"Create &gt; Payment"（创建 &gt; 付款）。这将针对未付款的计划付款创建<strong>Payment Entry</strong>（付款条目），并将利息和费用记录为"Payment Deductions or Loss"（付款扣除或损失）。<strong>Payment Entry</strong>（付款条目）将自动把<strong>Dunning</strong>（催款）的状态设置为已解决。</p>
+
+    <p><img src="/files/dunning_payment_entry.png" alt="Dunning Payment" /></p>
+
+    <h2 id="4-related-topics">4. 相关主题</h2>
+
+    <ol>
+    <li><a href="/erpnext/payment-entry">Payment Entry</a></li>
+    <li><a href="/erpnext/purchase-invoice">Sales Invoice</a></li>
+    </ol>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>折扣会计</title>
+</head>
+<body>
+    <h1>折扣会计</h1>
+
+    <p>折扣会计用于在单独的 Discount Account（折扣账户）下过账折扣的额外分类账条目。这可用于：</p>
+
+    <ol>
+    <li>单个物料上的折扣</li>
+    <li>发票中所有物料的额外折扣</li>
+    </ol>
+
+    <h3>步骤</h3>
+
+    <ol>
+    <li>在<em>Accounts Settings（账户设置）</em>页面中勾选<em>Enable Discount Accounting（启用折扣会计）</em>复选框。
+    <img src="/files/Enable%20Discount%20Accounting.png" alt="启用折扣会计复选框" /></li>
+    <li>按常规创建销售/采购发票。</li>
+    <li>要为单个物料上的折扣过账分类账条目：</li>
+    </ol>
+
+    <ul>
+    <li>展开物料表中该物料的行</li>
+    <li>在 Discount and Margin（折扣和利润）部分输入折扣</li>
+    <li>向下滚动到 Accounting Details（会计详情）部分，输入 Discount Account（折扣账户）
+    <img src="/files/Discount%20Account.png" alt="折扣账户" /></li>
+    </ul>
+
+    <ol start="4">
+    <li>要为发票中所有物料的额外折扣过账分类账条目：</li>
+    </ol>
+
+    <ul>
+    <li>进入 Additional Discount（额外折扣）部分</li>
+    <li>输入额外折扣金额/百分比以及 Additional Discount Account（额外折扣账户）
+    <img src="/files/Additional%20Discount%20Account.png" alt="额外折扣账户" /></li>
+    </ul>
+
+    <ol start="5">
+    <li>保存并提交发票以创建分类账条目，如下所示：</li>
+    </ol>
+
+    <ul>
+    <li><p><em>对于销售发票：</em>
+    <img src="/files/Discount%20Accounting%20for%20Sales%20Invoices.png" alt="销售发票的折扣会计" /></p>
+    </li>
+    <li><p><em>对于采购发票：</em>
+    <img src="/files/Discount%20Accounting%20for%20Purchase%20Invoices.png" alt="采购发票的折扣会计" /></p>
+    </li>
+    </ul>
+
+    <h3>默认折扣账户</h3>
+
+    <p>此外，你还可以为物料输入默认折扣账户，该账户将在创建发票时自动获取。此字段的可见性也取决于 Accounts Settings（账户设置）中的 Enable Discount Accounting（启用折扣会计）复选框。</p>
+
+    <ol>
+    <li>打开物料文档。</li>
+    <li>进入<em>Sales, Purchase, Accounting Defaults（销售、采购、会计默认值）</em>部分的 Item Defaults（物料默认值）表。</li>
+    <li>展开你选择的行，输入该物料的 Default Discount Account（默认折扣账户）
+    <img src="/files/Screenshot%202021-11-09%20at%208.46.41%20PM.png" alt="默认折扣账户" /></li>
+    </ol>
+
+</body>
+</html>

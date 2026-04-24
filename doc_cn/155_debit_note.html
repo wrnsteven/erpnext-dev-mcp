@@ -1,0 +1,60 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>借项通知单</title>
+</head>
+<body>
+    <h1>借项通知单</h1>
+
+    <p><strong>借项通知单是买家发送给供应商的文件，通知已对退还给供应商的货物记录了一笔借项。</strong></p>
+
+<p>借项通知单是针对退还货物的价值开立的。在某些情况下，卖家会发送借项通知单，这应被视为另一种发票。</p>
+
+<p>借项是你退货时针对物料的借项记录。</p>
+
+<h2 id="1-how-to-create-debit-note">1. 如何创建借项通知单</h2>
+
+<p>用户可以针对采购发票创建借项通知单，或者直接创建不参考采购发票的借项通知单。</p>
+
+<ol>
+<li>进入相应的采购发票，点击<strong>创建 > 退货/借项通知单</strong>。
+<img src="/files/debit-note-from-purchase-invoice.png" alt="Debit Note from Invoice" /></li>
+<li>供应商和物料详情将根据采购发票中的设置获取。</li>
+<li>如果你已部分或全部付款，请针对原始采购发票创建付款凭证。</li>
+<li>保存并提交。</li>
+</ol>
+
+<p><img src="/files/debit-note.png" alt="Debit Note" /></p>
+
+<p>其他步骤与<a href="/erpnext/purchase-invoice">采购发票</a>类似。</p>
+
+<h3 id="11-how-does-debit-note-affect-ledger">1.1 借项通知单如何影响账本</h3>
+
+<p>借项通知单将逆转采购发票的影响。</p>
+
+<p><img src="/files/debit-note-ledger.png" alt="Debit Note Ledger" /></p>
+
+<p>其他详情请参阅<a href="/erpnext/purchase-invoice">采购发票</a>页面。</p>
+
+<h3 id="12-no-payment-was-made-against-sales-invoice">1.2 未对销售发票付款</h3>
+
+<p>如果原始发票<strong>未付款</strong>，你可以直接取消销售发票。但是，如果只从一张发票退货 10 个物料中的 5 个，创建借项通知单对于更新账本很有用。</p>
+
+<h2 id="2-example">2. 示例</h2>
+
+<p>你从供应商 Blue Mills 购买了价值 Rs 2400 + 税的棉花，但在交货时发现产品已损坏。现在你退货了，将发出一张借项通知单。</p>
+
+<p>在 ERPNext 中上述示例的借项通知单及付款凭证如下：</p>
+
+<p><img src="/files/creating-debit-note.gif" alt="Creating Debit Note" /></p>
+
+<h3 id="3-related-topics">3. 相关主题</h3>
+
+<ol>
+<li><a href="/erpnext/payment-entry">付款凭证</a></li>
+<li><a href="/erpnext/credit-note">贷项通知单</a></li>
+</ol>
+
+</body>
+</html>

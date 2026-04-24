@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prepared Report</title>
+</head>
+<body>
+<p>很多时候，当生成涉及大量数据的报告时，例如整个年度的分类账报告，你可能会遇到以下错误信息：<strong>请求超时</strong>。这是因为报告中需要处理和展示大量数据，但服务器资源不足，从而导致超时。</p><p>为了更好地处理此类报告，ERPNext 提供了预生成报告功能（自 v11 起）。当报告被设置为预生成报告时，它会通过<a href="/framework/user/en/guides/app-development/running-background-jobs">后台任务</a>生成，生成完成后用户即可查看。</p><p><h1>设置预生成报告的步骤</h1></p><ul>
+\0</ul><p>如果该报告已启用预生成报告选项，你将看到一个<strong>生成报告</strong>按钮。点击该按钮。
+!<a href="../../images/398_prepared-report-generate.png">图片</a>
+你将在屏幕右下角看到一条通知："报告已启动。你可以<em>在此</em>查看其状态"
+!<a href="../../images/398_prepared-report-bg.png">图片</a>
+你可以留在当前页面等待，也可以点击上述消息中的<em>此处</em>打开报告页面。这将为你打开一个新的报告页面：
+!<a href="../../images/398_prepared-report-queued.png">图片</a>
+如你所见，报告页面的状态显示为"排队中"。一旦报告生成完成，你将看到一个<strong>显示报告</strong>按钮，点击即可查看报告：
+!<a href="../../images/398_prepared-report-page.png">图片</a>
+- 由于预生成报告本身也是一个 doctype，要查看预生成报告列表，你可以使用<a href="/erpnext/role-based-permissions">角色权限管理器</a>来授予相应的访问权限。</p><p>---
+original_url: https://docs.frappe.io/erpnext/prepared-report
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18</p>
+</body>
+</html>

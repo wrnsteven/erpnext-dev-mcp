@@ -1,0 +1,520 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0u5jiqhqip)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # bench new-site
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0u5jiqhqip)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            ## Usage
+
+`bench new-site [OPTIONS] SITE
+`
+## Description
+
+Create a new Frappe site. This operation creates a new folder under `./sites` which will contain all the site information for the site and also creates a new database in your DBMS with all of Frappe's Modules and DocTypes installed.
+
+The site config, which can be found under `./sites/{site}/site_config.json` maintains information about the site's state. For more information about it, check out [this guide](/framework/v14/user/en/introduction).
+
+If site creation fails due to any reason, you'll be prompted as to whether you'd like to rollback the changes made, which are the creation of the site directory, and the creation of a database and database user.
+
+## Options
+
+`--db-name` Set the Database name for new site - also used as the database username if not specified separate
+
+- `--db-user` From v16 onwards, choose the database user name OR specify an existing user+password combination
+
+- `--db-password` Set the Database password for new site, or password for existing specified database user.
+
+- `--db-type` Select the Database Type for new site, options being &quot;postgres&quot; or &quot;mariadb&quot;. Default is &quot;mariadb&quot;
+
+- `--db-host` Set Database Host for new site
+
+- `--db-port` Set Database Port for new site
+
+- `--db-root-username` Specify Root username for MariaDB or Postgres
+
+- `--db-root-password` Specify Root password for MariaDB or Postgres
+
+- `--admin-password` Specify the Administrator password for new site
+
+- `--source_sql` Initiate database with a SQL file
+
+- `--install-app` Install app after installation
+
+## Flags
+
+- `--no-mariadb-socket` Set MariaDB host to % and use TCP/IP Socket instead of using the UNIX Socket
+
+- `--verbose` Add Verbosity
+
+- `--force` Force restore if the site or a database with the same name already exists
+
+## Examples
+
+- Create a new site.
+
+`bench new-site {site}
+`
+
+- Create a new PostgreSQL site.
+
+`bench new-site {site} --db-type postgres
+`
+
+- Create a new site while skipping the interactive prompts for
+
+Submitting the Site's Administrator Password
+
+- Submitting the MariaDB Root Password
+
+`bench new-site {site}
+   --admin-password {admin-password}
+   --db-root-password {mariadb-password}
+`
+
+- Create a new site with non-default and autogenerated values.
+
+`bench new-site {site} --db-type {type}
+   --db-name {name}
+   --db-user {user}
+   --db-password {pass}
+   --db-host {host}
+   --db-port {port}
+`
+
+- Create a new site with a MariaDB non-root user with database creation privileges.
+
+`bench new-site {site}
+   --db-root-username {user}
+   --db-root-password {pass}
+`
+
+- Create a new site with an app (available on current bench) installed.
+
+`bench new-site {site} --install-app {app}
+`
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Commands Reference
+                    
+                ](/framework/user/en/bench/reference)
+                
+
+                
+                [
+                    
+                        Next Page
+                        bench drop-site
+
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/bench/reference/drop-site)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/bench/reference/new-site
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

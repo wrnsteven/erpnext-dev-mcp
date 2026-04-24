@@ -1,0 +1,55 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态链接字段</title>
+</head>
+<body>
+    <h1>动态链接字段</h1>
+
+    <p>Dynamic Link（动态链接）字段是一种可以搜索并保存任何 DocType 值的字段。让我们通过一个例子来了解动态链接字段是如何工作的。</p>
+
+    <p>在创建商机或报价单时，我们必须明确指定它是针对线索还是客户。根据我们的选择（线索/客户），会出现另一个链接字段，我们可以在其中选择实际的线索或客户。</p>
+
+    <p>如果你将前一个字段设置为动态链接字段（用于选择实际的线索或客户），则后一个字段将自动链接到第一个字段中选择的主数据，即线索或客户。因此，我们不需要为客户和线索分别插入单独的链接字段。</p>
+
+    <p>以下是插入自定义动态字段的步骤。例如，我们将在日记账分录中插入动态链接字段。</p>
+
+    <h4 id="step-1-insert-link-field-for-doctype">步骤 1：为 DocType 插入链接字段</h4>
+
+    <p>首先，我们将创建一个链接到 DocType 的链接字段。</p>
+
+    <p><img src="/files/customize-dynamic-link-1.gif" alt="Custom Link Field" /></p>
+
+    <p>选项字段中提到的<strong>DocType</strong>是指父 DocType。就像报价单是一个 DocType，下面有多个报价单一样。DocType 本身也是一个 DocType，其中包含作为 DocType 记录创建的销售订单、采购订单和其他 docType。</p>
+
+    <p><strong>DocType</strong></p>
+
+    <p>---- Sales Order（销售订单）</p>
+    <p>---- Purchase Invoice（采购发票）</p>
+    <p>---- Quotation（报价单）</p>
+    <p>---- Sales Invoice（销售发票）</p>
+    <p>---- Employee（员工）</p>
+    <p>---- Work Order（工单）</p>
+    <p>.. 等等。</p>
+
+    <p>因此，将此字段与父 DocType 链接将列出所有 DocType 记录。</p>
+
+    <p><img src="/files/customize-dynamic-link.png" alt="journal Voucher Link Field" /></p>
+
+    <h4 id="step-2-insert-dynamic-link-field">步骤 2：插入动态链接字段</h4>
+
+    <p>此自定义字段的类型将为"Dynamic Link"（动态链接）。在选项字段中，将提到 Doctype 链接字段的名称。</p>
+
+    <p><img src="/files/customize-dynamic-link-2.gif" alt="Custom Dynamic Field" /></p>
+
+    <p>此字段将允许根据在 Doctype 链接字段中选择的价值选择文档 ID。例如，如果我们在前面的字段中选择销售订单，则动态链接字段将列出所有销售订单 ID。</p>
+
+    <p><img src="/files/customize-dynamic-link-3.gif" alt="Custom Dynamic Field" /></p>
+
+    <p><strong>自定义 Doctype 链接字段中的选项</strong></p>
+
+    <p>默认情况下，DocType 链接字段将提供所有表单/docType 以供选择。如果你希望此字段在搜索结果中显示某些特定的 docType，则需要为其编写自定义脚本。</p>
+
+</body>
+</html>

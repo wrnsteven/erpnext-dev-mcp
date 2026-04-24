@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资产报告 - ERPNext</title>
+</head>
+<body>
+    <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+        <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">资产报告</h1>
+    </header>
+
+    <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+        <h2 id="1-asset-depreciation-ledger">1. 资产折旧台账</h2>
+<hr />
+<p>此报告展示所选日期范围内所有资产的购买金额、折旧金额和累计总折旧。它还显示资产的当前价值和当前折旧状态。</p>
+<p><img src="/images/49_asset_Screenshot%202026-01-12%20at%2012.53.46%E2%80%AFAM.png" alt="" /></p>
+<h2 id="2-asset-depreciations-and-balances">2. 资产折旧与余额</h2>
+<hr />
+<p>ERPNext 中的资产折旧和余额报告提供了资产价值、成本和指定期间折旧情况的详细概述。它允许用户跟踪资产财务状况、评估折旧并计算资产净值。具有按资产或资产类别分组、灵活筛选和实时数据检索等功能。</p>
+<h3 id="21-group-by-asset-category">2.1 按资产类别分组</h3>
+<p><img src="/images/49_asset_Screenshot%202026-01-12%20at%2012.59.29%E2%80%AFAM.png" alt="" /></p>
+<h3 id="22-group-by-asset">2.2 按资产分组</h3>
+<p><img src="/images/49_asset_Screenshot%202026-01-12%20at%2012.57.20%E2%80%AFAM.png" alt="" /></p>
+<h2 id="3-fixed-asset-register">3. 固定资产登记簿</h2>
+<hr />
+<p>固定资产登记簿提供资产当前状态所有详情的统一视图。固定资产登记簿跟踪您创建的所有固定资产。这不仅包括您当前持有的资产，还跟踪已处置的资产。</p>
+<p>基于折旧的记录类型：</p>
+<ul>
+<li>** 在用位置：您当前持有的所有资产都属于此类别。</li>
+<li>** 已处置：当前已出售或报废的所有资产都属于此类别。</li>
+</ul>
+<p><img src="/images/49_asset_Screenshot%202026-01-12%20at%201.00.17%E2%80%AFAM.png" alt="" /></p>
+<h2 id="4-asset-activity">4. 资产活动</h2>
+<hr />
+<p>资产活动报告让您可以在一个地方查看资产经历的所有活动。</p>
+<p><img src="/images/49_asset_Screenshot%202026-01-12%20at%201.02.19%E2%80%AFAM.png" alt="" /></p>
+    </div>
+
+    <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+        <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+            <a href="/erpnext/scrapping-an-asset" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <div class="flex flex-col gap-1 min-w-0">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">上一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">Scrapping an Asset</span>
+                </div>
+            </a>
+            <a href="/erpnext/moving-asset-from-stock-item-to-fixed-asset-item" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">下一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">Moving Asset from Stock Item to Fixed Asset Item</span>
+                </div>
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]">
+            最后更新于 2 个月前
+        </div>
+    </div>
+</body>
+</html>

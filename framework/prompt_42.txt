@@ -1,0 +1,501 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0u4etd74a3)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Google Drive
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0u4etd74a3)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Google Drive is a file storage and synchronization service developed by Google. It allows users to store, synchronize and share files. Google Drive is a key component of Google Workspace, Google's monthly subscription offering for businesses.
+
+You can use Frappe Framework's file picker to select any file from Google Drive and attach it to the current DocType. For example, you can attach the invoice PDF stored in Google Drive to a Purchase Invoice in your Frappe app.
+
+## Setup
+
+### Google Cloud Console
+
+First we need to get some credentials that will allow us to access Google Drive. You can [use the setup tool](https://console.cloud.google.com/flows/enableapi?apiid=picker&amp;credential=client_key), which guides you through creating a project in the Google Cloud Console, enabling the API, and creating credentials.
+
+If you haven't done so already, create your application's API key by clicking Create credentials &gt; API key. Next, look for your API key in the API keys section. You can open the API Key and restrict it.
+
+Under Application restrictions choose &quot;HTTP referrers&quot;,
+
+- under Website restrictions add your frappe instance's hostname and
+
+- under API restrictions choose &quot;Restrict key&quot; and select the &quot;Google Picker API&quot;.
+
+![API Key configuration](/files/google_drive_picker_api_key.png)
+
+If you haven't done so already, create your OAuth 2.0 credentials by clicking Create credentials &gt; OAuth client ID.
+
+- Under Application type choose &quot;Web application&quot; and
+
+- under Authorized JavaScript origins add your frappe instance's hostname.
+
+![OAuth Client configuration](/files/google_drive_picker_oauth_client.png)
+
+After you've created the credentials, you can see your client ID on the [Credentials page](https://console.cloud.google.com/apis/credentials).
+
+Last but not least you need to configure the [OAuth Consent Screen](https://console.cloud.google.com/apis/credentials/consent). This is the page that users will see when they are using the Google Drive Picker for the first time. It asks them to grant access to their Google Drive. You can configure this as you like, just take care to add the scope `https://www.googleapis.com/auth/drive.readonly` on the Scopes page.
+
+You will also need your App ID at hand. This is your project number which you can find under IAM &amp; Admin &gt; Settings.
+
+Portions of this section are modifications based on work created and [shared by Google](https://developers.google.com/picker/docs) and used according to terms described in the [Creative Commons 4.0 Attribution License](https://creativecommons.org/licenses/by/4.0/).
+
+### Frappe instance
+
+Now that the Google Picker API is enabled and we have the necessary credentials we can go ahead and configure the Google Settings in you Frappe instance.
+
+- Open Google Settings.
+
+- Check the Enable checkbox.
+
+- In the &quot;Google Drive Picker&quot; section, check the Google Drive Picker Enabled checkbox.
+
+- Enter your App ID, Client ID and API Key.
+
+- Save the Google Settings and reload your browser window.
+
+![Google Settings](/files/google_drive_picker_settings.png)
+
+Now when you click on &quot;Attach file&quot; in the sidebar, you should see the Google Drive icon.
+
+![Attach File Dialog](/files/google_drive_picker_attach_file.png)
+
+If you click on it for the first time, you have to authorize the Frappe app to access your Google Drive files.
+
+![Google Sign In](/files/google_drive_picker_signin.png)
+
+Then the Google Drive Picker opens and you can choose a file.
+
+![Google Drive Picker](/files/google_drive_picker_select.png)
+
+Click the blue button on the bottom left to attach a link to this file to the current DocType.
+
+![File Attached to DocType](/files/google_drive_picker_attached.png)
+
+In case you're looking for technical details, Google Drive was introduced in [Pull Request #12715](https://github.com/frappe/frappe/pull/12715).
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        RazorPay
+
+                    
+                ](/framework/user/en/integration/razorpay)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Setting up LDAP
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/integration/ldap-integration)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/integration/google_drive
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

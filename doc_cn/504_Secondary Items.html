@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secondary Items</title>
+</head>
+<body>
+<p>> <strong>注意</strong>
+> <strong>仅在 ERPNext 第 16 版中可用</strong></p><p>从第 16 版开始，BOM DocType 中的 Scrap Items（废料项目）表已更名为 Secondary Items（副产品）表。副产品表现在包含 3 种更多类型的项目：<code>Co-Product</code>（联产品）、<code>By-Product</code>（副产物）和 <code>Additional Finished Good</code>（额外成品）。使用此表，用户现在可以基于百分比系统指定所有产出的成本（或原材料成本）分配。</p><p>让我们首先了解 <code>Scrap</code>、<code>Co-Product</code>、<code>By-Product</code> 和 <code>Additional Finished Good</code> 之间的区别。</p><p>- <strong>Scrap（废料）</strong>：与成品一起生产的产品，在大多数情况下没有太大价值。
+- <strong>Co-Product（联产品）</strong>：与主成品一起计划生产的具有重要价值的产品。
+- <strong>By-Product（副产物）</strong>：与成品一起生产但非计划内的产品。该产品可能具有或不具有重要价值。
+- <strong>Additional Finished Good（额外成品）</strong>：这是计划内的产品，具有重要价值。它通常通过额外材料、剩余产能或进一步加工单独生产。</p><p>在 ERPNext 中，这些副产品的价值和数量计算方式实际上没有区别。不同的名称仅用于区分目的。</p><p>您可以在表中指定每个副产品的工艺损耗百分比和成本分配百分比。</p><p>!<a href="../../images/504_image01125b.png">图片</a></p><p>在这个例子中，我们假设在生产汽油时，10% 的产出（原材料）成本应分配给 LPG，5% 分配给沥青。剩余的 85% 将分配给实际成品（汽油）。</p><p>让我们来看看实际效果：</p><p>!<a href="../../images/504_CleanShot%202026-03-11%20at%2012.31.02@2x.png">图片</a></p><p>这里，产出成本为 100 卢比。100 的 10% 是 10，分配给 LPG；5% 是 5，分配给沥青。由于我们为沥青指定了 5% 的工艺损耗，其数量计算为 9.5（<code>10 - (5% * 10)</code>）。</p><p>> <strong>注意</strong>
+> <strong>如果您是从早期版本的 ERPNext 迁移而来，废料项目表将保持原样。那些废料项目将被标记为</strong> <code>legacy</code><strong>，制造单据和分包收据中的计算将与迁移前保持一致。</strong></p><p>---
+original_url: https://docs.frappe.io/erpnext/secondary-items
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---</p>
+</body>
+</html>

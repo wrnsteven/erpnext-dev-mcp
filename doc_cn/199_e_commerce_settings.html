@@ -1,0 +1,96 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电子商务设置</title>
+</head>
+<body>
+    <h1>电子商务设置</h1>
+
+    <p>旧的<strong>购物车设置</strong>和<strong>产品设置</strong>已合并为一个单一的<strong>电子商务设置</strong>页面。</p>
+
+    <p>ERPNext 中的电子商务设置可被用户利用来管理和简化在线销售流程。这些设置使用户能够有效地管理产品列表、客户管理以及与其他 ERPNext 模块的无缝集成。</p>
+
+    <blockquote>
+    <p>在 awesomebar（搜索栏）中输入<strong>E Commerce Settings / Webshop Settings</strong></p>
+    </blockquote>
+
+    <p><img src="/files/e_commerce_settings_overview.png" alt="E Commerce Settings" /></p>
+    <p><em>E Commerce Settings</em></p>
+
+    <h3 id="products-per-page">每页产品数</h3>
+
+    <p>定义在<strong>所有产品</strong>页面（<code>/all-products</code>）的产品列表中每页显示的产品数量。</p>
+
+    <h3 id="filters-and-categories">筛选器和类别</h3>
+
+    <p><img src="/files/filters_and_categories.png" alt="Filters and Categories" /></p>
+    <p><em>筛选器和类别</em></p>
+
+    <p>你还可以向列表添加筛选器。有两种类型的筛选器：</p>
+
+    <ol>
+    <li><strong>字段筛选器</strong>：启用<strong>字段筛选器</strong>复选框，并添加你希望作为筛选依据的字段。这些字段也将用作<strong>按类别购物</strong>页面的类别。</li>
+    <li><strong>属性筛选器</strong>：启用<strong>属性筛选器</strong>复选框，并添加你希望作为筛选依据的属性。</li>
+    </ol>
+
+    <h3 id="display-settings">显示设置</h3>
+
+    <ol>
+    <li><strong>隐藏变体</strong>：仅在产品列表中显示 Website Item Templates。</li>
+    <li><strong>启用变体选择</strong>：如果 Item 有变体，则显示配置按钮。它可用于根据属性缩小到特定 item。</li>
+    <li><strong>显示价格</strong>：在产品页面显示 Item 价格。</li>
+    <li><strong>显示库存可用性</strong>：显示 Item 是否有库存。</li>
+    <li><strong>显示库存数量</strong>：在产品页面显示可用库存。</li>
+    <li><strong>允许将缺货产品添加到购物车</strong>：允许将缺货产品添加到购物车。</li>
+    <li><strong>显示应用优惠券代码</strong>：结账时应用优惠券代码的附加功能。</li>
+    <li><strong>显示联系我们按钮</strong>：显示联系我们按钮，客户可以用它来询问 Item。它将在系统中创建一个 Lead。</li>
+    <li><strong>显示公开附件</strong>：在结账后生成的销售订单中为客户显示公开附件。</li>
+    </ol>
+
+    <blockquote>
+    <p>仅当属性筛选器被禁用时，你才能<strong>隐藏变体</strong>。</p>
+    </blockquote>
+
+    <h3 id="shopping-cart">购物车</h3>
+
+    <ol>
+    <li><strong>公司</strong>：指定网店所属的公司。</li>
+    <li><strong>价格列表</strong>：提及获取 Item 价格时要考虑的价格列表。</li>
+    <li><strong>启用购物车</strong>：添加将产品添加到购物车的功能。</li>
+    <li><strong>默认客户组</strong>：添加在将产品添加到购物车时自动创建客户的默认客户组。</li>
+    </ol>
+
+    <h3 id="checkout-settings">结账设置</h3>
+
+    <ol>
+    <li><strong>启用结账</strong>：如果结账被禁用，当你的客户将产品添加到购物车时，他们可以点击<strong>请求报价</strong>按钮来获取报价。系统会生成一个<a href="/erpnext/quotation">报价单</>。如果启用，点击购物车中的<strong>下单</strong>按钮会生成一个<a href="/erpnext/sales-order">销售订单</>。</li>
+    <li><strong>支付网关账户</strong>：如果启用了结账，你必须配置<a href="/erpnext/paypal-integration">PayPal 集成</>或<a href="/erpnext/razorpay-integration">Razorpay 集成</>。</li>
+    <li><strong>支付成功 URL</strong>：支付完成后将用户重定向到所选选项。</li>
+    <li><strong>在报价单中显示价格</strong>：如果结账被禁用，你可以选择是否在报价单中的 Website Items 上显示价格。</li>
+    <li><strong>将报价单保存为草稿</strong>：如果结账被禁用，点击<strong>请求报价</strong>按钮时，你可以选择自动生成的报价单是自动提交还是保持在草稿状态。</li>
+    </ol>
+
+    <h3 id="add-ons">附加功能</h3>
+
+    <ol>
+    <li><strong>启用愿望清单</strong>：添加将产品添加到愿望清单的功能</li>
+    <li><strong>启用评论和评分</strong>：为<strong>客户</>添加对 Website Items 发表评论和评分的功能。</li>
+    <li><strong>启用推荐</strong>：添加在 Website Item 旁显示手动选择的<strong>推荐产品</>的功能。</li>
+    </ol>
+
+    <h3 id="shop-by-category">按类别购物</h3>
+
+    <p><strong>按类别购物</strong>页面是一个现成的页面，列出链接到 Website Items 的类别。这些类别可以在<strong>筛选器和类别</strong>部分的<strong>字段筛选器</strong>表中配置。</p>
+
+    <p>你还可以选择一个幻灯片作为页面的横幅。</p>
+
+    <h3 id="guest-display-settings">访客显示设置</h3>
+
+    <ol>
+    <li><strong>对访客隐藏价格</strong>：你可以对访客用户（未登录的用户）显示或隐藏 Website Items 的价格。</li>
+    <li><strong>操作时重定向</strong>：如果访客用户尝试将 Website Item 添加到购物车或愿望清单，你可以选择一个 URL 来重定向他们。默认情况下，访客用户被重定向到<code>/login</code>页面。你可以通过在此添加 URL 来将它们重定向到你选择的自定义 Web 表单，例如<code>/contact-us</code></li>
+    </ol>
+
+</body>
+</html>

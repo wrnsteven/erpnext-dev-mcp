@@ -1,0 +1,588 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0thvi1e5c9)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Install and Setup Bench
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0thvi1e5c9)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Bench is the command line tool to manage Frappe apps and sites.
+
+## Installation
+
+If you haven't installed Bench, follow the [Installation](/framework/user/en/installation) guide. After installation, you should be able to run commands that start with `bench`.
+
+Run the following command to test your installation:
+
+`$ bench --version
+5.1.0
+`
+## Create the frappe-bench directory
+
+Let's create our project folder which will contain our apps and sites. Run the following command:
+
+`$ bench init frappe-bench
+`
+This will create a directory named `frappe-bench` in your current working directory. It will do the following:
+
+Create a python virtual environment under `env` directory.
+
+- Fetch and install the `frappe` app as a python package.
+
+- Install node modules of `frappe`.
+
+- Build static assets.
+
+## Directory Structure
+
+`.
+├── Procfile
+├── apps
+│   └── frappe
+├── config
+│   ├── pids
+│   ├── redis_cache.conf
+│   ├── redis_queue.conf
+│   └── redis_socketio.conf
+├── env
+│   ├── bin
+│   ├── include
+│   ├── lib
+│   └── share
+├── logs
+│   ├── backup.log
+│   └── bench.log
+└── sites
+    ├── apps.txt
+    ├── assets
+    └── common_site_config.json
+`
+
+- env: Python virtual environment
+
+- config: Config files for Redis and Nginx
+
+- logs: Log files for every process (web, worker)
+
+- sites: Sites directory
+
+assets: Static assets that served via Nginx in production
+
+- apps.txt: List of installed frappe apps
+
+- common_site_config.json: Site config that is available in all sites
+
+- apps: Apps directory
+
+frappe: The Frappe app directory
+
+- Procfile: List of processes that run in development
+
+## Start the Bench Server
+
+Now that we have created our `frappe-bench` directory, we can start the Frappe web server by running the following command:
+
+`$ cd frappe-bench
+$ bench start
+18:16:36 system | redis_cache.1 started (pid=11231)
+18:16:36 system | redis_socketio.1 started (pid=11233)
+18:16:36 system | redis_queue.1 started (pid=11234)
+18:16:36 system | socketio.1 started (pid=11236)
+18:16:36 system | web.1 started (pid=11237)
+18:16:36 system | watch.1 started (pid=11240)
+18:16:36 system | schedule.1 started (pid=11241)
+18:16:36 system | worker_short.1 started (pid=11242)
+18:16:36 redis_queue.1 | 11234:C 10 Jul 2020 18:16:36.320 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+18:16:36 redis_queue.1 | 11234:C 10 Jul 2020 18:16:36.320 # Redis version=6.0.5, bits=64, commit=00000000, modified=0, pid=11234, just started
+18:16:36 redis_queue.1 | 11234:C 10 Jul 2020 18:16:36.320 # Configuration loaded
+18:16:36 system | worker_long.1 started (pid=11244)
+18:16:36 redis_cache.1 | 11231:C 10 Jul 2020 18:16:36.318 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+18:16:36 redis_cache.1 | 11231:C 10 Jul 2020 18:16:36.318 # Redis version=6.0.5, bits=64, commit=00000000, modified=0, pid=11231, just started
+18:16:36 redis_cache.1 | 11231:C 10 Jul 2020 18:16:36.318 # Configuration loaded
+18:16:36 redis_cache.1 | 11231:M 10 Jul 2020 18:16:36.320 * Increased maximum number of open files to 10032 (it was originally set to 256).
+18:16:36 redis_queue.1 | 11234:M 10 Jul 2020 18:16:36.325 * Increased maximum number of open files to 10032 (it was originally set to 256).
+18:16:36 system | worker_default.1 started (pid=11245)
+18:16:36 redis_cache.1 | 11231:M 10 Jul 2020 18:16:36.337 * Running mode=standalone, port=13000.
+18:16:36 redis_cache.1 | 11231:M 10 Jul 2020 18:16:36.337 # Server initialized
+18:16:36 redis_cache.1 | 11231:M 10 Jul 2020 18:16:36.337 * Ready to accept connections
+18:16:36 redis_queue.1 | 11234:M 10 Jul 2020 18:16:36.367 * Running mode=standalone, port=11000.
+18:16:36 redis_queue.1 | 11234:M 10 Jul 2020 18:16:36.367 # Server initialized
+18:16:36 redis_queue.1 | 11234:M 10 Jul 2020 18:16:36.367 * Ready to accept connections
+18:16:36 redis_socketio.1 | 11233:C 10 Jul 2020 18:16:36.359 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+18:16:36 redis_socketio.1 | 11233:C 10 Jul 2020 18:16:36.359 # Redis version=6.0.5, bits=64, commit=00000000, modified=0, pid=11233, just started
+18:16:36 redis_socketio.1 | 11233:C 10 Jul 2020 18:16:36.359 # Configuration loaded
+18:16:36 redis_socketio.1 | 11233:M 10 Jul 2020 18:16:36.374 * Increased maximum number of open files to 10032 (it was originally set to 256).
+18:16:36 redis_socketio.1 | 11233:M 10 Jul 2020 18:16:36.417 * Running mode=standalone, port=12000.
+18:16:36 redis_socketio.1 | 11233:M 10 Jul 2020 18:16:36.418 # Server initialized
+18:16:36 redis_socketio.1 | 11233:M 10 Jul 2020 18:16:36.418 * Ready to accept connections
+18:16:37 socketio.1 | listening on *: 9000
+18:16:41 web.1 | * Running on http://0.0.0.0:8000/ (Press CTRL+C to quit)
+18:16:41 web.1 | * Restarting with fsevents reloader
+18:16:41 watch.1 | yarn run v1.22.4
+18:16:41 watch.1 | $ node rollup/watch.js
+18:16:42 watch.1 |
+18:16:42 watch.1 | Rollup Watcher Started
+18:16:42 watch.1 |
+18:16:42 watch.1 | Watching...
+18:16:42 web.1 | * Debugger is active!
+18:16:42 web.1 | * Debugger PIN: 100-672-925
+18:16:43 watch.1 | Rebuilding frappe-web-b4.css
+18:16:44 watch.1 | Rebuilding frappe-chat-web.css
+18:16:44 watch.1 | Rebuilding chat.js
+18:16:45 watch.1 | Rebuilding frappe-recorder.min.js
+18:16:48 watch.1 | Rebuilding checkout.min.js
+18:16:48 watch.1 | Rebuilding frappe-web.min.js
+18:16:51 watch.1 | Rebuilding bootstrap-4-web.min.js
+18:16:52 watch.1 | Rebuilding control.min.js
+18:16:54 watch.1 | Rebuilding dialog.min.js
+18:16:57 watch.1 | Rebuilding desk.min.css
+18:16:57 watch.1 | Rebuilding frappe-rtl.css
+18:16:58 watch.1 | Rebuilding printview.css
+18:16:58 watch.1 | Rebuilding desk.min.js
+18:17:04 watch.1 | Rebuilding form.min.css
+18:17:04 watch.1 | Rebuilding form.min.js
+18:17:07 watch.1 | Rebuilding list.min.css
+18:17:07 watch.1 | Rebuilding list.min.js
+18:17:09 watch.1 | Rebuilding report.min.css
+18:17:09 watch.1 | Rebuilding report.min.js
+18:17:12 watch.1 | Rebuilding web_form.min.js
+18:17:12 watch.1 | Rebuilding web_form.css
+18:17:13 watch.1 | Rebuilding email.css
+18:17:13 watch.1 | Rebuilding social.min.js
+18:17:13 watch.1 | Rebuilding barcode_scanner.min.js
+18:17:15 watch.1 | Rebuilding data_import_tools.min.js
+  
+
+`
+This will start several processes including a Python web server based on Gunicorn, redis servers for caching, job queuing and socketio pub-sub, background workers, node server for socketio and a node server for compiling JS/CSS files.
+
+The web server will start listening on the port `8000` but we don't have any sites yet to serve. Our next step is to create our app and create a site that will have this app installed.
+
+Make sure not to close the terminal where `bench start` is running. To run bench commands, create another terminal and cd into the `frappe-bench` directory.
+
+Good job on following the tutorial so far!
+
+Next: [Create an App](/framework/user/en/tutorial/create-an-app)
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Installation
+                    
+                ](/framework/user/en/installation)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Create an App
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/tutorial/create-an-app)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/tutorial/install-and-setup-bench
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

@@ -1,0 +1,168 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电子邮件账户</title>
+</head>
+<body>
+    <h1>电子邮件账户</h1>
+
+    <p><strong>你可以将你的电子邮件账户与 ERPNext 同步，以便从 ERPNext 发送和接收电子邮件。</strong></p>
+
+    <p>你可以在 ERPNext 中管理多个 incoming 和 outgoing 电子邮件账户。必须至少有一个默认的 outgoing 账户和一个默认的 incoming 账户。如果你使用的是 ERPNext 云版本，默认的 outgoing 电子邮件由我们设置。</p>
+
+    <p>要访问电子邮件账户，请进入：</p>
+
+    <blockquote>
+    <p>首页 &gt; 设置 &gt; 电子邮件账户</p>
+    </blockquote>
+
+    <ol>
+    <li>前提条件</li>
+    </ol>
+
+    <hr />
+
+    <p>在创建电子邮件账户之前，你需要创建一个<a href="/erpnext/email-domain">电子邮件域名</a>。但是，如果你使用的是下面列出的服务之一，则可以跳过创建电子邮件域名，然后点击<a href="/erpnext/email-inbox#2-create-an-email-domain">此处</a>进行设置</p>
+
+    <ul>
+    <li><strong>Gmail</strong></li>
+    <li><strong>Yahoo</strong></li>
+    <li><strong>Sparkpost</strong></li>
+    <li><strong>SendGrid</strong></li>
+    <li><a href="http://Outlook.com"><strong>Outlook.com</strong></a></li>
+    <li><strong>Yandex.mail</strong></li>
+    </ul>
+
+    <ol start="2">
+    <li>如何创建电子邮件账户</li>
+    </ol>
+
+    <hr />
+
+    <ol>
+    <li>进入电子邮件账户列表，点击"新建"。</li>
+    <li>输入带有域名的电子邮件地址。需要先创建<a href="/erpnext/email-domain">域名</>才能创建电子邮件账户。如果你是从某些提供商同步电子邮件（如上所列），则不需要创建域名。</li>
+    <li>输入电子邮件账户密码。</li>
+    <li>保存。如果凭证正确，电子邮件账户将被同步。</li>
+    </ol>
+
+    <blockquote>
+    <p>对于某些服务（如 Gmail），你可能需要启用双因素认证并使用<a href="https://myaccount.google.com/u/0/apppasswords">应用密码</a>。</p>
+    </blockquote>
+
+    <h3 id="21-additional-options-when-creating-an-email-account">2.1 创建电子邮件账户时的附加选项</h3>
+
+    <ol>
+    <li><p><strong>使用不同的电子邮件登录 ID</strong>：使用备用电子邮件登录名和密码访问此账户。例如，如果你有<a href="mailto:notifications@example.com">notifications@example.com</a>，而你希望用户使用备用电子邮件 ID 访问此电子邮件，他们应勾选此复选框。收件人将看到<a href="mailto:notifications@example.com">notifications@example.com</a>作为发件人。</p>
+    </li>
+    <li><p><strong>等待密码</strong>：如果你代表他人创建此账户而不知道密码，请勾选此复选框。当其他用户登录时，系统会提示他们输入密码。</p>
+    </li>
+    <li><p><strong>使用 ASCII 编码作为密码</strong>：勾选此项将使用 ASCII 编码作为密码。</p>
+    </li>
+    <li><p>电子邮件账户的配置</p>
+    </li>
+    </ol>
+
+    <hr />
+
+    <h3 id="31-default-email-accounts">3.1 默认电子邮件账户</h3>
+
+    <p>ERPNext 默认会为大量电子邮件账户创建模板。并非所有模板都已启用。要启用它们，你必须设置有效的电子邮件账户详细信息。</p>
+
+    <p>电子邮件账户有两种类型：incoming 和 outgoing。Outgoing 电子邮件账户使用 SMTP 服务发送电子邮件，而电子邮件使用 IMAP 或 POP 从你的收件箱中检索。大多数电子邮件提供商（如 Gmail、Outlook 或 Yahoo）都提供这些服务。</p>
+
+    <p><img src="/files/email-account-list.png" alt="Defining Criteria" /></p>
+
+    <h3 id="32-incoming-email-accounts">3.2 Incoming 电子邮件账户</h3>
+
+    <p>要设置 incoming 电子邮件账户，请勾选<strong>启用 Incoming</strong>并设置你的 POP3 设置，如果你使用的是流行的电子邮件服务，这些设置将为你预设。</p>
+
+    <p><img src="/files/email-account-incoming.png" alt="Incoming EMail" /></p>
+
+    <p>以下选项可用于 incoming 电子邮件：</p>
+
+    <ol>
+    <li><strong>使用 IMAP</strong></li>
+    <li><strong>使用 SSL</strong></li>
+    <li><strong>附件限制</strong></li>
+    <li><strong>默认 Incoming</strong>：如果勾选，所有回复到你公司（例如：<a href="mailto:replies@yourcomany.com">replies@yourcomany.com</a>）的邮件都将发送到此账户。</li>
+    <li><strong>电子邮件同步选项</strong>：是同步所有邮件还是仅同步未读邮件。</li>
+    <li><strong>初始同步数量</strong>：首次同步的电子邮件数量。</li>
+    </ol>
+
+    <h4 id="automatic-document-creation-through-linked-emails">通过链接电子邮件自动创建文档</h4>
+
+    <p>此功能在电子邮件发送到特定预配置的电子邮件时创建文档。</p>
+
+    <p>例如，你可以将<a href="mailto:support@example.com">support@example.com</>链接到 Issue DocType。完成此操作后，每当有电子邮件发送到<a href="mailto:support@example.com">support@example.com</a>时，系统将自动在系统中创建一个 Issue。</p>
+
+    <p>类似地，如果你链接<a href="mailto:jobs@example.com">jobs@example.com</>，当电子邮件发送到<a href="mailto:jobs@example.com">jobs@example.com</a>时，将自动创建一个 Job Applicant 文档。</p>
+
+    <p>在文档中启用自动链接会将电子邮件链接到文档，了解更多<a href="/erpnext/linking-emails-to-document">请点击此处</a>。</p>
+
+    <h3 id="34-outgoing-email-accounts">3.4 Outgoing 电子邮件账户</h3>
+
+    <p>从系统发送的所有电子邮件（无论是用户发送给联系人，还是通过通知或交易电子邮件发送）都将通过 Outgoing 电子邮件账户发送。</p>
+
+    <p>要设置 outgoing 电子邮件账户，请勾选<strong>启用 Outgoing</strong>并设置你的 SMTP 服务器设置，如果你使用的是流行的电子邮件服务，这些设置将为你预设。</p>
+
+    <p><img src="/files/email-account-sending.png" alt="Outgoing EMail" /></p>
+
+    <p>以下选项可用于 outgoing 电子邮件：</p>
+
+    <ol>
+    <li><p><strong>使用 TLS</strong></p>
+    </li>
+    <li><p><strong>端口</strong></p>
+    </li>
+    <li><p><strong>禁用 SMTP 服务器身份验证</strong></p>
+    </li>
+    <li><p><strong>添加签名</strong>：默认签名将附加在每封电子邮件的末尾。</p>
+    </li>
+    <li><p><strong>默认 Outgoing</strong>：通知和批量电子邮件将从这个 outgoing 服务器发送。</p>
+    </li>
+    <li><p><strong>始终使用账户的电子邮件地址作为发件人</strong>：此账户的电子邮件地址将作为 outgoing 电子邮件的发件人显示。</p>
+    </li>
+    <li><p><strong>在电子邮件中发送取消订阅消息</strong>：发送一个链接以取消订阅从此账户发送的电子邮件。</p>
+    </li>
+    <li><p><strong>跟踪电子邮件状态</strong>：跟踪你的电子邮件是否已被收件人打开。注意，如果你发送给多个收件人，即使只有一个收件人阅读了电子邮件，它也会被视为"已打开"。</p>
+    </li>
+    <li><p><strong>启用自动回复</strong>：如果启用，输入自动回复消息。</p>
+    </li>
+    <li><p><strong>将 outgoing 电子邮件附加到已发送文件夹</strong>：如果使用 Zimbra 或 CPanel 等自定义电子邮件服务器，SMTP 不会自动将电子邮件附加到已发送文件夹。启用此选项将确保所有电子邮件都被显式附加到电子邮件账户的已发送文件夹。</p>
+    </li>
+    <li><p><strong>对 outgoing 电子邮件使用 SSL</strong>：将 SSL 作为 outgoing 电子邮件的标准。默认为端口 465。</p>
+    </li>
+    <li><p>ERPNext 如何处理回复</p>
+    </li>
+    </ol>
+
+    <hr />
+
+    <p>在 ERPNext 中，当你向客户等联系人发送电子邮件时，发件人将是发送该电子邮件的用户。在<strong>回复地址</strong>属性中，电子邮件地址将是默认 incoming 账户的地址（例如：<code>[replies@yourcompany.com](mailto:replies@yourcompany.com)</code>）。ERPNext 将自动从 incoming 账户中提取这些电子邮件，并将其标记到相关的通信中。</p>
+
+    <blockquote>
+    <p><strong>给自行实施者的注意：</strong>对于 outgoing 电子邮件，你应该设置自己的 SMTP 服务器或注册使用允许发送大量交易电子邮件的 SMTP 中继服务（如 mandrill.com 或 sendgrid.com）。常规电子邮件服务（如 Gmail）会限制你每天发送的电子邮件数量。</p>
+    </blockquote>
+
+    <p>如果在配置电子邮件账户时遇到错误，请参阅<a href="/erpnext/email-error">此页面</a>。</p>
+
+    <ol start="5">
+    <li>视频</li>
+    </ol>
+
+    <hr />
+
+    <h3 id="6-related-topics">6. 相关主题</h3>
+
+    <ol>
+    <li><a href="/erpnext/email-inbox">电子邮件收件箱</a></li>
+    <li><a href="/erpnext/email-digest">电子邮件摘要</a></li>
+    <li><a href="/erpnext/auto-email-reports">自动电子邮件报告</a></li>
+    <li><a href="/erpnext/sending-email">发送电子邮件</a></li>
+    <li><a href="/erpnext/email-domain">电子邮件域名</a></li>
+    </ol>
+
+</body>
+</html>

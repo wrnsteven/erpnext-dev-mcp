@@ -1,0 +1,107 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocType</title>
+</head>
+<body>
+    <h1>DocType</h1>
+
+    <p><strong>DocType 是基于 Frappe Framework 的任何应用程序的核心构建块。</strong></p>
+
+    <p>它描述了你数据的模型和视图。它包含数据存储的字段，以及它们如何相互关联。它包含有关数据命名方式的信息。像 Sales Order（销售订单）、Sales Invoices（销售发票）、Work Order（工单）这样的表单作为 DocType 添加到后端。</p>
+
+    <p>DocType 允许你根据需要在 ERPNext 中插入自定义表单。</p>
+
+    <p>要创建新的 DocType，请进入：</p>
+
+    <blockquote>
+    <p>Setup（设置）> Customize（定制）> Doctype > New（新建）</p>
+    </blockquote>
+
+    <h2>1. 如何创建新的 DocType：</h2>
+
+    <ol>
+    <li><strong>Name（名称）</strong>：输入新 DocType 的名称。</li>
+    <li><strong>Module（模块）</strong>：输入你希望将新 DocType 添加到哪个模块。</li>
+    <li>保存。</li>
+    </ol>
+
+    <p><img src="/files/doctype-employee-transfer.png" alt="自定义 DocType" /></p>
+
+    <h3>1.1. 其他详情</h3>
+
+    <ol>
+    <li><strong>Fields（字段）</strong></li>
+    </ol>
+
+    <p>你可以选择添加任意数量的字段。也可以在此处添加 Label（标签）、Field Type（字段类型）、Mandatory Fields（必填字段）和其他相关选项。在此了解有关字段类型的更多信息。</p>
+
+    <p><img src="/files/doctype-employee-transfer-fields.png" alt="自定义 DocType 中的字段" /></p>
+
+    <ol>
+    <li><strong>Naming（命名）</strong></li>
+    </ol>
+
+    <p>在这里，你可以选择是否希望此 DocType 中的每个表单自动命名。根据描述，你可以选择表单的命名模式。它可以是 DocType 中的一个字段、Naming Series（命名序列）、Prompt（提示）、定义的 Naming Series 或基于格式的名称。对于命名，你还可以添加 Description（描述）和 Name Case（名称大小写，如 Title Case 或 UPPER CASE）以方便使用。</p>
+
+    <p><img src="/files/doctype-employee-transfer-naming.png" alt="自定义 DocType 命名" /></p>
+
+    <ol>
+    <li><strong>Form Settings（表单设置）</strong></li>
+    </ol>
+
+    <p>可以在此处配置表单的其他设置、Image Fields（图片字段）、Attachments（附件）、Timeline（时间线）等。要了解更多关于表单的信息，请访问 <a href="/erpnext/customize-form">Customize Form（自定义表单）</a>。</p>
+
+    <p><img src="/files/doctype-employee-transfer-form-settings.png" alt="自定义 DocType 表单设置" /></p>
+
+    <ol>
+    <li><strong>View Settings（视图设置）</strong></li>
+    </ol>
+
+    <p>在这里，你可以定义 DocType 的视图设置，如 Search Fields（搜索字段）、Default Sort Field（默认排序字段）、Default Sort Order（默认排序顺序）等。</p>
+
+    <ol>
+    <li><strong>Permission Rules（权限规则）</strong></li>
+    </ol>
+
+    <p>你可以在此处定义 DocType 的权限规则，并配置哪些用户可以使用或修改此 DocType。在此了解更多关于 <a href="/erpnext/users-and-permissions">Users and Permissions（用户和权限）</a>的信息。</p>
+
+    <p><img src="/files/doctype-employee-transfer-permissions.png" alt="自定义 DocType 权限" /></p>
+
+    <ol>
+    <li><strong>Web View（网页视图）</strong></li>
+    </ol>
+
+    <p>你可以选择是否要此 DocType 的网页视图。为 DocType 提供网页视图将允许你的网站用户访问表单。随意了解更多关于 <a href="/erpnext/difference-between-system-user-and-website-user">Website Users（网站用户）</a>的信息。</p>
+
+    <h3>1.2. 更多属性</h3>
+
+    <ol>
+    <li><strong>Is Submittable（可提交）</strong>：你可以选择此 DocType 是仅"保存"还是也可以"提交"，通过勾选或取消勾选此框。</li>
+    <li><strong>Is Child Table（是子表）</strong>：你可以定义新 DocType 是否要作为另一个 DocType 中的子表。在此查看 <a href="/erpnext/customizing-data-visibility-in-child-table">Child Table（子表）</a>了解更多信息。</li>
+    <li><strong>Is Single（是单表单）</strong>：如果勾选，此 Doctype 将成为单表单，如 Sales Order，用户将无法重新创建。例如，Sales 模块中的 Selling Settings 是一个 Single DocType。</li>
+    <li><strong>Is Tree（是树形结构）</strong>：ERPNext 中的一些 DocType 被构造成树形结构，其中有一些父 DocType 和一些子 DocType。例如，Doctype Company 被构造成树形结构，有父公司也有子公司，我们称之为子公司。如果你想类似地构建你的 DocType，可以启用此选项。</li>
+    </ol>
+
+    <p><img src="/files/doctype-treeview.png" alt="DocType 树形视图" /></p>
+
+    <ol>
+    <li><strong>Quick Entry（快速录入）</strong>：你可以选择是否要为此 DocType 创建快速录入。这将允许你只输入一些必填详细信息并保存 DocType，从而创建快速录入。例如，查看 <a href="/erpnext/journal-entry#11-quick-entry">Journal Entry（会计凭证）</a>中的 Quick Entry。</li>
+    <li><strong>Track Changes（跟踪更改）</strong>：如果你想维护每个表单所做更改的日志，可以选择此选项。在此查看 <a href="/erpnext/document-versioning">Document Versioning（文档版本控制）</a>以获取更多信息。</li>
+    <li><strong>Track Seen（跟踪查看）</strong>：如果你想维护所有查看过此表单的用户的日志，可以选择此选项。</li>
+    <li><strong>Track Views（跟踪浏览）</strong>：如果你想维护每个用户查看此表单次数的日志，可以选择此选项。</li>
+    </ol>
+
+    <p><img src="/files/doctype-track-views.png" alt="DocType 树形视图" /></p>
+
+    <ol>
+    <li><strong>Custom?（自定义？）</strong>：添加自定义 Doctype 时，此字段默认勾选。同样，如果你正在自定义系统中已存在的 DocType，此字段默认不勾选。</li>
+    </ol>
+
+    <h2>2. 视频</h2>
+
+    <iframe allowfullscreen="" frameborder="0" height="315" src="https://www.youtube.com/embed/WSzkpPm3iIU?start=585" width="560"></iframe>
+
+</body>
+</html>

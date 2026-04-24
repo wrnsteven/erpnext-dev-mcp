@@ -1,0 +1,505 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0thimd406n)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Prerequisites
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0thimd406n)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            A list of resources to help you get started with building apps using Frappe.
+
+## 1. Python
+
+Frappe uses Python 3 for server-side programming. It is highly recommended to
+learn Python before you start building apps with Frappe Framework.
+
+Resources:
+
+[Codecademy Tutorial for Python](https://www.codecademy.com/learn/learn-python-3)
+
+- [Official Python Tutorial](https://docs.python.org/3/tutorial/index.html)
+
+## 2. MariaDB / Postgres
+
+To create database-driven apps with Frappe, you must understand the basics of
+database management and common SQL queries.
+
+Resources:
+
+- [Codecademy Tutorial for SQL](https://www.codecademy.com/learn/learn-sql)
+
+- [A basic MySQL tutorial by DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-perform-basic-queries-in-mysql-and-mariadb-on-a-cloud-server)
+
+- [Getting started with MariaDB](https://mariadb.com/kb/en/mariadb/documentation/getting-started/)
+
+## 3. HTML / CSS
+
+If you want to build user interfaces using Frappe Framework, you will need to
+learn basic HTML / CSS and the Bootstrap CSS Framework.
+
+Resources:
+
+- [Codecademy Tutorial for HTML/CSS](https://www.codecademy.com/learn/learn-html-css)
+
+- [Getting started with Bootstrap](https://getbootstrap.com/getting-started/)
+
+## 4. JavaScript / jQuery
+
+To customize forms and create interactive user interfaces, you will have to
+learn JavaScript and the library jQuery.
+
+Resources:
+
+- [The Modern JavaScript Tutorial](https://javascript.info/)
+
+- [Codecademy Tutorial for JavaScript](https://www.codecademy.com/learn/learn-javascript)
+
+- [Codecademy Tutorial for jQuery](https://www.codecademy.com/learn/jquery)
+
+## 5. Jinja Templating
+
+For building Web Views and Print Templates, you will have to learn the Jinja
+Templating language.
+
+Resources:
+
+- [Jinja Documentation](https://jinja.palletsprojects.com/en/2.11.x/)
+
+## 6. Git / GitHub
+
+Learn how to contribute to an open source project using Git and GitHub, two
+great tools to help you manage your code and share it with others.
+
+Resources:
+
+- [Basic Git Tutorial](https://try.github.io/)
+
+- [How to contribute to Open Source](https://opensource.guide/how-to-contribute/)
+
+If you are comfortable with the basics of these tools, you are ready to build an
+app with Frappe Framework.
+
+Next: [Create a Bench](/framework/v14/user/en/tutorial/install-and-setup-bench)
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Introduction
+                    
+                ](/framework/user/en/introduction)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Installation
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/installation)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/prerequisites
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

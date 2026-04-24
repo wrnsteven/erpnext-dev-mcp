@@ -1,0 +1,521 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tpq10u542)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                Sites
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tpq10u542)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            ## Sites Directory
+
+Frappe is a multitenant platform and each tenant is called a site. Sites exist
+in a directory called `sites`, assumed as the current working directory when
+running a frappe command or other services like Celery worker or a WSGI server.
+
+You can set `sites_dir` with an environment variable `SITES_DIR` or pass
+`--sites_dir` option to the frappe command.
+
+Apart from the sites, the `sites_dir` should contain the following.
+
+#### apps.txt
+
+`apps.txt` contain a list of Python packages to treat as Frappe apps. Every
+frappe app that you intend to use in your site should have an entry in this file.
+Also, they should be in the `PYTHONPATH`. For more information, refer
+[Frappe Apps](/framework/v14/user/en/basics/apps).
+
+#### common_site_config.json
+
+`common_site_config.json` is an optional file. Configuration common to all sites
+can be put in this file.
+
+#### assets
+
+Assets contain files that are required to be served for the browser client.
+These generally include *.js, *.css, *.png files. This directory is auto
+generated using the `bench build` command.
+
+#### languages.txt
+
+`languages.txt` is an autogenerated file which maps every language to it's code.
+
+## Site
+
+A site is a directory in `sites_dir` which represents a tenant in Frappe Platform.
+
+### Directory Structure
+
+site
+├── locks
+├── private
+│   └── backups
+├── public
+│   └── files
+│ └── testfile.txt
+└── site_config.json
+
+`locks` directory is used by the scheduler to synchronize various jobs using
+the [file locking concept](http://en.wikipedia.org/wiki/File_locking).
+
+- `private` directory contains files that require authentication to access.
+Presently, it is limited only to backups.
+
+- `public` directory contains files that can directly served. In the above
+example, `testfile.txt` can be accessed by the URL,
+http://site/files/testfile.txt
+
+- `site_config.json` contains site specific configuration
+
+### Site Config
+
+[See configuration options for `site_config.json`](/framework/v14/user/en/basics/sites#site-config)
+
+### Site Resolution
+
+While responding to an HTTP request, a site is automatically selected based on,
+
+- `Host` header in the HTTP request matches a site
+
+- `X-Frappe-Site-Name` header in the HTTP request matches a site
+
+It is also possible to force the development server to serve a specific site by
+starting it with the following command.
+`bench --site SITENAME serve`
+
+### Adding a new site
+
+To add a new site, execute the following command in your bench instance:
+
+`bench new-site SITENAME`
+
+### Set a site as the current site
+
+To force a site to be used as the default site, execute the following:
+
+`bench use SITENAME`
+
+To make sure, check the contents of `currentsite.txt` (found in the `sites` folder of your bench instance) and it should have SITENAME.
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        How to Enable Backup Encryption
+
+                    
+                ](/framework/user/en/guides/basics/how-to-enable-backup-encryption)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Translations in Your Custom Frappe App
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/guides/basics/translations)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/guides/basics/sites
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

@@ -1,0 +1,549 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tundjh9sf)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Customizing Web Forms
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tundjh9sf)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Web Forms are a powerful way to add forms to your website. Web forms are powerful and scriptable and from Version 7.1+ they also include tables, paging and other utilities
+
+![Web Form](/files/sample-web-form.png)
+
+### Standard Web Forms
+
+If you check on the &quot;Is Standard&quot; checkbox, a new folder will be created in the `module` of the Web Form for that web form. In this folder, you will see a `.py` and `.js` file that you can customize the web form with.
+
+### Web Form Settings
+
+Allow Edit: Allow each user to have one instance and edit it
+
+- Allow Multiple: Allow users to view and edit multiple instances of the web form
+
+- Show as Grid: Show table view of the web form values (only if &quot;Allow Multiple&quot; is set)
+
+- Allow Incomplete Forms: For very long forms, you can allow the user to save without throwing validation for mandatory. The user will still see the fields as manadatory.
+
+### Client Script
+
+You can also add a custom client script to the web form
+
+## API
+
+Event Handler
+Write an event handler to do actions when a field is changed.
+
+`frappe.web_form.on([fieldname], [handler]);
+  
+
+`
+Get Value
+Get value of a particular field
+
+`value = frappe.web_form.get_value([fieldname]);
+  
+
+`
+Set Value
+Set value of a particular field
+
+`frappe.web_form.set_value([fieldname], [value])
+  
+
+`
+Validate
+`frappe.web_form.validate` is called before the web_form is saved. Add custom validation by overriding the `validate` method. To stop the user from saving, return `false`;
+
+`frappe.web_form.validate = () =&gt; {
+    // return false if not valid
+}
+  
+
+`
+Set Field Property
+`frappe.web_form.set_df_property([fieldname], [property], [value]);
+  
+
+`
+Trigger script when form is loaded
+Initialize form with customisation after it is loaded
+
+`frappe.web_form.after_load = () =&gt; {
+    // init script here
+}
+  
+
+`
+## Examples
+
+Reset value if invalid
+`frappe.web_form.on('amount', (field, value) =&gt; {
+    if (value &lt; 1000) {
+        frappe.msgprint('Value must be more than 1000');
+        field.set_value(0);
+    }
+});
+  
+
+`
+Custom Validation
+`frappe.web_form.validate = () =&gt; {
+    let data = frappe.web_form.get_values();
+    if (data.amount &lt; 1000) {
+        frappe.msgprint('Value must be more than 1000');
+        return false;
+    }
+});
+  
+
+`
+Hide a field based on value
+`frappe.web_form.on('amount', (field, value) =&gt; {
+    if (value &lt; 1000) {
+        frappe.web_form.set_df_property('rate', 'hidden', 1);
+    }
+});
+  
+
+`
+Show a message on startup
+`frappe.web_form.after_load = () =&gt; {
+    frappe.msgprint('Please fill all values carefully');
+}
+  
+
+`
+### Breadcrumbs
+
+You can customize the breadcrumbs in a Web Form by adding JSON object.
+
+Example:
+
+`[{&quot;label&quot;: &quot;Home&quot;, &quot;route&quot;:&quot;/&quot; }]
+  
+
+`
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Portal Roles
+
+                    
+                ](/framework/user/en/guides/portal-development/portal-roles)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Generators
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/guides/portal-development/generators)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/guides/portal-development/web-forms
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

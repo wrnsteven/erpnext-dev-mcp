@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轻量级目录访问协议（LDAP）集成</title>
+</head>
+<body>
+<p><pre><code>---
+description: 了解如何在 ERPNext 中设置和使用 LDAP（轻量级目录访问协议）进行集中式身份验证。
+keywords: LDAP, 身份验证, 集成, 用户管理, 目录服务
+---</code></pre></p><p># 轻量级目录访问协议（LDAP）集成</p><p>轻量级目录访问协议（LDAP）是一种被许多中小型组织使用的集中式访问控制系统。</p><p>通过设置 LDAP 服务，您可以使用 LDAP 凭据登录 ERPNext 账户。</p><p><h1>1. 前置条件</h1></p><p>要使用 LDAP，您需要先安装 <code>ldap3</code> Python 模块。为此，请在托管 ERPNext 实例的服务器上打开一个终端会话。进入 <code>frappe-bench</code> 目录。
+运行命令：<code>./env/pip install ldap3</code></p><p>现在您可以在 ERPNext 中启用 LDAP 服务了。</p><p><h1>2. 设置 LDAP</h1></p><p>要设置 LDAP，请进入</p><p>> 首页 > 集成 > LDAP 设置</p><p>有许多参数是必需的，用于允许 ERPNext 连接到 LDAP。它们是：</p><p><strong>LDAP 服务器 URL</strong>：这是您 LDAP 服务器的 URL。必须采用 <code>ldap://yourserver:port</code> 或 <code>ldaps://yourserver:port</code> 的形式。</p><p><strong>基础可分辨名称（DN）</strong>：这是拥有在 LDAP 服务器上查找用户详细信息权限的用户的可分辨名称。该用户应该是在 LDAP 服务器上仅有只读权限的用户。</p><p><strong>基础 DN 的密码</strong>：这是上述用户的密码，用于在 LDAP 服务器上查找用户详细信息。</p><p><strong>用户组织单位</strong>：这是 LDAP 服务器上所有用户的组织单位的可分辨名称，这些用户必须属于该组织单位才能登录 ERPNext。</p><p><strong>创建时的默认角色</strong>：当用户在 ERPNext 中创建时，他们将在首次登录时被分配此默认角色。</p><p><strong>LDAP 搜索字符串</strong>：此字段允许 ERPNext 将 ERPNext 登录屏幕上输入的用户/电子邮件与 LDAP 服务器进行匹配。例如，您可以使用电子邮件地址或用户名，取决于您的偏好。</p><p>必须以以下格式输入：<code>LDAPFIELD={0}</code></p><p>Active Directory 用户名示例：<code>sAMAccountName={0}</code></p><p>Open LDAP 用户名示例：<code>uid={0}</code></p><ul>
+\0</ul><p>- 中间名
+- 电话
+- 手机</p><p>设置正确后，您可以点击顶部的 <code>已启用</code> 复选框。尝试启用 LDAP 时，ERPNext 将尝试连接到 LDAP 服务器以确保设置正确。如果失败，您将无法启用 LDAP，并将收到错误消息。</p><p>错误消息将指出需要解决的问题才能继续。</p><p>设置启用 LDAP 后，在登录页面上，系统将启用 <strong>通过 LDAP 登录</strong> 选项。</p><p><h2>2.1 LDAP 安全</h2></p><p>在 LDAP 安全部分，您有多种选项可以安全地连接到 LDAP 服务器。</p><p><h4>SSL/TLS 模式</h4></p><p>指定是否要在初始连接到 LDAP 服务器时启动 TLS 会话。</p><p><h4>需要可信证书</h4></p><p>指定是否需要可信证书才能连接到 LDAP 服务器。</p><p>如果您要指定可信证书，则需要指定证书文件的路径。这些文件应放置在 ERPNext 服务器上，以下字段应为服务器上文件的绝对路径。
+证书字段包括：</p><p>私钥文件路径</p><p>服务器证书路径</p><p>CA 证书文件路径</p><p><h2>2.2 LDAP 组映射</h2></p><p>ERPNext 还允许您自动将多个 LDAP 组映射到相应的 ERPNext 角色。
+例如，您可能希望所有会计人员自动拥有"账户用户"角色。
+请确保填写 LDAP 组字段以允许此操作。这是 LDAP 上用户对象中找到的 LDAP 字段，包含用户所属的所有组。</p><p>对于 Active Directory 和 Open LDAP，此字段应设置为 <code>memberOf</code>。</p><p>Open LDAP 可能需要在 LDAP 服务器上启用此字段。请参阅互联网上的示例以获取更多详细信息。</p><p>> 请注意，每次用户登录时都会检查所有 ERPNext 角色，并会从用户的权限中移除或添加到用户权限中。</p><p>在 LDAP 设置区域，有两个下拉菜单。</p><ul>
+\0</ul><p>original_url: https://docs.frappe.io/erpnext/ldap-integration
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18</p>
+</body>
+</html>

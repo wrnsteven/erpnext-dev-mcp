@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数值型</title>
+</head>
+<body>
+<p><pre><code>---
+original_url: https://docs.frappe.io/erpnext/quality-inspection
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---</p><p>在 ERPNext 中，您可以为您的入库或出库产品进行质量检验标记。</p><p>要访问此功能，请前往：</p><p>> 首页 > 库存 > 工具 > 质量检验</p><ul>
+\0</ul><p>以下是一些公式示例：
+</code></pre>
+# 数值型
+(reading_1 + reading_2) < 10 # 两个读数之和小于10
+(reading_1 + reading_2) <= 10 # 两个读数之和小于或等于10
+mean < 15  # 非空数值读数的平均值小于15
+(reading_1 * 2) < 20 # 读数1乘以2小于20
+(reading_1) / 2 < 20 # 读数1除以2小于20</p><p># 非数值型
+reading_value in ("A", "B", "C") # 读数值是 A/B/C 之一
+reading_value != "Red" # 读数值不等于 Red
+  </p><p><pre><code>更新读数并保存。读数表中的状态字段会根据接收公式自动设置。</p><p><h2>3.3 手动检验</h2></p><p>到目前为止，所有质量检查在保存时都会自动接收/拒绝。在现实世界中，可能会出现某项检查被拒绝但由于存在容差而仍将被接收的情况。</p><p>这种情况需要用户来确定行级状态。为避免系统干扰此类检查，请启用"手动检验"复选框。您现在可以手动设置状态，保存时不会被更改。</p><p>!<a href="../images/447_quality-inspection-manual-reading.png">图片</a></p><p>这里读数1超出了定义的范围，该检查将被拒绝。但是，由于它离 0.153 不太远，我们手动接受了它。</p><p>整个质量检验的状态可以由用户决定。</p><ul>
+\0</ul>
+</body>
+</html>

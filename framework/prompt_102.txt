@@ -1,0 +1,509 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0u4i5ig58o)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                RazorPay
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0u4i5ig58o)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            Razorpay is a popular payments solution in India which allows businesses to accept, process and disburse payments with its product suite. It gives you access to payment methods like Credit Cards, Debit Cards and Netbanking.
+
+## Integrating Razorpay Client Checkout
+
+Razorpay Payment
+
+### Steps for integration
+
+#### Include checkout script in your code
+
+Insert the following script on your page `&lt;script type=&quot;text/javascript&quot; src=&quot;/assets/js/checkout.min.js&quot;&gt;&lt;/script&gt;`
+The checkout script automatically fetches the razorpay checkout script and wraps their API for some syntactic sugar.
+
+#### Create the Order controller in your backend
+
+`def get_razorpay_order(self):
+ controller = get_payment_gateway_controller(&quot;Razorpay&quot;)
+
+ payment_details = {
+ &quot;amount&quot;: 30000,
+ ...
+ &quot;reference_doctype&quot;: &quot;Conference Participant&quot;,
+ &quot;reference_docname&quot;: self.name,
+ ...
+ &quot;receipt&quot;: self.name
+ }
+
+ return controller.create_order(**payment_details)
+`
+#### Inititate the payment in client using checkout API
+
+`function make_payment(ticket) {
+ var options = {
+ &quot;name&quot;: &quot;&lt;CHECKOUT MODAL TITLE&gt;&quot;,
+ &quot;description&quot;: &quot;&lt;CHECKOUT MODAL DESCRIPTION&gt;&quot;,
+ &quot;image&quot;: &quot;&lt;CHECKOUT MODAL LOGO&gt;&quot;,
+ &quot;prefill&quot;: {
+ &quot;name&quot;: &quot;&lt;CUSTOMER NAME&gt;&quot;,
+ &quot;email&quot;: &quot;&lt;CUSTOMER EMAIL&gt;&quot;,
+ &quot;contact&quot;: &quot;&lt;CUSTOMER PHONE&gt;&quot;
+ },
+ &quot;theme&quot;: {
+ &quot;color&quot;: &quot;&lt;MODAL COLOR&gt;&quot;
+ },
+ &quot;doctype&quot;: &quot;&lt;REFERENCE DOCTYPE&gt;&quot;, // Mandatory
+ &quot;docname&quot;: &quot;&lt;REFERENCE DOCNAME&quot; // Mandatory
+ };
+
+ razorpay = new frappe.checkout.razorpay(options)
+ razorpay.on_open = () =&gt; {
+ // SCRIPT TO RUN WHEN MODAL OPENS
+ }
+ razorpay.on_success = () =&gt; {
+ // SCRIPT TO RUN ON PAYMENT SUCCESS
+ }
+ razorpay.on_fail = () =&gt; {
+ // SCRIPT TO RUN ON PAYMENT FAILURE
+ }
+ razorpay.init() // Creates the order and opens the modal
+}
+`
+### Lifecycle
+
+Create an Order in your backend
+
+An order is first created at the server triggered by `razorpay.init()`, for this a controller `get_razorpay_order` must be created for the doctype. The server method sets the amount to be charged and a unique receipt id for razorpay APIs to consume.
+
+The `get_razorpay_order` internally calls the create_order controller of razorpay settings doctype. which then creates an integration request and sends POST request to `https://api.razorpay.com/v1/orders`
+
+- Process Checkout at Client
+
+A successful creation of the Order returns the `order_id` that is stored against the Order in integration request. This `order_id` is passed to the client which triggers the razorpay modal. After the payment, depending on the status the success or fail API method is called and the payment ID is passed to it.
+
+- Verify the payment
+
+Once the API method is called, The transaction details are saved in integration request. If successful the `authorize_payment` controller is called, which checks the payment status from razorpay API using the Payment ID. Once authorized, the integration request is marked as Completed, following this the payment success hook of the reference_doctype is called.
+
+You can read more about Razorpay custom checkout in their [documentation](https://razorpay.com/docs/payment-gateway/web-integration/custom/)
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Customization
+                    
+                ](/framework/user/en/web-form/customization)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Google Drive
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/integration/google_drive)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/integration/razorpay
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

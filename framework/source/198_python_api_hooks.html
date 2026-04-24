@@ -1,0 +1,1990 @@
+
+        <!-- Page Header -->
+        <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+            
+            <!-- Mobile: Edit above title -->
+            <div class="flex justify-start mb-4 sm:hidden">
+                
+    <div class="relative inline-flex" x-data="{ open: false }" @click.outside="open = false">
+        <!-- Split button group -->
+        <div class="inline-flex rounded-lg border border-[var(--outline-gray-2)] overflow-hidden">
+            <!-- Edit button (navigates to edit page) -->
+            <a href="/wiki/spaces/1u8fslkdg6/page/0tmi049j3s"
+               class="wiki-edit-link inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-[var(--ink-gray-7)] bg-[var(--surface-white)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+                
+    
+
+    
+    <svg class="w-4 h-4 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+        <path d="m15 5 4 4"></path>
+    </svg>
+    
+
+                <span>Edit</span>
+            </a>
+            <!-- Dropdown toggle button -->
+            <button @click="open = !open"
+                    class="inline-flex items-center px-2 py-1.5 text-[var(--ink-gray-5)] bg-[var(--surface-white)] hover:bg-[var(--surface-gray-1)] border-l border-[var(--outline-gray-2)] transition-colors duration-200 cursor-pointer">
+                <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Dropdown menu -->
+        <div x-show="open"
+             x-cloak
+             x-transition:enter="transition ease-out duration-100"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-75"
+             x-transition:leave-start="opacity-100 scale-100"
+             x-transition:leave-end="opacity-0 scale-95"
+             class="absolute left-0 sm:left-auto sm:right-0 mt-10 w-72 bg-[var(--surface-white)] border border-[var(--outline-gray-1)] rounded-lg shadow-lg z-50 py-2">
+
+                    
+    
+    <button @click="copyMarkdown(); open = false"
+            class="w-full flex items-start gap-3 px-4 py-3 text-left hover:bg-[var(--surface-gray-1)] transition-colors duration-200 cursor-pointer">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)]">Copy page</div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Copy page as Markdown for LLMs</div>
+            
+        </div>
+    </button>
+    
+
+                    
+    
+    <a :href="getAIUrl('openai')"
+       target="_blank" rel="noopener noreferrer"
+       class="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)] flex items-center gap-1">
+                Open in ChatGPT
+                
+                
+    
+
+    
+    <svg class="w-4 h-4 w-3 h-3 text-[var(--ink-gray-4)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+    </svg>
+    
+
+                
+            </div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Ask ChatGPT about this page</div>
+            
+        </div>
+    </a>
+    
+
+                    
+    
+    <a :href="getAIUrl('claude')"
+       target="_blank" rel="noopener noreferrer"
+       class="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.165-2.263-.134-.86-.06.144-.472.384-.124 1.116.068 2.01.128 2.322.152.986.062h.222l.058-.2-.238-.2-.632-.472-1.89-1.426-1.963-1.486-.663-.525.35-.36.426.074.636.496 1.58 1.21 1.89 1.436.695.516.174.058.082-.14-.066-.258-.324-1.142-.85-2.96-.42-1.418-.227-.81.465-.227.28.282.29.964.676 2.378.622 2.166.14.482.15.07.15-.14.014-.174-.07-.728-.228-2.47-.174-2.05-.072-.986.502-.035.238.366.086 1.332.106 1.578.15 2.324.12 1.31.032.174.168.08.14-.14.342-.59.884-1.546 1.22-2.11.46-.79.488.2.012.406-.354.638-1.01 1.79-1.17 2.086-.24.434-.008.182.214.104.166-.034.728-.298 2.286-.96 1.616-.676.614-.246.286.42-.12.402-.606.288-1.82.776-2.2.932-.566.244-.08.188.066.164.596.242 2.102.82 1.866.752.55.252-.09.494-.446.14-.744-.282-1.75-.686-2.052-.816-.506-.202-.198.002-.102.192.044.2.366.75 1.082 2.198.794 1.664.186.448-.33.338-.392-.068-.252-.504-.868-1.748-1.03-2.11-.216-.432-.128-.138-.186.034-.08.15.018.36.048.986.098 2.424.034 1.574-.006.446-.486.106-.256-.298-.06-.752-.128-2.33-.084-2.016-.026-.606-.012-.182-.17-.068-.14.128-.37.402-1.55 1.696-1.334 1.428-.658.69-.458-.172-.024-.446.51-.552 1.328-1.452 1.546-1.686.306-.336.048-.204-.166-.112-.238.054-.69.252-2.334.862-1.602.578-.612.202-.33-.372.11-.41.612-.252 2.126-.79 2.178-.804.366-.126.112-.172-.064-.172-.174-.06-.756-.156-2.358-.494-1.632-.35-.586-.144.054-.505.472-.09.786.148 2.08.416 1.958.396.538.11.186-.022.102-.17-.05-.212-.224-.504-.868-1.87-1.11-2.41-.28-.674.396-.282.384.128.21.44.948 2.022 1.088 2.362.21.456.124.154.17-.004.088-.122.058-.396.142-2.382.09-1.666.054-.62.495-.046.262.32.026.82.022 2.164-.006 2.146-.02.412.06.19.178.066.132-.112.268-.304 1.258-1.434 1.598-1.852.38-.44.466.14.064.416z"/>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)] flex items-center gap-1">
+                Open in Claude
+                
+                
+    
+
+    
+    <svg class="w-4 h-4 w-3 h-3 text-[var(--ink-gray-4)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+    </svg>
+    
+
+                
+            </div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Ask Claude about this page</div>
+            
+        </div>
+    </a>
+    
+
+                
+        </div>
+    </div>
+
+            </div>
+            <div class="flex items-center justify-between gap-4">
+                <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">Hooks</h1>
+
+                <!-- Desktop: Edit beside title -->
+                <div class="hidden sm:block">
+                    
+    <div class="relative inline-flex" x-data="{ open: false }" @click.outside="open = false">
+        <!-- Split button group -->
+        <div class="inline-flex rounded-lg border border-[var(--outline-gray-2)] overflow-hidden">
+            <!-- Edit button (navigates to edit page) -->
+            <a href="/wiki/spaces/1u8fslkdg6/page/0tmi049j3s"
+               class="wiki-edit-link inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-[var(--ink-gray-7)] bg-[var(--surface-white)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+                
+    
+
+    
+    <svg class="w-4 h-4 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+        <path d="m15 5 4 4"></path>
+    </svg>
+    
+
+                <span>Edit</span>
+            </a>
+            <!-- Dropdown toggle button -->
+            <button @click="open = !open"
+                    class="inline-flex items-center px-2 py-1.5 text-[var(--ink-gray-5)] bg-[var(--surface-white)] hover:bg-[var(--surface-gray-1)] border-l border-[var(--outline-gray-2)] transition-colors duration-200 cursor-pointer">
+                <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': open }" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Dropdown menu -->
+        <div x-show="open"
+             x-cloak
+             x-transition:enter="transition ease-out duration-100"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-75"
+             x-transition:leave-start="opacity-100 scale-100"
+             x-transition:leave-end="opacity-0 scale-95"
+             class="absolute left-0 sm:left-auto sm:right-0 mt-10 w-72 bg-[var(--surface-white)] border border-[var(--outline-gray-1)] rounded-lg shadow-lg z-50 py-2">
+
+                        
+    
+    <button @click="copyMarkdown(); open = false"
+            class="w-full flex items-start gap-3 px-4 py-3 text-left hover:bg-[var(--surface-gray-1)] transition-colors duration-200 cursor-pointer">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)]">Copy page</div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Copy page as Markdown for LLMs</div>
+            
+        </div>
+    </button>
+    
+
+                        
+    
+    <a :href="getAIUrl('openai')"
+       target="_blank" rel="noopener noreferrer"
+       class="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)] flex items-center gap-1">
+                Open in ChatGPT
+                
+                
+    
+
+    
+    <svg class="w-4 h-4 w-3 h-3 text-[var(--ink-gray-4)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+    </svg>
+    
+
+                
+            </div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Ask ChatGPT about this page</div>
+            
+        </div>
+    </a>
+    
+
+                        
+    
+    <a :href="getAIUrl('claude')"
+       target="_blank" rel="noopener noreferrer"
+       class="flex items-start gap-3 px-4 py-3 hover:bg-[var(--surface-gray-1)] transition-colors duration-200">
+        
+        <span class="flex-shrink-0 mt-0.5">
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-5)]" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M4.709 15.955l4.72-2.647.08-.23-.08-.128H9.2l-.79-.048-2.698-.165-2.263-.134-.86-.06.144-.472.384-.124 1.116.068 2.01.128 2.322.152.986.062h.222l.058-.2-.238-.2-.632-.472-1.89-1.426-1.963-1.486-.663-.525.35-.36.426.074.636.496 1.58 1.21 1.89 1.436.695.516.174.058.082-.14-.066-.258-.324-1.142-.85-2.96-.42-1.418-.227-.81.465-.227.28.282.29.964.676 2.378.622 2.166.14.482.15.07.15-.14.014-.174-.07-.728-.228-2.47-.174-2.05-.072-.986.502-.035.238.366.086 1.332.106 1.578.15 2.324.12 1.31.032.174.168.08.14-.14.342-.59.884-1.546 1.22-2.11.46-.79.488.2.012.406-.354.638-1.01 1.79-1.17 2.086-.24.434-.008.182.214.104.166-.034.728-.298 2.286-.96 1.616-.676.614-.246.286.42-.12.402-.606.288-1.82.776-2.2.932-.566.244-.08.188.066.164.596.242 2.102.82 1.866.752.55.252-.09.494-.446.14-.744-.282-1.75-.686-2.052-.816-.506-.202-.198.002-.102.192.044.2.366.75 1.082 2.198.794 1.664.186.448-.33.338-.392-.068-.252-.504-.868-1.748-1.03-2.11-.216-.432-.128-.138-.186.034-.08.15.018.36.048.986.098 2.424.034 1.574-.006.446-.486.106-.256-.298-.06-.752-.128-2.33-.084-2.016-.026-.606-.012-.182-.17-.068-.14.128-.37.402-1.55 1.696-1.334 1.428-.658.69-.458-.172-.024-.446.51-.552 1.328-1.452 1.546-1.686.306-.336.048-.204-.166-.112-.238.054-.69.252-2.334.862-1.602.578-.612.202-.33-.372.11-.41.612-.252 2.126-.79 2.178-.804.366-.126.112-.172-.064-.172-.174-.06-.756-.156-2.358-.494-1.632-.35-.586-.144.054-.505.472-.09.786.148 2.08.416 1.958.396.538.11.186-.022.102-.17-.05-.212-.224-.504-.868-1.87-1.11-2.41-.28-.674.396-.282.384.128.21.44.948 2.022 1.088 2.362.21.456.124.154.17-.004.088-.122.058-.396.142-2.382.09-1.666.054-.62.495-.046.262.32.026.82.022 2.164-.006 2.146-.02.412.06.19.178.066.132-.112.268-.304 1.258-1.434 1.598-1.852.38-.44.466.14.064.416z"/>
+    </svg>
+    
+</span>
+        
+        <div class="flex-1 min-w-0">
+            <div class="text-sm font-medium text-[var(--ink-gray-8)] flex items-center gap-1">
+                Open in Claude
+                
+                
+    
+
+    
+    <svg class="w-4 h-4 w-3 h-3 text-[var(--ink-gray-4)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+        <polyline points="15 3 21 3 21 9"></polyline>
+        <line x1="10" y1="14" x2="21" y2="3"></line>
+    </svg>
+    
+
+                
+            </div>
+            
+            <div class="text-xs text-[var(--ink-gray-5)] mt-0.5">Ask Claude about this page</div>
+            
+        </div>
+    </a>
+    
+
+                    
+        </div>
+    </div>
+
+                </div>
+            </div>
+            
+        </header>
+
+
+        <!-- Page Content -->
+        <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+            <p>Hooks allow you to &quot;hook&quot; into functionality and events of core parts of the Frappe Framework. This page documents all of the hooks provided by the framework.</p>
+<blockquote>
+<p>Jump to list of all <a href="#list-of-available-hooks">available hooks</a> in Frappe.</p>
+</blockquote>
+<h2 id="how-does-hooks-work">How does hooks work?</h2>
+<p>Hooks are places in the core code that allow an app to override the standard implementation or extend it. Hooks are defined in <strong>hooks.py</strong> of your app.</p>
+<p>Let's learn by example. Add the following hooks in your app's <strong>hooks.py</strong>.</p>
+<pre><code>test_string = &quot;value&quot;
+test_list = [&quot;value&quot;]
+test_dict = {
+    &quot;key&quot;: &quot;value&quot;
+}
+  
+
+</code></pre>
+<p>Now, open the python console by running the command <code>bench --site sitename console</code> and run the following lines:</p>
+<pre><code>❯ bench --site sitename console
+Apps in this namespace:
+frappe, frappe_docs
+
+In [1]: frappe.get_hooks(&quot;test_string&quot;)
+Out[1]: [&quot;value&quot;]
+
+In [2]: frappe.get_hooks(&quot;test_dict&quot;)
+Out[2]: {&quot;key&quot;: [&quot;value&quot;]}
+
+In [3]: frappe.get_hooks(&quot;test_list&quot;)
+Out[3]: [&quot;value&quot;]
+  
+
+</code></pre>
+<p>When you call <code>frappe.get_hooks</code>, it will convert all the values in a list. This means that if the hook is defined in multiple apps, the values will be collected from those apps. This is what enables the cascading nature of hooks.</p>
+<p>Now, the hook value can be consumed in different ways. For example, for including JS assets using <code>app_include_js</code>, all of the values are included. But for overriding whitelisted method, the last value in the list is used.</p>
+<p>So the implementation of the hook is totally dependent on how the author of the feature intended it to be used.</p>
+<h2 id="how-are-conflicting-hooks-resolved">How are conflicting hooks resolved?</h2>
+<p>Hooks are resolved using &quot;last writer wins&quot; strategy. Last installed app on site will have highest priority over others.</p>
+<ul>
+<li>When the hook overrides existing behaviour like overriding a class then only overrides from last app will work.</li>
+<li>When the hook extends behaviour then extensions will be applied in order of installation on the site.</li>
+</ul>
+<blockquote>
+<p>If you need to change this order you can do so by going to &quot;Installed Applications&quot; page and clicking on &quot;Update Hooks Resolution Order&quot;</p>
+</blockquote>
+<h2 id="app-meta-data">App Meta Data</h2>
+<p>These are automatically generated when you create a new app. Most of the time you don't need to change anything here.</p>
+<ol>
+<li><code>app_name</code> - slugified name of the app</li>
+<li><code>app_title</code> - presentable app name</li>
+<li><code>app_publisher</code></li>
+<li><code>app_description</code></li>
+<li><code>app_version</code></li>
+<li><code>app_icon</code></li>
+<li><code>app_color</code></li>
+</ol>
+<h2 id="javascript-css-assets">Javascript / CSS Assets</h2>
+<p>The following hooks allow you to inject static JS and CSS assets in various parts of your site.</p>
+<h3 id="desk">Desk</h3>
+<p>These hooks allow you to inject JS / CSS in <code>desk.html</code> which renders the <a href="/framework/v14/user/en/desk">Desk</a>.</p>
+<pre><code># injected in desk.html
+app_include_js = &quot;assets/js/app.min.js&quot;
+app_include_css = &quot;assets/js/app.min.css&quot;
+
+# All of the above support a list of paths too
+app_include_js = [&quot;assets/js/app1.min.js&quot;, &quot;assets/js/app2.min.js&quot;]
+  
+
+</code></pre>
+<h3 id="portal">Portal</h3>
+<p>These hooks allow you to inject JS / CSS in <code>web.html</code> which renders the <a href="/framework/v14/user/en/portal-pages">Portal</a>.</p>
+<pre><code># injected in the web.html
+web_include_js = &quot;assets/js/app-web.min.js&quot;
+web_include_css = &quot;assets/js/app-web.min.css&quot;
+# All of the above support a list of paths too
+web_include_js = [&quot;assets/js/web1.min.js&quot;, &quot;assets/js/web2.min.js&quot;]
+  
+
+</code></pre>
+<h3 id="web-form">Web Form</h3>
+<p>These hooks allow you to add inject static JS and CSS assets in <code>web_form.html</code> which is used to render Web Forms. These will work only for Standard Web Forms.</p>
+<pre><code>webform_include_js = {&quot;ToDo&quot;: &quot;public/js/custom_todo.js&quot;}
+webform_include_css = {&quot;ToDo&quot;: &quot;public/css/custom_todo.css&quot;}
+  
+
+</code></pre>
+<blockquote>
+<p>For user created Web Forms, you can directly write the script in the form &gt; itself.</p>
+</blockquote>
+<h3 id="page">Page</h3>
+<p>These hooks allow you to inject JS assets in Standard Desk Pages.</p>
+<pre><code>page_js = {&quot;page_name&quot; : &quot;public/js/file.js&quot;}
+  
+
+</code></pre>
+<p>For e.g., Background Jobs is a standard page that is part of Core module in Frappe Framework. To add custom behaviour in that page you can add a JS file in your custom app <code>custom_app/public/js/custom_background_jobs.js</code> and add the following line in your hooks file.</p>
+<p><strong>custom_app/hooks.py</strong></p>
+<pre><code>page_js = {&quot;background_jobs&quot;: &quot;public/js/custom_background_jobs.js&quot;}
+  
+
+</code></pre>
+<h2 id="sounds">Sounds</h2>
+<p>Frappe ships with a set of audio notifications for events like a success action, document submission, error, etc. You can add your own sounds using the <code>sounds</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>sounds = [
+    {&quot;name&quot;: &quot;ping&quot;, &quot;src&quot;: &quot;/assets/app/sounds/ping.mp3&quot;, &quot;volume&quot;: 0.2}
+]
+  
+
+</code></pre>
+<p>You can play your added sound using the client utility method:</p>
+<pre><code>frappe.utils.play_sound(&quot;ping&quot;)
+  
+
+</code></pre>
+<h2 id="install-hooks">Install Hooks</h2>
+<p>These hooks allow you to run code before and after installation of your app. For example, <a href="https://github.com/frappe/erpnext">ERPNext</a> has these <a href="https://github.com/frappe/erpnext/blob/ecfa6344c02b18455637455742202c7fadf1b35d/erpnext/hooks.py#L42-L43">defined</a>.</p>
+<pre><code># python module path
+before_install = &quot;app.setup.install.before_install&quot;
+after_install = &quot;app.setup.install.after_install&quot;
+after_sync = &quot;app.setup.install.after_sync&quot;
+  
+
+</code></pre>
+<p><strong>app/setup/install.py</strong></p>
+<pre><code># will run before app is installed on site
+def before_install():
+    pass
+
+# will run after app is installed on site
+def after_install():
+    pass
+
+# will run after app fixtures are synced
+def after_sync():
+    pass
+  
+
+</code></pre>
+<h2 id="uninstall-hooks">Uninstall Hooks</h2>
+<p>These hooks allow you to run code before and after uninstallation of your app.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>before_uninstall = &quot;app.setup.uninstall.before_uninstall&quot;
+after_uninstall = &quot;app.setup.uninstall.after_uninstall&quot;
+  
+
+</code></pre>
+<p><strong>app/setup/uninstall.py</strong></p>
+<pre><code># will run before app is uninstalled from site
+def before_uninstall():
+    pass
+
+# will run after app is uninstalled from site
+def after_uninstall():
+    pass
+  
+
+</code></pre>
+<h2 id="migrate-hooks">Migrate Hooks</h2>
+<p>These hooks allow you to run code before and after a migration is run on your site via the command <code>bench --site sitename migrate</code>.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>before_migrate = &quot;app.migrate.before_migrate&quot;
+after_migrate = &quot;app.migrate.after_migrate&quot;
+  
+
+</code></pre>
+<p><strong>app/migrate.py</strong></p>
+<pre><code>def after_migrate():
+    # run code after site migration
+    pass
+  
+
+</code></pre>
+<h2 id="build-hook">Build Hook</h2>
+<p>This hook allows you to extend the build system via the <code>bench build</code> command. It runs after completing builds for all the apps on the bench.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>after_build = &quot;studio.build.after_build&quot;
+</code></pre>
+<p><strong>studio/build.py</strong></p>
+<pre><code class="language-python">def after_build() -&gt; None:
+	# run code after `bench build`
+	pass
+</code></pre>
+<h2 id="test-hooks">Test Hooks</h2>
+<p>This hook allows you to run code before tests are run on a site. You can use this hook to add seed data to your database which will be available to your tests.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>before_tests = &quot;app.tests.before_tests&quot;
+  
+
+</code></pre>
+<p><strong>app/migrate.py</strong></p>
+<pre><code>def before_tests():
+    # add seed data to the database
+    pass
+  
+
+</code></pre>
+<h2 id="file-hooks">File Hooks</h2>
+<p>These hooks allows you to change the implementation of handling user uploaded files.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>before_write_file = &quot;app.overrides.file.before_write&quot;
+write_file = &quot;app.overrides.file.write_file&quot;
+delete_file_data_content = &quot;app.overrides.file.delete_file&quot;
+  
+
+</code></pre>
+<p><strong>app/overrides/file.py</strong></p>
+<pre><code># will run before file is written to disk
+def before_write():
+    pass
+
+# will override the implementation of writing file to disk
+# can be used to upload files to a CDN instead of writing
+# the file to disk
+def write_file():
+    pass
+
+
+# will override the implementation of deleting file from disk
+# can be used to delete uploaded files from a CDN instead of
+# deleting file from disk
+def delete_file():
+    pass
+  
+
+</code></pre>
+<h2 id="email-hooks">Email Hooks</h2>
+<p>These hooks allows you to change the default email module implementation of sending emails and setting default sender address.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>override_email_send = &quot;app.overrides.email.send&quot;
+get_sender_details = &quot;app.overrides.email.get_sender_details&quot;
+  
+
+</code></pre>
+<p>By default frappe uses the currently logged in users name and id as sender details on all emails. This can be overriden with <code>get_sender_details</code> hook. And if you want to extend the email modules functionality by using a thirdy party server or app for sending emails then you can use <code>override_email_send</code> hook. This hook will send all the email information (sender, recipient, content(mime)) to a function in custom_app.</p>
+<p><strong>app/overrides/email.py</strong></p>
+<pre><code># will be edited as &quot;John Doe &lt;johndoe@example.com&gt;&quot;
+def get_sender_details():
+    return &quot;John Doe&quot;, &quot;johndoe@example.com&quot;
+
+# self - EmailQueue object refrence for updating status
+def send(self, sender, recipient, msg):
+    # smtp or http request
+    self.update_status(&quot;Sending&quot;)
+  
+
+</code></pre>
+<blockquote>
+<p>Note: You'll have to handle the status change of email queue in your custom app depending on the webhook response you get from your mail provider/server</p>
+</blockquote>
+<h2 id="extend-bootinfo">Extend Bootinfo</h2>
+<p>After a successful login, the Desk is injected with a dictionary of global values called <code>bootinfo</code>. The <code>bootinfo</code> is available as a global object in Javascript as <code>frappe.boot</code>.</p>
+<p>The <code>bootinfo</code> dict contains a lot of values including:</p>
+<ul>
+<li>System defaults</li>
+<li>Notification status</li>
+<li>Permissions</li>
+<li>User settings</li>
+<li>Language and timezone info</li>
+</ul>
+<p>You can add global values that makes sense for your app via the <code>extend_bootinfo</code> hook.</p>
+<pre><code># python module path
+extend_bootinfo = &quot;app.boot.boot_session&quot;
+  
+
+</code></pre>
+<p>The method is called with one argument <code>bootinfo</code>, on which you can directly add/update values.</p>
+<p><strong>app/boot.py</strong></p>
+<pre><code>def boot_session(bootinfo):
+ bootinfo.my_global_key = &quot;my_global_value&quot;
+  
+
+</code></pre>
+<p>Now, you can access the value anywhere in your client side code.</p>
+<pre><code>console.log(frappe.boot.my_global_key)
+  
+
+</code></pre>
+<h2 id="website-context">Website Context</h2>
+<p>When a Portal Page is rendered, a dictionary is built with all of the possible variables that the page might need to render. This dict is also known as <code>context</code>. You can use these hooks to add or modify values in this dict.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>website_context = {
+    &quot;favicon&quot;: &quot;/assets/app/image/favicon.png&quot;
+}
+update_website_context = &quot;app.overrides.website_context&quot;
+  
+
+</code></pre>
+<p>The <code>website_context</code> hook is a simple dict of key value pairs. Use this hook for simple value overrides.</p>
+<p>You can use the <code>update_website_context</code> hook for more complex scenarios as it allows you to manipulate the context dict in a python method. The method is called with one argument, which is the <code>context</code> dict. You can either modify the context directly by mutating it or return a dict that will be merged with <code>context</code>.</p>
+<p><strong>app/overrides.py</strong></p>
+<pre><code>def website_context(context):
+ context.my_key = &quot;my_value&quot;
+  
+
+</code></pre>
+<h2 id="website-controller-context">Website Controller Context</h2>
+<p>Frappe ships with standard web pages like <code>/404</code> and <code>/about</code>. If you want to extend the controller context for these pages you can use the <code>extend_website_page_controller_context</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>extend_website_page_controller_context = {
+    &quot;frappe.www.404&quot;: &quot;app.pages.context_404&quot;
+}
+  
+
+</code></pre>
+<p>The above hook configuration will allow you to extend the context of the 404 page so that you can add your own keys or modify existing ones.</p>
+<p><strong>app/pages.py</strong></p>
+<pre><code>def context_404(context):
+    # context of the 404 page
+    context.my_key = &quot;my_value&quot;
+  
+
+</code></pre>
+<h2 id="web-pages-with-dynamic-routes">Web pages with dynamic routes</h2>
+<p>Dynamic routes are the routes with dynamic values in them.</p>
+<p><strong>Example:</strong></p>
+<pre><code>/profile/&lt;name&gt;
+</code></pre>
+<p>here &quot;name&quot; is the dynamic part but same profile page is rendered. By default, Frappe supports dynamic routes from documents in &quot;Web Page&quot; doctype. To add more dynamic routes, <code>get_web_pages_with_dynamic_routes</code> can be used.</p>
+<p><strong>app/<a href="http://hooks.py">hooks.py</a></strong></p>
+<pre><code>get_web_pages_with_dynamic_routes = &quot;script.get_web_pages_with_dynamic_routes&quot;
+  
+
+</code></pre>
+<p><strong>script.py</strong></p>
+<pre><code>def get_web_pages_with_dynamic_routes():
+ return [{
+       &quot;doctype&quot;: &quot;Custom Web Page&quot;, // Doctype extended from WebsiteGenerator https://frappeframework.com/docs/user/en/guides/portal-development/generators
+       &quot;route&quot;: &quot;/profile/&lt;name&gt;&quot;,
+       &quot;name&quot;: &quot;profile-page&quot; // name of the web view document to render
+    }, ...]
+</code></pre>
+<h2 id="website-clear-cache">Website Clear Cache</h2>
+<p>Frappe Framework caches a lot of static web pages for fast subsequent rendering. If you have created web pages that use cached values, and you want to invalidate the cache, this hook is place to do it.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>website_clear_cache = &quot;app.overrides.clear_website_cache&quot;
+  
+
+</code></pre>
+<p>The method is called with one argument <code>path</code>. <code>path</code> is set when cache is being cleared for one route, and is <code>None</code> when cache is cleared for all routes. You need to handle this case if your cache is page specific.</p>
+<p><strong>app/overrides.py</strong></p>
+<pre><code>def clear_website_cache(path=None):
+    if path:
+        # clear page related cache
+    else:
+        # clear all cache
+  
+
+</code></pre>
+<h2 id="website-redirects">Website Redirects</h2>
+<p>Website Redirects allow you to define redirects from one route to another. Frappe will generate a 304 Redirect response when the source URL is requested and redirect to the target URL. You can redirect plain URLs or you can use regex to match your URLs.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>website_redirects = [
+    {&quot;source&quot;: &quot;/compare&quot;, &quot;target&quot;: &quot;/comparison&quot;},
+    {&quot;source&quot;: &quot;/docs(/.*)?&quot;, &quot;target&quot;: &quot;https://docs.tennismart.com/\1&quot;},
+    {&quot;source&quot;: r'/items/item\?item_name=(.*)', &quot;target&quot;: '/items/\1', match_with_query_string=True},
+]
+  
+
+</code></pre>
+<p>The above configuration will result in following redirects:</p>
+<ul>
+<li><code>/compare</code> to <code>/comparison</code></li>
+<li><code>/docs/getting-started</code> to <code>https://docs.tennismart.com/getting-started</code></li>
+<li><code>/docs/help</code> to <code>https://docs.tennismart.com/help</code></li>
+<li><code>/items/item?item_name=racket</code> to <code>https://docs.tennismart.com/items/racket</code></li>
+</ul>
+<h2 id="website-route-rules">Website Route Rules</h2>
+<p>Website Route Rules allow you to map URLs to custom controllers. This is commonly used to generate clean URLs for pages.</p>
+<p>Let's say you want to have <code>/projects</code> route to display list of projects. This can be done by creating a <code>projects.html</code> and <code>projects.py</code> in <code>www</code> folder.</p>
+<p>You also want to have <code>/project/&lt;name&gt;</code> route to show a project page where name is the dynamic. To do this you can use the <code>website_route_rules</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>website_route_rules = [
+    {&quot;from_route&quot;: &quot;/projects/&lt;name&gt;&quot;, &quot;to_route&quot;: &quot;app/projects/project&quot;},
+]
+  
+
+</code></pre>
+<p>Now, you can create your controller files in <code>app/projects</code> folder.</p>
+<p><strong>app/projects/project.py</strong></p>
+<pre><code>def get_context(context):
+    project_name = frappe.form_dict.name
+    project = frappe.get_doc(&quot;Project&quot;, project_name)
+    context.project = project
+  
+
+</code></pre>
+<p><strong>app/projects/project.html</strong></p>
+<pre><code>&lt;h1&gt;{{ project.title }}&lt;/h1&gt;
+&lt;p&gt;{{ project.description }}&lt;/p&gt;
+  
+
+</code></pre>
+<h2 id="website-path-resolver">Website Path Resolver</h2>
+<p>Frappe does some standard route resolving eg. any request to &quot;/profile&quot; gets internally converted to &quot;/me&quot;. <code>website_path_resolver</code> can be used to override this behaviour.</p>
+<p><strong>app/<a href="http://hooks.py">hooks.py</a></strong></p>
+<pre><code>website_path_resolver = &quot;path.to.custom_resolver_method&quot;
+</code></pre>
+<p><strong>Note:</strong> Yourcustom_resolver_method will get the requested route, is expected to return a processed route.</p>
+<h2 id="website-404">Website 404</h2>
+<p>Frappe renders a default <code>/404</code> route when a page is not found. You can change this using the <code>website_catch_all</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>website_catch_all = &quot;not_found&quot;
+  
+
+</code></pre>
+<p>The above configuration will render <code>/not_found</code> when a 404 is occurred. It is upto you to implement the template <code>www/not_found.html</code> and controller <code>www/not_found.py</code>.</p>
+<h2 id="default-homepage">Default Homepage</h2>
+<p>Homepage is the page which is rendered when you visit the root URL (<code>/</code>) of your site. There are multiple ways to configure what page is rendered as the default homepage.</p>
+<p>By default, the homepage is <code>index</code>. So, frappe will try to render <code>index.html</code> from <code>www</code> folder. This can be overridden using the <code>homepage</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>homepage = &quot;homepage&quot;
+  
+
+</code></pre>
+<p>The above configuration will load the <code>www/homepage.html</code> as the default homepage.</p>
+<p>You can also have role based homepage by using the <code>role_home_page</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>role_home_page = {
+    &quot;Customer&quot;: &quot;orders&quot;,
+    &quot;Supplier&quot;: &quot;bills&quot;
+}
+  
+
+</code></pre>
+<p>The above configuration will make <code>/orders</code> the default homepage for users with the <strong>Customer</strong> role and <code>/bills</code> for users with the <strong>Supplier</strong> role.</p>
+<p>You can have even more control over the logic by using the <code>get_website_user_home_page</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>get_website_user_home_page = &quot;app.website.get_home_page&quot;
+  
+
+</code></pre>
+<p><strong>app/website.py</strong></p>
+<pre><code>def get_home_page(user):
+    if is_projects_user(user):
+        return &quot;projects&quot;
+    if is_partner(user):
+        return &quot;partner-dashboard&quot;
+    return &quot;index&quot;
+  
+
+</code></pre>
+<blockquote>
+<p>If all of these hooks are defined, the <code>get_website_user_home_page</code> will have &gt; higher priority over the others, and <code>role_home_page</code> will have higher &gt; priority over <code>homepage</code>.</p>
+</blockquote>
+<h2 id="portal-sidebar">Portal Sidebar</h2>
+<p>Some Portal views are shown with a sidebar with links to quickly jump to pages. These sidebar items can be customized via hooks.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>portal_menu_items = [
+    {&quot;title&quot;: &quot;Dashboard&quot;, &quot;route&quot;: &quot;/dashboard&quot;, &quot;role&quot;: &quot;Customer&quot;},
+    {&quot;title&quot;: &quot;Orders&quot;, &quot;route&quot;: &quot;/orders&quot;, &quot;role&quot;: &quot;Customer&quot;},
+]
+  
+
+</code></pre>
+<p>The above configuration will add two sidebar links for users with the role Customer.</p>
+<p><img src="/files/hooks-portal-menu-items.png" alt="Portal Sidebar" /></p>
+<p>These sidebar items are hardcoded in your app so they are not customizable from Desk. For e.g., if you want to hide a sidebar link temporarily you will have to make changes in your code.</p>
+<p>There is another hook called <code>standard_portal_menu_items</code> which allows you to do that. The sidebar links set in <code>standard_portal_menu_items</code> hook will be synced with the database.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>standard_portal_menu_items = [
+    {&quot;title&quot;: &quot;Dashboard&quot;, &quot;route&quot;: &quot;/dashboard&quot;, &quot;role&quot;: &quot;Website Manager&quot;},
+    {&quot;title&quot;: &quot;Orders&quot;, &quot;route&quot;: &quot;/orders&quot;, &quot;role&quot;: &quot;Website Manager&quot;},
+]
+  
+
+</code></pre>
+<p>The above configuration will sync sidebar items to the Portal Settings which can later be edited by any System User.</p>
+<p><img src="/files/hooks-standard-portal-menu-items.png" alt="Portal Settings" /></p>
+<h2 id="brand-html">Brand HTML</h2>
+<p>This hook allows you to customize the brand logo in the navbar of your website.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>brand_html = '&lt;div&gt;&lt;img src=&quot;tennismart.png&quot;&gt; TennisMart&lt;/div&gt;'
+  
+
+</code></pre>
+<p>If the <code>brand_html</code> is defined, it will override the default brand html in the navbar. It is not recommended to use hooks to change your brand logo, unless you want to version control it, otherwise you can use Website Settings to change it.</p>
+<h2 id="base-template">Base Template</h2>
+<p>When a web page is rendered, it extends <code>templates/base.html</code> by default. You can override the base template by overriding the <code>base_template</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>base_template = &quot;app/templates/my_custom_base.html&quot;
+  
+
+</code></pre>
+<p>You can also customize base templates based on routes. For e.g., if you want to use a different base template for all the routes that start with <code>docs/*</code> then you can use the <code>base_template_map</code> hook. The key must be a regex that matches the route. All other routes will fallback to the default base template.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>base_template_map = {
+    r&quot;docs.*&quot;: &quot;app/templates/doc_template.html&quot;
+}
+  
+
+</code></pre>
+<h2 id="integrations">Integrations</h2>
+<p>These hooks allow you to customize behaviour of 3rd-party integrations in Frappe.</p>
+<h3 id="braintree-success-page">Braintree Success Page</h3>
+<p>This hook allows you to override the default redirect URL on successful payment of Braintree transaction.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>braintree_success_page = &quot;app.integrations.braintree_success_page&quot;
+  
+
+</code></pre>
+<p>The method is called with one argument <code>data</code> which has the meta data of the payment.</p>
+<p><strong>app/integrations.py</strong></p>
+<pre><code>def braintree_success_page(data):
+    # data.reference_doctype
+    # data.reference_docname
+    return &quot;/thank-you&quot;
+  
+
+</code></pre>
+<h2 id="calendars">Calendars</h2>
+<p>The calendar hook is a list of doctype names which are shown as menu items for quick navigation from the Calendar page in Desk.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>calendars = [&quot;Appointment&quot;]
+  
+
+</code></pre>
+<p><img src="/files/hooks-event-menu-shortcuts.png" alt="Event Menu Shortcuts" /></p>
+<h2 id="clear-cache">Clear Cache</h2>
+<p>This hook allows you to clear your app specific cache values when the global cache is being cleared by frappe.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>clear_cache = &quot;app.cache.clear_cache&quot;
+  
+
+</code></pre>
+<p>You can use this hook to clear your app specific cache. The method is called without any arguments.</p>
+<p><strong>app/cache.py</strong></p>
+<pre><code>def clear_cache():
+    frappe.cache().hdel(&quot;app_specific_cache&quot;)
+  
+
+</code></pre>
+<h2 id="default-mail-footer">Default Mail Footer</h2>
+<p>If you want to set the default footer of all the emails that are sent out by Frappe, you can use the <code>default_mail_footer</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>default_mail_footer = &quot;&quot;&quot;
+ &lt;div&gt;
+ Sent via &lt;a href=&quot;https://tennismart.com&quot; target=&quot;_blank&quot;&gt;TennisMart&lt;/a&gt;
+&lt;/div&gt;
+&quot;&quot;&quot;
+  
+
+</code></pre>
+<p>Now, all the emails will have <strong>Sent via TennisMart</strong> in the footer.</p>
+<h2 id="session-hooks">Session Hooks</h2>
+<p>These hooks are triggered over the login lifecycle of a user. <code>on_login</code> is triggered immediately after a successful login, <code>on_session_creation</code> is triggered after the session is setup, <code>on_logout</code> is triggered after the user logs out.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>on_login = &quot;app.overrides.successful_login&quot;
+on_session_creation = &quot;app.overrides.allocate_free_credits&quot;
+on_logout = &quot;app.overrides.clear_user_cache&quot;
+  
+
+</code></pre>
+<p>The method will be called with one argument <code>login_manager</code>.</p>
+<p><strong>app/overrides.py</strong></p>
+<pre><code>def allocate_free_credits(login_manager):
+    # allocate free credits to frappe.session.user
+    pass
+  
+
+</code></pre>
+<h2 id="auth-hooks">Auth Hooks</h2>
+<p>These hooks are triggered during request authentication. Custom headers, Authorization headers can be validated here, user is verified and mapped to the request using <code>frappe.set_user()</code>. Use <code>frappe.request</code> and <code>frappe.*</code> to validate request and map user.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>auth_hooks = [&quot;app.overrides.validate_custom_jwt&quot;]
+  
+
+</code></pre>
+<p>The method will be called during request authentication.</p>
+<p><strong>app/overrides.py</strong></p>
+<pre><code>def validate_custom_jwt():
+    # validate jwt from header, verify signature, set user from jwt.
+    pass
+  
+
+</code></pre>
+<p>Use this method to check for incoming request header, verify the header and map the user to the request. If header verification fails DO NOT throw error to continue with other hooks. Unverified request is treated as &quot;Guest&quot; request by default. You may use third party server, shared database or any alternative of choice to verify and map request and user.</p>
+<h2 id="fixtures">Fixtures</h2>
+<p>Fixtures are database records that are synced using JSON files when you install and update your site.</p>
+<p>Let's say you want to create a set of categories in the database whenever you install your app. To do that, create the set of categories in your local site, and add the doctype name in the <code>fixtures</code> hook.</p>
+<pre><code>fixtures = [
+    # export all records from the Category table
+    &quot;Category&quot;
+]
+  
+
+</code></pre>
+<p>Now, run the following command:</p>
+<pre><code>bench --site sitename export-fixtures
+  
+
+</code></pre>
+<p>This command will create a JSON file for each doctype which will contain the data to generate list of records. You can test this by creating a new site and by installing your app on that site.</p>
+<p>You can also add conditions for exporting records.</p>
+<pre><code>fixtures = [
+    # export all records from the Category table
+    &quot;Category&quot;,
+    # export only those records that match the filters from the Role table
+    {&quot;dt&quot;: &quot;Role&quot;, &quot;filters&quot;: [[&quot;role_name&quot;, &quot;like&quot;, &quot;Admin%&quot;]]},
+]
+  
+
+</code></pre>
+<p>Some fields are for internal use only. They will be set and kept up-to-date by the system automatically. These will not get exported: <code>modified_by</code>, <code>creation</code>, <code>owner</code>, <code>idx</code>, <code>lft</code> and <code>rgt</code>. For child table records, the following fields will not get exported: <code>docstatus</code>, <code>doctype</code>, <code>modified</code> and <code>name</code>.</p>
+<h2 id="document-hooks">Document Hooks</h2>
+<h3 id="modify-list-query">Modify List Query</h3>
+<p>You can customize how list of records are queried for a DocType by adding custom match conditions using the <code>permission_query_conditions</code> hook. This match condition must be a valid WHERE clause fragment for an SQL query.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>permission_query_conditions = {
+    &quot;ToDo&quot;: &quot;app.permissions.todo_query&quot;,
+}
+  
+
+</code></pre>
+<p>The method is called with a single argument <code>user</code> which can be <code>None</code>. The method should return a string that is a valid SQL WHERE clause.</p>
+<p><strong>app/permissions.py</strong></p>
+<pre><code>def todo_query(user):
+    if not user:
+        user = frappe.session.user
+    # todos that belong to user or assigned by user
+    return &quot;(`tabToDo`.owner = {user} or `tabToDo`.assigned_by = {user})&quot;.format(user=frappe.db.escape(user))
+  
+
+</code></pre>
+<p>Now, if you use the <code>frappe.db.get_list</code> method, your WHERE clause will be appended to the query.</p>
+<pre><code>todos = frappe.db.get_list(&quot;ToDo&quot;, debug=1)
+
+# output
+'''
+select `tabToDo`.`name`
+from `tabToDo`
+where ((`tabToDo`.owner = 'john@doe.com' or `tabToDo`.assigned_by = 'john@doe.com'))
+order by `tabToDo`.`modified` DESC
+'''
+  
+
+</code></pre>
+<blockquote>
+<p>This hook will only affect the result of <code>frappe.db.get_list</code> method and not &gt; <code>frappe.db.get_all</code>.</p>
+</blockquote>
+<h3 id="document-permissions">Document Permissions</h3>
+<p>You can modify the behaviour of <code>doc.has_permission</code> document method for any DocType and add custom permission checking logic using the <code>has_permission</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>has_permission = {
+    &quot;Event&quot;: &quot;app.permissions.event_has_permission&quot;,
+}
+  
+
+</code></pre>
+<p>The method will be passed the <code>doc</code>, <code>user</code> and <code>permission_type</code> as arguments. It should return <code>True</code> or a <code>False</code> value. If <code>None</code> is returned, it will fallback to default behaviour.</p>
+<p><strong>app/permissions.py</strong></p>
+<pre><code>def event_has_permission(doc, user=None, permission_type=None):
+    # when reading a document allow if event is Public
+    if permission_type == &quot;read&quot; and doc.event_type == &quot;Public&quot;:
+        return True
+
+    # when writing a document allow if event owned by user
+    if permission_type == &quot;write&quot; and doc.owner == user:
+        return True
+
+    return False
+  
+
+</code></pre>
+<h3 id="extend-doctype-class">Extend DocType Class</h3>
+<blockquote>
+<p>Note: this is available in v16+</p>
+</blockquote>
+<p>You can extend the class for standard doctypes by using the <code>extend_doctype_class</code> hook. This hook allows you to add properties, methods, and functionality to existing DocType classes without overriding them completely, enabling multiple apps to extend the same DocType class.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code class="language-python">extend_doctype_class = {
+    &quot;Address&quot;: [&quot;app.extensions.address.AddressMixin&quot;]
+}
+</code></pre>
+<p><strong>app/extensions/address.py</strong></p>
+<pre><code class="language-python">from frappe.model.document import Document
+
+class AddressMixin(Document):
+    @property
+    def full_address(self):
+        return f&quot;{self.address_line1}, {self.city}, {self.country}&quot;
+    
+    def custom_validation(self):
+        # Custom validation logic
+        pass
+
+    def validate(self):
+        super.validate()
+        self.custom_validation()
+</code></pre>
+<h4 id="multiple-extensions">Multiple Extensions</h4>
+<p>You can define multiple extensions for the same DocType. For example, the <code>ValidationMixin</code> could be used in <strong>Contact</strong> as well as in <strong>Address</strong>, while the <code>GeocodingMixin</code> is used only in <strong>Address</strong>.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code class="language-python">extend_doctype_class = {
+    &quot;Address&quot;: [
+        &quot;app.extensions.address.GeocodingMixin&quot;,
+        &quot;app.extensions.common.ValidationMixin&quot;
+    ],
+    &quot;Contact&quot;: [
+        &quot;app.extensions.common.ValidationMixin&quot;
+    ]
+}
+</code></pre>
+<h4 id="hooks-resolution-order">Hooks Resolution Order</h4>
+<p>When multiple apps define extensions for the same DocType, the extensions are applied in the hooks resolution order. If apps are resolved in the order <code>frappe</code>, <code>app1</code>, <code>app2</code>, the final class will be:</p>
+<pre><code class="language-python">class ExtendedAddress(App2Mixin, App1Mixin, Address):
+    pass
+</code></pre>
+<h4 id="interaction-with-override_doctype_class">Interaction with <code>override_doctype_class</code></h4>
+<p>The <code>extend_doctype_class</code> hook works on top of <code>[override_doctype_class](#override-doctype-class)</code>. If both hooks are defined, extensions are applied to the overridden class instead of the base class.</p>
+<p>For example, if ERPNext overrides the Address class and custom apps extend it:</p>
+<pre><code class="language-python"># ERPNext overrides Address
+override_doctype_class = {
+    &quot;Address&quot;: &quot;erpnext.setup.doctype.address.address.Address&quot;
+}
+
+# Custom apps extend it
+extend_doctype_class = {
+    &quot;Address&quot;: [&quot;app1.extensions.Prop1Mixin&quot;, &quot;app2.extensions.Prop2Mixin&quot;]
+}
+
+# Final class becomes:
+class ExtendedAddress(Prop2Mixin, Prop1Mixin, ERPNextAddress):
+    pass
+</code></pre>
+<p>This hook is ideal for adding virtual fields, computed properties, and custom methods without disrupting the core functionality. It's recommended to use this hook instead of <code>[override_doctype_class](#override-doctype-class)</code> when you only need to add functionality rather than replace it.</p>
+<h3 id="override-doctype-class">Override DocType Class</h3>
+<p>You can override/extend the class for standard doctypes by using the <code>override_doctype_class</code> hook. Unlike <code>[extend_doctype_class](#extend-doctype-class)</code>, this hook completely replaces the original class. This can cause issues when you have multiple apps overriding the same DocType class. In v16+, prefer using <code>[extend_doctype_class](#extend-doctype-class)</code> instead.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>override_doctype_class = {
+    &quot;ToDo&quot;: &quot;app.overrides.todo.CustomToDo&quot;
+}
+  
+
+</code></pre>
+<p><strong>app/overrides/todo.py</strong></p>
+<pre><code>from frappe.desk.doctype.todo.todo import ToDo
+
+class CustomToDo(ToDo):
+    def on_update(self):
+        self.my_custom_code()
+        super().on_update()
+
+    def my_custom_code(self):
+        pass
+  
+
+</code></pre>
+<blockquote>
+<p>It is recommended that you extend the standard class of the doctype, otherwise you will have to implement all of the core functionality.</p>
+</blockquote>
+<h3 id="override-form-scripts">Override Form Scripts</h3>
+<p>You can override/extend <a href="/framework/v14/user/en/api/form#standard-form-scripts">Standard Form Scripts</a> by using the <code>doctype_js</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>doctype_js = {
+    &quot;ToDo&quot;: &quot;public/js/todo.js&quot;,
+}
+  
+
+</code></pre>
+<p><strong>app/public/js/todo.js</strong></p>
+<pre><code>frappe.ui.form.on(&quot;Todo&quot;, {
+    refresh: function(frm) {
+        frm.trigger(&quot;my_custom_code&quot;);
+    },
+    my_custom_code: function(frm){
+        console.log(frm.doc.name)
+    }
+});
+  
+
+</code></pre>
+<blockquote>
+<p>The events/functions defined in <code>app/public/todo.js</code> will extend &gt; those in the standard form script of <code>ToDo</code> doctype.</p>
+</blockquote>
+<h3 id="crud-events">CRUD Events</h3>
+<p>You can hook into various CRUD events of any doctype using the <code>doc_events</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>doc_events = {
+    &quot;*&quot;: {
+        # will run after any DocType record is inserted into database
+        &quot;after_insert&quot;: &quot;app.crud_events.after_insert_all&quot;
+    },
+    &quot;ToDo&quot;: {
+        # will run before a ToDo record is inserted into database
+        &quot;before_insert&quot;: &quot;app.crud_events.before_insert_todo&quot;,
+    }
+}
+  
+
+</code></pre>
+<p>The method will be passed the doc and the method name as arguments.</p>
+<p><strong>app/crud_events.py</strong></p>
+<pre><code>def after_insert_all(doc, method=None):
+    pass
+
+def before_insert_todo(doc, method=None):
+    pass
+  
+
+</code></pre>
+<blockquote>
+<p>See <a href="/framework/v14/user/en/basics/doctypes/controllers#controller-hooks">Controller Hooks</a> &gt; for a list of all available hooks.</p>
+</blockquote>
+<h3 id="override-whitelisted-methods">Override Whitelisted Methods</h3>
+<p>Whitelisted Methods are python methods that are accessible on a REST endpoint and consumed by a client. You can override standard whitelisted methods that are part of the core framework using the <code>override_whitelisted_methods</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>override_whitelisted_methods = {
+    &quot;frappe.client.get_count&quot;: &quot;app.whitelisted.custom_get_count&quot;
+}
+  
+
+</code></pre>
+<p>The method should have the same signature as the original method.</p>
+<p><strong>app/whitelisted.py</strong></p>
+<pre><code>def custom_get_count(doctype, filters=None, debug=False, cache=False):
+    # your custom implementation of the standard get_count method provided by frappe
+    pass
+  
+
+</code></pre>
+<h3 id="ignore-links-on-delete">Ignore Links on Delete</h3>
+<p>To ignore links to specific DocTypes when deleting documents, you can specify them in the <code>ignore_links_on_delete</code> hook like so:</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>ignore_links_on_delete = [&quot;Communication&quot;, &quot;ToDo&quot;]
+  
+
+</code></pre>
+<h3 id="form-timeline">Form Timeline</h3>
+<p>The timeline section of <a href="/framework/v14/user/en/desk#form-view">form view</a> of a document shows an audit trail of actions performed on that document like views, value changes, comments and related communications, etc.</p>
+<p>Apart from these standard actions, there might arise a situation where you need to add your own custom actions. You can do this via <code>additional_timeline_content</code> hook.</p>
+<pre><code>additional_timeline_content: {
+    # show in each document's timeline
+    &quot;*&quot;: [&quot;app.timeline.all_timeline&quot;]
+    # only show in ToDo's timeline
+    &quot;ToDo&quot;: [&quot;app.timeline.todo_timeline&quot;]
+}
+  
+
+</code></pre>
+<p>The method will be passed the doctype and docname as arguments. You can perform queries and return actions related to that document as a list of dicts as shown in the example. Each dict in the list must have a <code>creation</code> value which will be used to sort the item in the timeline.</p>
+<pre><code>def todo_timeline(doctype, docname):
+    # this method should return a list of dicts
+    return [
+        {
+             # this will be used to sort the content in the timeline
+            &quot;creation&quot;: &quot;22-05-2020 18:00:00&quot;,
+            # this JS template will be rendered in the timeline
+            &quot;template&quot;: &quot;custom_timeline_template&quot;,
+            # this data will be passed to the template.
+            &quot;template_data&quot;: {&quot;key&quot;: &quot;value&quot;},
+        },
+        ...
+    ]
+  
+
+</code></pre>
+<h2 id="scheduler-events">Scheduler Events</h2>
+<p>You can use Scheduler Events for running tasks periodically in the background using the <code>scheduler_events</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>scheduler_events = {
+    &quot;hourly&quot;: [
+        # will run hourly
+        &quot;app.scheduled_tasks.update_database_usage&quot;
+    ],
+}
+  
+
+</code></pre>
+<p><strong>app/scheduled_tasks.py</strong></p>
+<pre><code>def update_database_usage():
+    pass
+  
+
+</code></pre>
+<blockquote>
+<p>After changing any scheduled events in <code>hooks.py</code>, you need to run <code>bench migrate</code> for changes to take effect.</p>
+</blockquote>
+<h3 id="available-events">Available Events</h3>
+<ul>
+<li><code>hourly</code>, <code>daily</code>, <code>weekly</code>, <code>monthly</code></li>
+</ul>
+<p>These events will trigger every hour, day, week and month respectively.</p>
+<ul>
+<li><code>hourly_long</code>, <code>daily_long</code>, <code>weekly_long</code>, <code>monthly_long</code></li>
+</ul>
+<p>Same as above but these jobs are run in the <a href="/framework/v14/user/en/basics/directory-structure#worker_long">long worker</a> suitable for long running jobs.</p>
+<ul>
+<li><code>all</code></li>
+</ul>
+<p>The <code>all</code> event is triggered every 60 seconds. This can be configured via the <code>scheduler_tick_interval</code> key in <code>common_site_config.json</code></p>
+<ul>
+<li><code>cron</code></li>
+</ul>
+<p>A valid cron string that can be parsed by <a href="https://pypi.org/project/croniter/">croniter</a>.</p>
+<p>Usage Examples:</p>
+<pre><code>scheduler_events = {
+    &quot;daily&quot;: [
+        &quot;app.scheduled_tasks.manage_recurring_invoices&quot;
+    ],
+    &quot;daily_long&quot;: [
+        &quot;app.scheduled_tasks..take_backups_daily&quot;
+    ],
+    &quot;cron&quot;: {
+        &quot;15 18 * * *&quot;: [
+            &quot;app.scheduled_tasks..delete_all_barcodes_for_users&quot;
+        ],
+        &quot;*/6 * * * *&quot;: [
+            &quot;app.scheduled_tasks..collect_error_snapshots&quot;
+        ],
+        &quot;annual&quot;: [
+            &quot;app.scheduled_tasks.collect_error_snapshots&quot;
+        ]
+    }
+}
+  
+
+</code></pre>
+<h2 id="jinja-customization">Jinja Customization</h2>
+<p>Frappe provides a list of <a href="/framework/v14/user/en/api/jinja">global utility methods</a> in Jinja templates. To add your own methods and filters you can use the <code>jinja</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>jinja = {
+    &quot;methods&quot;: [
+        &quot;app.jinja.methods&quot;,
+        &quot;app.utils.get_fullname&quot;
+    ],
+    &quot;filters&quot;: [
+        &quot;app.jinja.filters&quot;,
+        &quot;app.utils.format_currency&quot;
+    ]
+}
+  
+
+</code></pre>
+<p><strong>app/jinja/methods.py</strong></p>
+<pre><code>def sum(a, b):
+    return a + b
+
+def multiply(a, b):
+    return a * b
+  
+
+</code></pre>
+<blockquote>
+<p>If the path is a module path, all the methods in that module will be added.</p>
+</blockquote>
+<p><strong>app/utils.py</strong></p>
+<pre><code>def get_fullname(user):
+    first_name, last_name = frappe.db.get_value(&quot;User&quot;, user, [&quot;first_name&quot;, &quot;last_name&quot;])
+    return first_name + &quot; &quot; + last_name
+
+def format_currency(value, currency):
+    return currency + &quot; &quot; + str(value)
+  
+
+</code></pre>
+<p>Now, you can use these utilities in your Jinja templates like so:</p>
+<pre><code>&lt;h1&gt;Hi, {{ get_fullname(frappe.session.user) }}&lt;/h1&gt;
+&lt;p&gt;Your account balance is {{ account_balance | format_currency(&quot;INR&quot;) }}&lt;/p&gt;
+&lt;p&gt;1 + 2 = {{ sum(1, 2) }}&lt;/p&gt;
+  
+
+</code></pre>
+<h2 id="prevent-auto-cancellation-of-linked-documents">Prevent Auto Cancellation of Linked Documents</h2>
+<p>To prevent documents of a specific DocType from being automatically cancelled on the cancellation of any linked documents you can use the <code>auto_cancel_exempted_doctypes</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>auto_cancel_exempted_doctypes = [&quot;Payment Entry&quot;]
+  
+
+</code></pre>
+<p>In the above example, if any document (for e.g Sales Invoice) that is linked with Payment Entry is cancelled, it will skip the auto-cancellation of the linked Payment Entry document.</p>
+<h2 id="notification-configurations">Notification configurations</h2>
+<p>The notification configuration hook is used to customize the items shown in the Notification dropdown in Desk. It can be configured by the <code>notification_config</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>notification_config = &quot;app.notification.get_config&quot;
+  
+
+</code></pre>
+<p>The method is called without any arguments.</p>
+<p><strong>app/notification.py</strong></p>
+<pre><code>def get_config():
+ return {
+        &quot;for_doctype&quot;: {
+            &quot;Issue&quot;: {&quot;status&quot;:&quot;Open&quot;},
+            &quot;Issue&quot;: {&quot;status&quot;:&quot;Open&quot;},
+        },
+        &quot;for_module_doctypes&quot;: {
+            &quot;ToDo&quot;: &quot;To Do&quot;,
+            &quot;Event&quot;: &quot;Calendar&quot;,
+            &quot;Comment&quot;: &quot;Messages&quot;
+        },
+        &quot;for_module&quot;: {
+            &quot;To Do&quot;: &quot;frappe.core.notifications.get_things_todo&quot;,
+            &quot;Calendar&quot;: &quot;frappe.core.notifications.get_todays_events&quot;,
+            &quot;Messages&quot;: &quot;frappe.core.notifications.get_unread_messages&quot;
+        }
+    }
+  
+
+</code></pre>
+<p>The above configuration has three parts:</p>
+<ol>
+<li><code>for_doctype</code> part of the above configuration marks any &quot;Issue&quot; or &quot;Customer Issue&quot; as unread if its status is Open</li>
+<li><code>for_module_doctypes</code> maps doctypes to module's unread count.</li>
+<li><code>for_module</code> maps modules to functions to obtain its unread count. The functions are called without any argument.</li>
+</ol>
+<h2 id="required-apps">Required Apps</h2>
+<p>When building apps, you might create apps that build on top of other apps. To make sure dependent apps are installed when someone installs your app, you can use the <code>required_apps</code> hook.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>required_apps = [&quot;erpnext&quot;]
+  
+
+</code></pre>
+<p>The above configuration will make sure <code>erpnext</code> is installed when someone installs your app.</p>
+<h2 id="user-data-protection-amp-privacy">User Data Protection &amp; Privacy</h2>
+<p>User Data Privacy features like personal data download and personal data deletion come out of the box in Frappe. What constitutes as personal data may be defined by the App publisher in the application's <code>hooks.py</code> file as <code>user_data_fields</code>.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code>user_data_fields = [
+    {&quot;doctype&quot;: &quot;Access Log&quot;},
+    {&quot;doctype&quot;: &quot;Comment&quot;, &quot;strict&quot;: True},
+    {
+        &quot;doctype&quot;: &quot;Contact&quot;,
+        &quot;filter_by&quot;: &quot;email_id&quot;,
+        &quot;rename&quot;: True,
+    },
+    {&quot;doctype&quot;: &quot;Contact Email&quot;, &quot;filter_by&quot;: &quot;email_id&quot;},
+    {
+        &quot;doctype&quot;: &quot;File&quot;,
+        &quot;filter_by&quot;: &quot;attached_to_name&quot;,
+        &quot;redact_fields&quot;: [&quot;file_name&quot;, &quot;file_url&quot;],
+    },
+    {&quot;doctype&quot;: &quot;Email Unsubscribe&quot;, &quot;filter_by&quot;: &quot;email&quot;, &quot;partial&quot;: True},
+]
+  
+
+</code></pre>
+<p>DocTypes that have user data should be mapped under this hook using the above format. Upon data deletion or download requests from users, this hook will be utilized to map over the specified DocTypes. The options available to modify documents are:</p>
+<table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>doctype</code></td>
+  <td>DocType that contains user data.</td>
+</tr>
+<tr>
+  <td><code>filter_by</code></td>
+  <td>Docfield to filter the documents by. If unset, defaults to <code>owner</code>.</td>
+</tr>
+<tr>
+  <td><code>partial</code></td>
+  <td>If set, all text fields are parsed and user's full name and username references will be redacted.</td>
+</tr>
+<tr>
+  <td><code>redact_fields</code></td>
+  <td>Fields that have to be redacted. If unspecified, it considers partial data redaction from all text fields.</td>
+</tr>
+<tr>
+  <td><code>rename</code></td>
+  <td>If document name contains user data, set this field to rename document to anonymize it.</td>
+</tr>
+<tr>
+  <td><code>strict</code></td>
+  <td>If set to True, any user data will be redacted from all documents of current DocType. If unset, it defaults to False which means it only filters through documents in which user is the owner.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>Note: Personal Data Download only utilizes the doctype and filter_by fields defined in <code>user_data_fields</code></p>
+</blockquote>
+<p>Related Topics:</p>
+<ol>
+<li><a href="https://docs.erpnext.com/docs/user/manual/en/setting-up/personal-data-deletion">Personal Data Deletion</a></li>
+<li><a href="https://docs.erpnext.com/docs/user/manual/en/setting-up/personal-data-download">Personal Data Download</a></li>
+</ol>
+<h2 id="signup-form-template">Signup Form Template</h2>
+<p>If you want to add additional fields to the signup form you can use this hook. Create a template file which contains the custom signup form. Pass this template to the custom signup hook.</p>
+<pre><code>signup_form_template = &quot;school/templates/signup-form.html&quot;
+  
+
+</code></pre>
+<blockquote>
+<p>Note: If you want custom fields in signup form, it will require additional fields in the user doctype. You will have to add these fields using fixtures. Also you will have to write your own submit handler for this signup form and a function on the server side which will signup the user. This way you can also write validations for the custom fields you add.</p>
+</blockquote>
+<h2 id="sms-hooks">SMS Hooks</h2>
+<p>These hooks allow you to customize the SMS sending functionality in Frappe by integrating with third-party SMS providers or implementing custom SMS logic.</p>
+<h3 id="send-sms">Send SMS</h3>
+<p>This hook allows you to override the default SMS sending logic for notifications, bulk SMS, and other general SMS functionality.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code class="language-python">send_sms = &quot;app.overrides.sms.send_sms&quot;
+</code></pre>
+<p>The method is called with the SMS details including recipient, message content, and other metadata.</p>
+<p><strong>app/overrides/sms.py</strong></p>
+<pre><code class="language-python">def send_sms(receiver_list, msg, sender=None, success_msg=True):
+    &quot;&quot;&quot;
+    Override default SMS sending logic
+    
+    Args:
+        receiver_list: List of mobile numbers or single mobile number
+        msg: SMS message content
+        sender: Sender ID (optional)
+        success_msg: Whether to show success message (optional)
+    &quot;&quot;&quot;
+   
+    # Send SMS via custom provider
+    response = custom_sms_provider.send_sms(
+        to=receiver_list,
+        message=msg,
+        from_number=sender
+    )
+    
+    if response.status_code == 200:
+        frappe.msgprint(_(&quot;SMS sent successfully&quot;))
+        return True
+    else:
+        frappe.throw(_(&quot;Failed to send SMS&quot;))
+        return False
+</code></pre>
+<h3 id="send-token-via-sms">Send Token via SMS</h3>
+<p>This hook allows you to override SMS OTP sending logic for two-factor authentication and mobile login flows.</p>
+<p><strong>app/hooks.py</strong></p>
+<pre><code class="language-python">send_token_via_sms = &quot;app.overrides.sms.send_token_via_sms&quot;
+</code></pre>
+<p>The method is called with OTP details for authentication purposes.</p>
+<p><strong>app/overrides/sms.py</strong></p>
+<pre><code class="language-python">def send_token_via_sms(otpsecret, token=None, phone_no=None):
+   &quot;&quot;&quot;
+    Generate OTP and send using local send_otp function.
+    :param otpsecret: OTP secret for generating HOTP
+    :param token: Token to use for HOTP generation
+    :param phone_no: Phone number to send OTP to
+    &quot;&quot;&quot;
+    if not phone_no:
+        return False
+    try:
+        hotp = pyotp.HOTP(otpsecret)
+        otp_code = hotp.at(token_int)
+        result = send_otp(
+            number=phone_no,
+            otp_length=len(otp_code),
+            otp_expiry=5,  # 5 minutes expiry
+            otp=otp_code
+        )
+        return result.get(&quot;success&quot;, False)
+    except Exception as e:
+        frappe.log_error(
+            message=f&quot;Failed to send OTP: {str(e)}&quot;,
+            title=&quot;OTP Error&quot;
+        )
+        return False 
+</code></pre>
+<h2 id="list-of-available-hooks">List of available hooks</h2>
+<table>
+<thead>
+<tr>
+  <th>Hook Name</th>
+  <th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>additional_timeline_content</code></td>
+  <td><a href="#form-timeline">Form Timeline</a></td>
+</tr>
+<tr>
+  <td><code>after_install</code></td>
+  <td><a href="#install-hooks">Install Hooks</a></td>
+</tr>
+<tr>
+  <td><code>after_migrate</code></td>
+  <td><a href="#migrate-hooks">Migrate Hooks</a></td>
+</tr>
+<tr>
+  <td><code>after_sync</code></td>
+  <td><a href="#install-hooks">Install Hooks</a></td>
+</tr>
+<tr>
+  <td><code>app_include_css</code></td>
+  <td><a href="#desk">Desk Assets</a></td>
+</tr>
+<tr>
+  <td><code>app_include_js</code></td>
+  <td><a href="#desk">Desk Assets</a></td>
+</tr>
+<tr>
+  <td><code>app_logo_url</code></td>
+  <td><a href="#app-meta-data">App Meta Data</a></td>
+</tr>
+<tr>
+  <td><code>app_title</code></td>
+  <td><a href="#app-meta-data">App Meta Data</a></td>
+</tr>
+<tr>
+  <td><code>auto_cancel_exempted_doctypes</code></td>
+  <td><a href="#prevent-auto-cancellation-of-linked-documents">Prevent Auto Cancellation</a></td>
+</tr>
+<tr>
+  <td><code>base_template_map</code></td>
+  <td><a href="#base-template">Base Template</a></td>
+</tr>
+<tr>
+  <td><code>base_template</code></td>
+  <td><a href="#base-template">Base Template</a></td>
+</tr>
+<tr>
+  <td><code>before_install</code></td>
+  <td><a href="#install-hooks">Install Hooks</a></td>
+</tr>
+<tr>
+  <td><code>before_migrate</code></td>
+  <td><a href="#migrate-hooks">Migrate Hooks</a></td>
+</tr>
+<tr>
+  <td><code>before_tests</code></td>
+  <td><a href="#test-hooks">Test Hooks</a></td>
+</tr>
+<tr>
+  <td><code>before_write_file</code></td>
+  <td><a href="#file-hooks">File Hooks</a></td>
+</tr>
+<tr>
+  <td><code>bot_parsers</code></td>
+  <td><em>Deprecated</em></td>
+</tr>
+<tr>
+  <td><code>braintree_success_page</code></td>
+  <td><a href="#braintree-success-page">Braintree Success Page</a></td>
+</tr>
+<tr>
+  <td><code>brand_html</code></td>
+  <td><a href="#brand-html">Brand HTML</a></td>
+</tr>
+<tr>
+  <td><code>calendars</code></td>
+  <td><a href="#calendars">Calendars</a></td>
+</tr>
+<tr>
+  <td><code>clear_cache</code></td>
+  <td><a href="#clear-cache">Clear Cache</a></td>
+</tr>
+<tr>
+  <td><code>communication_doctypes</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>default_mail_footer</code></td>
+  <td><a href="#default-mail-footer">Default Mail Footer</a></td>
+</tr>
+<tr>
+  <td><code>delete_file_data_content</code></td>
+  <td><a href="#file-hooks">File Hooks</a></td>
+</tr>
+<tr>
+  <td><code>doc_events</code></td>
+  <td><a href="#crud-events">Document CRUD Events</a></td>
+</tr>
+<tr>
+  <td><code>doctype_js</code></td>
+  <td><a href="#override-form-scripts">Override Form Scripts</a></td>
+</tr>
+<tr>
+  <td><code>domains</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>dump_report_map</code></td>
+  <td><em>Deprecated</em></td>
+</tr>
+<tr>
+  <td><code>extend_bootinfo</code></td>
+  <td><a href="#extend-bootinfo">Extend Bootinfo</a></td>
+</tr>
+<tr>
+  <td><code>extend_website_page_controller_context</code></td>
+  <td><a href="#website-controller-context">Website Controller Context</a></td>
+</tr>
+<tr>
+  <td><code>filters_config</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>fixtures</code></td>
+  <td><a href="#fixtures">Fixtures</a></td>
+</tr>
+<tr>
+  <td><code>get_site_info</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>get_translated_dict</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>get_website_user_home_page</code></td>
+  <td><a href="#default-homepage">Default Homepage</a></td>
+</tr>
+<tr>
+  <td><code>get_web_pages_with_dynamic_routes</code></td>
+  <td><a href="#web-pages-with-dynamic-routes">Web pages with dynamic routes</a></td>
+</tr>
+<tr>
+  <td><code>has_permission</code></td>
+  <td><a href="#document-permissions">Document Permissions</a></td>
+</tr>
+<tr>
+  <td><code>has_website_permission</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>home_page</code></td>
+  <td><a href="#default-homepage">Default Homepage</a></td>
+</tr>
+<tr>
+  <td><code>jenv</code></td>
+  <td><a href="#jinja-customization">Jinja Customization</a></td>
+</tr>
+<tr>
+  <td><code>leaderboards</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>look_for_sidebar_json</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>make_email_body_message</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>notification_config</code></td>
+  <td><a href="#notification-configurations">Notification configuration</a></td>
+</tr>
+<tr>
+  <td><code>on_login</code></td>
+  <td><a href="#session-hooks">Session Hooks</a></td>
+</tr>
+<tr>
+  <td><code>on_logout</code></td>
+  <td><a href="#session-hooks">Session Hooks</a></td>
+</tr>
+<tr>
+  <td><code>on_print_pdf</code></td>
+  <td>On printing</td>
+</tr>
+<tr>
+  <td><code>on_session_creation</code></td>
+  <td><a href="#session-hooks">Session Hooks</a></td>
+</tr>
+<tr>
+  <td><code>extend_doctype_class</code></td>
+  <td><a href="#extend-doctype-class">Extend DocType Class</a></td>
+</tr>
+<tr>
+  <td><code>override_doctype_class</code></td>
+  <td><a href="#override-doctype-class">Override DocType Class</a></td>
+</tr>
+<tr>
+  <td><code>override_doctype_dashboards</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>override_whitelisted_methods</code></td>
+  <td><a href="#override-whitelisted-methods">Override Whitelisted Methods</a></td>
+</tr>
+<tr>
+  <td><code>ignore_links_on_delete</code></td>
+  <td><a href="#ignore-links-on-delete">Ignore Links on Delete</a></td>
+</tr>
+<tr>
+  <td><code>permission_query_conditions</code></td>
+  <td><a href="#modify-list-query">Modify List Query</a></td>
+</tr>
+<tr>
+  <td><code>portal_menu_items</code></td>
+  <td><a href="#portal-sidebar">Portal Sidebar</a></td>
+</tr>
+<tr>
+  <td><code>required_apps</code></td>
+  <td><a href="#required-apps">Required Apps</a></td>
+</tr>
+<tr>
+  <td><code>role_home_page</code></td>
+  <td><a href="#default-homepage">Default Homepage</a></td>
+</tr>
+<tr>
+  <td><code>scheduler_events</code></td>
+  <td><a href="#scheduler-events">Scheduler Events</a></td>
+</tr>
+<tr>
+  <td><code>setup_wizard_complete</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>setup_wizard_exception</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>setup_wizard_requires</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>setup_wizard_stages</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>setup_wizard_success</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>signup_form_template</code></td>
+  <td><a href="#signup-form-template">Signup Form Template</a></td>
+</tr>
+<tr>
+  <td><code>sounds</code></td>
+  <td><a href="#sounds">Sounds</a></td>
+</tr>
+<tr>
+  <td><code>standard_portal_menu_items</code></td>
+  <td><a href="#portal-sidebar">Portal Sidebar</a></td>
+</tr>
+<tr>
+  <td><code>standard_queries</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>send_sms</code></td>
+  <td><a href="#send-sms">SMS Hooks</a></td>
+</tr>
+<tr>
+  <td><code>send_token_via_sms</code></td>
+  <td><a href="#send-token-via-sms">SMS Hooks</a></td>
+</tr>
+<tr>
+  <td><code>template_apps</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>translated_languages_for_website</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>translator_url</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>treeviews</code></td>
+  <td>DocTypes that use TreeView as the default view (instead of ListView)</td>
+</tr>
+<tr>
+  <td><code>update_website_context</code></td>
+  <td><a href="#website-context">Website Context</a></td>
+</tr>
+<tr>
+  <td><code>user_privacy_documents</code></td>
+  <td><em>Deprecated</em> (Use <code>user_data_fields</code> hook)</td>
+</tr>
+<tr>
+  <td><code>user_data_fields</code></td>
+  <td><a href="#user-data-protection-&amp;-privacy">User Data Protection &amp; Privacy</a></td>
+</tr>
+<tr>
+  <td><code>web_include_css</code></td>
+  <td><a href="#portal">Portal Assets</a></td>
+</tr>
+<tr>
+  <td><code>web_include_js</code></td>
+  <td><a href="#portal">Portal Assets</a></td>
+</tr>
+<tr>
+  <td><code>website_catch_all</code></td>
+  <td><a href="#website-404">Website 404</a></td>
+</tr>
+<tr>
+  <td><code>website_clear_cache</code></td>
+  <td><a href="#website-clear-cache">Website Clear Cache</a></td>
+</tr>
+<tr>
+  <td><code>website_context</code></td>
+  <td><a href="#website-context">Website Context</a></td>
+</tr>
+<tr>
+  <td><code>website_generators</code></td>
+  <td><em>Deprecated</em> (Use Has Web View in DocType instead)</td>
+</tr>
+<tr>
+  <td><code>website_redirects</code></td>
+  <td><a href="#website-redirects">Website Redirects</a></td>
+</tr>
+<tr>
+  <td><code>website_route_rules</code></td>
+  <td><a href="#website-route-rules">Website Route Rules</a></td>
+</tr>
+<tr>
+  <td><code>website_user_home_page</code></td>
+  <td><em>Deprecated</em> (Use <code>homepage</code> hook)</td>
+</tr>
+<tr>
+  <td><code>welcome_email</code></td>
+  <td></td>
+</tr>
+<tr>
+  <td><code>write_file_keys</code></td>
+  <td><em>Deprecated</em></td>
+</tr>
+<tr>
+  <td><code>write_file</code></td>
+  <td><a href="#file-hooks">File Hooks</a></td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+
+        <!-- Previous/Next Navigation -->
+        <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+            
+            <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+                
+                <a href="/framework/user/en/python-api/search"
+                   @click.prevent="$store.navigation.navigateTo('framework/user/en/python-api/search')"
+                   @mouseenter="$store.navigation.prefetch('framework/user/en/python-api/search')"
+                   class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                    
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+    </svg>
+    
+
+                    <div class="flex flex-col gap-1 min-w-0">
+                        <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">Previous Page</span>
+                        <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">Search
+</span>
+                    </div>
+                </a>
+                
+
+                
+                <a href="/framework/user/en/api/rest"
+                   @click.prevent="$store.navigation.navigateTo('framework/user/en/api/rest')"
+                   @mouseenter="$store.navigation.prefetch('framework/user/en/api/rest')"
+                   class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden ">
+                    <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                        <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">Next Page</span>
+                        <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">REST API</span>
+                    </div>
+                    
+    
+
+    
+    <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+    </svg>
+    
+
+                </a>
+                
+            </div>
+            
+        </nav>
+
+        <!-- Last Updated & Feedback Widget -->
+        <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+            <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]" title="13-04-2026 12:53:31" data-timestamp="13-04-2026 12:53:31">
+                Last updated 5 days ago
+            </div>
+            
+            <!-- Feedback Widget -->
+<div x-data="feedbackWidget('0tmi049j3s')" class="flex flex-col items-start sm:items-end">
+    <div class="flex flex-col items-start sm:items-center gap-2">
+        <span class="text-sm text-[var(--ink-gray-5)]">Was this helpful?</span>
+
+        <!-- Reaction Buttons (pill-shaped toggle group) -->
+        
+        <fieldset class="inline-flex rounded-full bg-[var(--surface-gray-2)] p-0.5" role="radiogroup" aria-label="Feedback rating">
+            
+            <button type="button"
+                    @click="selectFeedback('Good')"
+                    :disabled="submitted"
+                    :class="feedbackType === 'Good' ? 'bg-[var(--surface-white)] shadow-sm' : 'hover:bg-[var(--surface-gray-4)]'"
+                    class="p-1.5 rounded-full transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
+                    role="radio"
+                    :aria-checked="feedbackType === 'Good'"
+                    aria-label="Good">
+                <svg class="w-4 h-4" :class="feedbackType === 'Good' ? 'text-[var(--ink-gray-9)]' : 'text-[var(--ink-gray-5)]'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                </svg>
+            </button>
+            
+            <button type="button"
+                    @click="selectFeedback('Ok')"
+                    :disabled="submitted"
+                    :class="feedbackType === 'Ok' ? 'bg-[var(--surface-white)] shadow-sm' : 'hover:bg-[var(--surface-gray-4)]'"
+                    class="p-1.5 rounded-full transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
+                    role="radio"
+                    :aria-checked="feedbackType === 'Ok'"
+                    aria-label="Ok">
+                <svg class="w-4 h-4" :class="feedbackType === 'Ok' ? 'text-[var(--ink-gray-9)]' : 'text-[var(--ink-gray-5)]'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="8" y1="15" x2="16" y2="15"/>
+                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                </svg>
+            </button>
+            
+            <button type="button"
+                    @click="selectFeedback('Bad')"
+                    :disabled="submitted"
+                    :class="feedbackType === 'Bad' ? 'bg-[var(--surface-white)] shadow-sm' : 'hover:bg-[var(--surface-gray-4)]'"
+                    class="p-1.5 rounded-full transition-all duration-200 cursor-pointer disabled:cursor-not-allowed disabled:opacity-60"
+                    role="radio"
+                    :aria-checked="feedbackType === 'Bad'"
+                    aria-label="Bad">
+                <svg class="w-4 h-4" :class="feedbackType === 'Bad' ? 'text-[var(--ink-gray-9)]' : 'text-[var(--ink-gray-5)]'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M16 16s-1.5-2-4-2-4 2-4 2"/>
+                    <line x1="9" y1="9" x2="9.01" y2="9"/>
+                    <line x1="15" y1="9" x2="15.01" y2="9"/>
+                </svg>
+            </button>
+            
+        </fieldset>
+    </div>
+
+    <!-- Optional text + Submit (shown after type selected) -->
+    <div x-show="feedbackType" x-cloak
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0 -translate-y-1"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         class="mt-2 w-72">
+        <form @submit.prevent="submit()" class="relative">
+            <textarea x-ref="feedbackInput"
+                      x-model="comment"
+                      name="feedback"
+                      :disabled="submitted"
+                      placeholder="Anything you'd like to add?"
+                      rows="3"
+                      class="w-full px-4 py-3 pr-20 text-sm rounded-xl border border-[var(--outline-gray-2)] bg-[var(--surface-white)] text-[var(--ink-gray-9)] placeholder-[var(--ink-gray-4)] focus:outline-none focus:ring-2 focus:ring-[var(--outline-gray-3)] resize-none disabled:opacity-60"></textarea>
+
+            <!-- Submit button OR Thank you message -->
+            <div class="absolute bottom-3 right-3">
+                <button x-show="!submitted"
+                        type="submit"
+                        :disabled="submitting"
+                        class="px-2.5 py-1 text-xs font-medium rounded-sm bg-[var(--surface-gray-3)] text-[var(--ink-gray-7)] hover:bg-[var(--surface-gray-4)] hover:text-[var(--ink-gray-9)] transition-colors duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+                    <span x-show="!submitting">Submit</span>
+                    <span x-show="submitting" class="flex items-center gap-1">
+                        <svg class="animate-spin h-3 w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </span>
+                </button>
+                <span x-show="submitted" class="flex items-center gap-1 text-xs font-medium text-green-600">
+                    <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path d="M9 12l2 2 4-4"/>
+                    </svg>
+                    Thanks!
+                </span>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+            
+        </div>
+    

@@ -1,0 +1,218 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会计科目表</title>
+</head>
+<body>
+    <h1>会计科目表</h1>
+
+    <p><strong>会计科目表是你组织中账户的蓝图。</strong></p>
+
+    <p>会计科目表的整体结构基于复式记账会计系统，该系统已成为全球量化公司财务状况的标准。</p>
+
+    <p>会计科目表是公司管理账簿所需的账户名称（分类账和组）的树形视图。ERPNext 为你创建的每个公司设置一套简单的会计科目表，但你可以根据你的需求和法律要求进行修改。</p>
+
+    <p>对于每个公司，会计科目表表示分类会计条目的方式，主要基于法定（税务、政府法规合规）要求。</p>
+
+    <p>会计科目表帮助你回答以下问题：</p>
+
+    <ul>
+        <li>你的组织价值多少？</li>
+        <li>你承担了多少债务？</li>
+        <li>你获得了多少利润（因此需要缴多少税）？</li>
+        <li>你的销售额是多少？</li>
+        <li>你的费用明细是什么？</li>
+    </ul>
+
+    <p>作为企业管理者，了解企业的运营状况非常有价值。</p>
+
+    <blockquote>
+        <p><strong>提示：</strong>如果你看不懂资产负债表，这是一个开始学习的好机会。努力是值得的。你也可以请你的会计帮助你设置会计科目表。</p>
+    </blockquote>
+
+    <p>要访问会计科目表，请进入：</p>
+
+    <blockquote>
+        <p>主页 > 会计 > 会计主数据 > 会计科目表</p>
+    </blockquote>
+
+    <h2 id="how-to-create-edit-accounts">1. 如何创建/编辑账户</h2>
+
+    <hr />
+
+    <p>ERPNext 带有一套标准的会计科目表。你也可以使用<a href="/erpnext/chart-of-accounts-importer">会计科目表导入工具</a>来代替创建/修改。请注意，使用此工具时现有的会计科目表将被覆盖。</p>
+
+    <ol>
+        <li>进入会计科目表</li>
+    </ol>
+
+    <p>在这里你可以打开包含其他账户的组账户。有"添加子级"、"编辑"或"删除"账户的选项。</p>
+
+    <p><img src="/files/image8e47f4.png" alt="" /></p>
+
+    <ol start="2">
+        <li>只有点击组（文件夹）类型的账户时，才会显示创建子账户的选项。</li>
+        <li>输入账户名称。</li>
+        <li>输入账户编号。</li>
+        <li>如果你希望这是一个可以包含其他账户的组账户，请勾选"是组"。</li>
+        <li>选择账户类型。选择此项很重要，因为某些字段只允许选择特定类型的账户。</li>
+        <li>如果此账户将用于不同货币的交易，请更改货币。默认为公司货币。要了解更多信息，请访问<a href="/erpnext/multi-currency-accounting">多货币会计</a>页面。</li>
+        <li>点击<strong>创建新账户</strong>。</li>
+    </ol>
+
+    <p>通常，你可能需要创建以下账户：</p>
+
+    <ul>
+        <li>差旅费、工资、电话费等，归入<strong>费用</strong>。</li>
+        <li>增值税（VAT）、销售税、权益等，归入<strong>流动负债</strong>。</li>
+        <li>产品销售、服务销售等，归入<strong>收入</strong>。</li>
+        <li>建筑物、机械设备、家具等，归入<strong>固定资产</strong>。</li>
+    </ul>
+
+    <p><img src="/files/image0b7fe9.png" alt="" /></p>
+
+    <blockquote>
+        <p>提示：当您收到或支付不同货币的款项时，会创建不同货币的账户。例如，如果您在印度经营但与美国进行交易，您可能需要创建"美国债务人"、"美国债权人"等账户。</p>
+    </blockquote>
+
+    <p>让我们了解会计科目表的主要组别。</p>
+
+    <h2 id="account-types">2. 账户类型</h2>
+
+    <hr />
+
+    <p>账户类型主要分为收入、费用、资产或负债。</p>
+
+    <h3 id="balance-sheet-accounts">2.1 资产负债表账户</h3>
+
+    <p>资产负债表账户是"资金应用（资产）"和"资金来源（负债）"，代表公司在任何特定时间的净资产。当你开始或结束一个会计期间时，所有资产等于所有负债。</p>
+
+    <blockquote>
+        <p><strong>会计备注：</strong>如果你对会计不熟悉，你可能会想，资产怎么会等于负债呢？那意味着公司没有任何自有资产。没错！公司购买资产（如土地、家具、机器）的所有"投资"都是由所有者做出的。所有者是公司的负债，因为利润属于所有者。</p>
+    </blockquote>
+
+    <blockquote>
+        <p>如果一家公司要关闭，它需要出售所有资产并偿还所有负债（包括利润）给所有者，使公司一无所有。</p>
+    </blockquote>
+
+    <p>资产负债表下的所有账户都代表公司拥有的资产，如"银行账户"、"土地和财产"、"家具"，或者是公司的负债（公司欠他人的资金），如"所有者资金"、"债务"等。</p>
+
+    <p>这里需要特别注意两个特殊账户：资产下的应收账款（你需要从客户那里收回的款项）和负债下的应付账款（你需要支付给供应商的款项）。</p>
+
+    <h3 id="profit-and-loss-accounts">2.2 损益账户</h3>
+
+    <p>损益表是"收入"和"费用"账户组，代表你在一段时期内的会计交易。</p>
+
+    <p>与资产负债表账户不同，损益表账户（或 PL 账户）不代表净资产（资产），而是代表在服务客户期间花费和收取的金额。因此，在你的财年初和年末，它们变为零。</p>
+
+    <p>在 ERPNext 中，可以通过损益表图表轻松跟踪损益。</p>
+
+    <p><img src="/files/image9b4288.png" alt="" /></p>
+
+    <p>请注意，在一年的第一天，你还没有产生任何利润或亏损，但你仍然有资产，因此资产负债表账户在期初或期末永远不会变为零。</p>
+
+    <h3 id="groups-and-ledgers">2.3 组和分类账</h3>
+
+    <p>ERPNext 中有两种主要账户类型——组和分类账。组可以包含子组和分类账，而分类账是科目表的叶节点，不能再包含其他账户。</p>
+
+    <p>会计交易只能针对分类账账户（而非组）进行。</p>
+
+    <blockquote>
+        <p>信息："分类账"一词是指进行条目的账簿页面。通常每个账户（如客户或供应商）有一个分类账。</p>
+    </blockquote>
+
+    <blockquote>
+        <p>注意：账户"分类账"有时也称为账户"科目"。</p>
+    </blockquote>
+
+    <p><img src="/files/image57aa41.png" alt="" /></p>
+
+    <h3 id="other-account-types">2.4 其他账户类型</h3>
+
+    <p>在 ERPNext 中，创建新账户时你还可以指定更多信息，这是为了帮助你在特定场景（如"银行账户"或"税务账户"）中选择特定账户，对科目表本身没有影响。</p>
+
+    <p>账户类型说明：</p>
+
+    <ul>
+        <li><strong>累计折旧：</strong>用于存储公司资产的全部累计折旧信息。累计折旧显示在资产负债表上。</li>
+        <li><strong>已收未计资产：</strong>一个临时负债账户，持有已收到但未开票的资产价值。</li>
+        <li><strong>银行：</strong>创建银行账户的账户类型。会计科目表中必须至少有一个类型为"银行"的组账户。</li>
+        <li><strong>现金：</strong>创建现金账户的账户类型。会计科目表中必须至少有一个类型为"现金"的组账户。</li>
+        <li><strong>可收费：</strong>可计入此类型账户的项目附加费用。例如，"运费和 forwarding 费用"。</li>
+        <li><strong>在建工程：</strong>创建固定资产时的当前费用存储在 CWIP 账户中。例如，建造建筑物时的建筑成本。在 ERPNext 中，尚未使用的资产按 CWIP 账户入账。</li>
+        <li><strong>销售成本：</strong>此类型的账户用于记录公司销售产品或服务所产生的全部成本的累计值。</li>
+        <li><strong>折旧：</strong>记录固定资产折旧的费用账户。这显示在利润表中。</li>
+        <li><strong>权益：</strong>这些类型的账户代表与企业所有者的交易，即股东/所有者。</li>
+        <li><strong>资产计价中的费用：</strong>记录资产落地成本中（除直接材料成本外）费用的账户。</li>
+        <li><strong>计价中的费用：</strong>记录项目中（除直接材料成本外）费用的账户，用于永续库存。</li>
+        <li><strong>固定资产：</strong>用于维护固定资产成本的账户。</li>
+        <li><strong>收入账户：</strong>此类型账户代表公司的任何收入或收益来源。</li>
+        <li><strong>应付账款：</strong>此账户类型代表公司欠其债权人的金额（供应商）。</li>
+        <li><strong>应收账款：</strong>此账户类型代表公司债务人欠公司的金额（客户）。</li>
+        <li><strong>四舍五入：</strong>许多发票的最终金额可能会有一些<a href="/erpnext/round-off-account-validation">四舍五入</a>。为了准确跟踪，这些金额可以入账到此类型的账户。</li>
+        <li><strong>库存：</strong><a href="/erpnext/round-off-account-validation">仓库账户</a>将在此账户组下创建。</li>
+        <li><strong>库存调整：</strong>用于记录库存/存货调整条目的费用账户。通常与销售成本处于同一级别。</li>
+        <li><strong>已收未计库存：</strong>一个临时负债账户，持有已收到但未开票的库存价值，用于永续库存。</li>
+        <li><strong>税务：</strong>所有税务账户如增值税、TDS、GST 等都归入此类型。</li>
+        <li><strong>临时：</strong>临时账户对于在年中（带有未结会计条目）切换到 ERPNext 时平衡收入、费用和冲销非常有用。</li>
+    </ul>
+
+    <blockquote>
+        <p><strong>注意：</strong>制作付款条目时，如果已设置，将按以下顺序获取默认银行账户：</p>
+    </blockquote>
+
+    <blockquote>
+        <ul>
+            <li>公司表单 > 付款方式默认账户 > 客户/供应商默认银行账户 > 在付款条目中手动选择</li>
+        </ul>
+    </blockquote>
+
+    <h3 id="financial-statements">2.5 财务报表</h3>
+
+    <p>公司的财务报表可以在 ERPNext 中轻松查看。你可以查看资产负债表、利润表和现金流量表等财务报表。</p>
+
+    <p>以下是各种财务报表的示例：</p>
+
+    <ol>
+        <li>现金流量报告：</li>
+    </ol>
+
+    <p><img src="/files/image32104c.png" alt="" /></p>
+
+    <ol start="2">
+        <li>利润表报告：</li>
+    </ol>
+
+    <p><img src="/files/image9b4288.png" alt="" /></p>
+
+    <ol start="3">
+        <li>资产负债表报告：</li>
+    </ol>
+
+    <p><img src="/files/imagec3123a.png" alt="" /></p>
+
+    <h3 id="account-number">2.6 账户编号</h3>
+
+    <p>标准会计科目表按数字系统组织。每个主要类别以某个数字开头，然后该主要类别内的子类别都以相同的数字开头。例如，如果资产按以数字 1000 开头的数字分类，那么现金账户可能标记为 1100，银行账户可能标记为 1200，应收账款可能标记为 1300，以此类推。通常会在账户编号之间留有间隙，以便将来添加账户。</p>
+
+    <p>你可以在会计科目表页面创建账户时分配编号。你也可以通过点击<strong>更新账户名称/编号</strong>按钮从账户记录中编辑编号。更新账户编号后，系统会自动重命名账户名称，将编号嵌入其中。</p>
+
+    <p><img src="/files/image605fdb.png" alt="" /></p>
+
+    <h2 id="video">3. 视频</h2>
+
+    <hr />
+
+    <h2 id="related-topics">4. 相关主题</h2>
+
+    <ol>
+        <li><a href="/erpnext/opening-balance">期初余额</a></li>
+        <li><a href="/erpnext/accounts-settings">账户设置</a></li>
+        <li><a href="/erpnext/journal-entry">日记账分录</a></li>
+        <li><a href="/erpnext/inter-company-journal-entry">公司间日记账分录</a></li>
+        <li><a href="/erpnext/accounting-reports">会计报表</a></li>
+        <li><a href="/erpnext/multi-currency-accounting">多货币会计</a></li>
+    </ol>
+</body>
+</html>

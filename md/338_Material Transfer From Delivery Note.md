@@ -1,0 +1,65 @@
+在 ERPNext 中，您可以从 Stock Entry 单据创建物料调拨单据。但是，在某些物料调拨场景中，需要将其作为 Delivery Note 和 Purchase Receipt 来呈现。
+
+## Material Transfer from Delivery Note（从 Delivery Note 进行物料调拨）
+
+### 场景说明
+
+一个典型的例子是：您将物料从仓库调拨到项目工地，但需要向客户呈现为 Delivery Note。
+
+此外，在某些法定要求下，每次物料调拨都需要缴纳税款。相比 Stock Entry，在类似 Delivery Note 的交易中管理这些税务会更加简便。
+
+考虑到这些场景，物料调拨功能也已添加到 Delivery Note 中。以下是使用 Delivery Note 创建物料调拨单据的步骤。
+
+### 操作步骤
+
+#### 启用目标仓库
+
+Delivery Note Item doctype 有一个隐藏的 Target Warehouse 字段（原名为 Customer Warehouse）。您可以在 Stock Settings 中通过启用"允许从 Delivery Note 和 Sales Invoice 进行物料调拨"来启用它。
+
+另外请注意，所选客户应代表同一公司。为此，请在客户表单中启用"是内部客户"选项，并在"代表公司"字段中选择您的公司。
+
+### 选择仓库
+
+创建用于物料调拨的 Delivery Note 时，为物料选择源仓库作为 From Warehouse。
+
+在 Customer Warehouse 中，选择物料要调入的目标仓库。
+
+![图片](../images/338_customer-warehouse-2.png)
+
+提交 Delivery Note 后，物料的库存将从"From Warehouse"扣除，并添加到"Customer Warehouse"。
+
+## Material Transfer from Purchase Receipt（从 Purchase Receipt 进行物料调拨）
+
+### 场景说明
+
+在某些法定要求下，每次物料调拨都需要缴纳税款。相比 Stock Entry（在 Stock Entry 中无法对物料调拨征税），在类似 Purchase Receipt 的交易中处理这种情况会更加简便。
+
+以下是使用 Purchase Receipt 创建物料调拨单据的步骤。
+
+### 操作步骤
+
+#### 启用供应商仓库
+
+与上面所示的 Customer Warehouse 类似，第一步是从 Stock Settings 中启用 Supplier Warehouse，如上所述。
+
+另外请注意，所选供应商应代表同一公司。为此，请在供应商表单中启用"是内部供应商"选项，并在"代表公司"字段中选择您的公司。
+
+### 选择仓库
+
+创建用于物料调拨的 Purchase Receipt 时，为物料选择目标仓库作为 Accepted Warehouse。
+
+以下是您如何从内部 Delivery Note 创建内部 Purchase Receipt 的方法：
+
+![图片](../images/338_supplier-warehouse-1.png)
+
+在 Supplier Warehouse 中，选择物料要调出的仓库。
+
+![图片](../images/338_supplier-warehouse.png)
+
+提交 Purchase Receipt 后，物料的库存将从"Supplier Warehouse"扣除，并添加到"Accepted Warehouse"。
+
+---
+original_url: https://docs.frappe.io/erpnext/material-transfer-from-delivery-note
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

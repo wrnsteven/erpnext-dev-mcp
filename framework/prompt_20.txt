@@ -1,0 +1,507 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tsoo2ousf)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                # Migrations
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tsoo2ousf)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            A project often undergoes changes related to database schema during course of
+its life. It may also be required patch existing data. Frappe bundles tools to
+handle these scenarios.
+
+When you pull updates from any Frappe app (including Frappe), you should run
+`bench migrate` to apply schema changes and data migrations if any.
+
+## Schema changes
+
+You can edit a DocType to add, remove or change fields. On saving a DocType,
+a JSON file containing the DocType data is added to source tree of your app.
+When you add an app to a site, the DocTypes are installed using this JSON file.
+For making schema changes, it's required to set `developer_mode` in the
+configuration.
+
+On running a sync (`bench migrate`), doctypes in the system are synced to
+their latest version from the JSON files in the app.
+
+Note: Fields are soft deleted ie. the columns are not removed from the database
+table and however, they will not be visible in the documents. This is done to
+avoid any potential data loss situations and to allow you write related data
+migrations which might need values from deleted fields.
+
+Note: Frappe doesn't support reverse schema migrations.
+
+## Data Migrations
+
+On introducing data related changes, you might want to run one off scripts to
+change existing data to match expectations as per new code.
+
+To add a data migration to your code, you will have to write an `execute`
+function to a python module and add it to `patches.txt` of your app.
+Alternatively, you can create a new patch interactively by using following command:
+
+`$ bench create-patch
+Select app for new patch (frappe, hrms, ecommerce_integrations, erpnext): frappe
+Provide DocType name on which this patch will apply: User
+Describe what this patch does: Improve Indexing
+Provide filename for this patch [improve_indexing.py]:
+Patch folder '/home/ankush/benches/develop/apps/frappe/frappe/core/doctype/user/patches' doesn't exist, create it? [Y/n]: y
+Created /home/ankush/benches/develop/apps/frappe/frappe/core/doctype/user/patches/improve_indexing.py and updated patches.txt
+`
+It is recommended to make a file with a patch number and name in its path and
+add it to a patches package (directory) in your app. You can then add a line
+with dotted path to the patch module to `patches.txt`.
+
+The directory structure followed in Frappe is as below
+
+frappe
+└── patches
+└── 4_0
+└── my_awesome_patch.py
+
+The patch can be added to `patches.txt` by adding a line like
+
+frappe.patches.4_0.my_awesome_patch
+
+The metadata ie. DocType available in the execute function will be the latest as
+per JSON files in the apps. However, you will not be able to access metadata of
+any previous states of the system.
+
+#### One off Python statements
+
+You can also add one off python statements in `patches.txt` using the syntax,
+execute:{python statement}
+
+For example,
+execute:frappe.get_doc(&quot;User&quot;, &quot;Guest&quot;).save()
+
+Note: All lines in patches.txt have to be unique. If you want to run a line
+twice, you can make it unique by adding a distinct comment.
+
+For Example,
+
+execute:frappe.installer.make_site_dirs() #2014-02-19
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        How To Migrate Doctype Changes To Production
+
+                    
+                ](/framework/user/en/guides/deployment/how-to-migrate-doctype-changes-to-production)
+                
+
+                
+                [
+                    
+                        Next Page
+                        How To Enable Social Logins
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/guides/deployment/how-to-enable-social-logins)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/guides/deployment/migrations
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

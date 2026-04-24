@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>会计分录</title>
+</head>
+<body>
+    <h1>会计分录</h1>
+
+    <p>会计的概念通过以下示例说明：我们将以"茶摊"作为一个公司，看看如何为业务记账会计分录。</p>
+
+    <p>妈妈（茶摊老板）投资 25000 卢比来启动业务。</p>
+
+    <p><img src="images/7_equity-journal-entry.png" alt="JE" /></p>
+
+    <h2>1. 投资</h2>
+
+    <p>妈妈向公司投资了 25000 卢比，希望能获得一些利润。换句话说，公司有义务在未来支付 25000 卢比给妈妈。因此，"妈妈"是一个负债账户，它被贷记。公司的现金余额将因投资而增加。"现金"是公司的资产，它将被借记。</p>
+
+    <p>公司需要设备（炉子、茶壶、杯子等）和原材料（茶、糖、牛奶等）。他决定从最近的杂货店"Super Bazaar"购买，老板是朋友，所以可以获得一些信用额度。设备花费 2800 卢比，原材料花费 2200 卢比。他支付了 2000 卢比，总成本为 5000 卢比。这可以使用<a href="/erpnext/payment-entry">付款入口</a>在 ERPNext 中记录。</p>
+
+    <p><img src="images/7_payment-entry-gl.png" alt="JE" /></p>
+
+    <h2>2. 资产</h2>
+
+    <p>设备是"固定资产"（因为它们使用寿命长），原材料是"流动资产"（因为它们用于日常业务）。因此，"设备"和"库存"账户被借记以增加价值。他支付了 2000 卢比，因此"现金"账户将减少该金额，故被贷记，他有义务稍后支付 3000 卢比给"Super Bazaar"，因此 Super Bazaar 将被贷记 3000 卢比。</p>
+
+    <p>妈妈（负责所有分录的人）决定每天结束时记录销售，以便分析每日销售。在第一天结束时，茶摊卖出了 325 杯茶，净销售额为 1625 卢比。老板高兴地记录了他第一天的销售。</p>
+
+    <p><img src="images/7_sales-invoice-gl.png" alt="JE" /></p>
+
+    <h2>3. 收入</h2>
+
+    <p>收入已记入"茶叶销售"账户，该账户被贷记以增加价值，相同金额将被借记到"现金"账户。假设制作 325 杯茶花费 800 卢比，因此"库存"将减少（贷）800 卢比，费用将以相同金额记入"销售成本"账户。</p>
+
+    <p>在月末，公司支付了摊位的租金（5000 卢比）和一名员工的工资（8000 卢比），该员工从第一天就开始工作了。</p>
+
+    <p><img src="images/7_salary-journal-entry-gl.png" alt="JE" /></p>
+
+    <h2>4. 记录利润</h2>
+
+    <p>随着月份的进展，公司为业务购买了更多原材料。一个月后，他记录利润以平衡"资产负债表"和"损益表"。利润属于妈妈而不是公司，所以它是公司的负债（必须支付给妈妈）。当资产负债表不平衡即借方不等于贷方时，利润尚未记录。要记录利润，必须重置损益账户。损益转到负债账户，损益表重新开始。这使用<a href="/erpnext/period-closing-voucher">期间结束凭证</a>完成。</p>
+
+    <p><strong>解释</strong>：公司的净销售额和费用分别为 40000 卢比和 20000 卢比。因此，公司获利 20000 卢比。为了做利润记录分录，"损益"账户被借记，"资本账户"被贷记。公司的净现金余额为 44000 卢比，还有一些价值 1000 卢比的原材料可用。</p>
+
+    <h3>相关主题</h3>
+
+    <ol>
+        <li><a href="/erpnext/payment-entry">付款入口</a></li>
+        <li><a href="/erpnext/advance-payment-entry">预付款入口</a></li>
+        <li><a href="/erpnext/freeze-accounting-entries">冻结会计分录</a></li>
+        <li><a href="/erpnext/post-dated-cheque-entry">期票条目</a></li>
+        <li><a href="/erpnext/adjusting-withhold-amount">在付款入口中调整预扣金额</a></li>
+        <li><a href="/erpnext/difference-entry-button">差额条目按钮</a></li>
+    </ol>
+</body>
+</html>

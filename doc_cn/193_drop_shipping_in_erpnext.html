@@ -1,0 +1,45 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>直销</title>
+</head>
+<body>
+    <h1>直销</h1>
+
+    <p><strong>Drop shipping（直销）</strong>是一种供应链管理方法，零售商不保留库存，而是将客户订单和运输详细信息转移给制造商、其他零售商或批发商，然后由他们直接将货物运送给客户。</p>
+
+    <p>直销也可能发生在小型零售商（通常向公众少量销售）收到单个大额产品订单时。零售商可以安排货物从制造商或分销商直接运送给客户。直销通常适用于昂贵的产品。零售商在任何情况下都不维护库存，只是充当<em>中间人</em>。在本文中，我们将了解 ERPNext 如何提供无缝的直销体验。</p>
+
+    <p>假设有一家经营电脑显示器的企业。零售商从客户 ABC Inc. 收到了 1000 台 DELL 24 英寸显示器的订单。</p>
+
+    <h2 id="drop-shipping-in-action"><strong>直销运作：</strong></h2>
+
+    <h3 id="item-configuration"><strong>物料配置</strong></h3>
+
+    <ul>
+    <li>设置物料时，由于该物料不会有库存，请保持"Maintain Stock"（维护库存）为禁用状态。</li>
+    <li>接下来，<strong>启用</strong>"Delivered By Supplier (Drop Ship)"（由供应商发货（直销））</li>
+    <li>设置将为此订单履约生成采购订单的供应商。</li>
+    </ul>
+
+    <p><img src="/files/imagea168ed.png" alt="" /></p>
+
+    <h3 id="sales-cycle"><strong>销售周期：</strong></h3>
+
+    <ul>
+    <li>创建销售订单，包含客户、物料、数量、单价、税率等。</li>
+    </ul>
+
+    <p><img src="/files/image03c50d.png" alt="" /></p>
+
+    <h3 id="order-fulfillment"><strong>订单履约：</strong></h3>
+
+    <ul>
+    <li>从销售订单文档本身，你可以为此货运创建采购订单、跟踪交货并相应地向客户开具账单。</li>
+    </ul>
+
+    <p><img src="/files/mSsoueP.gif" alt="" /></p>
+
+</body>
+</html>

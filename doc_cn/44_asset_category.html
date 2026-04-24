@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>资产类别 - ERPNext</title>
+</head>
+<body>
+    <header class="py-6 mb-6 border-b border-[var(--outline-gray-1)]">
+        <h1 id="wiki-page-title" class="text-3xl font-semibold text-[var(--ink-gray-9)]">资产类别</h1>
+    </header>
+
+    <div class="prose prose-sm max-w-none scroll-smooth" id="wiki-content">
+        <p><strong>资产类别对公司不同资产进行分类，并为其设定默认的会计和折旧规则。</strong></p>
+        <p>资产类别 DocType 帮助将类似资产归为一个分类并简化资产管理。例如，所有台式机和笔记本电脑可以属于名为<strong>"电子设备"</strong>的资产类别。每个类别可以有不同的默认折旧方法、会计设置和成本中心，这些会自动应用于该类别中的所有资产。</p>
+        <p>要访问资产类别列表，请转到：</p>
+        <blockquote>
+            <p>Home > Asset > Assets > Asset Category</p>
+        </blockquote>
+        <h2 id="1-prerequisites">1. 先决条件</h2>
+        <hr />
+        <p>在创建资产类别之前，建议：</p>
+        <ul>
+            <li>创建一个<strong><a href="https://docs.frappe.io/erpnext/user/manual/en/company-setup">公司</a></strong></li>
+        </ul>
+        <h2 id="2-how-to-create-an-asset-category">2. 如何创建资产类别</h2>
+        <hr />
+        <ul>
+            <li>转到资产类别列表并点击新建。</li>
+            <li>输入类别的名称。</li>
+            <li>根据需要配置可选的折旧和会计详细信息。</li>
+            <li>点击保存。</li>
+        </ul>
+        <p><img src="/images/44_Screenshot 2026-01-11 at 11.31.43PM.png" alt="" /></p>
+        <p><em>资产类别</em></p>
+        <h3 id="21-additional-options-when-creating-an-asset-category">2.1 创建资产类别时的附加选项</h3>
+        <ol>
+            <li><strong>启用资本化工作进度会计</strong>：启用此选项后，不在使用中的资产（即可供使用日期设置为较晚日期）的会计条目将过账到资本化工作进度账户。如果您立即使用所有资产，请禁用此功能。禁用此功能后，将跳过 CWIP 会计。</li>
+            <li><strong>非折旧类别</strong>：启用此选项后，将跳过此类别资产的折旧。折旧相关账户字段不是必需的，不会生成折旧计划。将此用于土地或其他不可折旧的资产等。如果应该应用折旧，请禁用。</li>
+        </ol>
+        <h2 id="3-features">3. 功能</h2>
+        <hr />
+        <h3 id="31-finance-book-details">3.1 Finance Book 详情</h3>
+        <p>如果您以不同方式报告折旧，您可以链接一个 Finance Book。您可以输入以下字段：</p>
+        <ul>
+            <li><strong>折旧方法</strong>：选择折旧方法，用于记录此类别资产的折旧。了解更多，请访问此页面。</li>
+            <li><strong>折旧频率（月）</strong>：折旧入账的月数。资产在此期间后可能会报废。</li>
+            <li><strong>折旧总数</strong>：在所选时间段内入账的折旧次数。</li>
+            <li><strong>折旧率</strong>：在所选期间应用的折旧率。这将根据所选的折旧方法计算。</li>
+        </ul>
+        <p><img src="/images/44_Screenshot 2026-01-11 at 11.31.43PM5c5a1a.png" alt="" /></p>
+        <h3 id="32-accounting-details">3.2 会计详情</h3>
+        <p>可以设置以下账户详情来在分类账中记录资产价值：</p>
+        <ul>
+            <li>Company</li>
+            <li>Fixed Asset Account</li>
+            <li>Accumulated Depreciation Account</li>
+            <li>Depreciation Expense Account</li>
+            <li>Capital Work In Progress Account</li>
+        </ul>
+        <h2 id="4-after-creating-an-asset-category">4. 创建资产类别后</h2>
+        <hr />
+        <p>创建后，您可以：</p>
+        <ul>
+            <li>在此类别下创建新的<strong>Assets</strong>。</li>
+            <li>使用资产模块追踪折旧，维护、转让或处置。</li>
+        </ul>
+        <h2 id="5-related-topics">5. 相关主题</h2>
+        <hr />
+        <ol>
+            <li><a href="https://docs.frappe.io/erpnext/user/manual/en/finance-book">Finance Book</a></li>
+            <li><a href="https://docs.frappe.io/erpnext/user/manual/en/asset-depreciation">Depreciation</a></li>
+        </ol>
+    </div>
+
+    <nav id="wiki-nav-buttons" class="mt-12 pt-8 border-t border-[var(--outline-gray-1)]">
+        <div class="flex flex-col sm:flex-row sm:items-stretch gap-4 sm:justify-between">
+            <a href="/erpnext/assets/introduction" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                <div class="flex flex-col gap-1 min-w-0">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">上一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate">Overview</span>
+                </div>
+            </a>
+            <a href="/erpnext/asset-location" class="group sm:flex-1 flex items-center gap-3 p-3 rounded-lg border border-[var(--outline-gray-1)] hover:border-[var(--outline-gray-2)] hover:bg-[var(--surface-gray-1)] transition-colors duration-200 no-underline sm:max-w-[50%] overflow-hidden">
+                <div class="flex flex-col gap-1 items-end min-w-0 ml-auto">
+                    <span class="text-xs font-medium text-[var(--ink-gray-4)] uppercase tracking-wide">下一页</span>
+                    <span class="text-sm font-medium text-[var(--ink-gray-7)] group-hover:text-[var(--ink-gray-9)] transition-colors duration-200 sm:truncate text-right">Asset Location</span>
+                </div>
+                <svg class="w-4 h-4 w-5 h-5 text-[var(--ink-gray-4)] group-hover:text-[var(--ink-gray-6)] transition-colors duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+    </nav>
+
+    <div class="mt-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+        <div id="wiki-last-updated" class="text-sm text-[var(--ink-gray-5)]">
+            最后更新于 2 个月前
+        </div>
+    </div>
+</body>
+</html>

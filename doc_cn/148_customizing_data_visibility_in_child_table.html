@@ -1,0 +1,41 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>子表格中的数据可见性</title>
+</head>
+<body>
+    <h1>子表格中的数据可见性</h1>
+
+    <p>在 ERPNext 中，有一个称为可编辑网格的功能。这允许用户直接在子表格中添加值，而无需为每一行打开对话框/表单。</p>
+
+<p>当启用可编辑网格时，报价单物料表格的渲染方式如下。它最多会有四列。</p>
+
+<p><img src="/files/customize-child-table-5.png" alt="Child Table" /></p>
+
+<p>根据默认设置，子表格中只列出四列。以下是如何在可编辑网格本身中添加更多列。</p>
+
+<p>对于要作为列添加到表格中的字段，请在"列"字段中输入值。同时，确保该字段已勾选"在列表视图中显示"属性。</p>
+
+<p><img src="/files/customize-child-table-2.png" alt="Child Table" /></p>
+
+<p>根据"列"字段的值，列将被添加到子表格中。确保"列"字段中添加的总值不超过 10。根据列值，将设置该列的宽度。</p>
+
+<p><img src="/files/customize-child-table-3.png" alt="Child Table" /></p>
+
+<p><strong>切换到不可编辑网格</strong></p>
+
+<p>为了让报价单物料表格的预览中显示更多值，你可以禁用报价单物料 DocType 的可编辑网格。步骤如下。</p>
+
+<p><img src="/files/customize-child-table.gif" alt="Child Table" /></p>
+
+<p>一旦为报价单禁用了可编辑网格，值将以以下方式呈现在报价单物料表格的预览中：</p>
+
+<p><img src="/files/customize-child-table-4.png" alt="Child Table" /></p>
+
+<p>要使特定字段的值显示在预览中，请确保在自定义表单工具中为该字段勾选了"在列表视图中显示"属性。</p>
+
+<p><img src="/files/customize-child-table-1.png" alt="Child Table" /></p>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Permission Error</title>
+</head>
+<body>
+<p><strong>问题：</strong> 用户被分配了 Account User 和 Account Manager 角色，但在访问 Account Receivable 报告时，仍然收到没有 Territory 主表权限的错误信息。</p><p>!<a href="../../images/469_Screenshot%202024-06-21%20at%202.31.40%20PM.png">图片</a></p><p><strong>回答：</strong></p><p>根据 ERPNext 的权限系统，用户若要访问某个表单或报告，应至少拥有该表单/报告中所有链接字段的读取权限。由于 Territory 是 Account Receivable 报告中的一个链接字段，请添加权限规则，使 Account User/Manager 至少拥有 Territory 主表的读取权限。请按照以下步骤解决此问题。</p><ul>
+\0</ul><p>---
+original_url: https://docs.frappe.io/erpnext/report-permission-error
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---</p>
+</body>
+</html>

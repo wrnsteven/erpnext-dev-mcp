@@ -1,0 +1,552 @@
+你是一名网站文档翻译专家，严格遵循下面的翻译规则。
+
+### 翻译规则（大模型执行时严格遵守）
+
+#### ⚠️ 核心原则：禁止对照表翻译
+- 禁止使用任何形式的术语对照表、映射表、词对词替换、硬编码替换。
+- 必须完全依赖大模型对上下文的理解，进行自然、流畅的翻译。
+- 术语库仅作为背景参考，用于识别"哪些词必须保留原文"，绝不能用于机械替换。
+
+#### 必须原样保留的内容（不翻译）
+- 所有代码、命令、文件路径、文件名、环境变量、命令输出
+- 所有超链接（URL 及 Markdown 链接格式）
+- 所有图片语法（Markdown `![alt](url)` 保持原样，但**后续要将 url 替换为本地路径**）
+- Frappe/ERPNext 专有术语（见下方列表）
+- 版本号、哈希值、占位符、默认值（`default: 'red'` 中的 `'red'`）
+
+#### 必须保留原文的 Frappe/ERPNext 术语
+`Frappe`, `ERPNext`, `bench`, `DocType`, `doctype`, `report`, `page`, `dashboard`, `workspace`, `web form`, `print format`, `letter head`, `role`, `permission`, `frappe.db`, `frappe.get_doc`, `frappe.call`, `hooks.py`, `patches.txt`, `doc_events`, `cur_frm`, `frm`, `Jinja`, `Nginx`, `MariaDB`, `Redis`, `octicons`, `Sales Invoice`, `Stock Entry`, `Leave Application`, `Payment Entry`, `BOM`, `Work Order`, `Project`, `Task`, `Issue`, `Customer`, `Supplier`, `Employee` 等。
+
+#### 需要翻译的内容
+- 普通英文句子、段落、标题、列表说明文字、表格中的非术语内容。
+- 界面提示文本：翻译提示部分，保留默认值原样。
+
+#### 特殊处理
+- 图片链接：将原始 URL 替换为本地相对路径 `images/{id}_{文件名}`。注意：这个替换由大模型在翻译时完成，不要留给调度器。
+- 元信息块：在 Markdown 文件开头添加：
+  ```yaml
+  ---
+  original_url: [原始URL]
+  translated_by: AI (Claude Code)
+  translation_date: [当前日期 YYYY-MM-DD]
+  ---
+  ```
+
+#### 输出格式要求
+- 输出应为两个部分：第一部分是中文 Markdown 内容，第二部分是中文 HTML 内容（可以用分隔线 `---` 分开，或分别标注 `## MARKDOWN` 和 `## HTML`）。
+- 保持原文的 Markdown 格式（标题、代码块、列表、表格等）。
+
+
+[原始页面内容如下，请翻译：]
+[
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tlb6ngcih)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                    
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        - 
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                
+        
+    
+
+            
+            
+                Request Lifecycle
+
+                
+                
+                    
+    
+        
+        
+            
+            [
+                
+    
+
+    
+    
+        
+        
+    
+    
+
+                Edit
+            ](/wiki/spaces/1u8fslkdg6/page/0tlb6ngcih)
+            
+            
+                
+                    
+                
+            
+        
+
+        
+        
+
+                        
+    
+    
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            Copy page
+            
+            Copy page as Markdown for LLMs
+            
+        
+    
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in ChatGPT
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask ChatGPT about this page
+            
+        
+    ](getAIUrl()
+    
+
+                        
+    
+    [
+        
+        
+    
+
+    
+    
+        
+    
+    
+
+        
+        
+            
+                Open in Claude
+                
+                
+    
+
+    
+    
+        
+        
+        
+    
+    
+
+                
+            
+            
+            Ask Claude about this page
+            
+        
+    ](getAIUrl()
+    
+
+                    
+        
+    
+
+                
+            
+            
+        
+
+        
+        
+            The user of a web application can visit different URLs like `/about`, `/posts` or `/api/resources`. Each request is handled based on the following request types.
+
+API requests that start with `/api` are handled by [rest API handler](https://github.com/frappe/frappe/blob/develop/frappe/api.py#L16).
+
+- File downloads like backups (`/backups`), public files (`/files`), and private files (`/private/files`) are handled separately to respond with a downloadable file.
+
+- Web page requests like `/about`, `/posts` are handled by the website router. This is explained further on this page.
+
+Learn more about [API requests](/framework/v14/user/en/api/rest) and [Static Files](/framework/v14/user/en/basics/static-assets) in detail.
+
+## Request pre-processing
+
+A few things happen before the routing rules are triggered. These include preprocessing the request initializing the recorder and the rate limiter.
+
+## Path Resolver
+
+Once the request reaches to website router from `app.py` it is passed through the path resolver.
+
+Path resolver does the following operations:
+
+### Redirect Resolution
+
+Path resolver tries to resolve any possible redirect for an incoming request path. Path resolver gets redirect rules for [`website_redirects` hook](/framework/v14/user/en/python-api/hooks#website-redirects) and route redirects from website settings.
+
+### Route Resolution
+
+If there are no redirects for incoming requests path resolver tries to resolve the route to get the final endpoint based on rules from [website_routing_rules hook](https://frappeframework.com/docs/v14/user/en/python-api/hooks#website-route-rules) and dynamic route set in documents of DocType with `has_web_view` enabled.
+
+### Renderer Selection
+
+Once the final endpoint is obtained it is passed through all available [Page Renderers](#page-renderer) to check which page renderer can render the given path. A first page renderer to return `True` for `can_render` request will be used to render the path.
+
+## Page Renderer
+
+A page renderer takes care of rendering or responding with a page for a given endpoint. A page renderer is implemented using a python class. A page renderer class needs to have two methods i.e., `can_render` and `render`.
+
+Path resolver calls `can_render` to check if a renderer instance can render a particular path.
+Once a renderer returns `True` from `can_render`, it will be that renderer class's responsibility to render the path.
+
+### Example page renderer class
+
+`from frappe.website.page_renderers.base_renderer import BaseRenderer
+
+class PageRenderer(BaseRenderer):
+ def can_render(self):
+ return True
+
+ def render(self):
+ response_html = &quot;Response&quot;
+ return self.build_response(response_html)
+
+`
+Following are the standard page renderers which handle all the generic types of web pages.
+
+### StaticPage
+
+Using StaticPage you can serve PDFs, images, etc., from the `www` folder of any app installed on the site. Any file that is not one of the following types `html`, `md`, `js`, `xml`, `css`, `txt` or `py` is considered to be a static file.
+The preferred way of serving static files would be to add them to the `public` folder of your frappe app. That way it will be served by NGINX directly leveraging compression and caching while also reducing latency.
+
+### TemplatePage
+
+The TemplatePage looks up the `www` folder in all apps, if it is an HTML or markdown file, it is returned, in case it is a folder, the `index.html` or `index.md` file in the folder is returned.
+
+### WebformPage
+
+The WebformPage tries to render web form in the Web Form list if the request path matches with any of the available Web Form's routes.
+
+### DocumentPage
+
+The DocumentPage tries to render a document template if it is available in `/templates` folder of the DocType. The template file name should be the same as the DocType name. Example: If you want to add a document template for User doctype, the `templates` folder of User DocType should have `user.html`. The folder structure will look like `doctype/user/templates/user.html`
+
+### ListPage
+
+If a DocType has a list template in `/templates` folder of the DocType, the ListPage will render it. Please check [Blog Post templates folder](https://github.com/frappe/frappe/tree/develop/frappe/website/doctype/blog_post/templates) for implementation reference.
+
+### PrintPage
+
+The PrintPage renders a print view for a document. It uses [standard print format](https://github.com/frappe/frappe/blob/develop/frappe/templates/print_formats/standard.html) unless a different print format is set for a DocType via `default_print_format`.
+
+### NotFoundPage
+
+The NotFoundPage renders a standard not found page and responds with `404` status code.
+
+### NotPermittedPage
+
+The NotPermittedPage renders standard permission denied page with `403` status code.
+
+## Adding a custom page renderer
+
+If you have any other requirements which are not handled by Standard Page renderers a custom page renderer can be added via `page_renderer` [hook]
+
+`# in hooks.py of your custom app
+
+page_renderer = &quot;path.to.your.custom_page_renderer.CustomPage&quot;
+
+`
+A Page renderer class needs to have two methods i.e., `can_render` and `render`
+
+Path resolver calls `can_render` to check if a renderer instance can render a particular path.
+Once a renderer returns `True` from can_render, it will be that renderer class's responsibility to render the path.
+
+Note: Custom page renderers get priority and it's `can_render` method will be called before [Standard Page Renderers](#page-renderer).
+
+Example:
+
+`
+from frappe.website.utils import build_response
+from frappe.website.page_renderers.base_renderer import BaseRenderer
+
+class CustomPage(BaseRenderer):
+ def can_render(self):
+ return True
+
+ def render(self):
+ response_html = &quot;Custom Response&quot;
+ return self.build_response(response_html)
+
+`
+Note: You can also extend Standard Page Renderers to override or to use some standard functionalities.
+
+        
+
+        
+        
+            
+            
+                
+                [
+                    
+    
+
+    
+    
+        
+    
+    
+
+                    
+                        Previous Page
+                        Jinja API
+
+                    
+                ](/framework/user/en/api/jinja)
+                
+
+                
+                [
+                    
+                        Next Page
+                        Language Resolution
+
+                    
+                    
+    
+
+    
+    
+        
+    
+    
+
+                ](/framework/user/en/python-api/language)
+                
+            
+            
+        
+
+        
+        
+            
+                Last updated 2 months ago
+            
+            
+            
+
+    
+        Was this helpful?
+
+        
+        
+        
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+            
+                
+                    
+                    
+                    
+                    
+                
+            
+            
+        
+    
+
+    
+    
+        
+            
+
+            
+            
+                
+                    Submit
+                    
+                        
+                            
+                            
+                        
+                    
+                
+                
+                    
+                        
+                        
+                    
+                    Thanks!
+
+---
+original_url: https://docs.frappe.io/framework/user/en/python-api/routing-and-rendering
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

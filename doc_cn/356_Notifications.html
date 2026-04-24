@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications</title>
+</head>
+<body>
+<p><strong>您可以在系统中配置各种通知，以提醒您重要的活动。</strong></p><ul>
+\0</ul><p>- 客户：{{ doc.customer }}
+- 金额：{{ doc.total_amount }}</p><p>{% endraw %}</code></pre></p><p><h2>1.4 提醒设置后设置属性</h2></p><p>有时为了确保通知不会多次发送，您可以（通过自定义表单）定义一个自定义属性（如"通知已发送"），然后通过设置<strong>提醒后设置属性</strong>字段在提醒发送后设置此属性。</p><p>然后您可以在<strong>条件</strong>规则中使用它来确保邮件不会多次发送</p><p>!<a href="../../images/356_email-alert-subject.png">图片</a></p><p><h2>1.5 示例</h2></p><ul>
+\0</ul><p>```
+交易 {{ doc.name }} 已超过到期日期。请采取必要措施。</p><p>{% if comments %}
+最后评论：{{ comments[-1].comment }}，由 {{ comments[-1].by }}
+{% endif %}</p><p><em>详情</em></p><p>• 客户：{{ doc.customer }}
+• 金额：{{ doc.grand_total }}
+{% endraw %}</p><p>!<a href="../../images/356_slack_notification_4.png">图片</a></p><ul>
+\0</ul><p>---
+original_url: https://docs.frappe.io/erpnext/notifications
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18</p>
+</body>
+</html>

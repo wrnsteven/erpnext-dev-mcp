@@ -1,0 +1,221 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据导入</title>
+</head>
+<body>
+    <h1>数据导入</h1>
+
+    <p><strong>ERPNext 中的数据导入工具允许用户使用 CSV 或 Excel 文件将记录导入系统。</strong></p>
+
+<p>它提供了一种便捷的方式来一次性上传或更新大量数据，特别是主数据，无需手动输入。</p>
+
+<p>此工具通常在初始系统设置、数据迁移或需要批量更新时使用。通过使用数据导入工具，用户可以确保更快的数据输入，同时保持跨记录的一致性。</p>
+
+<p>要访问数据导入工具，请导航至：</p>
+
+<blockquote>
+<p>首页 > 数据</p>
+</blockquote>
+
+<p>或进入你要导入的文档，点击菜单 > 导入</p>
+
+<p>在开始导入过程之前，请确保所有必需的数据已正确准备并遵循预期格式。数据导入工具支持两种主要操作：</p>
+
+<h2 id="inserting-new-records">插入新记录</h2>
+
+<p>ERPNext 中的数据导入工具允许用户使用预定义模板将批量记录上传到系统中。本文档概述了导入新记录的分步过程。</p>
+
+<p><img src="/files/imagebfd4b7.png" alt="" /></p>
+
+<ol>
+<li>导航到数据导入</li>
+<li>选择文档类型和导入类型为<em>插入新记录</em>。</li>
+<li>点击"保存"然后下载模板。</li>
+</ol>
+
+<h3 id="download-template">下载模板</h3>
+
+<p>我们有一个选项可以下载模板来插入/更新记录</p>
+
+<ol>
+<li>点击"下载模板"会打开一个对话框
+<img src="/files/export%20data.png" alt="" />
+<em>下载模板对话框</em></li>
+</ol>
+
+<blockquote>
+<p>在插入新记录时，模板应该为空。如果你的系统中有一些记录，你可以选择导出类型为"5 条记录"来查看你需要在模板中输入数据的格式。</p>
+</blockquote>
+
+<ol start="4">
+<li>选择导出类型后，所有字段将显示在下方。红色的是必填字段，黄色的是依赖字段</li>
+<li>点击"导出"获取导出的文件。</li>
+<li>现在，将模板保存为 Excel 或逗号分隔值（CSV）文件。</li>
+</ol>
+
+<blockquote>
+<p><em>在插入新记录时，你可以将 ID 列留空。</em>当你导入此模板时，每一行将在系统中创建一条记录。</p>
+</blockquote>
+
+<ol start="8">
+<li>一旦模板更新并准备好数据，我们就可以导入它了。</li>
+</ol>
+
+<h3 id="importing-a-template">导入模板</h3>
+
+<p>将数据添加到下载的模板后，请遵循以下步骤：</p>
+
+<ol>
+<li>更新模板文件后，返回数据导入表单，点击<strong>附加</strong>按钮附加文件。
+<img src="/files/imagef9ce89.png" alt="" />
+<em>附加要导入的文件</em></li>
+<li>选择模板文件并点击<strong>上传</strong>，上传成功后，点击<strong>开始导入</strong>。有多种导入数据的方式；你可以参考<a href="/erpnext/data-import#ways-to-import-data">此处</a></li>
+<li>一旦工作表上传，系统会验证工作表并在导入数据之前在屏幕上显示结果
+<img src="/files/image799c07.png" alt="" /></li>
+<li>如果你的模板中有任何错误，它们将显示在"警告"部分。警告将按行或列及其编号分类，以便你可以轻松地在模板中找到并解决它们。你必须在导入数据之前解决所有警告。</li>
+<li>解决警告后，再次点击<strong>开始导入</strong>导入数据。数据成功导入后，你将在"导入日志"部分看到每条创建的记录的日志。</li>
+</ol>
+
+<h2 id="validations-and-errors-in-importing">导入时的验证和错误</h2>
+
+<h3 id="duplicate-name">重复名称</h3>
+
+<p>如果我们尝试添加重复名称的记录，它将抛出类似这样的错误</p>
+
+<p><img src="/files/imagebff69b.png" alt="" />
+<em>重复名称错误</em></p>
+
+<h3 id="mapping-of-missed-columns">遗漏列的映射</h3>
+
+<p>当我们在下载模板时添加额外列，或者我们重命名了要导入的模板中的列时，可能会抛出无法匹配列的错误。</p>
+
+<p><div data-type="video-block" data-src="/files/Screen%20Recording%202026-02-18%20at%209.43.24%E2%80%AFPM.mov"><video src="/files/Screen%20Recording%202026-02-18%20at%209.43.24%E2%80%AFPM.mov" controls preload="metadata"><source src="/files/Screen%20Recording%202026-02-18%20at%209.43.24%E2%80%AFPM.mov" /></video></div></p>
+
+<blockquote>
+<p>要解决此问题，我们可以点击<strong>映射列</strong>并手动将列映射到文档中的相应列。</p>
+</blockquote>
+
+<h2 id="importing-child-records">导入子记录</h2>
+
+<p>ERPNext 中的数据以类似电子表格的表格形式存储，包含列和行数据。每个表单（如销售订单）都有多个字段，如客户、公司等。它还有表格如物料表、税务表等。在数据导入中，销售订单中的字段集被视为主表，而子表格（物料表）内的行被视为数据导入的子表。</p>
+
+<p>ERPNext 中的每个表单可以关联多个子表。子表链接到主表，并在任何属性有多个值时实现。例如，一个物料可以有多个价格，一个销售发票有多个物料、税务等。</p>
+
+<p>当你导出一个带有子表的文档时，例如，每个子行将出现在单独的行中，但它与单个父行关联。父列中的后续值将保持空白。你必须确保在通过数据导入导入时此顺序不被破坏。</p>
+
+<hr />
+
+<p><img src="/files/imagedf8b35.png" alt="" />
+<em>子记录导入</em></p>
+
+<h2 id="updating-records">更新记录</h2>
+
+<p>假设你想在系统中批量更新客户数据。第一步是下载带有数据的模板。</p>
+
+<ol>
+<li>我们从下载模板开始。由于我们要更新，我们可以使用过滤器来提取确切的记录并重新导入进行更新。</li>
+<li>首先，我们选择文档类型和导入类型为<strong>更新现有记录</strong>，然后保存</li>
+<li>当我们尝试下载模板时，我们可以应用过滤器，类似这样
+<img src="/files/image0baff8.png" alt="" /></li>
+<li>我们点击<strong>导出</strong>。</li>
+<li>现在，根据模板，现有记录如下所示：</li>
+</ol>
+
+<p><img src="/files/image7a4518.png" alt="" /></p>
+
+<blockquote>
+<p><strong>提示</strong></p>
+<p>在导出记录进行更新时，确保 ID 列被导出且未被触碰。ID 列中的值用于识别系统中的记录。你可以更新其他列中的值，但不能更新 ID 列中的值。如果你删除某个子表行，系统将认为该行应该被删除。</p>
+</blockquote>
+
+<ol start="6">
+<li>现在，更改模板中的值并将文件保存为 Excel 或 CSV。</li>
+</ol>
+
+<p><img src="/files/imageebf859.png" alt="" /></p>
+
+<h2 id="ways-to-import-data">导入数据的方式</h2>
+
+<h3 id="import-from-google-sheets">从 Google Sheets 导入</h3>
+
+<p>你可以按照以下步骤直接从 Google Sheets 导入数据：</p>
+
+<ol>
+<li>将模板上传或复制到 Google Sheets。</li>
+<li>在工作表中输入或更新你的数据。</li>
+<li>确保 Google Sheet 设置为<strong>公开</strong>访问。</li>
+<li>确认后，使用数据导入页面中的 Google Sheets 链接继续导入。</li>
+</ol>
+
+<p><img src="/files/imaged49cb3.png" alt="" />
+<em>Google 表格数据文件</em></p>
+
+<blockquote>
+<p><strong>提示</strong></p>
+<p>要验证表格是否可公开访问，请在隐身/私人浏览器窗口中打开 Google Sheets URL。如果文件可以无需登录访问而打开，则配置正确。</p>
+</blockquote>
+
+<p><img src="/files/imagebbb644.png" alt="" />
+<em>使用 google 表格导入后</em></p>
+
+<h3 id="import-from-the-file-system">从文件系统导入</h3>
+
+<ol>
+<li>在<strong>数据导入页面</strong>上，有两个可用选项：</li>
+</ol>
+
+<ul>
+<li>附加文件</li>
+<li>使用 Google Sheets 导入
+<img src="/files/imageb8e55f.png" alt="" /></li>
+</ul>
+
+<ol start="2">
+<li>点击<strong>附加</strong>后，你会看到多个上传选项：
+<img src="/files/imageb4e113.png" alt="" /></li>
+<li>可用上传选项</li>
+</ol>
+
+<ul>
+<li><strong>我的设备</strong><br />
+直接从本地计算机上传文件。</li>
+<li><strong>文件库</strong><br />
+选择已上传并存储在系统文件库中的文件。</li>
+<li><strong>链接</strong><br />
+提供托管在线文件的直接网络 URL。</li>
+</ul>
+
+<ol start="4">
+<li>根据文件存储位置选择适当的选项，然后继续上传。</li>
+</ol>
+
+<h3 id="submit-after-import">导入后提交</h3>
+
+<p>在 ERPNext 中，文档类型主要有两种——主数据和交易。主数据是如客户和任务之类的记录，只能保存不能提交。交易如销售订单、采购发票是可提交的单据，可以提交。</p>
+
+<p>当你为导入选择可提交的文档类型时，你可以勾选<strong>导入后提交</strong>来在导入后提交该文档。</p>
+
+<h3 id="dont-send-emails">不发送电子邮件</h3>
+
+<p>假设你在系统中创建了一个通知，每当创建线索时会发送电子邮件。现在，如果你正在批量导入线索，则会发送大量电子邮件，这可能不是我们想要的。你可以禁用此选项以避免发送电子邮件。</p>
+
+<h2 id="additional-notes">附加说明</h2>
+
+<hr />
+
+<h3 id="upload-limit">上传限制</h3>
+
+<p>可导入的记录数量没有硬性限制。但你应该尝试一次只上传几千条记录。导入大量记录（比如 50,000 条）可能会显著减慢正在使用系统的用户的速度。</p>
+
+<h3 id="csv-files">CSV 文件</h3>
+
+<p>CSV（逗号分隔值）文件是一种数据文件，你可以上传到 ERPNext 来更新各种数据。任何来自流行电子表格应用程序（如 MS Excel 或 Open Office Spreadsheet）的电子表格文件都可以保存为 CSV 文件。</p>
+
+<p>如果你使用 Microsoft Excel 且使用非英文字符，请确保将文件编码保存为 UTF-8。</p>
+
+<p>对于旧版本的 Excel，没有明确的 UTF-8 保存方式。所以将文件保存为 CSV，然后在记事本中打开，再保存为"UTF-8"。（或者升级你的 Excel！）</p>
+
+</body>
+</html>

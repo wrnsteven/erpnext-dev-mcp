@@ -1,0 +1,11 @@
+维护计划和维护访问是 ERPNext 支持模块的重要组成部分，确保 ERP 系统在运行过程中保持正常、安全，并符合业务需求。高效管理这些方面有助于为用户打造一个可靠且优化的 ERP 环境。
+
+- [Maintenance Schedule](/erpnext/user/manual/en/maintenance-schedule)
+
+- [Maintenance Visits](/erpnext/user/manual/en/maintenance-visit)
+
+---
+original_url: https://docs.frappe.io/erpnext/maintenance
+translated_by: AI (Claude Code)
+translation_date: 2026-04-18
+---

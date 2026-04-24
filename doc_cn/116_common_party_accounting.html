@@ -1,0 +1,35 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>通用交易方会计</title>
+</head>
+<body>
+    <h1>通用交易方会计</h1>
+
+    <p>ERPNext 中的通用交易方会计用于处理异常交易的会计核算，例如针对主要供应商创建销售发票。</p>
+
+    <p>假设一位 ERPNext 用户一直在针对供应商制作采购发票，现在希望针对同一供应商制作销售发票，并将此销售发票与之前的某次采购进行对冲。</p>
+
+    <p>通过启用通用交易方会计可以实现上述功能。</p>
+
+    <p><strong>步骤：</strong></p>
+
+    <ol>
+        <li><p>进入账户设置，启用<em>通用交易方会计</em>。</p></li>
+        <li><p>在两个交易方之间创建链接</p>
+        <ul>
+            <li>如果交易方的主要角色是供应商，则进入供应商主数据，点击操作 -> 与客户链接</li>
+            <li>如果交易方的主要角色是客户，则进入客户主数据，点击操作 -> 与供应商链接</li>
+        </ul>
+        <p><img src="/files/Party_Link.gif" alt="Party Link" /></p>
+        </li>
+        <li><p>针对在第二步中被设置为辅助交易方的客户创建销售发票。</p></li>
+        <li><p>提交销售发票时，系统会自动过账一张日记账分录，为关联供应商创建预付款余额。</p></li>
+    </ol>
+
+    <p><img src="/files/Journal-Entry.png" alt="Journal Entry" /></p>
+
+    <p>5. 现在可以使用此日记账分录的预付款与采购发票进行对账。</p>
+</body>
+</html>
