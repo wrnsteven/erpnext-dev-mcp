@@ -1,0 +1,1 @@
+"""ERPNext Dev MCP Server."""

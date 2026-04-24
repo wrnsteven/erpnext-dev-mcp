@@ -1,0 +1,2 @@
+"""Doctype tools - placeholder."""
+pass
