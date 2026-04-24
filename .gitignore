@@ -1,0 +1,9 @@
+# Documentation (too large to upload)
+doc_cn/
+md/
+images/
+framework/
+*.json
+*.txt
+__pycache__/
+*.pyc
