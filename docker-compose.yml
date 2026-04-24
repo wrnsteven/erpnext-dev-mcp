@@ -1,0 +1,12 @@
+services:
+  mcp-server:
+    build: .
+    environment:
+      - ERPNEXT_URL=${ERPNEXT_URL}
+      - ERPNEXT_API_KEY=${ERPNEXT_API_KEY}
+      - ERPNEXT_API_SECRET=${ERPNEXT_API_SECRET}
+      - REMOTE_HOST=${REMOTE_HOST}
+      - REMOTE_USER=${REMOTE_USER}
+      - REMOTE_CONTAINER=erpnext-dev-frappe-1
+    volumes:
+      - ~/.ssh:/root/.ssh:ro
