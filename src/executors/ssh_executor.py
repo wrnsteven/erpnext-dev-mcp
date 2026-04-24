@@ -1,4 +1,4 @@
-"""SSH Executor for running commands in frappe container."""
+"""Docker Executor for running commands in frappe container."""
 import subprocess
 import shlex
 from dataclasses import dataclass
@@ -23,9 +23,11 @@ class SSHExecutor:
 
         Returns: (stdout, stderr, returncode)
         """
-        cmd = f'docker exec {self.container} bash -c \'runuser -u frappe -- bash -c "cd {self.bench_dir} && source env/bin/activate && {command}"\''
+        # Build the command to run inside the container
+        inner_cmd = f'runuser -u frappe -- bash -c "cd {self.bench_dir} && source env/bin/activate && {command}"'
+        cmd = ["docker", "exec", self.container, "bash", "-c", inner_cmd]
         result = subprocess.run(
-            ["ssh", f"{self.user}@{self.host}", cmd],
+            cmd,
             capture_output=True,
             text=True
         )
@@ -34,22 +36,12 @@ class SSHExecutor:
     def write_file(self, path: str, content: str) -> bool:
         """Write file to bench volume via docker exec."""
         escaped_content = content.replace("'", "'\"'\"'")
-        cmd = f"echo '{escaped_content}' > {path}"
-        full_cmd = f'docker exec {self.container} bash -c {shlex.quote(cmd)}'
-        result = subprocess.run(
-            ["ssh", f"{self.user}@{self.host}", full_cmd],
-            capture_output=True,
-            text=True
-        )
+        cmd = ["docker", "exec", self.container, "bash", "-c", f"echo '{escaped_content}' > {path}"]
+        result = subprocess.run(cmd, capture_output=True, text=True)
         return result.returncode == 0
 
     def read_file(self, path: str) -> str:
         """Read file from bench volume via docker exec."""
-        cmd = f"cat {path}"
-        full_cmd = f'docker exec {self.container} bash -c {shlex.quote(cmd)}'
-        result = subprocess.run(
-            ["ssh", f"{self.user}@{self.host}", full_cmd],
-            capture_output=True,
-            text=True
-        )
+        cmd = ["docker", "exec", self.container, "bash", "-c", f"cat {path}"]
+        result = subprocess.run(cmd, capture_output=True, text=True)
         return result.stdout
